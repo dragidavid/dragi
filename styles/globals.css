@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -13,4 +17,10 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.react-grid-item.react-grid-placeholder {
+  background-color: rgb(100 116 139);
+  border-radius: 1.5rem;
+  filter: blur(8px);
 }
