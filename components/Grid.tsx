@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { motion } from "framer-motion";
 
+import Bio from "components/Bio";
+import Spotify from "components/Spotify";
+
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const ROWHEIGHTS: any = {
@@ -11,18 +14,60 @@ const ROWHEIGHTS: any = {
   sm: 179,
 };
 
-const TILES: string[] = [
-  "bio",
-  "spotify",
-  "fill-one",
-  "fill-two",
-  "fill-three",
-  "toggle",
-  "contact",
+const TILES: any[] = [
+  {
+    key: "bio",
+    component: <Bio />,
+  },
+  {
+    key: "spotify",
+    component: <Spotify />,
+  },
+  {
+    key: "fill-one",
+    component: (
+      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
+        <p>some component</p>
+      </div>
+    ),
+  },
+  {
+    key: "fill-two",
+    component: (
+      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
+        <p>some component</p>
+      </div>
+    ),
+  },
+  {
+    key: "fill-three",
+    component: (
+      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
+        <p>some component</p>
+      </div>
+    ),
+  },
+  {
+    key: "toggle",
+    component: (
+      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
+        <p>some component</p>
+      </div>
+    ),
+  },
+  {
+    key: "contact",
+    component: (
+      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
+        <p>some component</p>
+      </div>
+    ),
+  },
 ];
 
 export default function Grid() {
   const [rowHeight, setRowHeight] = useState(ROWHEIGHTS.xl);
+  // TODO set the row height according to the window's width instead of just setting xl
 
   const layouts = {
     xl: [
@@ -46,9 +91,7 @@ export default function Grid() {
   };
 
   return (
-    <div
-      className={`container mx-auto h-screen max-w-[400px] sm:max-w-[400px] md:max-w-[480px] lg:max-w-[1024px] xl:max-w-[1280px]`}
-    >
+    <main className="container mx-auto max-w-[400px] grow sm:max-w-[400px] md:max-w-[480px] lg:max-w-[1024px] xl:max-w-[1280px]">
       <ResponsiveGridLayout
         layouts={layouts}
         breakpoints={{
@@ -66,18 +109,23 @@ export default function Grid() {
         }
         measureBeforeMount={true}
       >
-        {TILES.map((tile: string, index: number) => (
+        {TILES.map((tile: any, index: number) => (
           <motion.div
-            className="rounded-3xl bg-gray-50"
-            key={tile}
+            className="overflow-hidden rounded-3xl shadow-xl dark:border-2 dark:border-gray-800 dark:shadow-lg"
+            key={tile.key}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ ease: "easeInOut", delay: 0.1 * index }}
+            transition={{
+              ease: "easeInOut",
+              delay: ((Math.floor(Math.random() * 2) + 0.1) / 10) * index,
+            }}
           >
-            {tile}
+            {tile.component}
           </motion.div>
         ))}
       </ResponsiveGridLayout>
-    </div>
+    </main>
   );
 }
+
+// Math.floor(Math.random() * 0.3) + 0.1) / 10

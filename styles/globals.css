@@ -8,6 +8,11 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  transition: all 0.3s;
+}
+
+#__next {
+  @apply flex min-h-screen flex-col bg-gray-50 dark:bg-gray-900;
 }
 
 a {
@@ -20,7 +25,5 @@ a {
 }
 
 .react-grid-item.react-grid-placeholder {
-  background-color: rgb(100 116 139);
-  border-radius: 1.5rem;
-  filter: blur(8px);
+  @apply rounded-3xl bg-gray-400 blur-sm filter;
 }

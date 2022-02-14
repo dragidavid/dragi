@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <div>
-      <h1>this is the footer</h1>
-    </div>
+    <footer className="flex min-h-[8rem] items-center justify-center">
+      <p>© 2022 David Dragovacz</p>
+    </footer>
   );
 }
