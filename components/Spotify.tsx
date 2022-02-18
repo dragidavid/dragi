@@ -1,65 +1,71 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { usePalette } from "react-palette";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 import fetcher from "lib/fetcher";
-import { randomNumber, randomArray } from "lib/utils";
+import { getColors, randomNumber, randomArray } from "lib/utils";
+
+import { NowPlayingSong, Color } from "lib/types";
 
 export default function Spotify() {
-  const { data } = useSWR("/api/spotify/now-playing", fetcher);
+  const [colors, setColors] = useState<Color[] | undefined>(undefined);
+  const { data } = useSWR<NowPlayingSong>("/api/spotify/now-playing", fetcher);
 
-  // TODO make sure that we're only fetching the palette when there is data from the Spotify API
-  const {
-    data: palette,
-    loading: paletteLoading,
-    error: paletteError,
-  } = usePalette(data ? data.albumImageUrl : "");
+  useEffect(() => {
+    if (data && data.albumImageUrl) {
+      getColors(data.albumImageUrl, 4).then((res) => setColors(res));
+    }
+  }, [data]);
 
   return (
-    <div className="h-full rounded-3xl bg-white dark:bg-gray-900">
-      {palette && data && data.isPlaying && (
-        <AnimatePresence exitBeforeEnter>
-          {Object.values(palette)
-            .slice(0, 3)
-            .map((color: any, index: number) => (
-              <motion.div
-                key={color}
-                className="absolute rounded-full mix-blend-multiply blur-xl filter dark:mix-blend-normal"
-                // TODO Calculate the left/top/width/height values better
-                style={{
-                  backgroundColor: color,
-                  left: `${randomNumber(0, 30)}%`,
-                  top: `${randomNumber(0, 41)}%`,
-                  height: `${randomNumber(17, 21)}rem`,
-                  width: `${randomNumber(17, 21)}rem`,
-                  borderRadius: `${randomNumber(70, 100)}% ${randomNumber(
-                    70,
-                    100
-                  )}% ${randomNumber(70, 100)}% ${randomNumber(70, 100)}%`,
-                }}
-                initial={{ opacity: 0 }}
-                exit={{ opacity: 0, transition: { duration: 2 } }}
-                // ⬇️ Ensure that we animate from the starting scale/position and we end on starting scale/position to avoid blobs jumping around ⬇️
-                animate={{
-                  opacity: 0.6,
-                  x: [0, ...randomArray(4, -111, 111), 0],
-                  y: [0, ...randomArray(4, -111, 111), 0],
-                  scale: [1, ...randomArray(5, 0.72, 1.42, true), 1],
-                  rotate: 360,
-                }}
-                transition={{
-                  opacity: { duration: 2 },
-                  default: {
-                    ease: "easeInOut",
-                    duration: 10,
-                    repeat: Infinity,
-                  },
-                }}
-              ></motion.div>
-            ))}
-        </AnimatePresence>
-      )}
+    <div className="relative h-full">
+      {colors &&
+        colors.map((color: Color) => (
+          <motion.div
+            key={color.name}
+            className="absolute mix-blend-normal blur-2xl filter"
+            style={{
+              backgroundColor: color.hex,
+              left: `${randomNumber(-20, 50)}%`,
+              top: `${randomNumber(-20, 50)}%`,
+              height: `${randomNumber(80, 90)}%`,
+              width: `${randomNumber(50, 90)}%`,
+              borderRadius: `${randomArray(4, 80, 100).join("% ")}%`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 1,
+              x: [0, ...randomArray(4, -100, 100), 0],
+              y: [0, ...randomArray(4, -100, 100), 0],
+              scale: [1, ...randomArray(4, 0.82, 2, true), 1],
+              rotate: 360,
+            }}
+            transition={{
+              opacity: { duration: 2 },
+              default: {
+                ease: "easeInOut",
+                duration: randomNumber(10, 14),
+                repeat: Infinity,
+              },
+            }}
+          />
+        ))}
+      <div className="relative h-full bg-white/60 dark:bg-slate-900/60">
+        <div className="flex h-full flex-col">
+          <div>
+            <Image
+              src={"/Spotify_Icon_White.png"}
+              alt="spotify_white"
+              width={72}
+              height={72}
+            />
+          </div>
+          <h2>Now Playing:</h2>
+          <p>{data?.title}</p>
+          <p>{data?.artist}</p>
+        </div>
+      </div>
     </div>
   );
 }

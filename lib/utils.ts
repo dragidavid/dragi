@@ -1,3 +1,29 @@
+import Vibrant from "node-vibrant";
+import { invoke } from "lodash";
+
+export async function getColors(src: string, numberOfColors: number) {
+  const palette = await Vibrant.from(src)
+    .maxColorCount(numberOfColors)
+    .getPalette();
+
+  const makeNice = (acc: any, color: any) => {
+    if (invoke(palette, [color, "getPopulation"]) > 0) {
+      return [
+        ...acc,
+        {
+          name: color,
+          hex: invoke(palette, [color, "getHex"]),
+          population: invoke(palette, [color, "getPopulation"]),
+        },
+      ];
+    }
+
+    return [...acc];
+  };
+
+  return Object.keys(palette).reduce(makeNice, []);
+}
+
 export function randomNumber(
   from: number,
   to: number,

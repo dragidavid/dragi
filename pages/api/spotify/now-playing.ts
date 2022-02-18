@@ -12,20 +12,20 @@ export default async function handler(
     return res.status(200).json({ isPlaying: false });
   }
 
-  const song = await response.json();
+  const track = await response.json();
 
-  if (song.item === null) {
+  if (track.item === null) {
     return res.status(200).json({ isPlaying: false });
   }
 
-  const isPlaying = song.is_playing;
-  const title = song.item.name;
-  const artist = song.item.artists
+  const isPlaying = track.is_playing;
+  const title = track.item.name;
+  const artist = track.item.artists
     .map((_artist: any) => _artist.name)
     .join(", ");
-  const album = song.item.album.name;
-  const albumImageUrl = song.item.album.images[0].url;
-  const songUrl = song.item.external_urls.spotify;
+  const album = track.item.album.name;
+  const albumImageUrl = track.item.album.images[1].url;
+  const trackUrl = track.item.external_urls.spotify;
 
   res.setHeader(
     "Cache-Control",
@@ -37,18 +37,7 @@ export default async function handler(
     albumImageUrl,
     artist,
     isPlaying,
-    songUrl,
+    trackUrl,
     title,
   });
 }
-// EXAMPLE ARTIST
-// {
-//   "external_urls": {
-//     "spotify": "https://open.spotify.com/artist/3YQKmKGau1PzlVlkL1iodx"
-//   },
-//   "href": "https://api.spotify.com/v1/artists/3YQKmKGau1PzlVlkL1iodx",
-//   "id": "3YQKmKGau1PzlVlkL1iodx",
-//   "name": "Twenty One Pilots",
-//   "type": "artist",
-//   "uri": "spotify:artist:3YQKmKGau1PzlVlkL1iodx"
-// }
