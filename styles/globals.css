@@ -2,18 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  @apply bg-slate-100 transition-colors duration-200 ease-in-out;
+}
+
+.dark {
+  @apply bg-slate-900;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  transition: all 0.3s;
+  /* transition: all 0.3s; */
 }
 
-#__next {
-  @apply flex min-h-screen flex-col bg-gray-50 dark:bg-gray-900;
-}
+/* html {
+  @apply bg-gray-50 dark:bg-gray-900;
+} */
+
+/* #__next {
+  @apply flex min-h-screen flex-grow flex-col bg-gray-50 dark:bg-gray-900;
+} */
 
 a {
   color: inherit;
@@ -25,5 +37,5 @@ a {
 }
 
 .react-grid-item.react-grid-placeholder {
-  @apply rounded-3xl bg-gray-400 blur-sm filter;
+  @apply rounded-3xl bg-slate-400 blur-sm filter transition duration-500 ease-in-out will-change-transform dark:bg-slate-700;
 }

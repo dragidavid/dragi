@@ -6,12 +6,10 @@ import "node_modules/react-resizable/css/styles.css";
 
 import "styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class">
       <Component {...pageProps} />
     </ThemeProvider>
   );
 }
-
-export default MyApp;

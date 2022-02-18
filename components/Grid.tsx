@@ -4,17 +4,21 @@ import { motion } from "framer-motion";
 
 import Bio from "components/Bio";
 import Spotify from "components/Spotify";
+import Map from "components/Map";
+import Contact from "components/Contact";
+
+import { GridTile, RowHeight } from "lib/types";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const ROWHEIGHTS: any = {
-  xl: 295,
-  lg: 234,
+const ROWHEIGHTS: RowHeight = {
+  xl: 300,
+  lg: 236,
   md: 216,
-  sm: 179,
+  sm: 176,
 };
 
-const TILES: any[] = [
+const TILES: GridTile[] = [
   {
     key: "bio",
     component: <Bio />,
@@ -26,48 +30,50 @@ const TILES: any[] = [
   {
     key: "fill-one",
     component: (
-      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
-        <p>some component</p>
+      <div className="relative flex h-full items-center justify-center bg-sky-900 text-6xl">
+        <h2>🚧</h2>
       </div>
     ),
   },
   {
     key: "fill-two",
     component: (
-      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
-        <p>some component</p>
+      <div className="relative flex h-full items-center justify-center bg-sky-900 text-6xl">
+        <h2>🚧</h2>
       </div>
     ),
   },
   {
     key: "fill-three",
     component: (
-      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
-        <p>some component</p>
+      <div className="relative flex h-full items-center justify-center bg-sky-900 text-6xl">
+        <h2>🚧</h2>
       </div>
     ),
   },
   {
-    key: "toggle",
-    component: (
-      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
-        <p>some component</p>
-      </div>
-    ),
+    key: "map",
+    component: <Map />,
   },
   {
     key: "contact",
-    component: (
-      <div className="h-full w-full rounded-3xl bg-white dark:bg-gray-900">
-        <p>some component</p>
-      </div>
-    ),
+    component: <Contact />,
   },
 ];
 
+const determineRowHeight = () => {
+  if (typeof window !== "undefined") {
+    if (window.innerWidth > 1279) return ROWHEIGHTS.xl;
+    if (window.innerWidth > 1023 && window.innerWidth < 1280)
+      return ROWHEIGHTS.lg;
+    if (window.innerWidth > 767 && window.innerWidth < 1024)
+      return ROWHEIGHTS.md;
+    if (window.innerWidth < 768) return ROWHEIGHTS.sm;
+  }
+};
+
 export default function Grid() {
-  const [rowHeight, setRowHeight] = useState(ROWHEIGHTS.xl);
-  // TODO set the row height according to the window's width instead of just setting xl
+  const [rowHeight, setRowHeight] = useState(determineRowHeight);
 
   const layouts = {
     xl: [
@@ -75,23 +81,37 @@ export default function Grid() {
       { i: "spotify", x: 2, y: 0, w: 1, h: 1, isResizable: false },
       { i: "fill-one", x: 3, y: 0, w: 1, h: 2, isResizable: false },
       { i: "fill-two", x: 0, y: 1, w: 1, h: 2, isResizable: false },
-      { i: "toggle", x: 1, y: 1, w: 1, h: 1, isResizable: false },
-      { i: "fill-three", x: 2, y: 1, w: 1, h: 1, isResizable: false },
-      { i: "contact", x: 1, y: 1, w: 3, h: 1, isResizable: false },
+      { i: "fill-three", x: 1, y: 1, w: 1, h: 2, isResizable: false },
+      { i: "map", x: 2, y: 1, w: 1, h: 1, isResizable: false },
+      { i: "contact", x: 2, y: 3, w: 2, h: 1, isResizable: false },
     ],
     md: [
-      { i: "bio", x: 0, y: 0, w: 2, h: 1, isResizable: false },
-      { i: "fill-one", x: 0, y: 1, w: 1, h: 2, isResizable: false },
-      { i: "fill-two", x: 1, y: 1, w: 1, h: 2, isResizable: false },
-      { i: "toggle", x: 0, y: 3, w: 1, h: 1, isResizable: false },
-      { i: "fill-three", x: 1, y: 3, w: 1, h: 1, isResizable: false },
-      { i: "spotify", x: 0, y: 4, w: 2, h: 1, isResizable: false },
-      { i: "contact", x: 1, y: 4, w: 2, h: 1, isResizable: false },
+      { i: "bio", x: 0, y: 0, w: 2, h: 1, static: true },
+      { i: "map", x: 0, y: 1, w: 2, h: 1, static: true },
+      { i: "fill-one", x: 0, y: 2, w: 1, h: 2, static: true },
+      { i: "fill-two", x: 1, y: 2, w: 1, h: 1, static: true },
+      { i: "fill-three", x: 1, y: 3, w: 1, h: 1, static: true },
+      { i: "spotify", x: 0, y: 4, w: 2, h: 1, static: true },
+      { i: "contact", x: 0, y: 5, w: 2, h: 1, static: true },
+    ],
+    sm: [
+      { i: "bio", x: 0, y: 0, w: 2, h: 1, static: true },
+      { i: "map", x: 0, y: 1, w: 2, h: 1, static: true },
+      { i: "fill-one", x: 0, y: 2, w: 1, h: 2, static: true },
+      { i: "fill-two", x: 1, y: 2, w: 1, h: 1, static: true },
+      { i: "fill-three", x: 1, y: 3, w: 1, h: 1, static: true },
+      { i: "spotify", x: 0, y: 4, w: 2, h: 1, static: true },
+      { i: "contact", x: 0, y: 5, w: 2, h: 1, static: true },
     ],
   };
 
   return (
-    <main className="container mx-auto max-w-[400px] grow sm:max-w-[400px] md:max-w-[480px] lg:max-w-[1024px] xl:max-w-[1280px]">
+    <motion.main
+      className="container mx-auto max-w-[400px] grow md:max-w-[480px] lg:max-w-[1024px] xl:max-w-[1280px]"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 0.5 }}
+    >
       <ResponsiveGridLayout
         layouts={layouts}
         breakpoints={{
@@ -103,29 +123,22 @@ export default function Grid() {
         cols={{ xl: 4, lg: 4, md: 2, sm: 2 }}
         rowHeight={rowHeight}
         isBounded={true}
-        margin={{ xl: [20, 20], lg: [18, 18], md: [16, 16], sm: [14, 14] }}
+        margin={[16, 16]}
         onBreakpointChange={(breakpoint: string) =>
           setRowHeight(ROWHEIGHTS[breakpoint])
         }
         measureBeforeMount={true}
+        className="-mt-4"
       >
-        {TILES.map((tile: any, index: number) => (
-          <motion.div
-            className="overflow-hidden rounded-3xl shadow-xl dark:border-2 dark:border-gray-800 dark:shadow-lg"
+        {TILES.map((tile: GridTile) => (
+          <div
+            className="overflow-hidden rounded-2xl bg-white shadow-lg transition duration-500 ease-in-out will-change-transform dark:border-2 dark:border-slate-800 dark:bg-slate-900 lg:hover:cursor-grab"
             key={tile.key}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-              ease: "easeInOut",
-              delay: ((Math.floor(Math.random() * 2) + 0.1) / 10) * index,
-            }}
           >
             {tile.component}
-          </motion.div>
+          </div>
         ))}
       </ResponsiveGridLayout>
-    </main>
+    </motion.main>
   );
 }
-
-// Math.floor(Math.random() * 0.3) + 0.1) / 10
