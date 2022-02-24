@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Bio() {
+const Bio = () => {
   return (
     <div className="relative h-full">
       <div className="absolute bottom-[-10px] right-0">
@@ -14,4 +14,6 @@ export default function Bio() {
       </div>
     </div>
   );
-}
+};
+
+export default Bio;

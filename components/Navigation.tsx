@@ -21,7 +21,7 @@ const CATEGORIES: Category[] = [
   },
 ];
 
-export default function Navigation() {
+const Navigation = () => {
   const [mounted, setMounted] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = useState<Category>(
     CATEGORIES[0]
@@ -77,4 +77,6 @@ export default function Navigation() {
       </div>
     </nav>
   );
-}
+};
+
+export default Navigation;

@@ -2,7 +2,7 @@ import Navigation from "components/Navigation";
 import Grid from "components/Grid";
 import Footer from "components/Footer";
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="flex h-screen flex-col">
       <Navigation />
@@ -10,4 +10,6 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+};
+
+export default Home;

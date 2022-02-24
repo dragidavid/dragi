@@ -79,7 +79,7 @@ const determineRowHeight = () => {
   }
 };
 
-export default function Grid() {
+const Grid = () => {
   const [rowHeight, setRowHeight] = useState(determineRowHeight);
 
   const layouts = {
@@ -143,4 +143,6 @@ export default function Grid() {
       </ResponsiveGridLayout>
     </motion.main>
   );
-}
+};
+
+export default Grid;

@@ -10,7 +10,7 @@ import TrackInformation from "components/Spotify/TrackInformation";
 
 import { Track, Color } from "lib/types";
 
-export default function Spotify() {
+const Spotify = () => {
   const [colors, setColors] = useState<Color[] | undefined>(undefined);
   const [shouldFetchRecentlyPlayedTrack, setShouldFetchRecentlyPlayedTrack] =
     useState<boolean>(false);
@@ -133,4 +133,6 @@ export default function Spotify() {
       </div>
     </div>
   );
-}
+};
+
+export default Spotify;
