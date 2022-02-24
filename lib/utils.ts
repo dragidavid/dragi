@@ -1,19 +1,18 @@
 import Vibrant from "node-vibrant";
 import { invoke } from "lodash";
 
-export async function getColors(src: string, numberOfColors: number) {
-  const palette = await Vibrant.from(src)
-    .maxColorCount(numberOfColors)
-    .getPalette();
+import { Color } from "lib/types";
 
-  const makeNice = (acc: any, color: any) => {
+export async function getColors(src: string) {
+  const palette = await Vibrant.from(src).getPalette();
+
+  const makeNice = (acc: Color[], color: string) => {
     if (invoke(palette, [color, "getPopulation"]) > 0) {
       return [
         ...acc,
         {
           name: color,
           hex: invoke(palette, [color, "getHex"]),
-          population: invoke(palette, [color, "getPopulation"]),
         },
       ];
     }

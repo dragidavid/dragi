@@ -14,21 +14,24 @@ export default async function handler(
 
   const recents = await response.json();
 
-  // if (song.item === null) {
-  //   return res.status(200).json({ isPlaying: false });
-  // }
+  const mostRecentTrack = recents.items[0].track;
 
-  // const isPlaying = song.is_playing;
-  // const title = song.item.name;
-  // const artist = song.item.artists.map((_artist) => _artist.name).join(", ");
-  // const album = song.item.album.name;
-  // const albumImageUrl = song.item.album.images[0].url;
-  // const songUrl = song.item.external_urls.spotify;
+  const title = mostRecentTrack.name;
+  const artist = mostRecentTrack.artists
+    .map((_artist: any) => _artist.name)
+    .join(", ");
+  const album = mostRecentTrack.album.name;
+  const trackUrl = mostRecentTrack.external_urls.spotify;
 
   res.setHeader(
     "Cache-Control",
     "public, s-maxage=60, stale-while-revalidate=30"
   );
 
-  return res.status(200).json(recents);
+  return res.status(200).json({
+    album,
+    artist,
+    trackUrl,
+    title,
+  });
 }

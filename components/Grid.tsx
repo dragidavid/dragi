@@ -7,15 +7,22 @@ import Spotify from "components/Spotify";
 import Map from "components/Map";
 import Contact from "components/Contact";
 
-import { GridTile, RowHeight } from "lib/types";
+import { GridTile, RowHeights } from "lib/types";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const ROWHEIGHTS: RowHeight = {
+const ROWHEIGHTS: RowHeights = {
   xl: 300,
   lg: 236,
   md: 216,
   sm: 176,
+};
+
+const BREAKPOINTS = {
+  xl: 1279,
+  lg: 1023,
+  md: 479,
+  sm: 399,
 };
 
 const TILES: GridTile[] = [
@@ -95,13 +102,13 @@ export default function Grid() {
       { i: "contact", x: 0, y: 5, w: 2, h: 1, static: true },
     ],
     sm: [
-      { i: "bio", x: 0, y: 0, w: 2, h: 1, static: true },
-      { i: "map", x: 0, y: 1, w: 2, h: 1, static: true },
-      { i: "fill-one", x: 0, y: 2, w: 1, h: 2, static: true },
-      { i: "fill-two", x: 1, y: 2, w: 1, h: 1, static: true },
-      { i: "fill-three", x: 1, y: 3, w: 1, h: 1, static: true },
-      { i: "spotify", x: 0, y: 4, w: 2, h: 1, static: true },
-      { i: "contact", x: 0, y: 5, w: 2, h: 1, static: true },
+      { i: "bio", x: 0, y: 0, w: 2, h: 2, static: true },
+      { i: "map", x: 0, y: 2, w: 2, h: 1, static: true },
+      { i: "fill-one", x: 0, y: 3, w: 1, h: 2, static: true },
+      { i: "fill-two", x: 1, y: 3, w: 1, h: 1, static: true },
+      { i: "fill-three", x: 1, y: 4, w: 1, h: 1, static: true },
+      { i: "spotify", x: 0, y: 5, w: 2, h: 2, static: true },
+      { i: "contact", x: 0, y: 7, w: 2, h: 2, static: true },
     ],
   };
 
@@ -114,12 +121,7 @@ export default function Grid() {
     >
       <ResponsiveGridLayout
         layouts={layouts}
-        breakpoints={{
-          xl: 1279,
-          lg: 1023,
-          md: 479,
-          sm: 399,
-        }}
+        breakpoints={BREAKPOINTS}
         cols={{ xl: 4, lg: 4, md: 2, sm: 2 }}
         rowHeight={rowHeight}
         isBounded={true}
@@ -132,7 +134,7 @@ export default function Grid() {
       >
         {TILES.map((tile: GridTile) => (
           <div
-            className="overflow-hidden rounded-2xl bg-white shadow-lg transition duration-500 ease-in-out will-change-transform dark:border-2 dark:border-slate-800 dark:bg-slate-900 lg:hover:cursor-grab"
+            className="overflow-hidden rounded-2xl bg-white shadow-md transition duration-500 ease-in-out will-change-transform dark:bg-slate-900 dark:ring-2 dark:ring-inset dark:ring-slate-700 lg:hover:cursor-grab"
             key={tile.key}
           >
             {tile.component}

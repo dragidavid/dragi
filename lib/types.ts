@@ -1,4 +1,4 @@
-export type NowPlayingSong = {
+export type Track = {
   album: string;
   albumImageUrl: string;
   artist: string;
@@ -10,7 +10,6 @@ export type NowPlayingSong = {
 export type Color = {
   name: string;
   hex: string;
-  population: number;
 };
 
 export type Category = {
@@ -22,9 +21,6 @@ export type GridTile = {
   component: JSX.Element;
 };
 
-export type RowHeight = {
-  xl: number;
-  lg: number;
-  md: number;
-  sm: number;
+export type RowHeights = {
+  [breakpoint: string]: number;
 };

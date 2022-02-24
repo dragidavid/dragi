@@ -20,7 +20,7 @@ const getAccessToken = async () => {
     },
     body: new URLSearchParams({
       grant_type: "refresh_token",
-      refresh_token,
+      refresh_token: refresh_token!,
     }),
   });
 
