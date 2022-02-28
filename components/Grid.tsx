@@ -32,7 +32,12 @@ const TILES: GridTile[] = [
   },
   {
     key: "spotify",
-    component: <Spotify />,
+    component: (
+      <div className="relative flex h-full items-center justify-center bg-sky-900 text-6xl">
+        <h2>🎵</h2>
+      </div>
+      // <Spotify />
+    ),
   },
   {
     key: "fill-one",

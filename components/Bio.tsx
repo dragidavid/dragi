@@ -3,13 +3,13 @@ import Image from "next/image";
 const Bio = () => {
   return (
     <div className="relative h-full">
-      <div className="absolute bottom-[-10px] right-0">
+      <div className="fixed bottom-0 right-0 h-40 w-40 xl:h-48 xl:w-48">
         <Image
           src={"/hello.png"}
           alt="Hello 👋"
-          height={216}
-          width={216}
+          layout="fill"
           quality={100}
+          priority
         />
       </div>
     </div>
