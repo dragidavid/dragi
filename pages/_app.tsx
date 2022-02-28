@@ -8,7 +8,7 @@ import "styles/globals.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" enableSystem={false} defaultTheme="dark">
       <Component {...pageProps} />
     </ThemeProvider>
   );

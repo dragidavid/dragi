@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
 
 type TrackInformationProps = {
@@ -27,6 +27,15 @@ const TrackInformation = ({ text, className }: TrackInformationProps) => {
       }
     }
   };
+
+  const startAnimation = useCallback(() => {
+    if (!isAnimationActive && moveBy) {
+      setIsAnimationActive(true);
+      controls
+        .start({ x: [0, -moveBy, -moveBy, 0] })
+        .then(() => setIsAnimationActive(false));
+    }
+  }, [controls, isAnimationActive, moveBy]);
 
   useEffect(() => {
     window.addEventListener("resize", getMoveBy);
@@ -58,15 +67,9 @@ const TrackInformation = ({ text, className }: TrackInformationProps) => {
           delay: delay,
           ease: "linear",
         }}
-        className="inline-flex whitespace-nowrap"
-        onHoverStart={() => {
-          if (!isAnimationActive && moveBy) {
-            setIsAnimationActive(true);
-            controls
-              .start({ x: [0, -moveBy, -moveBy, 0] })
-              .then(() => setIsAnimationActive(false));
-          }
-        }}
+        className="inline-flex whitespace-nowrap will-change-transform"
+        onHoverStart={startAnimation}
+        onTap={startAnimation}
         ref={textRef}
       >
         {text}

@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import { StatusOfflineIcon, StatusOnlineIcon } from "@heroicons/react/outline";
 
 import fetcher from "lib/fetcher";
-import { getColors, randomNumber, randomArray } from "lib/utils";
+import { getColors } from "lib/utils";
 
+import Blob from "components/Spotify/Blob";
 import TrackInformation from "components/Spotify/TrackInformation";
 
 import { Track, Color } from "lib/types";
@@ -52,39 +53,9 @@ const Spotify = () => {
         nowPlaying?.isPlaying ? "text-white" : "text-current"
       }`}
     >
-      {/* TODO: possibly replace this part with a canvas as the background */}
       {colors &&
         nowPlaying?.isPlaying &&
-        colors.map((color: Color) => (
-          <motion.div
-            key={color.name}
-            className="absolute mix-blend-normal blur-2xl filter"
-            style={{
-              backgroundColor: color.hex,
-              left: `${randomNumber(-20, 50)}%`,
-              top: `${randomNumber(-20, 50)}%`,
-              height: `${randomNumber(80, 90)}%`,
-              width: `${randomNumber(50, 90)}%`,
-              borderRadius: `${randomArray(4, 80, 100).join("% ")}%`,
-            }}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: randomNumber(0.5, 1, true),
-              x: [0, ...randomArray(4, -100, 100), 0],
-              y: [0, ...randomArray(4, -100, 100), 0],
-              scale: [1, ...randomArray(4, 0.82, 2, true), 1],
-              rotate: 360,
-            }}
-            transition={{
-              opacity: { duration: 2 },
-              default: {
-                ease: "easeInOut",
-                duration: randomNumber(10, 14),
-                repeat: Infinity,
-              },
-            }}
-          />
-        ))}
+        colors.map((color: Color) => <Blob color={color} key={color.name} />)}
 
       <div
         className={`relative h-full ${
