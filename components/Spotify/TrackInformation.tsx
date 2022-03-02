@@ -3,10 +3,15 @@ import { motion, useAnimation } from "framer-motion";
 
 type TrackInformationProps = {
   text?: string;
+  trackUrl?: string;
   className?: string;
 };
 
-const TrackInformation = ({ text, className }: TrackInformationProps) => {
+const TrackInformation = ({
+  text,
+  trackUrl,
+  className,
+}: TrackInformationProps) => {
   const [moveBy, setMoveBy] = useState<number | undefined>(undefined);
   const [isAnimationActive, setIsAnimationActive] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(3);
@@ -42,8 +47,10 @@ const TrackInformation = ({ text, className }: TrackInformationProps) => {
   }, []);
 
   useEffect(() => {
-    getMoveBy();
-  }, [text]);
+    if (!moveBy) {
+      getMoveBy();
+    }
+  }, [moveBy, text]);
 
   useEffect(() => {
     controls.set({ x: 0 });
@@ -58,7 +65,11 @@ const TrackInformation = ({ text, className }: TrackInformationProps) => {
   }, [moveBy, controls]);
 
   return (
-    <div className={`overflow-hidden ${className}`} ref={containerRef}>
+    <div
+      className={`overflow-hidden ${className}`}
+      ref={containerRef}
+      onClick={() => window.open(trackUrl, "_blank")}
+    >
       <motion.span
         animate={controls}
         transition={{
@@ -67,6 +78,7 @@ const TrackInformation = ({ text, className }: TrackInformationProps) => {
           delay: delay,
           ease: "linear",
         }}
+        style={{ textDecoration: "inherit" }}
         className="inline-flex whitespace-nowrap will-change-transform"
         onHoverStart={startAnimation}
         onTap={startAnimation}

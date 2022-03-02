@@ -4,8 +4,8 @@ import Footer from "components/Footer";
 
 const Home = () => {
   return (
-    <div className="flex h-screen flex-col">
-      <Navigation />
+    <div className="flex h-screen flex-col justify-between">
+      {/* <Navigation /> */}
       <Grid />
       <Footer />
     </div>

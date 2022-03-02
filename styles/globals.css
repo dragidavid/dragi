@@ -2,39 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  @apply bg-slate-100 transition-colors duration-200 ease-in-out;
-}
-
-.dark {
-  @apply bg-slate-900;
-}
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-/* html {
-  @apply bg-gray-50 dark:bg-gray-900;
-} */
-
-/* #__next {
-  @apply flex min-h-screen flex-grow flex-col bg-gray-50 dark:bg-gray-900;
-} */
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+@layer components {
+  .grid-tile {
+    @apply absolute inset-0 overflow-hidden rounded-3xl;
+  }
 }
 
 .react-grid-item.react-grid-placeholder {
-  @apply rounded-2xl bg-slate-200 opacity-100 transition duration-500 ease-in-out will-change-transform dark:bg-slate-800;
+  @apply dark:bg-steel rounded-2xl bg-slate-200 opacity-100 transition duration-500 ease-in-out will-change-transform;
 }

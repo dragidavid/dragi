@@ -3,7 +3,7 @@ export type Track = {
   albumImageUrl: string;
   artist: string;
   isPlaying: boolean;
-  songUrl: string;
+  trackUrl: string;
   title: string;
 };
 

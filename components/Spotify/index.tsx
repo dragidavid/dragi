@@ -49,17 +49,21 @@ const Spotify = () => {
 
   return (
     <div
-      className={`relative h-full ${
+      className={`grid-tile ${
         nowPlaying?.isPlaying ? "text-white" : "text-current"
       }`}
     >
-      {colors &&
-        nowPlaying?.isPlaying &&
-        colors.map((color: Color) => <Blob color={color} key={color.name} />)}
+      {colors && nowPlaying?.isPlaying && (
+        <div className="absolute inset-0 z-10 overflow-hidden rounded-3xl">
+          {colors.map((color: Color) => (
+            <Blob color={color} key={color.name} />
+          ))}
+        </div>
+      )}
 
       <div
-        className={`relative h-full ${
-          nowPlaying?.isPlaying ? "bg-slate-900/20" : "bg-transparent"
+        className={`absolute inset-0 z-20 overflow-hidden rounded-3xl ${
+          nowPlaying?.isPlaying ? "bg-black/20" : "bg-transparent"
         } p-9 transition-all duration-500 md:p-6 xl:p-9`}
       >
         <div className="flex h-full flex-col justify-between">
@@ -90,9 +94,11 @@ const Spotify = () => {
               )}
             </div>
 
+            {/* Possibly replace this part with a cleaner solution */}
             <TrackInformation
               text={nowPlaying?.title ?? recentlyPlayed?.title}
-              className="mt-2 mb-1 text-3xl font-bold"
+              trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
+              className="mt-2 mb-1 text-3xl font-bold hover:cursor-pointer hover:underline"
             />
 
             <TrackInformation
