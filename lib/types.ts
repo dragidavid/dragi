@@ -17,10 +17,7 @@ export type Category = {
 };
 
 export type GridTile = {
-  key: string;
+  id: string;
   component: JSX.Element;
-};
-
-export type RowHeights = {
-  [breakpoint: string]: number;
+  styleOverrides?: string;
 };

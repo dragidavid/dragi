@@ -2,12 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .grid-tile {
-    @apply absolute inset-0 overflow-hidden rounded-3xl;
-  }
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url(/fonts/Inter.var.woff2) format("woff2");
+}
+
+.grid-tile {
+  @apply dark:ring-palette-border-dark ring-palette-border-light absolute inset-0 overflow-hidden rounded-3xl bg-white p-9 shadow-sm ring-2 ring-inset transition-all duration-500 ease-out group-hover:scale-[1.02] dark:bg-black md:p-6 xl:p-9;
+}
+
+.glow {
+  @apply absolute inset-0 rounded-3xl opacity-0 blur-xl transition-all duration-500 ease-out group-hover:scale-[1.01] group-hover:opacity-60;
+}
+
+.gradient-bio {
+  @apply bg-gradient-to-br from-fuchsia-600 to-pink-600;
+}
+
+.gradient-spotify {
+  @apply bg-gradient-to-br from-sky-900 via-blue-900 to-sky-900 dark:from-sky-200 dark:via-blue-400;
+}
+
+.gradient-fill-one {
+  @apply bg-gradient-to-br from-violet-500 to-orange-300;
+}
+
+.gradient-fill-two {
+  @apply bg-gradient-to-br from-green-300 via-blue-500 to-purple-600;
+}
+
+.gradient-switch {
+  @apply bg-gradient-to-br from-blue-700 via-blue-800 to-gray-900;
+}
+
+.gradient-fill-three {
+  @apply bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500;
+}
+
+.gradient-map {
+  @apply bg-gradient-to-br from-blue-400 to-emerald-400;
+}
+
+.gradient-contact {
+  @apply bg-gradient-to-br from-sky-400 to-indigo-900;
 }
 
 .react-grid-item.react-grid-placeholder {
-  @apply dark:bg-steel rounded-2xl bg-slate-200 opacity-100 transition duration-500 ease-in-out will-change-transform;
+  @apply rounded-2xl bg-gray-100 opacity-100 transition-all duration-500 ease-in-out will-change-transform dark:bg-black/50;
 }
