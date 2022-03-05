@@ -2,10 +2,12 @@ import Logo from "components/Logo";
 
 const Bio = () => {
   return (
-    <div className="grid-tile flex items-center justify-center">
+    <div className="grid-tile flex">
       <Logo className="z-0 scale-[2] blur-2xl" />
 
-      <div className="text-3xl">Content ✨</div>
+      <h1 className="gradient-bio bg-clip-text text-3xl font-bold text-transparent">
+        This is Bio
+      </h1>
     </div>
   );
 };

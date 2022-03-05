@@ -64,7 +64,7 @@ const Spotify = () => {
       <div
         className={`absolute inset-0 z-20 overflow-hidden rounded-3xl ${
           nowPlaying?.isPlaying ? "bg-black/20" : "bg-transparent"
-        } p-9 transition-all duration-500 md:p-6 xl:p-9`}
+        } p-9 transition-all duration-500 ease-out md:p-6 xl:p-9`}
       >
         <div className="flex h-full flex-col justify-between">
           <div>
