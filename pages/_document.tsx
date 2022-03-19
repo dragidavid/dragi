@@ -4,7 +4,7 @@ const Document = () => {
   return (
     <Html lang="en">
       <Head />
-      <body className="dark:bg-palette-body-dark bg-palette-body-light transition-colors duration-500 ease-out">
+      <body className="dark:bg-palette-body-dark bg-palette-body-light transition-colors duration-200 ease-in-out">
         <Main />
         <NextScript />
       </body>

@@ -7,12 +7,10 @@ module.exports = {
     extend: {
       colors: {
         palette: {
-          "body-light": "#F9FAFB",
-          "body-dark": "#16181D",
-          "border-light": "#F0F3FC",
-          "border-dark": "#2B303B",
+          "body-light": "#FAFAFA",
+          "body-dark": "#060606",
+          "text-light": "#F7F8F8",
         },
-        steel: "#15181c",
       },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
