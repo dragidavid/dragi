@@ -9,7 +9,7 @@ type BlobProps = {
 };
 
 /**
- * This will probably be replaced with a shader later on
+ * TODO This will probably be replaced with a shader later on
  */
 
 const Blob = ({ color }: BlobProps) => {

@@ -19,5 +19,4 @@ export type Category = {
 export type GridTile = {
   id: string;
   component: JSX.Element;
-  styleOverrides?: string;
 };

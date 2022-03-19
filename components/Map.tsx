@@ -1,7 +1,7 @@
 const Map = () => {
   return (
-    <div className="relative flex h-full items-center justify-center bg-rose-300 text-7xl">
-      <h2>🗺</h2>
+    <div className="flex">
+      <h1 className="gradient-map tile-title">Map</h1>
     </div>
   );
 };

@@ -48,13 +48,9 @@ const Spotify = () => {
   }, [nowPlaying]);
 
   return (
-    <div
-      className={`grid-tile ${
-        nowPlaying?.isPlaying ? "text-white" : "text-current"
-      }`}
-    >
+    <div className={nowPlaying?.isPlaying ? "text-white" : "text-current"}>
       {colors && nowPlaying?.isPlaying && (
-        <div className="absolute inset-0 z-10 overflow-hidden rounded-3xl">
+        <div className="absolute inset-0 z-[1] overflow-hidden rounded-3xl">
           {colors.map((color: Color) => (
             <Blob color={color} key={color.name} />
           ))}
@@ -62,14 +58,14 @@ const Spotify = () => {
       )}
 
       <div
-        className={`absolute inset-0 z-20 overflow-hidden rounded-3xl ${
+        className={`absolute inset-0 z-[2] overflow-hidden rounded-3xl ${
           nowPlaying?.isPlaying ? "bg-black/20" : "bg-transparent"
-        } p-9 transition-all duration-500 ease-out md:p-6 xl:p-9`}
+        } p-9 transition-all duration-500 ease-out md:p-6 lg:p-9`}
       >
         <div className="flex h-full flex-col justify-between">
           <div>
             <svg
-              className={`h-[72px] w-[72px] md:h-12 md:w-12 xl:h-[72px] xl:w-[72px] ${
+              className={`h-[72px] w-[72px] md:h-12 md:w-12 lg:h-[72px] lg:w-[72px] ${
                 nowPlaying?.isPlaying ? "fill-white" : "fill-current"
               }`}
               viewBox="0 0 72 72"
@@ -98,7 +94,7 @@ const Spotify = () => {
             <TrackInformation
               text={nowPlaying?.title ?? recentlyPlayed?.title}
               trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
-              className="mt-2 mb-1 text-3xl font-bold hover:cursor-pointer hover:underline"
+              className="mt-2 mb-1 text-3xl font-bold hover:cursor-ne-resize hover:underline"
             />
 
             <TrackInformation
