@@ -9,7 +9,6 @@ module.exports = {
         palette: {
           "body-light": "#FAFAFA",
           "body-dark": "#060606",
-          "text-light": "#F7F8F8",
         },
       },
       fontFamily: {

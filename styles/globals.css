@@ -11,15 +11,15 @@
 }
 
 .grid-tile {
-  @apply absolute inset-0 overflow-hidden rounded-3xl bg-white p-9 ring-2 ring-inset ring-black/10 dark:bg-black dark:ring-white/10 md:p-6 lg:p-9;
+  @apply absolute inset-0 select-none overflow-hidden rounded-3xl bg-white p-9 ring-2 ring-inset ring-black/10 dark:bg-black dark:ring-white/10;
 }
 
-.glow {
-  @apply absolute inset-0 rounded-3xl blur-xl;
+.backdrop {
+  @apply absolute -inset-[2px] rounded-3xl;
 }
 
-.tile-title {
-  @apply bg-clip-text text-2xl font-bold text-transparent;
+.header {
+  @apply mb-3 bg-clip-text text-3xl font-bold text-transparent;
 }
 
 .gradient-bio {

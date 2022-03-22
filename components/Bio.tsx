@@ -2,10 +2,10 @@ import Logo from "components/Logo";
 
 const Bio = () => {
   return (
-    <div className="flex">
-      <Logo className="z-0 scale-[2] blur-2xl" />
+    <div className="flex flex-col">
+      <Logo className="z-[1] scale-[2] blur-2xl" />
 
-      <h1 className="gradient-bio tile-title">Hey 👋</h1>
+      <h2 className="gradient-bio header">David Dragovacz</h2>
     </div>
   );
 };

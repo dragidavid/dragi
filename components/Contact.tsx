@@ -1,7 +1,7 @@
 const Contact = () => {
   return (
-    <div className="flex">
-      <h1 className="gradient-contact tile-title">Contact</h1>
+    <div className="flex flex-col">
+      <h2 className="gradient-contact header">Contact</h2>
     </div>
   );
 };
