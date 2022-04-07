@@ -2,7 +2,9 @@ import { motion } from "framer-motion";
 
 import Logo from "components/Logo";
 
-import { GridTile } from "lib/types";
+import { useLayoutContext } from "contexts/LayoutContext";
+
+import type { GridTile } from "lib/types";
 
 const backdropVariants = {
   hover: {
@@ -15,6 +17,8 @@ const backdropVariants = {
 };
 
 const Tile = ({ id, component }: GridTile) => {
+  const { getInlineGradient } = useLayoutContext();
+
   return (
     <motion.div initial="initial" whileHover="hover">
       <motion.div
@@ -23,7 +27,8 @@ const Tile = ({ id, component }: GridTile) => {
           ease: "easeInOut",
           duration: 0.4,
         }}
-        className={`backdrop gradient-${id}`}
+        style={{ backgroundImage: getInlineGradient(id) }}
+        className="backdrop"
       />
 
       {id === "bio" && <Logo className="z-[2]" />}

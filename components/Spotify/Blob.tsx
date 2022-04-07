@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 import { randomNumber, randomArray } from "lib/utils";
 
-import { Color } from "lib/types";
+import type { Color } from "lib/types";
 
 type BlobProps = {
   color: Color;

@@ -1,7 +1,11 @@
+import classNames from "classnames";
+
+import { GRADIENTS } from "lib/entities";
+
 const Map = () => {
   return (
     <div className="flex">
-      <h1 className="gradient-map header">Map</h1>
+      <h1 className={classNames("header", GRADIENTS.map.class)}>Map</h1>
     </div>
   );
 };

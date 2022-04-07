@@ -5,6 +5,8 @@ import Inspect from "inspx";
 import "node_modules/react-grid-layout/css/styles.css";
 import "node_modules/react-resizable/css/styles.css";
 
+import LayoutProvider from "contexts/LayoutContext";
+
 import "styles/globals.css";
 
 /**
@@ -15,9 +17,11 @@ import "styles/globals.css";
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
-      <Inspect>
-        <Component {...pageProps} />
-      </Inspect>
+      <LayoutProvider>
+        <Inspect>
+          <Component {...pageProps} />
+        </Inspect>
+      </LayoutProvider>
     </ThemeProvider>
   );
 };

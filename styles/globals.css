@@ -15,39 +15,12 @@
 }
 
 .backdrop {
+  /* @apply absolute -inset-[2px] rounded-3xl bg-gradient-to-br; */
   @apply absolute -inset-[2px] rounded-3xl;
 }
 
 .header {
-  @apply mb-3 bg-clip-text text-3xl font-bold text-transparent;
-}
-
-.gradient-bio {
-  @apply bg-gradient-to-br from-fuchsia-600 to-pink-600;
-}
-
-.gradient-spotify {
-  @apply bg-gradient-to-br from-sky-800 via-blue-700 to-indigo-800 dark:from-sky-700 dark:via-blue-500 dark:to-indigo-700;
-}
-
-.gradient-projects {
-  @apply bg-gradient-to-br from-red-500 to-green-500;
-}
-
-.gradient-switch {
-  @apply bg-gradient-to-br from-violet-500 to-orange-300;
-}
-
-.gradient-map {
-  @apply bg-gradient-to-br from-blue-400 to-emerald-400;
-}
-
-.gradient-tbd {
-  @apply bg-gradient-to-br from-pink-500 via-red-500 to-yellow-600;
-}
-
-.gradient-contact {
-  @apply bg-gradient-to-br from-sky-400 to-indigo-700;
+  @apply mb-3 bg-gradient-to-br bg-clip-text text-3xl font-bold text-transparent;
 }
 
 .react-grid-item.react-grid-placeholder {
