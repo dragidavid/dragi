@@ -2,9 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { getRecentlyPlayed } from "lib/spotify";
 
+import { Track } from "lib/types";
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<Partial<Track>>
 ) {
   const response = await getRecentlyPlayed();
 
