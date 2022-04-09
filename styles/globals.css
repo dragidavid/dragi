@@ -15,7 +15,6 @@
 }
 
 .backdrop {
-  /* @apply absolute -inset-[2px] rounded-3xl bg-gradient-to-br; */
   @apply absolute -inset-[2px] rounded-3xl;
 }
 

@@ -19,7 +19,7 @@ export type Category = {
 };
 
 export type GridTile = {
-  id: string;
+  id: keyof typeof GRADIENTS;
   component: JSX.Element;
 };
 
