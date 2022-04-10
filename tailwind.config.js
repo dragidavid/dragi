@@ -1,7 +1,12 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./pages/**/*.tsx", "./components/**/*.tsx"],
+  content: [
+    "./pages/**/*.{tsx,ts}",
+    "./components/**/*.{tsx,ts}",
+    "./contexts/**/*.{tsx,ts}",
+    "./lib/**/*.{tsx,ts}",
+  ],
   darkMode: "class",
   theme: {
     extend: {
@@ -9,7 +14,6 @@ module.exports = {
         palette: {
           "body-light": "#FAFAFA",
           "body-dark": "#060606",
-          "text-light": "#F7F8F8",
         },
       },
       fontFamily: {

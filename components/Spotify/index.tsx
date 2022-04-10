@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { motion } from "framer-motion";
 import { StatusOfflineIcon, StatusOnlineIcon } from "@heroicons/react/outline";
 
 import fetcher from "lib/fetcher";
@@ -9,12 +8,16 @@ import { getColors } from "lib/utils";
 import Blob from "components/Spotify/Blob";
 import TrackInformation from "components/Spotify/TrackInformation";
 
-import { Track, Color } from "lib/types";
+import { useLayoutContext } from "contexts/LayoutContext";
+
+import type { Track, Color } from "lib/types";
 
 const Spotify = () => {
   const [colors, setColors] = useState<Color[] | undefined>(undefined);
   const [shouldFetchRecentlyPlayedTrack, setShouldFetchRecentlyPlayedTrack] =
     useState<boolean>(false);
+
+  const { setInlineGradient } = useLayoutContext();
 
   const { data: nowPlaying } = useSWR<Track>(
     "/api/spotify/now-playing",
@@ -33,7 +36,13 @@ const Spotify = () => {
 
   useEffect(() => {
     if (nowPlaying && nowPlaying.isPlaying && nowPlaying.albumImageUrl) {
-      getColors(nowPlaying.albumImageUrl).then((res) => setColors(res));
+      getColors(nowPlaying.albumImageUrl).then((res) => {
+        setColors(res);
+        setInlineGradient(
+          "spotify",
+          `linear-gradient(to bottom right, ${res[0].hex} 0%, ${res[1].hex} 100%)`
+        );
+      });
     }
   }, [nowPlaying]);
 

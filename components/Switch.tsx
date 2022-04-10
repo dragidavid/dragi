@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { useHotkeys } from "react-hotkeys-hook";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
 const DynamicDarkModeSwitch = dynamic(
@@ -8,6 +9,7 @@ const DynamicDarkModeSwitch = dynamic(
     const promise = import("react-toggle-dark-mode").then(
       (module) => module.DarkModeSwitch
     );
+
     return promise;
   },
   {
@@ -33,10 +35,12 @@ const Switch = () => {
     }
   };
 
+  useHotkeys("ctrl+t", handleThemeSwitch, [resolvedTheme]);
+
   return (
-    <div className="flex h-full items-center justify-center">
+    <div className="flex h-full items-center justify-center gap-8">
       <DynamicDarkModeSwitch
-        className="h-14 w-14"
+        className="h-12 w-12"
         checked={resolvedTheme === "dark"}
         onChange={handleThemeSwitch}
         size={20}

@@ -1,3 +1,5 @@
+import { GRADIENTS } from "lib/entities";
+
 export type Track = {
   album: string;
   albumImageUrl: string;
@@ -17,6 +19,10 @@ export type Category = {
 };
 
 export type GridTile = {
-  id: string;
+  id: keyof typeof GRADIENTS;
   component: JSX.Element;
+};
+
+export type Gradients = {
+  [key in keyof typeof GRADIENTS]: { [key: string]: string };
 };
