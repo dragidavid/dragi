@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import useSWR from "swr";
 import { StatusOfflineIcon, StatusOnlineIcon } from "@heroicons/react/outline";
 
-import fetcher from "lib/fetcher";
-import { getColors } from "lib/utils";
-
 import Blob from "components/Spotify/Blob";
 import TrackInformation from "components/Spotify/TrackInformation";
+
+import fetcher from "lib/fetcher";
+import { getColors } from "lib/utils";
 
 import { useLayoutContext } from "contexts/LayoutContext";
 

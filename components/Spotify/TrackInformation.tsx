@@ -65,10 +65,12 @@ const TrackInformation = ({
   }, [moveBy, controls]);
 
   return (
-    <div
+    <motion.div
       className={`overflow-hidden ${className}`}
       ref={containerRef}
       onClick={() => window.open(trackUrl, "_blank")}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
     >
       <motion.span
         animate={controls}
@@ -86,7 +88,7 @@ const TrackInformation = ({
       >
         {text}
       </motion.span>
-    </div>
+    </motion.div>
   );
 };
 
