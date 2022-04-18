@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { getNowPlaying } from "lib/spotify";
 
-import { Track } from "lib/types";
+import type { Track } from "lib/types";
 
 export default async function handler(
   req: NextApiRequest,

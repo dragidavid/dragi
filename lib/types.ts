@@ -14,15 +14,21 @@ export type Color = {
   hex: string;
 };
 
-export type Category = {
-  label: string;
-};
-
 export type GridTile = {
   id: keyof typeof GRADIENTS;
   component: JSX.Element;
 };
 
-export type Gradients = {
-  [key in keyof typeof GRADIENTS]: { [key: string]: string };
+export type Gradients = typeof GRADIENTS;
+
+type StatDetails = {
+  display: string;
+  value: number;
+};
+
+export type Stats = {
+  currentStreak: StatDetails;
+  longestStreak: StatDetails;
+  contributionsThisYear: StatDetails;
+  totalContributions: StatDetails;
 };

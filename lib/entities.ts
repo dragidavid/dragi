@@ -1,5 +1,3 @@
-import type { Gradients } from "lib/types";
-
 export const GRADIENTS = {
   bio: {
     class: "from-[#cc208e] to-[#6713d2]",
