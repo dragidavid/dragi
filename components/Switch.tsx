@@ -38,7 +38,7 @@ const Switch = () => {
   useHotkeys("ctrl+t", handleThemeSwitch, [resolvedTheme]);
 
   return (
-    <div className="flex h-full items-center justify-center gap-8">
+    <div className="flex h-full items-center justify-center">
       <DynamicDarkModeSwitch
         className="h-12 w-12"
         checked={resolvedTheme === "dark"}

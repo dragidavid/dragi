@@ -31,4 +31,5 @@ export type Stats = {
   longestStreak: StatDetails;
   contributionsThisYear: StatDetails;
   totalContributions: StatDetails;
+  createdAt: Date;
 };

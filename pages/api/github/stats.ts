@@ -66,5 +66,6 @@ export default async function handler(
       display: "Total contributions",
       value: totalContributions,
     },
+    createdAt: response.data.user.createdAt,
   });
 }

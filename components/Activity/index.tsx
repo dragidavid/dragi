@@ -17,7 +17,7 @@ const Activity = () => {
   const { getInlineGradient } = useLayoutContext();
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center">
+    <div className="flex h-full items-center justify-center">
       <AnimatePresence exitBeforeEnter>
         {!stats ? (
           <motion.div
@@ -39,24 +39,30 @@ const Activity = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex w-full flex-wrap justify-evenly text-center lg:flex-col lg:gap-5"
+            className="flex h-full w-full flex-col justify-between"
           >
-            <Stat
-              display={stats.currentStreak.display}
-              value={stats.currentStreak.value}
-            />
-            <Stat
-              display={stats.longestStreak.display}
-              value={stats.longestStreak.value}
-            />
-            <Stat
-              display={stats.contributionsThisYear.display}
-              value={stats.contributionsThisYear.value}
-            />
-            <Stat
-              display={stats.totalContributions.display}
-              value={stats.totalContributions.value}
-            />
+            <div className="flex h-full flex-col flex-wrap items-center justify-center text-center lg:gap-5">
+              <Stat
+                display={stats.currentStreak.display}
+                value={stats.currentStreak.value}
+              />
+              <Stat
+                display={stats.longestStreak.display}
+                value={stats.longestStreak.value}
+              />
+              <Stat
+                display={stats.contributionsThisYear.display}
+                value={stats.contributionsThisYear.value}
+              />
+              <Stat
+                display={stats.totalContributions.display}
+                value={stats.totalContributions.value}
+              />
+            </div>
+            <p className="text-xs italic text-black/50 dark:text-white/50">
+              GitHub activity since{" "}
+              {new Date(stats.createdAt).toLocaleDateString()}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

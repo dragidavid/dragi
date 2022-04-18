@@ -9,7 +9,7 @@ type StatProps = {
 
 const Stat = ({ display, value }: StatProps) => {
   return (
-    <div className="my-4 basis-1/2">
+    <div className="basis-1/2 lg:basis-auto">
       <p className="mb-2 text-sm text-black/50 dark:text-white/50">{display}</p>
       <h1 className={classNames("header", GRADIENTS.activity.class)}>
         {value}

@@ -39,6 +39,7 @@ export const getStats = async () => {
     body: JSON.stringify({
       query: `query {
           user(login: "dragidavid") {
+            createdAt
             contributionsCollection {
               contributionYears
               contributionCalendar {
