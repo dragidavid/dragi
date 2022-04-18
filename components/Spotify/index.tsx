@@ -44,6 +44,7 @@ const Spotify = () => {
         );
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nowPlaying]);
 
   useEffect(() => {
@@ -99,7 +100,7 @@ const Spotify = () => {
               )}
             </div>
 
-            {/* Possibly replace this part with a cleaner solution */}
+            {/* TODO clean this up */}
             <TrackInformation
               text={nowPlaying?.title ?? recentlyPlayed?.title}
               trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
