@@ -41,7 +41,7 @@ const Activity = () => {
             exit={{ opacity: 0 }}
             className="flex h-full w-full flex-col justify-between"
           >
-            <div className="flex h-full flex-col flex-wrap items-center justify-center text-center lg:gap-5">
+            <div className="flex h-full flex-wrap justify-center text-center lg:flex-col lg:items-center lg:gap-7">
               <Stat
                 display={stats.currentStreak.display}
                 value={stats.currentStreak.value}

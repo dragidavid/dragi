@@ -59,7 +59,7 @@ export default async function handler(
       value: longestStreak,
     },
     contributionsThisYear: {
-      display: "Contributions this year",
+      display: `Contributions in ${thisYear}`,
       value: contributionsThisYear,
     },
     totalContributions: {
