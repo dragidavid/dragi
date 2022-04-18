@@ -45,3 +45,7 @@ export const randomArray = (
 
   return Array.from({ length }, () => randomNumber(from, to, float));
 };
+
+export const normalizeUtc = (date: Date): Date => {
+  return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+};
