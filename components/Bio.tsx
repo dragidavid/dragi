@@ -9,7 +9,7 @@ const Bio = () => {
     <div className="flex flex-col">
       <Logo className="z-[1] scale-[2] blur-2xl" />
 
-      <h2 className={classNames("header", GRADIENTS.bio.class)}>
+      <h2 className={classNames("gradient-text header", GRADIENTS.bio.class)}>
         David Dragovacz
       </h2>
     </div>

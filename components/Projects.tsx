@@ -5,7 +5,9 @@ import { GRADIENTS } from "lib/entities";
 const Projects = () => {
   return (
     <div className="flex">
-      <h1 className={classNames("header", GRADIENTS.projects.class)}>
+      <h1
+        className={classNames("gradient-text header", GRADIENTS.projects.class)}
+      >
         Projects
       </h1>
     </div>

@@ -41,7 +41,7 @@ const Activity = () => {
             exit={{ opacity: 0 }}
             className="flex h-full w-full flex-col justify-between"
           >
-            <div className="flex h-full flex-wrap justify-center text-center lg:flex-col lg:items-center lg:gap-7">
+            <div className="flex h-full flex-wrap text-center lg:flex-col lg:gap-7">
               <Stat
                 display={stats.currentStreak.display}
                 value={stats.currentStreak.value}
@@ -59,8 +59,8 @@ const Activity = () => {
                 value={stats.totalContributions.value}
               />
             </div>
-            <p className="text-xs italic text-black/50 dark:text-white/50">
-              GitHub activity since{" "}
+            <p className="text-xs italic">
+              GitHub activity from{" "}
               {new Date(stats.createdAt).toLocaleDateString()}
             </p>
           </motion.div>
