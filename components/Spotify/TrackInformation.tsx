@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import classNames from "classnames";
 import { motion, useAnimation } from "framer-motion";
 
 type TrackInformationProps = {
@@ -66,7 +67,7 @@ const TrackInformation = ({
 
   return (
     <motion.div
-      className={`overflow-hidden ${className}`}
+      className={classNames("overflow-hidden", className)}
       ref={containerRef}
       onClick={() => window.open(trackUrl, "_blank")}
       initial={{ opacity: 0 }}
