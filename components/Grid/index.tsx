@@ -40,7 +40,7 @@ const LAYOUTS: Layouts = {
     { i: "contact", x: 1, y: 5, w: 1, h: 2, static: true },
     { i: "spotify", x: 0, y: 7, w: 2, h: 2, static: true },
     { i: "activity", x: 0, y: 9, w: 2, h: 3, static: true },
-    { i: "projects", x: 0, y: 11, w: 2, h: 2, static: true },
+    { i: "projects", x: 0, y: 12, w: 2, h: 2, static: true },
   ],
   sm: [
     { i: "bio", x: 0, y: 0, w: 2, h: 4, static: true },
@@ -48,8 +48,8 @@ const LAYOUTS: Layouts = {
     { i: "switch", x: 0, y: 7, w: 1, h: 2, static: true },
     { i: "contact", x: 1, y: 7, w: 1, h: 2, static: true },
     { i: "spotify", x: 0, y: 9, w: 2, h: 3, static: true },
-    { i: "activity", x: 0, y: 12, w: 2, h: 4, static: true },
-    { i: "projects", x: 0, y: 16, w: 2, h: 3, static: true },
+    { i: "activity", x: 0, y: 12, w: 2, h: 3, static: true },
+    { i: "projects", x: 0, y: 15, w: 2, h: 3, static: true },
   ],
 };
 
