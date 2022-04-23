@@ -37,9 +37,9 @@ const Activity = () => {
           exit={{ opacity: 0 }}
         >
           <div>
-            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-200"></span>
-            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-200 [animation-delay:0.2s]"></span>
-            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-200 [animation-delay:0.4s]"></span>
+            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-700 dark:bg-gray-300"></span>
+            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-700 [animation-delay:0.2s] dark:bg-gray-300"></span>
+            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-700 [animation-delay:0.4s] dark:bg-gray-300"></span>
           </div>
         </motion.div>
       );

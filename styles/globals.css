@@ -27,7 +27,7 @@
 }
 
 .cta-icon {
-  @apply transition-transform duration-200 ease-in-out will-change-transform hover:rotate-12 hover:scale-110 hover:cursor-ne-resize;
+  @apply transition-transform duration-200 ease-in-out will-change-transform hover:rotate-12 hover:cursor-ne-resize;
 }
 
 .react-grid-item.react-grid-placeholder {

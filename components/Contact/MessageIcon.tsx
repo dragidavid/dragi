@@ -5,7 +5,7 @@ const MessageIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8"
+      className="h-[40px]"
       viewBox="0 0 24 24"
       fill="url(#message)"
     >
