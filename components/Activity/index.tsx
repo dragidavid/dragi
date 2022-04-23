@@ -6,16 +6,12 @@ import Stat from "components/Activity/Stat";
 
 import fetcher from "lib/fetcher";
 
-import { useLayoutContext } from "contexts/LayoutContext";
-
 import type { Stats } from "lib/types";
 
 const Activity = () => {
   const { data: stats, error } = useSWR<Stats>("/api/github/stats", fetcher, {
     revalidateOnFocus: false,
   });
-
-  const { getInlineGradient } = useLayoutContext();
 
   const renderContent = useCallback(() => {
     if (error) {
@@ -40,12 +36,11 @@ const Activity = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1 }}
-            style={{ backgroundImage: getInlineGradient("activity") }}
-            className="h-[4px] w-8 rounded-[50%]"
-          />
+          <div>
+            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-200"></span>
+            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-200 [animation-delay:0.2s]"></span>
+            <span className="animate-flash ml-2 inline-block h-2 w-2 rounded-full bg-gray-200 [animation-delay:0.4s]"></span>
+          </div>
         </motion.div>
       );
     }
@@ -56,29 +51,11 @@ const Activity = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="flex h-full w-full flex-col justify-between"
+        className="flex h-full w-full flex-wrap justify-evenly text-center lg:flex-col lg:text-left"
       >
-        <div className="flex h-full flex-wrap text-center lg:flex-col lg:gap-7">
-          <Stat
-            display={stats.currentStreak.display}
-            value={stats.currentStreak.value}
-          />
-          <Stat
-            display={stats.longestStreak.display}
-            value={stats.longestStreak.value}
-          />
-          <Stat
-            display={stats.contributionsThisYear.display}
-            value={stats.contributionsThisYear.value}
-          />
-          <Stat
-            display={stats.totalContributions.display}
-            value={stats.totalContributions.value}
-          />
-        </div>
-        <p className="text-xs italic">
-          GitHub activity from {new Date(stats.createdAt).toLocaleDateString()}
-        </p>
+        {Object.entries(stats).map(([key, value]) => (
+          <Stat key={key} display={value.display} value={value.value} />
+        ))}
       </motion.div>
     );
   }, [stats, error]);

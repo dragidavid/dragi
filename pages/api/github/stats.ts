@@ -20,6 +20,7 @@ export default async function handler(
   let potentialStreak = 0;
   let totalContributions = 0;
   let contributionsThisYear = 0;
+  let firstContribution = "";
 
   for (const year of years) {
     const collection = await getYearlyContributions(year);
@@ -44,6 +45,7 @@ export default async function handler(
           potentialStreak = 0;
         } else {
           potentialStreak += 1;
+          firstContribution = day.date;
         }
       }
     }
@@ -66,6 +68,9 @@ export default async function handler(
       display: "Total contributions",
       value: totalContributions,
     },
-    createdAt: response.data.user.createdAt,
+    firstContribution: {
+      display: "First contribution",
+      value: new Date(firstContribution).toLocaleDateString(),
+    },
   });
 }

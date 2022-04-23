@@ -1,16 +1,15 @@
 import classNames from "classnames";
 
-import { GRADIENTS } from "lib/entities";
+import { GRADIENTS } from "lib/gradients";
 
-type StatProps = {
-  display: string;
-  value: number;
-};
+import type { StatDetails } from "lib/types";
+
+type StatProps = StatDetails;
 
 const Stat = ({ display, value }: StatProps) => {
   return (
-    <div className="basis-1/2 lg:basis-auto">
-      <p className="mb-3 text-xs md:text-sm">{display}</p>
+    <div className="flex basis-1/2 flex-col justify-center lg:basis-auto lg:items-start">
+      <p className="mb-1 text-xs md:mb-3">{display}</p>
       <h1
         className={classNames("gradient-text header", GRADIENTS.activity.class)}
       >

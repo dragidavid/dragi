@@ -1,4 +1,4 @@
-import { GRADIENTS } from "lib/entities";
+import { GRADIENTS } from "lib/gradients";
 
 export type Track = {
   album: string;
@@ -21,9 +21,9 @@ export type GridTile = {
 
 export type Gradients = typeof GRADIENTS;
 
-type StatDetails = {
+export type StatDetails = {
   display: string;
-  value: number;
+  value: number | string;
 };
 
 export type Stats = {
@@ -31,5 +31,5 @@ export type Stats = {
   longestStreak: StatDetails;
   contributionsThisYear: StatDetails;
   totalContributions: StatDetails;
-  createdAt: Date;
+  firstContribution: StatDetails;
 };
