@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 
 import Zoom from "components/Map/Zoom";
 
-import { GRADIENTS } from "lib/entities";
+import { GRADIENTS } from "lib/gradients";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 

@@ -23,7 +23,7 @@
 }
 
 .header {
-  @apply mb-4 text-2xl font-bold md:text-3xl;
+  @apply text-2xl font-bold md:text-3xl;
 }
 
 .cta-icon {

@@ -1,5 +1,6 @@
-import { GRADIENTS } from "lib/entities";
+import { GRADIENTS } from "lib/gradients";
 
+// icon svg from https://github.com/jrgarciadev/react-iconly
 const MessageIcon = () => {
   return (
     <svg

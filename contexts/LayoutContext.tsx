@@ -8,7 +8,7 @@ import Activity from "components/Activity";
 import Map from "components/Map";
 import Contact from "components/Contact";
 
-import { GRADIENTS } from "lib/entities";
+import { GRADIENTS } from "lib/gradients";
 
 import type { GridTile, Gradients } from "lib/types";
 

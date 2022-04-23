@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useMap } from "react-map-gl";
 import { Root, Track, Thumb } from "@radix-ui/react-slider";
 
-import { GRADIENTS } from "lib/entities";
+import { GRADIENTS } from "lib/gradients";
 
 const Zoom = () => {
   const { map } = useMap();

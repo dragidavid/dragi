@@ -26,10 +26,10 @@ const BREAKPOINTS: { [key: string]: number } = {
 const LAYOUTS: Layouts = {
   lg: [
     { i: "bio", x: 0, y: 0, w: 2, h: 2, isResizable: false },
-    { i: "spotify", x: 2, y: 0, w: 1, h: 2, isResizable: false },
+    { i: "map", x: 2, y: 0, w: 1, h: 2, isResizable: false },
     { i: "activity", x: 0, y: 2, w: 1, h: 4, isResizable: false },
     { i: "switch", x: 1, y: 2, w: 1, h: 1, isResizable: false },
-    { i: "map", x: 2, y: 2, w: 1, h: 2, isResizable: false },
+    { i: "spotify", x: 2, y: 2, w: 1, h: 2, isResizable: false },
     { i: "projects", x: 1, y: 4, w: 1, h: 3, isResizable: false },
     { i: "contact", x: 4, y: 2, w: 1, h: 2, isResizable: false },
   ],

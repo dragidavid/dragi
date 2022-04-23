@@ -1,16 +1,16 @@
 import classNames from "classnames";
 
-import { GRADIENTS } from "lib/entities";
-
 import MessageIcon from "components/Contact/MessageIcon";
 import DocumentIcon from "components/Contact/DocumentIcon";
+
+import { GRADIENTS } from "lib/gradients";
 
 const Contact = () => {
   return (
     <div className="flex h-full flex-col">
       <h2
         className={classNames(
-          "gradient-text header hidden md:block",
+          "gradient-text header mb-4 hidden md:block",
           GRADIENTS.contact.class
         )}
       >
