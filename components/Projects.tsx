@@ -4,7 +4,7 @@ import { GRADIENTS } from "lib/gradients";
 
 const Projects = () => {
   return (
-    <div className="flex">
+    <div className="flex h-full flex-col">
       <h1
         className={classNames(
           "gradient-text header mb-4",
@@ -13,6 +13,9 @@ const Projects = () => {
       >
         Projects
       </h1>
+      <div className="flex grow items-center justify-center">
+        <p>coming soon...</p>
+      </div>
     </div>
   );
 };
