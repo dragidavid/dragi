@@ -1,8 +1,7 @@
-import classNames from "classnames";
-
 import Wave from "components/Bio/Wave";
 
 import { randomNumber } from "lib/utils";
+import classNames from "lib/classNames";
 
 import { useLayoutContext } from "contexts/LayoutContext";
 
@@ -14,7 +13,7 @@ const Bio = () => {
   return (
     <div className="h-full">
       <div
-        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-40 blur-2xl filter"
+        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-30 blur-2xl filter"
         style={{
           backgroundImage: getInlineGradient("bio"),
           height: `${randomNumber(80, 120)}%`,
@@ -24,8 +23,10 @@ const Bio = () => {
       />
 
       <div className="relative flex h-full flex-col">
-        <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:gap-6">
-          <h1 className="header">
+        <div className="mb-4 flex gap-4">
+          <h1
+            className={classNames("gradient-text header", GRADIENTS.bio.class)}
+          >
             <Wave />
           </h1>
 

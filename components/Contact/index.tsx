@@ -1,7 +1,7 @@
-import classNames from "classnames";
-
 import MessageIcon from "components/Contact/MessageIcon";
 import DocumentIcon from "components/Contact/DocumentIcon";
+
+import classNames from "lib/classNames";
 
 import { GRADIENTS } from "lib/gradients";
 

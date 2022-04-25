@@ -1,8 +1,9 @@
-import classNames from "classnames";
 import ReactMapGL, { MapProvider, Marker } from "react-map-gl";
 import { useTheme } from "next-themes";
 
 import Zoom from "components/Map/Zoom";
+
+import classNames from "lib/classNames";
 
 import { GRADIENTS } from "lib/gradients";
 

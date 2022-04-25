@@ -1,6 +1,7 @@
-import classNames from "classnames";
 import { useMap } from "react-map-gl";
 import { Root, Track, Thumb } from "@radix-ui/react-slider";
+
+import classNames from "lib/classNames";
 
 import { GRADIENTS } from "lib/gradients";
 

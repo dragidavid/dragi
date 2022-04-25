@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { getYearlyContributions, getStats } from "lib/github";
+import { getYearlyContributions, getStats } from "lib/api/github";
+
 import { normalizeUtc } from "lib/utils";
 
 import type { Stats } from "lib/types";

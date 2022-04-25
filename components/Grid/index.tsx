@@ -70,7 +70,7 @@ const Grid = () => {
   const { tiles, isDraggable } = useLayoutContext();
 
   return (
-    <main className="flex grow items-center justify-center">
+    <div className="flex grow items-center justify-center">
       <div className="w-full max-w-[400px] py-8 md:max-w-[480px] lg:max-w-[920px]">
         <ResponsiveGridLayout
           layouts={LAYOUTS}
@@ -99,7 +99,7 @@ const Grid = () => {
           ))}
         </ResponsiveGridLayout>
       </div>
-    </main>
+    </div>
   );
 };
 

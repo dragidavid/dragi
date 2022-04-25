@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from "lib/classNames";
 
 import { GRADIENTS } from "lib/gradients";
 
