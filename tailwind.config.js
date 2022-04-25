@@ -10,12 +10,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      colors: {
-        palette: {
-          "body-light": "#FAFAFA",
-          "body-dark": "#060606",
-        },
-      },
       fontFamily: {
         sans: ["Inter", ...fontFamily.sans],
       },
