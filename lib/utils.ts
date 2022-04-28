@@ -49,3 +49,7 @@ export const randomArray = (
 export const normalizeUtc = (date: Date): Date => {
   return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
 };
+
+export const classNames = (...classes: string[]): string => {
+  return classes.filter(Boolean).join(" ");
+};

@@ -1,4 +1,4 @@
-import classNames from "lib/classNames";
+import { classNames } from "lib/utils";
 
 import { GRADIENTS } from "lib/gradients";
 
@@ -14,7 +14,7 @@ const Projects = () => {
         Projects
       </h1>
       <div className="flex grow items-center justify-center">
-        <p>coming soon...</p>
+        <p className="text-xs font-semibold">coming soon...</p>
       </div>
     </div>
   );

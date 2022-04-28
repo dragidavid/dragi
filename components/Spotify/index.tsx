@@ -6,8 +6,7 @@ import Blob from "components/Spotify/Blob";
 import TrackInformation from "components/Spotify/TrackInformation";
 
 import fetcher from "lib/fetcher";
-import { getColors } from "lib/utils";
-import classNames from "lib/classNames";
+import { getColors, classNames } from "lib/utils";
 
 import { useLayoutContext } from "contexts/LayoutContext";
 
@@ -89,7 +88,7 @@ const Spotify = () => {
           </div>
 
           <div>
-            <div className="flex items-center text-xs font-bold uppercase">
+            <div className="flex items-center text-xs font-extrabold uppercase tracking-tight">
               {nowPlaying?.isPlaying ? (
                 <>
                   <span>now playing</span>
@@ -107,7 +106,7 @@ const Spotify = () => {
             <TrackInformation
               text={nowPlaying?.title ?? recentlyPlayed?.title}
               trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
-              className="mt-2 mb-1 text-3xl font-bold hover:cursor-ne-resize hover:underline"
+              className="mt-2 mb-1 text-3xl font-extrabold tracking-tighter hover:cursor-ne-resize hover:underline"
             />
 
             <TrackInformation

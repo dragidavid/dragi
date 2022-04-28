@@ -1,7 +1,7 @@
 import { useMap } from "react-map-gl";
 import { Root, Track, Thumb } from "@radix-ui/react-slider";
 
-import classNames from "lib/classNames";
+import { classNames } from "lib/utils";
 
 import { GRADIENTS } from "lib/gradients";
 
@@ -23,8 +23,10 @@ const Zoom = () => {
         <Track className="relative w-full grow rounded-full bg-black/10 dark:bg-white/20" />
         <Thumb
           className={classNames(
-            "block h-4 w-4 rounded-full bg-gradient-to-br shadow-sm focus:outline-none focus-visible:ring focus-visible:ring-[#25B67A] focus-visible:ring-opacity-50",
-            GRADIENTS.map.class
+            "block h-4 w-4 rounded-full shadow-sm",
+            "bg-gradient-to-br",
+            GRADIENTS.map.class,
+            "focus:outline-none focus-visible:ring focus-visible:ring-[#25B67A] focus-visible:ring-opacity-50"
           )}
         />
       </Root>

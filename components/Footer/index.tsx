@@ -1,5 +1,7 @@
 import GitHubIcon from "components/Footer/GitHubIcon";
 
+import { classNames } from "lib/utils";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -11,7 +13,10 @@ const Footer = () => {
         href="https://www.github.com/dragidavid/dragi"
         target="_blank"
         rel="noopener noreferrer"
-        className="transition-colors duration-200 ease-in-out hover:cursor-ne-resize hover:text-black hover:dark:text-white"
+        className={classNames(
+          "transition-colors duration-200 ease-in-out",
+          "hover:cursor-ne-resize hover:text-black hover:dark:text-white"
+        )}
       >
         <GitHubIcon />
       </a>

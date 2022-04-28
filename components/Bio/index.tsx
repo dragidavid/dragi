@@ -1,7 +1,6 @@
 import Wave from "components/Bio/Wave";
 
-import { randomNumber } from "lib/utils";
-import classNames from "lib/classNames";
+import { randomNumber, classNames } from "lib/utils";
 
 import { useLayoutContext } from "contexts/LayoutContext";
 
@@ -13,7 +12,7 @@ const Bio = () => {
   return (
     <div className="h-full">
       <div
-        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-30 blur-2xl filter"
+        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-10 blur-2xl filter"
         style={{
           backgroundImage: getInlineGradient("bio"),
           height: `${randomNumber(80, 120)}%`,
@@ -24,11 +23,7 @@ const Bio = () => {
 
       <div className="relative flex h-full flex-col">
         <div className="mb-4 flex gap-4">
-          <h1
-            className={classNames("gradient-text header", GRADIENTS.bio.class)}
-          >
-            <Wave />
-          </h1>
+          <Wave />
 
           <h1
             className={classNames("gradient-text header", GRADIENTS.bio.class)}
@@ -39,8 +34,8 @@ const Bio = () => {
 
         <div className="flex grow flex-col justify-evenly">
           <p>
-            I&apos;m David, a London based frontend engineer working mostly with
-            TypeScript and React.
+            I&apos;m David, a London based frontend developer working mostly
+            with TypeScript and React.
           </p>
 
           <p>
@@ -54,7 +49,12 @@ const Bio = () => {
               href="https://deliveroo.co.uk"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold transition-colors duration-200 ease-in-out hover:cursor-ne-resize hover:text-[#00ccbc]"
+              className={classNames(
+                "gradient-text font-bold",
+                GRADIENTS.bio.class,
+                "transition-colors duration-200 ease-in-out",
+                "hover:cursor-ne-resize hover:text-[#00ccbc]"
+              )}
             >
               deliveroo
             </a>

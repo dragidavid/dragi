@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
 
-import classNames from "lib/classNames";
+import { classNames } from "lib/utils";
 
 type TrackInformationProps = {
   text?: string;
   trackUrl?: string;
-  className?: string;
+  className: string;
 };
 
 const TrackInformation = ({

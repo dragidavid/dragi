@@ -1,7 +1,7 @@
 import MessageIcon from "components/Contact/MessageIcon";
 import DocumentIcon from "components/Contact/DocumentIcon";
 
-import classNames from "lib/classNames";
+import { classNames } from "lib/utils";
 
 import { GRADIENTS } from "lib/gradients";
 
@@ -29,7 +29,7 @@ const Contact = () => {
             "gradient-text font-bold hover:cursor-ne-resize",
             GRADIENTS.contact.class,
             "after:bg-gradient-to-br",
-            "relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-[40px] after:rounded-full",
+            "relative after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-[42px] after:rounded-full",
             "after:origin-bottom-right after:scale-x-0 hover:after:origin-bottom-left hover:after:scale-x-100",
             "after:transition-transform after:duration-200 after:ease-in-out"
           )}
@@ -54,7 +54,7 @@ const Contact = () => {
         </a>
       </p>
 
-      <div className="hidden grow flex-col items-center justify-evenly md:flex-row lg:flex">
+      <div className="hidden grow flex-col items-center justify-evenly lg:flex lg:flex-row">
         <a href="mailto:dragovacz.dd@gmail.com" className="cta-icon">
           <MessageIcon />
         </a>

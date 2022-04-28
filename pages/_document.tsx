@@ -1,6 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document";
 
-import classNames from "lib/classNames";
+import { classNames } from "lib/utils";
 
 const Document = () => {
   return (
@@ -54,8 +54,8 @@ const Document = () => {
       </Head>
       <body
         className={classNames(
-          "bg-white text-gray-700",
-          "dark:bg-black dark:text-gray-300",
+          "bg-white text-[#666]",
+          "dark:bg-black dark:text-[#888]",
           "transition-colors duration-200 ease-in-out"
         )}
       >

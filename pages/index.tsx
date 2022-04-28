@@ -1,12 +1,13 @@
+import Container from "components/Container";
 import Grid from "components/Grid";
 import Footer from "components/Footer";
 
 const Home = () => {
   return (
-    <div className="flex h-screen flex-col justify-between">
+    <Container>
       <Grid />
       <Footer />
-    </div>
+    </Container>
   );
 };
 

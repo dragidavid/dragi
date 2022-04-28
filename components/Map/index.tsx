@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 
 import Zoom from "components/Map/Zoom";
 
-import classNames from "lib/classNames";
+import { classNames } from "lib/utils";
 
 import { GRADIENTS } from "lib/gradients";
 
@@ -34,7 +34,7 @@ const Map = () => {
           <Marker latitude={51.5044953} longitude={-0.0098106}>
             <div
               className={classNames(
-                "h-28 w-28 rounded-full bg-gradient-to-br opacity-30 ring-2 ring-[#25B67A]",
+                "h-28 w-28 rounded-full bg-gradient-to-r opacity-30 ring-2 ring-[#25B67A]",
                 GRADIENTS.map.class
               )}
             />
