@@ -55,7 +55,7 @@ const Document = () => {
       <body
         className={classNames(
           "bg-white text-[#666]",
-          "dark:bg-black dark:text-[#888]",
+          "dark:bg-black dark:text-[#999]",
           "transition-colors duration-200 ease-in-out"
         )}
       >
