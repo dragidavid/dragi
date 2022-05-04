@@ -57,7 +57,11 @@ const LayoutContext = createContext<LayoutContextProps>(
 
 export const useLayoutContext = () => useContext(LayoutContext);
 
-const LayoutProvider: FC<ReactNode> = ({ children }) => {
+type LayoutProviderProps = {
+  children: ReactNode;
+};
+
+const LayoutProvider: FC<LayoutProviderProps> = ({ children }) => {
   const [isDraggable, setIsDraggable] = useState<boolean>(true);
   const [gradients, setGradients] = useState<Gradients>(GRADIENTS);
 
