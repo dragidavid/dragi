@@ -6,10 +6,10 @@ import { classNames } from "lib/utils";
 import { GRADIENTS } from "lib/gradients";
 
 const Zoom = () => {
-  const { map } = useMap();
+  const { current: map } = useMap();
 
   return (
-    <div className="absolute right-8 z-[2] h-1/3 w-1 rounded-full opacity-50 transition-opacity duration-200 hover:opacity-100">
+    <div className="absolute right-8 z-[2] h-1/3 w-1 translate-y-full rounded-full opacity-50 transition-opacity duration-200 hover:opacity-100">
       <Root
         aria-label="zoom"
         max={11}
