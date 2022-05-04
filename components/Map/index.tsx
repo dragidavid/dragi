@@ -37,6 +37,8 @@ const Map = () => {
                 "h-28 w-28 rounded-full bg-gradient-to-r opacity-30 ring-2 ring-[#25B67A]",
                 GRADIENTS.map.class
               )}
+              role="figure"
+              aria-label="marker"
             />
           </Marker>
         </ReactMapGL>

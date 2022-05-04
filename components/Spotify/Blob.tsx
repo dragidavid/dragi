@@ -8,10 +8,6 @@ type BlobProps = {
   color: Color;
 };
 
-/**
- * TODO replace this implementation with a shader
- */
-
 const Blob = ({ color }: BlobProps) => {
   return (
     <motion.div

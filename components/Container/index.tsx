@@ -2,7 +2,11 @@ import React, { FC, ReactNode } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 
-const Container: FC<ReactNode> = ({ children }) => {
+type ContainerProps = {
+  children: ReactNode;
+};
+
+const Container: FC<ContainerProps> = ({ children }) => {
   const router = useRouter();
 
   const meta = {

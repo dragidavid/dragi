@@ -17,6 +17,7 @@ const Footer = () => {
           "transition-colors duration-200 ease-in-out",
           "hover:cursor-ne-resize hover:text-black hover:dark:text-white"
         )}
+        aria-label="github"
       >
         <GitHubIcon />
       </a>

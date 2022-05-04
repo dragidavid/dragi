@@ -55,7 +55,11 @@ const Contact = () => {
       </p>
 
       <div className="hidden grow flex-col items-center justify-evenly lg:flex lg:flex-row">
-        <a href="mailto:dragovacz.dd@gmail.com" className="cta-icon">
+        <a
+          href="mailto:dragovacz.dd@gmail.com"
+          className="cta-icon"
+          aria-label="email"
+        >
           <MessageIcon />
         </a>
 
@@ -64,6 +68,7 @@ const Contact = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="cta-icon"
+          aria-label="resume"
         >
           <DocumentIcon />
         </a>

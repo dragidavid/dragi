@@ -22,6 +22,7 @@ const Zoom = () => {
       >
         <Track className="relative w-full grow rounded-full bg-black/10 dark:bg-white/20" />
         <Thumb
+          aria-label="thumb"
           className={classNames(
             "block h-4 w-4 rounded-full shadow-sm",
             "bg-gradient-to-br",

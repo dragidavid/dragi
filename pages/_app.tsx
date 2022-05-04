@@ -7,9 +7,13 @@ import "node_modules/react-resizable/css/styles.css";
 
 import LayoutProvider from "contexts/LayoutContext";
 
+import { useAnalytics } from "lib/analytics";
+
 import "styles/globals.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
+  useAnalytics();
+
   return (
     <ThemeProvider attribute="class" defaultTheme="system">
       <LayoutProvider>
