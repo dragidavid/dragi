@@ -10,9 +10,8 @@ const Container: FC<ContainerProps> = ({ children }) => {
   const router = useRouter();
 
   const meta = {
-    title: "David Dragovacz",
-    description:
-      "It's my personal website. 👋🏼 I'm a frontend developer and three.js fan among other things.",
+    title: "David Dragovacz 👋🏼",
+    description: "Frontend developer with an interest in three.js and crypto.",
     image: "https://dragi.me/static/images/banner.png",
     type: "website",
   };
