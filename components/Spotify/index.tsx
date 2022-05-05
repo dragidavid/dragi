@@ -60,7 +60,7 @@ const Spotify = () => {
   return (
     <div className={nowPlaying?.isPlaying ? "text-white" : "text-current"}>
       {colors && nowPlaying?.isPlaying && (
-        <div className="absolute inset-0 z-[1] overflow-hidden rounded-3xl">
+        <div className="absolute inset-0 z-[1] overflow-hidden rounded-2xl">
           {colors.map((color: Color) => (
             <Blob color={color} key={color.name} />
           ))}
@@ -69,7 +69,7 @@ const Spotify = () => {
 
       <div
         className={classNames(
-          "absolute inset-0 z-[2] overflow-hidden rounded-3xl p-9 transition-all duration-500 ease-out md:p-6 lg:p-9",
+          "absolute inset-0 z-[2] overflow-hidden rounded-2xl p-9 transition-all duration-500 ease-out md:p-6 lg:p-9",
           nowPlaying?.isPlaying ? "bg-black/20" : "bg-transparent"
         )}
       >

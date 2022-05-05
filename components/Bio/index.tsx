@@ -12,7 +12,7 @@ const Bio = () => {
   return (
     <div className="h-full">
       <div
-        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-10 blur-2xl filter"
+        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-20 blur-2xl filter"
         style={{
           backgroundImage: getInlineGradient("bio"),
           height: `${randomNumber(80, 120)}%`,

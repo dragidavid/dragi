@@ -13,7 +13,7 @@ const Map = () => {
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className="absolute inset-0 z-[1] flex items-center overflow-hidden rounded-3xl">
+    <div className="absolute inset-0 z-[1] flex items-center overflow-hidden rounded-2xl">
       <ReactMapGL
         id="map"
         initialViewState={{
@@ -33,7 +33,7 @@ const Map = () => {
         <Marker latitude={51.5044953} longitude={-0.0098106}>
           <div
             className={classNames(
-              "h-28 w-28 rounded-full bg-gradient-to-r opacity-30 ring-2 ring-[#25B67A]",
+              "h-28 w-28 rounded-full bg-gradient-to-r opacity-30 ring-2 ring-emerald-500",
               GRADIENTS.map.class
             )}
             role="figure"

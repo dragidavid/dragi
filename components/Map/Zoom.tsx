@@ -24,10 +24,10 @@ const Zoom = () => {
         <Thumb
           aria-label="thumb"
           className={classNames(
-            "block h-4 w-4 rounded-full shadow-sm",
+            "block h-6 w-6 rounded-full shadow-sm",
             "bg-gradient-to-br",
             GRADIENTS.map.class,
-            "focus:outline-none focus-visible:ring focus-visible:ring-[#25B67A] focus-visible:ring-opacity-50"
+            "text-green focus:outline-none focus-visible:ring focus-visible:ring-emerald-500 focus-visible:ring-opacity-50"
           )}
         />
       </Root>

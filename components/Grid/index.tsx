@@ -71,7 +71,7 @@ const Grid = () => {
 
   return (
     <div className="flex grow items-center justify-center">
-      <div className="w-full max-w-[400px] py-8 md:max-w-[480px] lg:max-w-[920px]">
+      <div className="w-full max-w-[400px] md:max-w-[480px] lg:max-w-[920px]">
         <ResponsiveGridLayout
           layouts={LAYOUTS}
           breakpoints={BREAKPOINTS}

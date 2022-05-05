@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="flex min-h-[8rem] items-center justify-center">
+    <footer className="flex min-h-[7rem] items-center justify-center">
       <p className="text-sm">{currentYear} David Dragovacz</p>
       <span className="mx-2">&bull;</span>
       <a
