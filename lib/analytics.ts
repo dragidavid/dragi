@@ -1,25 +1,11 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import * as Fathom from "fathom-client";
+import type { GAEventDetails } from "lib/types";
 
-export const useAnalytics = () => {
-  const router = useRouter();
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === "production") {
-      Fathom.load(process.env.NEXT_PUBLIC_FATHOM_SITE_ID!, {
-        includedDomains: ["dragi.me", "www.dragi.me"],
-      });
-    }
-
-    function onRouteChangeComplete() {
-      Fathom.trackPageview();
-    }
-
-    router.events.on("routeChangeComplete", onRouteChangeComplete);
-
-    return () => {
-      router.events.off("routeChangeComplete", onRouteChangeComplete);
-    };
-  }, [router.events]);
+export const event = ({ action, category, label, value }: GAEventDetails) => {
+  window.gtag("event", action, {
+    event_category: category,
+    event_label: label,
+    value: value,
+  });
 };

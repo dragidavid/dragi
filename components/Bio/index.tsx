@@ -2,6 +2,8 @@ import Wave from "components/Bio/Wave";
 
 import { randomNumber, classNames } from "lib/utils";
 
+import * as gtag from "lib/analytics";
+
 import { useLayoutContext } from "contexts/LayoutContext";
 
 import { GRADIENTS } from "lib/gradients";
@@ -49,6 +51,13 @@ const Bio = () => {
               href="https://deliveroo.co.uk"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                gtag.event({
+                  action: "click",
+                  category: "bio",
+                  label: "company_viewed",
+                })
+              }
               className={classNames(
                 "gradient-text font-bold",
                 GRADIENTS.bio.class,

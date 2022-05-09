@@ -3,6 +3,8 @@ import { useTheme } from "next-themes";
 import { useHotkeys } from "react-hotkeys-hook";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 
+import * as gtag from "lib/analytics";
+
 const Switch = () => {
   const [, setMounted] = useState<boolean>(false);
 
@@ -13,8 +15,18 @@ const Switch = () => {
   const handleThemeSwitch = () => {
     if (resolvedTheme === "dark") {
       setTheme("light");
+      gtag.event({
+        action: "dark-mode-off",
+        category: "theme",
+        label: "dark-mode-off",
+      });
     } else if (resolvedTheme === "light") {
       setTheme("dark");
+      gtag.event({
+        action: "light-mode-off",
+        category: "theme",
+        label: "light-mode-off",
+      });
     }
   };
 

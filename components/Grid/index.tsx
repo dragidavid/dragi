@@ -6,6 +6,8 @@ import Tile from "components/Grid/Tile";
 
 import { useLayoutContext } from "contexts/LayoutContext";
 
+import * as gtag from "lib/analytics";
+
 import type { Layouts } from "react-grid-layout";
 import type { GridTile } from "lib/types";
 
@@ -85,6 +87,13 @@ const Grid = () => {
             setRowHeight(ROWHEIGHTS[breakpoint])
           }
           measureBeforeMount={true}
+          onDragStart={(...args) =>
+            gtag.event({
+              action: "drag",
+              category: "grid",
+              label: args[2].i,
+            })
+          }
         >
           {tiles.map((tile: GridTile, i: number) => (
             <motion.div

@@ -33,3 +33,10 @@ export type Stats = {
   totalContributions: StatDetails;
   firstContribution: StatDetails;
 };
+
+export type GAEventDetails = {
+  action: string;
+  category: string;
+  label: string;
+  value?: number;
+};
