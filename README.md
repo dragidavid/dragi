@@ -7,7 +7,7 @@ Planning to constantly update this site with new content. Still very much a work
 - **Framework**: [Next.js](https://nextjs.org/)
 - **Deployment**: [Vercel](https://vercel.com)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Analytics**: [Fathom](https://usefathom.com/)
+- **Analytics**: [GA](https://analytics.google.com/analytics/web)
 
 ## Running Locally
 
