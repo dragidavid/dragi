@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import Script from "next/script";
 import { ThemeProvider } from "next-themes";
+import { Analytics } from "@vercel/analytics/react";
 import Inspect from "inspx";
 
 import "node_modules/react-grid-layout/css/styles.css";
@@ -31,6 +32,7 @@ const App = ({ Component, pageProps }: AppProps) => {
             `}
           </Script>
           <Component {...pageProps} />
+          <Analytics />
         </Inspect>
       </LayoutProvider>
     </ThemeProvider>
