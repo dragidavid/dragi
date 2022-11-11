@@ -2,8 +2,6 @@ import Wave from "components/Bio/Wave";
 
 import { randomNumber, classNames } from "lib/utils";
 
-import * as gtag from "lib/analytics";
-
 import { useLayoutContext } from "contexts/LayoutContext";
 
 import { GRADIENTS } from "lib/gradients";
@@ -14,7 +12,7 @@ const Bio = () => {
   return (
     <div className="h-full">
       <div
-        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-20 blur-2xl filter"
+        className="absolute top-[-30%] left-[-30%] rounded-[50%] opacity-20 blur-2xl"
         style={{
           backgroundImage: getInlineGradient("bio"),
           height: `${randomNumber(80, 120)}%`,
@@ -51,13 +49,6 @@ const Bio = () => {
               href="https://deliveroo.co.uk"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() =>
-                gtag.event({
-                  action: "click",
-                  category: "bio",
-                  label: "company_viewed",
-                })
-              }
               className={classNames(
                 "gradient-text font-bold",
                 GRADIENTS.bio.class,

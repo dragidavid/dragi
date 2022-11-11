@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: "Inter";
   font-weight: 100 900;
   src: url(/fonts/inter-var-latin.woff2) format("woff2");
@@ -11,12 +11,21 @@
     U+FEFF, U+FFFD;
   font-display: optional;
   font-style: normal;
-}
+} */
 
 #__next {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.background {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 6%,
+    transparent 6%
+  );
+  background-position: 0% 0%;
+  background-size: 5vmin 5vmin;
 }
 
 pre::-webkit-scrollbar {
@@ -57,5 +66,5 @@ input[type="email"] {
 }
 
 .react-grid-item.react-grid-placeholder {
-  @apply rounded-2xl bg-[#eaeaea] opacity-50 transition-all duration-500 ease-in-out will-change-transform dark:bg-[#000];
+  @apply rounded-2xl bg-[#eaeaea]/50 transition-all duration-500 ease-in-out will-change-transform dark:bg-[#000];
 }

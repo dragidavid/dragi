@@ -1,7 +1,9 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
+// const { fontFamily } = require("tailwindcss/defaultTheme");
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./app/**/*.{tsx,ts}",
     "./pages/**/*.{tsx,ts}",
     "./components/**/*.{tsx,ts}",
     "./contexts/**/*.{tsx,ts}",
@@ -10,9 +12,12 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["Inter", ...fontFamily.sans],
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
       },
+      // fontFamily: {
+      //   sans: ["Inter", ...fontFamily.sans],
+      // },
       keyframes: {
         flash: {
           "0%": { opacity: "0.2" },

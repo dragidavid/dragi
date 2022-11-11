@@ -3,8 +3,6 @@ import DocumentIcon from "components/Contact/DocumentIcon";
 
 import { classNames } from "lib/utils";
 
-import * as gtag from "lib/analytics";
-
 import { GRADIENTS } from "lib/gradients";
 
 const Contact = () => {
@@ -27,9 +25,6 @@ const Contact = () => {
         Drop me an{" "}
         <a
           href="mailto:dragovacz.dd@gmail.com"
-          onClick={() =>
-            gtag.event({ action: "click", category: "contact", label: "email" })
-          }
           className={classNames(
             "gradient-text font-bold hover:cursor-ne-resize",
             GRADIENTS.contact.class,
@@ -46,13 +41,6 @@ const Contact = () => {
           href="https://read.cv/dragi"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() =>
-            gtag.event({
-              action: "click",
-              category: "contact",
-              label: "resume",
-            })
-          }
           className={classNames(
             "gradient-text font-bold hover:cursor-ne-resize",
             GRADIENTS.contact.class,
@@ -71,9 +59,6 @@ const Contact = () => {
           href="mailto:dragovacz.dd@gmail.com"
           className="cta-icon"
           aria-label="email"
-          onClick={() =>
-            gtag.event({ action: "click", category: "contact", label: "email" })
-          }
         >
           <MessageIcon />
         </a>
@@ -84,13 +69,6 @@ const Contact = () => {
           rel="noopener noreferrer"
           className="cta-icon"
           aria-label="resume"
-          onClick={() =>
-            gtag.event({
-              action: "click",
-              category: "contact",
-              label: "resume",
-            })
-          }
         >
           <DocumentIcon />
         </a>

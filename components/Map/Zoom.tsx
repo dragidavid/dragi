@@ -27,7 +27,7 @@ const Zoom = () => {
             "block h-6 w-6 rounded-full shadow-sm",
             "bg-gradient-to-br",
             GRADIENTS.map.class,
-            "text-green focus:outline-none focus-visible:ring focus-visible:ring-emerald-500 focus-visible:ring-opacity-50"
+            "text-green focus:outline-none focus-visible:ring focus-visible:ring-emerald-500/50"
           )}
         />
       </Root>

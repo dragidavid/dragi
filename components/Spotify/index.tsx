@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { StatusOfflineIcon, StatusOnlineIcon } from "@heroicons/react/outline";
+import { SignalSlashIcon, SignalIcon } from "@heroicons/react/20/solid";
 
 import Blob from "components/Spotify/Blob";
 import TrackInformation from "components/Spotify/TrackInformation";
@@ -92,12 +92,12 @@ const Spotify = () => {
               {nowPlaying?.isPlaying ? (
                 <>
                   <span>now playing</span>
-                  <StatusOnlineIcon className="ml-2 w-5 animate-pulse" />
+                  <SignalIcon className="ml-2 w-5 animate-pulse" />
                 </>
               ) : (
                 <>
                   <span>last played</span>
-                  <StatusOfflineIcon className="ml-2 w-5" />
+                  <SignalSlashIcon className="ml-2 w-5" />
                 </>
               )}
             </div>
