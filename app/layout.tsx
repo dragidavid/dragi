@@ -31,9 +31,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* <Navigation /> */}
 
         <Providers>
-          <main className="flex h-full w-full items-center justify-center">
-            {children}
-          </main>
+          {/* <main className="flex h-full w-full items-center justify-center"> */}
+          <MotionMain>{children}</MotionMain>
+          {/* </main> */}
         </Providers>
 
         <Analytics />

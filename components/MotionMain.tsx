@@ -11,16 +11,13 @@ export default function MotionMain({ children }: { children: ReactNode }) {
     <AnimatePresence mode="wait">
       <motion.main
         key={pathname}
-        className="h-full w-full"
+        className="flex h-full w-full items-center justify-center"
         transition={{
-          type: "spring",
-          stiffness: 100,
-          damping: 20,
-          delay: 0.5,
+          delay: 1,
         }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // exit={{ opacity: 0 }}
       >
         {children}
       </motion.main>
