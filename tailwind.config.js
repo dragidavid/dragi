@@ -19,9 +19,6 @@ module.exports = {
         sans: ["var(--font-mona)", ...fontFamily.sans],
         header: ["var(--font-hubot)"],
       },
-      // fontFamily: {
-      //   sans: ["Inter", ...fontFamily.sans],
-      // },
       keyframes: {
         flash: {
           "0%": { opacity: "0.2" },

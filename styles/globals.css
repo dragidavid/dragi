@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  #__next {
+    @apply h-screen;
+  }
+
   [data-nextjs-scroll-focus-boundary] {
-    display: contents;
+    @apply contents;
   }
 }
 

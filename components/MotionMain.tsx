@@ -8,20 +8,11 @@ export default function MotionMain({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.main
-        key={pathname}
-        className="flex h-full w-full items-center justify-center"
-        transition={{
-          delay: 1,
-        }}
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
-        // exit={{ opacity: 0 }}
-      >
+    <main className="flex h-full w-full items-center justify-center">
+      <AnimatePresence initial={false} mode="wait">
         {children}
-      </motion.main>
-    </AnimatePresence>
+      </AnimatePresence>
+    </main>
   );
 }
 
