@@ -68,6 +68,11 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@inlet/react-pixi@^6.8.0":
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/@inlet/react-pixi/-/react-pixi-6.8.0.tgz#6d1f632c61ec814dd0306a61512c24d01e48f2f7"
+  integrity sha512-WIbmChkiM14XswP7pb8aCWR++h2qYKutNkXqYeWoDOQGKJw89278fRVC22zPYOw2SjSNVRtnLMlj4nkCfjTiFg==
+
 "@jimp/bmp@^0.16.1":
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@jimp/bmp/-/bmp-0.16.1.tgz#6e2da655b2ba22e721df0795423f34e92ef13768"

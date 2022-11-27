@@ -40,3 +40,11 @@ export type GAEventDetails = {
   label: string;
   value?: number;
 };
+
+export type Cage = {
+  id: string;
+  navigationLabel: string | JSX.Element;
+  styles: string;
+  hasOwnPage: boolean;
+  href: string;
+};

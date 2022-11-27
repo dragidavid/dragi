@@ -56,11 +56,11 @@ const App = ({ Component, pageProps }: AppProps) => {
                   opacity: 0,
                 }}
                 className={clsx(
-                  "h-[60vh] w-full rounded-md p-3",
-                  pathname === "/" ? "border-none" : "border-2 border-white/5"
+                  "h-[60vh] w-full rounded-xl",
+                  pathname === "/" ? "border-none" : "border-2 border-white/20 "
                 )}
               >
-                <Component key={pathname} {...pageProps} />
+                <Component {...pageProps} />
               </m.main>
             </AnimatePresence>
           </div>
