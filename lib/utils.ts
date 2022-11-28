@@ -23,7 +23,7 @@ export const getColors = async (src: string): Promise<Color[]> => {
   return Object.keys(palette).reduce(createColorsArray, []);
 };
 
-export const randomNumber = (
+export const random = (
   from: number,
   to: number,
   float: boolean = false
@@ -40,10 +40,10 @@ export const randomArray = (
   float: boolean = false
 ): number[] => {
   if (float) {
-    return Array.from({ length }, () => randomNumber(from, to, float));
+    return Array.from({ length }, () => random(from, to, float));
   }
 
-  return Array.from({ length }, () => randomNumber(from, to, float));
+  return Array.from({ length }, () => random(from, to, float));
 };
 
 export const normalizeUtc = (date: Date): Date => {
