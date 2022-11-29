@@ -1,21 +1,11 @@
 import * as THREE from "three";
-import { useRef, useEffect } from "react";
-import { useFrame } from "@react-three/fiber";
-import { motion } from "framer-motion-3d";
-import {
-  MeshDistortMaterial,
-  GradientTexture,
-  Instances,
-  Instance,
-} from "@react-three/drei";
+import { MeshDistortMaterial, Instances } from "@react-three/drei";
 
 import { random } from "lib/utils";
 
-import type { Mesh, InstancedMesh } from "three";
-import type { Color } from "lib/types";
-
-import { data } from "./store";
 import SingleBlobInstance from "components/Spotify/SingleBlobInstance";
+
+import type { Color } from "lib/types";
 
 interface InstancedBlobsProps {
   colors?: Color[];
@@ -26,49 +16,24 @@ export default function InstancedBlobs({ colors = [] }: InstancedBlobsProps) {
     return null;
   }
 
+  const particles = Array.from({ length: 50 }, () => ({
+    factor: THREE.MathUtils.randInt(20, 100),
+    speed: THREE.MathUtils.randFloat(0.01, 1),
+    xFactor: THREE.MathUtils.randFloatSpread(80),
+    yFactor: THREE.MathUtils.randFloatSpread(40),
+    zFactor: THREE.MathUtils.randFloatSpread(40),
+    color: colors[random(0, colors.length - 1)].hex,
+  }));
+
   return (
-    <Instances range={colors.length}>
-      <icosahedronBufferGeometry args={[2, 128, 128]} />
+    <Instances limit={particles.length}>
+      <icosahedronBufferGeometry args={[1, 16]} />
 
-      <MeshDistortMaterial
-        distort={0.5}
-        // opacity={0.7}
-        // transparent={true}
-      />
+      <MeshDistortMaterial distort={0.5} opacity={0.8} transparent={true} />
 
-      <group position={[0, 0, 0]}>
-        {/* {colors.map((color, i) => (
-          <Instance key={i} color={color.hex} />
-        ))} */}
-        {data.map((props, i) => (
-          <SingleBlobInstance key={i} {...props} />
-        ))}
-      </group>
-
-      {/* <Instance
-        color="green"
-        scale={0.5}
-        position={[0, 1, 1]}
-        rotation={[Math.PI / 3, 0, 0]}
-      />
-      <Instance
-        color="blue"
-        scale={1}
-        position={[0, -1, 1]}
-        rotation={[Math.PI / 3, 0, 0]}
-      />
-      <Instance
-        color="red"
-        scale={0.7}
-        position={[1, -1, 1]}
-        rotation={[Math.PI / 3, 0, 0]}
-      />
-      <Instance
-        color="hotpink"
-        scale={1}
-        position={[1, 2, 3]}
-        rotation={[Math.PI / 3, 0, 0]}
-      /> */}
+      {particles.map((blobData, i) => (
+        <SingleBlobInstance key={i} {...blobData} />
+      ))}
     </Instances>
   );
 }

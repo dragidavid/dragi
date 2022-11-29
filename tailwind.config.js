@@ -12,6 +12,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      backgroundImage: {
+        noise: "url('/static/images/noise.png')",
+      },
       inset: {
         0.75: "3px",
       },
