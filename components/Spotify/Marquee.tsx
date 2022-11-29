@@ -1,19 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
+import clsx from "clsx";
 
-import { classNames } from "lib/utils";
-
-type TrackInformationProps = {
+interface MarqueeProps {
   text?: string;
   trackUrl?: string;
   className: string;
-};
+}
 
-const TrackInformation = ({
-  text,
-  trackUrl,
-  className,
-}: TrackInformationProps) => {
+export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
   const [moveBy, setMoveBy] = useState<number | undefined>(undefined);
   const [isAnimationActive, setIsAnimationActive] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(3);
@@ -25,6 +20,12 @@ const TrackInformation = ({
 
   const getMoveBy = () => {
     if (textRef.current && containerRef.current) {
+      console.log("textRef.current.offsetWidth", textRef.current.offsetWidth);
+      console.log(
+        "containerRef.current.offsetWidth",
+        containerRef.current.offsetWidth
+      );
+
       if (textRef.current?.offsetWidth > containerRef.current?.offsetWidth) {
         setMoveBy(
           textRef.current?.offsetWidth - containerRef.current?.clientWidth
@@ -68,13 +69,14 @@ const TrackInformation = ({
 
   return (
     <motion.div
-      className={classNames("overflow-hidden", className)}
       ref={containerRef}
       onClick={() => window.open(trackUrl, "_blank")}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      className={clsx("overflow-hidden", className)}
     >
       <motion.span
+        ref={textRef}
         animate={controls}
         transition={{
           duration: (moveBy! / 50) * 3,
@@ -82,16 +84,13 @@ const TrackInformation = ({
           delay: delay,
           ease: "linear",
         }}
-        style={{ textDecoration: "inherit" }}
-        className="inline-flex whitespace-nowrap will-change-transform"
         onHoverStart={startAnimation}
         onTap={startAnimation}
-        ref={textRef}
+        style={{ textDecoration: "inherit" }}
+        className="inline-flex whitespace-nowrap will-change-transform"
       >
         {text}
       </motion.span>
     </motion.div>
   );
-};
-
-export default TrackInformation;
+}
