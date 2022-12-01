@@ -1,6 +1,11 @@
 import { HomeIcon } from "@heroicons/react/24/solid";
 
+const NewPlayer = dynamic(() => import("components/Spotify/NewPlayer"), {
+  ssr: false,
+});
+
 import type { Cage } from "lib/types";
+import dynamic from "next/dynamic";
 
 const borderStyles =
   "border-2 border-white/10 bg-[#050505] transition-colors duration-300 hover:border-white/20";
@@ -45,6 +50,7 @@ export const cages: Cage[] = [
     id: "spotify",
     navigationLabel: "Spotify",
     styles: `${borderStyles} col-span-2 col-start-5 row-span-4 row-start-1`,
+    component: <NewPlayer />,
     hasOwnPage: true,
     href: "/spotify",
   },

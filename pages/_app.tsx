@@ -56,7 +56,7 @@ const App = ({ Component, pageProps }: AppProps) => {
                   opacity: 0,
                 }}
                 className={clsx(
-                  "h-[60vh] w-full overflow-hidden rounded-xl",
+                  "h-[70vh] w-full overflow-hidden rounded-xl",
                   pathname === "/" ? "border-none" : "border-2 border-white/20 "
                 )}
               >

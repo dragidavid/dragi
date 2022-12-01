@@ -20,12 +20,6 @@ export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
 
   const getMoveBy = () => {
     if (textRef.current && containerRef.current) {
-      console.log("textRef.current.offsetWidth", textRef.current.offsetWidth);
-      console.log(
-        "containerRef.current.offsetWidth",
-        containerRef.current.offsetWidth
-      );
-
       if (textRef.current?.offsetWidth > containerRef.current?.offsetWidth) {
         setMoveBy(
           textRef.current?.offsetWidth - containerRef.current?.clientWidth

@@ -45,6 +45,7 @@ export type Cage = {
   id: string;
   navigationLabel: string | JSX.Element;
   styles: string;
+  component?: JSX.Element;
   hasOwnPage: boolean;
   href: string;
 };

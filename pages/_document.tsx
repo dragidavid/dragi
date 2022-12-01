@@ -44,7 +44,7 @@ class MyDocument extends Document {
             media="(prefers-color-scheme: dark)"
           />
         </Head>
-        <body className="mx-auto h-screen max-w-3xl">
+        <body className="mx-auto h-screen max-w-4xl">
           <Main />
           <NextScript />
         </body>

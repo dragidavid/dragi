@@ -3,6 +3,7 @@ import { useRef } from "react";
 import useSWR from "swr";
 import dynamic from "next/dynamic";
 
+import PlaybackStatus from "components/Spotify/PlaybackStatus";
 import Marquee from "components/Spotify/Marquee";
 
 import fetcher from "lib/fetcher";
@@ -59,7 +60,7 @@ export default function NewPlayer() {
   return (
     <div
       ref={boundsRef}
-      className="relative h-full max-w-xs overflow-hidden rounded-xl"
+      className="relative h-full max-w-xs overflow-hidden rounded-lg"
     >
       {/* Canvas and blobs */}
       <Scene>
@@ -67,7 +68,7 @@ export default function NewPlayer() {
       </Scene>
 
       {/* Backdrop blur */}
-      <div className="absolute inset-0 backdrop-blur-xl" />
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
 
       {/* Noise layer */}
       <div className="absolute inset-0 bg-noise opacity-10" />
@@ -85,6 +86,7 @@ export default function NewPlayer() {
         </div>
 
         <div className="flex flex-col gap-1 font-header">
+          <PlaybackStatus isPlaying={Boolean(nowPlaying?.isPlaying)} />
           <Marquee
             text={nowPlaying?.title ?? recentlyPlayed?.title}
             trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}

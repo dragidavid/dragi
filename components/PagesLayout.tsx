@@ -15,12 +15,16 @@ export default function MainLayout() {
             opacity: 0,
           }}
           animate={{ opacity: 1 }}
-          className={clsx("relative rounded-xl", cage.styles)}
+          className={clsx("relative overflow-hidden rounded-xl", cage.styles)}
         >
           {cage.hasOwnPage && (
             <Link href={cage.href} className="absolute top-3 left-3 z-10">
               <div className="block rounded-full bg-green-500 p-1" />
             </Link>
+          )}
+
+          {cage.component && (
+            <div className="absolute inset-0">{cage.component}</div>
           )}
         </motion.div>
       ))}
