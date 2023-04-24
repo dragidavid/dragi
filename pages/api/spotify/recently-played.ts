@@ -19,9 +19,11 @@ export default async function handler(
   const mostRecentTrack = recents.items[0].track;
 
   const title = mostRecentTrack.name;
-  const artist = mostRecentTrack.artists
-    .map((_artist: any) => _artist.name)
-    .join(", ");
+  const artists = mostRecentTrack.artists.map((artist: any) => ({
+    id: artist.id,
+    name: artist.name,
+    artistUrl: artist.external_urls.spotify,
+  }));
   const album = mostRecentTrack.album.name;
   const trackUrl = mostRecentTrack.external_urls.spotify;
 
@@ -32,7 +34,7 @@ export default async function handler(
 
   return res.status(200).json({
     album,
-    artist,
+    artists,
     trackUrl,
     title,
   });

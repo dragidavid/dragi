@@ -22,9 +22,11 @@ export default async function handler(
 
   const isPlaying = track.is_playing;
   const title = track.item.name;
-  const artist = track.item.artists
-    .map((_artist: any) => _artist.name)
-    .join(", ");
+  const artists = track.item.artists.map((artist: any) => ({
+    id: artist.id,
+    name: artist.name,
+    artistUrl: artist.external_urls.spotify,
+  }));
   const album = track.item.album.name;
   const albumImageUrl = track.item.album.images[1].url;
   const trackUrl = track.item.external_urls.spotify;
@@ -37,7 +39,7 @@ export default async function handler(
   return res.status(200).json({
     album,
     albumImageUrl,
-    artist,
+    artists,
     isPlaying,
     trackUrl,
     title,

@@ -2,13 +2,25 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
 import clsx from "clsx";
 
+import SeparatedList from "components/Spotify/SeparatedList";
+
+import type { Artist } from "lib/types";
+
 interface MarqueeProps {
-  text?: string;
+  type: "trackTitle" | "artists";
+  trackTitle?: string;
   trackUrl?: string;
+  artists?: Artist[];
   className: string;
 }
 
-export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
+export default function Marquee({
+  type,
+  trackTitle,
+  trackUrl,
+  artists,
+  className,
+}: MarqueeProps) {
   const [moveBy, setMoveBy] = useState<number | undefined>(undefined);
   const [isAnimationActive, setIsAnimationActive] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(3);
@@ -16,7 +28,7 @@ export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
   const controls = useAnimation();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   const getMoveBy = () => {
     if (textRef.current && containerRef.current) {
@@ -44,10 +56,8 @@ export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
   }, []);
 
   useEffect(() => {
-    if (!moveBy) {
-      getMoveBy();
-    }
-  }, [moveBy, text]);
+    getMoveBy();
+  }, [moveBy, trackTitle, artists]);
 
   useEffect(() => {
     controls.set({ x: 0 });
@@ -61,15 +71,45 @@ export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
     }
   }, [moveBy, controls]);
 
+  const render: {
+    [key in typeof type]: JSX.Element;
+  } = {
+    trackTitle: (
+      <a
+        href={trackUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:cursor-ne-resize hover:underline"
+      >
+        {trackTitle}
+      </a>
+    ),
+    artists: (
+      <SeparatedList
+        items={artists}
+        render={(artist: Artist) => (
+          <a
+            key={artist.id}
+            href={artist.artistUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:cursor-ne-resize hover:underline"
+          >
+            {artist.name}
+          </a>
+        )}
+      />
+    ),
+  };
+
   return (
     <motion.div
       ref={containerRef}
-      onClick={() => window.open(trackUrl, "_blank")}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={clsx("overflow-hidden", className)}
     >
-      <motion.span
+      <motion.div
         ref={textRef}
         animate={controls}
         transition={{
@@ -81,10 +121,10 @@ export default function Marquee({ text, trackUrl, className }: MarqueeProps) {
         onHoverStart={startAnimation}
         onTap={startAnimation}
         style={{ textDecoration: "inherit" }}
-        className="inline-flex whitespace-nowrap will-change-transform"
+        className="w-max whitespace-nowrap will-change-transform"
       >
-        {text}
-      </motion.span>
+        {render[type]}
+      </motion.div>
     </motion.div>
   );
 }

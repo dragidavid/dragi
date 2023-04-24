@@ -1,9 +1,15 @@
 import { GRADIENTS } from "lib/gradients";
 
+export type Artist = {
+  id: string;
+  name: string;
+  artistUrl: string;
+};
+
 export type Track = {
   album: string;
   albumImageUrl: string;
-  artist: string;
+  artists: Artist[];
   isPlaying: boolean;
   trackUrl: string;
   title: string;

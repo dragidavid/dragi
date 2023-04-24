@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import useSWR from "swr";
 import dynamic from "next/dynamic";
 
@@ -23,6 +24,12 @@ export default function NewPlayer() {
   const [shouldFetchRecentlyPlayedTrack, setShouldFetchRecentlyPlayedTrack] =
     useState<boolean>(false);
 
+  const { data: test } = useSWR("/api/spotify/track", fetcher, {
+    revalidateOnFocus: false,
+  });
+
+  console.log(test);
+
   const { data: nowPlaying } = useSWR<Track>(
     "/api/spotify/now-playing",
     fetcher,
@@ -30,6 +37,7 @@ export default function NewPlayer() {
       revalidateOnFocus: false,
     }
   );
+
   const { data: recentlyPlayed } = useSWR<Partial<Track>>(
     shouldFetchRecentlyPlayedTrack ? "/api/spotify/recently-played" : null,
     fetcher,
@@ -85,18 +93,27 @@ export default function NewPlayer() {
           </svg>
         </div>
 
-        <div className="flex flex-col gap-1 font-header">
-          <PlaybackStatus isPlaying={Boolean(nowPlaying?.isPlaying)} />
-          <Marquee
-            text={nowPlaying?.title ?? recentlyPlayed?.title}
-            trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
-            className="text-4xl font-black hover:cursor-ne-resize hover:underline"
-          />
-          <Marquee
-            text={nowPlaying?.artist ?? recentlyPlayed?.artist}
-            className="text-md font-medium"
-          />
-        </div>
+        {nowPlaying || recentlyPlayed ? (
+          <motion.div
+            className="flex flex-col gap-1 font-header"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            <PlaybackStatus isPlaying={Boolean(nowPlaying?.isPlaying)} />
+            <Marquee
+              type="trackTitle"
+              trackTitle={nowPlaying?.title ?? recentlyPlayed?.title}
+              trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
+              className="text-4xl font-black"
+            />
+            <Marquee
+              type="artists"
+              artists={nowPlaying?.artists ?? recentlyPlayed?.artists}
+              className="text-md font-medium"
+            />
+          </motion.div>
+        ) : null}
       </div>
     </div>
   );

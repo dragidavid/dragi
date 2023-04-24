@@ -6,10 +6,6 @@
   #__next {
     @apply h-screen;
   }
-
-  [data-nextjs-scroll-focus-boundary] {
-    @apply contents;
-  }
 }
 
 .background {
