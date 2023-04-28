@@ -1,5 +1,3 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -19,8 +17,7 @@ module.exports = {
         0.75: "3px",
       },
       fontFamily: {
-        sans: ["var(--font-mona)", ...fontFamily.sans],
-        header: ["var(--font-hubot)"],
+        sans: ["var(--font-mona)"],
       },
       keyframes: {
         flash: {
@@ -32,6 +29,9 @@ module.exports = {
       animation: {
         flash: "flash 1.4s infinite linear",
       },
+    },
+    fontFamily: {
+      hubot: ["var(--font-hubot)"],
     },
   },
   plugins: [],

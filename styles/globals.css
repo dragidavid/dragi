@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  #__next {
-    @apply h-screen;
-  }
-}
-
 .background {
   background-image: radial-gradient(
     rgba(255, 255, 255, 0.05) 6%,
