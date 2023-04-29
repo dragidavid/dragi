@@ -2,6 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --root-container: 810px;
+    --page-container: 640px;
+  }
+}
+
+@layer utilities {
+  /*
+    This will make a `Line` component to span from the top-left corner of the component to the right edge of the screen
+
+    Note: 
+    The main component is `--root-container` wide and since this utility is only used in the root layout
+    to adjust the starting point of the horizontal `Line`s on the rightmost column
+  */
+  .fixed-top-left {
+    position: fixed;
+    right: 0;
+    width: 100vw;
+    transform: translate(calc(50% + var(--root-container) / 6), -0.5px);
+  }
+}
+
 .background {
   background-image: radial-gradient(
     rgba(255, 255, 255, 0.05) 6%,
