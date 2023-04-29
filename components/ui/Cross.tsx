@@ -2,7 +2,7 @@ import { cn } from "lib/cn";
 
 type Corner = "tl" | "tr" | "bl" | "br";
 
-type Corners = [Corner, ...Corner[]] & { length: 1 | 2 | 3 | 4 };
+export type Corners = [Corner, ...Corner[]] & { length: 1 | 2 | 3 | 4 };
 
 const VALUES: Record<
   Corner,
@@ -32,7 +32,8 @@ export default function Cross({ corners }: { corners: Corners }) {
           key={corner}
           viewBox="0 0 7 7"
           className={cn(
-            "absolute z-20 h-[7px] w-[7px]",
+            "absolute z-30 h-[7px] w-[7px]",
+            "text-white",
             VALUES[corner].position
           )}
         >

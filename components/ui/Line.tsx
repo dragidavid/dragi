@@ -1,43 +1,41 @@
 import { cn } from "lib/cn";
 
-type Orientation = "horizontal" | "vertical";
-
-export default function Line({
-  orientation,
-  fullWidth,
-  className,
-  verticalOffset,
-}: {
-  orientation: Orientation;
-  fullWidth?: boolean;
+type CommonProps = {
   className?: string;
-  verticalOffset?: number;
-}) {
-  if (orientation === "vertical") {
-    return (
-      <div
-        className={cn(
-          "fixed top-0 z-10 h-screen w-px",
-          "bg-white/30"
-          // "bg-gradient-to-b from-transparent via-white/30 to-transparent"
-        )}
-        style={{
-          transform: verticalOffset
-            ? `translateX(${verticalOffset}px)`
-            : undefined,
-        }}
-      />
-    );
-  }
+};
 
+type VerticalLineProps = CommonProps & {
+  source: "root" | "page";
+  verticalOffset: number;
+};
+
+type HorizontalLineProps = CommonProps & {
+  fullWidth?: boolean;
+};
+
+export function VerticalLine({
+  source,
+  verticalOffset,
+  className,
+}: VerticalLineProps) {
+  return (
+    <div
+      className={cn("fixed top-0 z-20 h-screen w-px", "bg-white/30", className)}
+      style={{
+        transform: `translateX(calc(var(--${source}-container)/${verticalOffset}))`,
+      }}
+    />
+  );
+}
+
+export function HorizontalLine({ fullWidth, className }: HorizontalLineProps) {
   return (
     <div
       className={cn(
-        "z-10 h-px w-screen -translate-y-[0.5px]",
-        fullWidth && "fixed left-0",
+        "z-20 h-px -translate-y-[0.5px]",
+        fullWidth && "fixed left-0 w-screen",
         className,
         "bg-white/30"
-        // "bg-gradient-to-r from-transparent via-white/30 to-transparent"
       )}
     />
   );
