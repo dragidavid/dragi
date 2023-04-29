@@ -1,5 +1,6 @@
-import { cn } from "lib/cn";
 import localFont from "next/font/local";
+
+import { cn } from "lib/cn";
 
 import "styles/globals.css";
 
@@ -19,16 +20,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={cn(
+        mona.variable,
+        hubot.variable,
+        "font-sans text-sm antialiased"
+      )}
+    >
       <body
         className={cn(
-          mona.variable,
-          hubot.variable,
-          "grid min-h-screen grid-rows-1 font-sans antialiased",
-          "bg-gray-950 text-gray-300 caret-fuchsia-500 selection:bg-fuchsia-500"
+          "min-h-screen",
+          "bg-almost-black text-primary caret-fuchsia-500 selection:bg-fuchsia-500 selection:text-primary"
         )}
       >
-        <main className={cn("")}>{children}</main>
+        <main className={cn("grid min-h-screen place-items-center")}>
+          {children}
+        </main>
       </body>
     </html>
   );

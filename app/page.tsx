@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <div
       className={cn(
-        "mx-auto grid h-full w-[var(--root-container)] grid-cols-3 justify-items-center"
+        "flex w-[var(--root-container)] items-center justify-center"
       )}
     >
       <VerticalLine source="root" verticalOffset={-2} />

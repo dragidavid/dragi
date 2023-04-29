@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "mx-auto flex h-full w-[640px] flex-col items-center justify-center"
+        "flex w-[var(--page-container)] flex-col items-center justify-center"
       )}
     >
       <VerticalLine source="page" verticalOffset={-2} />

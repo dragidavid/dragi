@@ -33,7 +33,7 @@ export default function Cross({ corners }: { corners: Corners }) {
           viewBox="0 0 7 7"
           className={cn(
             "absolute z-30 h-[7px] w-[7px]",
-            "text-white",
+            "text-primary",
             VALUES[corner].position
           )}
         >

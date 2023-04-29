@@ -9,7 +9,7 @@ import { cn } from "lib/cn";
 const links = [
   {
     id: "projects",
-    label: "Pojects",
+    label: "Projects",
     href: "/projects",
   },
   {
@@ -38,16 +38,21 @@ export default function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className={cn("grid w-full grid-cols-5")}>
+    <nav
+      className={cn(
+        "grid w-full grid-cols-5 font-hubot font-medium",
+        "text-secondary"
+      )}
+    >
       {links.map(({ id, label, href }) => (
         <Link
           key={id}
           href={href}
           className={cn(
-            "relative flex items-center justify-center p-2.5 font-hubot text-sm font-medium",
+            "relative flex items-center justify-center p-2.5",
             "transition-colors duration-100 ease-in-out",
-            "hover:text-white",
-            pathname === href && "text-white"
+            "hover:text-primary",
+            pathname === href && "text-primary"
           )}
         >
           {label}
@@ -55,9 +60,10 @@ export default function Navigation() {
           {pathname === href && (
             <motion.span
               layoutId="underline"
-              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
               className={cn(
-                "absolute -bottom-[0.5px] left-0 z-10 h-px w-full bg-white"
+                "absolute -bottom-[0.5px] left-0 z-30 h-px w-full",
+                "bg-primary"
               )}
             />
           )}

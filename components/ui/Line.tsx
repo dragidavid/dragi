@@ -20,7 +20,11 @@ export function VerticalLine({
 }: VerticalLineProps) {
   return (
     <div
-      className={cn("fixed top-0 z-20 h-screen w-px", "bg-white/30", className)}
+      className={cn(
+        "fixed top-0 z-20 h-screen w-px",
+        "bg-subtle-border",
+        className
+      )}
       style={{
         transform: `translateX(calc(var(--${source}-container)/${verticalOffset}))`,
       }}
@@ -35,7 +39,7 @@ export function HorizontalLine({ fullWidth, className }: HorizontalLineProps) {
         "z-20 h-px -translate-y-[0.5px]",
         fullWidth && "fixed left-0 w-screen",
         className,
-        "bg-white/30"
+        "bg-subtle-border"
       )}
     />
   );

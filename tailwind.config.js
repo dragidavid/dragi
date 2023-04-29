@@ -10,6 +10,12 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        "almost-black": "#0d0d0d",
+        primary: "#e1e1e1",
+        secondary: "#9d9d9d",
+        "subtle-border": "#232323",
+      },
       backgroundImage: {
         noise: "url('/static/images/noise.png')",
       },
