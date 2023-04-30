@@ -4,8 +4,16 @@
 
 @layer base {
   :root {
+    /* Container width */
     --root-container: 810px;
     --page-container: 640px;
+
+    /* Colors */
+    --primary: #e1e1e1;
+    --secondary: #9d9d9d;
+    --almost-black: #0d0d0d;
+    /* --subtle-border: #232323; */
+    --subtle-border: red;
   }
 }
 

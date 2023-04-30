@@ -11,10 +11,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "almost-black": "#0d0d0d",
-        primary: "#e1e1e1",
-        secondary: "#9d9d9d",
-        "subtle-border": "#232323",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        "almost-black": "var(--almost-black)",
+        "subtle-border": "var(--subtle-border)",
       },
       backgroundImage: {
         noise: "url('/static/images/noise.png')",
