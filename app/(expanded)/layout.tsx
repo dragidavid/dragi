@@ -9,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "flex w-[var(--page-container)] flex-col items-center justify-center"
+        "flex h-[70vh] max-h-[var(--root-container)] w-[var(--page-container)] flex-col items-center justify-center"
       )}
     >
       <VerticalLine source="page" verticalOffset={-2} />
@@ -24,9 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <HorizontalLine fullWidth />
       </div>
 
-      <div
-        className={cn("relative h-[70vh] max-h-[var(--root-container)] w-full")}
-      >
+      <div className={cn("relative h-full w-full")}>
         <Cross corners={["tl", "tr", "bl", "br"]} />
 
         <div className={cn("h-full overflow-auto")}>{children}</div>
