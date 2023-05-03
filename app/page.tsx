@@ -4,8 +4,8 @@ import Projects from "components/Previews/Projects";
 import Craft from "components/Previews/Craft";
 import Spotify from "components/Previews/Spotify";
 
+import Line from "components/ui/Line";
 import Cross from "components/ui/Cross";
-import { VerticalLine, HorizontalLine } from "components/ui/Line";
 
 import { cn } from "lib/cn";
 
@@ -15,10 +15,16 @@ export default function Page() {
   return (
     <div
       className={cn(
-        "flex w-[var(--root-container)] items-center justify-center"
+        "relative flex w-[var(--root-container)] items-center justify-center"
       )}
     >
-      <VerticalLine source="root" verticalOffset={-2} />
+      <div
+        className={cn(
+          "absolute left-0 z-20 h-screen w-px",
+          "-translate-x-1/2",
+          "bg-subtle-gray"
+        )}
+      />
 
       <Column>
         <Section
@@ -38,7 +44,12 @@ export default function Page() {
         </Section>
       </Column>
 
-      <VerticalLine source="root" verticalOffset={-6} />
+      <div
+        className={cn("absolute left-1/2 z-20 h-screen w-px", "bg-subtle-gray")}
+        style={{
+          transform: `translateX(calc(var(--root-container) / -6 - 0.5px))`,
+        }}
+      />
 
       <Column>
         <Section
@@ -50,7 +61,15 @@ export default function Page() {
         </Section>
       </Column>
 
-      <VerticalLine source="root" verticalOffset={6} />
+      <div
+        className={cn(
+          "absolute right-1/2 z-20 h-screen w-px",
+          "bg-subtle-gray"
+        )}
+        style={{
+          transform: `translateX(calc(var(--root-container) / 6 + 0.5px))`,
+        }}
+      />
 
       <Column>
         <Section corners={["tl", "tr"]} extraLineStyles="fixed-top-left">
@@ -66,7 +85,13 @@ export default function Page() {
         </Section>
       </Column>
 
-      <VerticalLine source="root" verticalOffset={2} />
+      <div
+        className={cn(
+          "absolute right-0 z-20 h-screen w-px",
+          "translate-x-1/2",
+          "bg-subtle-gray"
+        )}
+      />
     </div>
   );
 }
@@ -100,11 +125,11 @@ function Section({
 }) {
   return (
     <div className={cn("relative", extraSectionStyles)}>
-      <HorizontalLine className={cn(extraLineStyles)} />
+      <Line className={cn(extraLineStyles)} />
 
       <div
         className={cn(
-          "relative z-50 h-full w-full max-w-[calc(var(--root-container)/3)]"
+          "relative z-30 h-full w-full max-w-[calc(var(--root-container)/3)] p-[0.5px]"
         )}
       >
         <Cross corners={corners} />
@@ -112,7 +137,7 @@ function Section({
         {children}
       </div>
 
-      {hasFullWidthLine && <HorizontalLine fullWidth />}
+      {hasFullWidthLine && <Line fullWidth />}
     </div>
   );
 }

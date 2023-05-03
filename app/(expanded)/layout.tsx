@@ -1,7 +1,7 @@
 import Navigation from "components/Navigation";
 
+import Line from "components/ui/Line";
 import Cross from "components/ui/Cross";
-import { VerticalLine, HorizontalLine } from "components/ui/Line";
 
 import { cn } from "lib/cn";
 
@@ -9,30 +9,53 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "flex h-[70vh] max-h-[var(--root-container)] w-[var(--page-container)] flex-col items-center justify-center"
+        "relative flex h-[70vh] max-h-[var(--root-container)] max-w-3xl flex-col items-center justify-center",
+        "vertical-line"
       )}
+      // className={cn(
+      //   "relative flex h-[70vh] max-h-[var(--root-container)] w-[var(--page-container)] flex-col items-center justify-center",
+      //   "vertical-line"
+      // )}
     >
-      <VerticalLine source="page" verticalOffset={-2} />
+      {/* VERTICAL LINE */}
+      {/* <div
+        className={cn(
+          "absolute left-0 z-20 h-screen w-px",
+          "-translate-x-1/2",
+          "bg-subtle-gray"
+        )}
+      /> */}
 
-      <div className={cn("relative w-full")}>
-        <HorizontalLine fullWidth />
+      <div className={cn("w-full")}>
+        <Line fullWidth />
 
-        <Cross corners={["tl", "tr"]} />
+        <div className={cn("relative h-full w-full")}>
+          <Cross corners={["tl", "tr"]} />
 
-        <Navigation />
+          <Navigation />
+        </div>
 
-        <HorizontalLine fullWidth />
+        <Line fullWidth />
       </div>
 
-      <div className={cn("relative h-full w-full")}>
-        <Cross corners={["tl", "tr", "bl", "br"]} />
+      <div className={cn("h-full w-full")}>
+        <div className={cn("relative z-30 h-full w-full p-[0.5px]")}>
+          <Cross corners={["tl", "tr", "bl", "br"]} />
 
-        <div className={cn("h-full overflow-auto")}>{children}</div>
+          <div className={cn("h-full overflow-auto")}>{children}</div>
+        </div>
 
-        <HorizontalLine fullWidth />
+        <Line fullWidth />
       </div>
 
-      <VerticalLine source="page" verticalOffset={2} />
+      {/* VERTICAL LINE */}
+      {/* <div
+        className={cn(
+          "absolute right-0 z-20 h-screen w-px",
+          "translate-x-1/2",
+          "bg-subtle-gray"
+        )}
+      /> */}
     </div>
   );
 }

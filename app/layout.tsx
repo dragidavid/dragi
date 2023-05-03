@@ -1,17 +1,14 @@
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
+
+import Fade from "components/ui/Fade";
 
 import { cn } from "lib/cn";
 
 import "styles/globals.css";
 
-const mona = localFont({
-  src: "../public/fonts/Mona-Sans.woff2",
-  variable: "--font-mona",
-});
-
-const hubot = localFont({
-  src: "../public/fonts/Hubot-Sans.woff2",
-  variable: "--font-hubot",
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
 });
 
 export default function RootLayout({
@@ -20,14 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={cn(
-        mona.variable,
-        hubot.variable,
-        "font-sans text-sm antialiased"
-      )}
-    >
+    <html lang="en" className={cn(inter.variable, "text-sm antialiased")}>
       <body
         className={cn(
           "min-h-screen",
@@ -35,6 +25,31 @@ export default function RootLayout({
         )}
       >
         <main className={cn("grid min-h-screen place-items-center")}>
+          <Fade
+            sides={[
+              {
+                id: "top",
+                styles:
+                  "fixed z-40 top-0 left-0 h-1/6 w-screen bg-gradient-to-t from-transparent to-almost-black",
+              },
+              {
+                id: "left",
+                styles:
+                  "fixed z-40 top-0 left-0 h-screen w-1/6 bg-gradient-to-l from-transparent to-almost-black",
+              },
+              {
+                id: "bottom",
+                styles:
+                  "fixed z-40 bottom-0 left-0 h-1/6 w-screen bg-gradient-to-b from-transparent to-almost-black",
+              },
+              {
+                id: "right",
+                styles:
+                  "fixed z-40 top-0 right-0 h-screen w-1/6 bg-gradient-to-r from-transparent to-almost-black",
+              },
+            ]}
+          />
+
           {children}
         </main>
       </body>

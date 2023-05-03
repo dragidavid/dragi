@@ -4,6 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
+import { LayoutGrid } from "lucide-react";
+
+import Fade from "components/ui/Fade";
+
 import { cn } from "lib/cn";
 
 const links = [
@@ -19,7 +23,7 @@ const links = [
   },
   {
     id: "home",
-    label: "Home",
+    label: <LayoutGrid size={18} />,
     href: "/",
   },
   {
@@ -40,33 +44,56 @@ export default function Navigation() {
   return (
     <nav
       className={cn(
-        "grid w-full grid-cols-5 font-hubot font-medium",
+        "relative grid h-12 w-full grid-cols-5 overflow-hidden font-mono font-medium",
         "text-secondary"
       )}
     >
-      {links.map(({ id, label, href }) => (
-        <Link
-          key={id}
-          href={href}
-          className={cn(
-            "relative flex items-center justify-center p-2.5",
-            "transition-colors duration-100 ease-in-out",
-            "hover:text-primary",
-            pathname === href && "text-primary"
-          )}
-        >
-          {label}
+      <Fade
+        sides={[
+          // {
+          //   id: "middle",
+          //   styles:
+          //     "absolute z-20 top-1/4 left-[calc(50%-56px)] h-1/2 w-32 bg-gradient-to-r from-transparent via-subtle-gray to-transparent mix-blend-darken",
+          // },
+          {
+            id: "left",
+            styles:
+              "absolute z-20 top-1/4 left-0 h-1/2 w-16 bg-gradient-to-l from-transparent to-subtle-gray mix-blend-darken",
+          },
+          {
+            id: "right",
+            styles:
+              "absolute z-20 top-1/4 right-0 h-1/2 w-16 bg-gradient-to-r from-transparent to-subtle-gray mix-blend-darken",
+          },
+        ]}
+      />
 
-          {pathname === href && (
-            <motion.span
-              layoutId="underline"
-              transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-              className={cn(
-                "absolute -bottom-[0.5px] left-0 z-30 h-px w-full",
-                "bg-primary"
-              )}
-            />
-          )}
+      {links.map(({ id, label, href }, i) => (
+        <Link key={id} href={href}>
+          <div
+            className={cn(
+              "relative flex h-full items-center justify-center p-2",
+              "transition-colors duration-100 ease-in-out",
+              "hover:text-primary",
+              pathname === href && "text-primary"
+            )}
+            style={{
+              WebkitTapHighlightColor: "transparent",
+            }}
+          >
+            {label}
+
+            {pathname === href && (
+              <motion.span
+                layoutId="underline"
+                transition={{ type: "spring", bounce: 0.2, duration: 7 }}
+                className={cn(
+                  "absolute left-0 z-10 h-px w-full",
+                  "bg-primary mix-blend-exclusion"
+                )}
+              />
+            )}
+          </div>
         </Link>
       ))}
     </nav>

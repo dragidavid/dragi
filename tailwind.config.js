@@ -14,7 +14,7 @@ module.exports = {
         primary: "var(--primary)",
         secondary: "var(--secondary)",
         "almost-black": "var(--almost-black)",
-        "subtle-border": "var(--subtle-border)",
+        "subtle-gray": "var(--subtle-gray)",
       },
       backgroundImage: {
         noise: "url('/static/images/noise.png')",
@@ -23,7 +23,7 @@ module.exports = {
         0.75: "3px",
       },
       fontFamily: {
-        sans: ["var(--font-mona)"],
+        sans: ["var(--font-inter)"],
       },
       keyframes: {
         flash: {
@@ -35,9 +35,6 @@ module.exports = {
       animation: {
         flash: "flash 1.4s infinite linear",
       },
-    },
-    fontFamily: {
-      hubot: ["var(--font-hubot)"],
     },
   },
   plugins: [],
