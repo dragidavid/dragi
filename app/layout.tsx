@@ -24,8 +24,13 @@ export default function RootLayout({
           "bg-almost-black text-primary caret-fuchsia-500 selection:bg-fuchsia-500 selection:text-primary"
         )}
       >
-        <main className={cn("grid min-h-screen place-items-center")}>
-          <Fade
+        <main
+          className={cn(
+            "grid min-h-screen justify-items-center overflow-x-clip p-3",
+            "sm:place-items-center sm:p-0"
+          )}
+        >
+          {/* <Fade
             sides={[
               {
                 id: "top",
@@ -48,9 +53,13 @@ export default function RootLayout({
                   "fixed z-40 top-0 right-0 h-screen w-1/6 bg-gradient-to-r from-transparent to-almost-black",
               },
             ]}
-          />
+          /> */}
 
-          {children}
+          <div
+            className={cn("relative h-[--container-size] w-[--container-size]")}
+          >
+            {children}
+          </div>
         </main>
       </body>
     </html>

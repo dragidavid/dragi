@@ -14,31 +14,28 @@ import type { Corners } from "components/ui/Cross";
 export default function Page() {
   return (
     <div
-      className={cn(
-        "relative flex w-[var(--root-container)] items-center justify-center"
-      )}
+      className={cn("relative flex h-full w-full items-center justify-center")}
     >
       <div
-        className={cn(
-          "absolute left-0 z-20 h-screen w-px",
-          "-translate-x-1/2",
-          "bg-subtle-gray"
-        )}
+        className={cn("absolute left-0 z-20 h-screen w-px", "bg-subtle-gray")}
+        style={{
+          transform: "translateX(-50%)",
+        }}
       />
 
       <Column>
         <Section
           corners={["tl", "tr"]}
-          extraSectionStyles="row-span-2"
-          extraLineStyles="absolute right-0 w-screen"
+          sectionStyles="row-span-2"
+          lineStyles="absolute right-0 w-screen"
         >
           <About />
         </Section>
 
         <Section
           corners={["tl", "tr", "bl", "br"]}
-          extraLineStyles="absolute right-0 w-screen"
-          hasFullWidthLine
+          lineStyles="absolute right-0 w-screen"
+          topAndBottom
         >
           <Tools />
         </Section>
@@ -47,15 +44,16 @@ export default function Page() {
       <div
         className={cn("absolute left-1/2 z-20 h-screen w-px", "bg-subtle-gray")}
         style={{
-          transform: `translateX(calc(var(--root-container) / -6 - 0.5px))`,
+          transform: `translateX(calc(var(--container-size) / -6 - 0.5px))`,
         }}
       />
 
       <Column>
         <Section
           corners={["tl"]}
-          extraSectionStyles="row-span-2 row-start-2"
-          extraLineStyles="absolute left-0 w-full"
+          sectionStyles="row-span-2 row-start-2"
+          lineStyles="absolute left-0 right-0"
+          topAndBottom
         >
           <Projects />
         </Section>
@@ -67,69 +65,59 @@ export default function Page() {
           "bg-subtle-gray"
         )}
         style={{
-          transform: `translateX(calc(var(--root-container) / 6 + 0.5px))`,
+          transform: `translateX(calc(var(--container-size) / 6 + 0.5px))`,
         }}
       />
 
       <Column>
-        <Section corners={["tl", "tr"]} extraLineStyles="fixed-top-left">
+        <Section corners={["tl", "tr"]} lineStyles="absolute left-0 w-screen">
           <Craft />
         </Section>
 
         <Section
           corners={["tl", "tr", "bl", "br"]}
-          extraSectionStyles="row-span-2"
-          extraLineStyles="fixed-top-left"
+          sectionStyles="row-span-2"
+          lineStyles="absolute left-0 w-screen"
+          topAndBottom
         >
           <Spotify />
         </Section>
       </Column>
 
       <div
-        className={cn(
-          "absolute right-0 z-20 h-screen w-px",
-          "translate-x-1/2",
-          "bg-subtle-gray"
-        )}
+        className={cn("absolute right-0 z-20 h-screen w-px", "bg-subtle-gray")}
+        style={{
+          transform: "translateX(50%)",
+        }}
       />
     </div>
   );
 }
 
 function Column({ children }: { children: React.ReactNode }) {
-  return (
-    <div className={cn("flex w-full items-center")}>
-      <div
-        className={cn(
-          "grid h-[70vh] max-h-[var(--root-container)] w-full grid-rows-3"
-        )}
-      >
-        {children}
-      </div>
-    </div>
-  );
+  return <div className={cn("grid h-full w-full grid-rows-3")}>{children}</div>;
 }
 
 function Section({
   children,
   corners,
-  extraSectionStyles,
-  extraLineStyles,
-  hasFullWidthLine,
+  sectionStyles,
+  lineStyles,
+  topAndBottom,
 }: {
   children: React.ReactNode;
   corners: Corners;
-  extraSectionStyles?: string;
-  extraLineStyles?: string;
-  hasFullWidthLine?: boolean;
+  sectionStyles?: string;
+  lineStyles: string;
+  topAndBottom?: boolean;
 }) {
   return (
-    <div className={cn("relative", extraSectionStyles)}>
-      <Line className={cn(extraLineStyles)} />
+    <div className={cn("relative", sectionStyles)}>
+      <Line className={cn(lineStyles)} />
 
       <div
         className={cn(
-          "relative z-30 h-full w-full max-w-[calc(var(--root-container)/3)] p-[0.5px]"
+          "relative z-30 h-full w-full max-w-[calc(var(--container-size)/3)] p-[0.5px]"
         )}
       >
         <Cross corners={corners} />
@@ -137,7 +125,7 @@ function Section({
         {children}
       </div>
 
-      {hasFullWidthLine && <Line fullWidth />}
+      {topAndBottom && <Line className={cn(lineStyles)} />}
     </div>
   );
 }

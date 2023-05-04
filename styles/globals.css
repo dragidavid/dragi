@@ -5,6 +5,7 @@
 @layer base {
   :root {
     /* Container width */
+    --container-size: 768px;
     --root-container: 780px;
     --page-container: 672px;
 
