@@ -35,7 +35,7 @@ export default function RootLayout({
             sides={[
               {
                 id: "top",
-                styles: cn(
+                className: cn(
                   "fixed left-0 top-0 z-50 h-[9%] w-screen",
                   "bg-gradient-to-t from-transparent to-almost-black",
                   "md:h-1/6"
@@ -43,7 +43,7 @@ export default function RootLayout({
               },
               {
                 id: "left",
-                styles: cn(
+                className: cn(
                   "fixed top-0 left-0 z-50 h-screen w-[7%]",
                   "bg-gradient-to-l from-transparent to-almost-black",
                   "sm:w-1/6"
@@ -51,7 +51,7 @@ export default function RootLayout({
               },
               {
                 id: "bottom",
-                styles: cn(
+                className: cn(
                   "fixed bottom-0 left-0 z-50 h-[9%] w-screen",
                   "bg-gradient-to-b from-transparent to-almost-black",
                   "md:h-1/6"
@@ -59,7 +59,7 @@ export default function RootLayout({
               },
               {
                 id: "right",
-                styles: cn(
+                className: cn(
                   "fixed top-0 right-0 z-50 h-screen w-[7%]",
                   "bg-gradient-to-r from-transparent to-almost-black",
                   "sm:w-1/6"
