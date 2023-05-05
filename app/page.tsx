@@ -5,11 +5,11 @@ import Craft from "components/Previews/Craft";
 import Spotify from "components/Previews/Spotify";
 
 import Line from "components/ui/Line";
-import Cross from "components/ui/Cross";
+import Joint from "components/ui/Joint";
 
 import { cn } from "lib/cn";
 
-import type { Corners } from "components/ui/Cross";
+import type { Positions } from "components/ui/Joint";
 
 export default function Page() {
   return (
@@ -25,7 +25,7 @@ export default function Page() {
 
       <Column>
         <Section
-          corners={["tl", "tr"]}
+          jointPositions={["tl", "tr"]}
           sectionStyles="md:row-span-2"
           lineStyles="-right-full w-double md:right-0 md:w-screen"
         >
@@ -33,7 +33,7 @@ export default function Page() {
         </Section>
 
         <Section
-          corners={["tl", "tr", "bl", "br"]}
+          jointPositions={["tl", "tr", "bl", "br"]}
           lineStyles="-right-full w-double md:right-0 md:w-screen"
           showBottomLine
         >
@@ -52,7 +52,7 @@ export default function Page() {
 
       <Column>
         <Section
-          corners={["tl"]}
+          jointPositions={["tl"]}
           sectionStyles="md:row-span-2 md:row-start-2"
           lineStyles="-left-1/2 -right-1/2 md:left-0 md:right-0"
           showBottomLine
@@ -72,14 +72,14 @@ export default function Page() {
 
       <Column>
         <Section
-          corners={["tl", "tr"]}
+          jointPositions={["tl", "tr"]}
           lineStyles="-left-1/2 w-double md:left-0 md:w-screen"
         >
           <Craft />
         </Section>
 
         <Section
-          corners={["tl", "tr", "bl", "br"]}
+          jointPositions={["tl", "tr", "bl", "br"]}
           sectionStyles="md:row-span-2"
           lineStyles="-left-1/2 w-double md:left-0 md:w-screen"
           showBottomLine
@@ -111,14 +111,14 @@ function Column({ children }: { children: React.ReactNode }) {
 
 function Section({
   children,
-  corners,
+  jointPositions,
   sectionStyles,
   lineStyles,
   showBottomLine,
   alwaysShowBottomLine,
 }: {
   children: React.ReactNode;
-  corners: Corners;
+  jointPositions: Positions;
   sectionStyles?: string;
   lineStyles: string;
   showBottomLine?: boolean;
@@ -134,7 +134,7 @@ function Section({
     >
       <Line className={cn(lineStyles, "h-px -translate-y-[0.5px]")} />
 
-      <Cross corners={corners} />
+      <Joint positions={jointPositions} />
 
       <div className={cn("flex-1 overflow-hidden p-[0.5px]")}>{children}</div>
 
