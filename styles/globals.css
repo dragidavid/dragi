@@ -5,7 +5,7 @@
 @layer base {
   :root {
     /* Container width */
-    --container-size: 768px;
+    --container-size: 744px;
     --root-container: 780px;
     --page-container: 672px;
 
@@ -19,44 +19,6 @@
     --secondary: hsla(0, 0%, 62%, 1);
     --almost-black: hsla(0, 0%, 5%, 1);
     --subtle-gray: hsla(0, 0%, 24%, 1);
-  }
-}
-
-@layer components {
-  .vertical-line::before,
-  .vertical-line::after {
-    content: "";
-    position: absolute;
-    z-index: theme("zIndex.20");
-    width: theme("width.px");
-    height: theme("height.screen");
-    background-color: var(--subtle-gray);
-  }
-
-  .vertical-line::before {
-    left: 0;
-    transform: translateX(-50%);
-  }
-
-  .vertical-line::after {
-    right: 0;
-    transform: translateX(50%);
-  }
-}
-
-@layer utilities {
-  /*
-    This will make a `Line` component to span from the top-left corner of the component to the right edge of the screen
-
-    Note: 
-    The main component is `--root-container` wide and since this utility is only used in the root layout
-    to adjust the starting point of the horizontal `Line`s on the rightmost column
-  */
-  .fixed-top-left {
-    position: fixed;
-    right: 0;
-    width: 100vw;
-    transform: translate(calc(50% + var(--root-container) / 6), -0.5px);
   }
 }
 

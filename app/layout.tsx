@@ -20,44 +20,55 @@ export default function RootLayout({
     <html lang="en" className={cn(inter.variable, "text-sm antialiased")}>
       <body
         className={cn(
-          "min-h-screen",
+          "min-h-screen overflow-x-clip",
           "bg-almost-black text-primary caret-fuchsia-500 selection:bg-fuchsia-500 selection:text-primary"
         )}
       >
         <main
           className={cn(
-            "grid min-h-screen justify-items-center overflow-x-clip p-3",
-            "sm:place-items-center sm:p-0"
+            "mx-auto min-h-screen w-screen max-w-[448px] overflow-y-clip",
+            "sm:flex sm:items-center",
+            "md:w-[--container-size] md:max-w-none"
           )}
         >
-          {/* <Fade
+          <Fade
             sides={[
               {
                 id: "top",
-                styles:
-                  "fixed z-40 top-0 left-0 h-1/6 w-screen bg-gradient-to-t from-transparent to-almost-black",
+                styles: cn(
+                  "fixed left-0 top-0 z-50 h-[9%] w-screen",
+                  "bg-gradient-to-t from-transparent to-almost-black",
+                  "md:h-1/6"
+                ),
               },
               {
                 id: "left",
-                styles:
-                  "fixed z-40 top-0 left-0 h-screen w-1/6 bg-gradient-to-l from-transparent to-almost-black",
+                styles: cn(
+                  "fixed top-0 left-0 z-50 h-screen w-[7%]",
+                  "bg-gradient-to-l from-transparent to-almost-black",
+                  "sm:w-1/6"
+                ),
               },
               {
                 id: "bottom",
-                styles:
-                  "fixed z-40 bottom-0 left-0 h-1/6 w-screen bg-gradient-to-b from-transparent to-almost-black",
+                styles: cn(
+                  "fixed bottom-0 left-0 z-50 h-[9%] w-screen",
+                  "bg-gradient-to-b from-transparent to-almost-black",
+                  "md:h-1/6"
+                ),
               },
               {
                 id: "right",
-                styles:
-                  "fixed z-40 top-0 right-0 h-screen w-1/6 bg-gradient-to-r from-transparent to-almost-black",
+                styles: cn(
+                  "fixed top-0 right-0 z-50 h-screen w-[7%]",
+                  "bg-gradient-to-r from-transparent to-almost-black",
+                  "sm:w-1/6"
+                ),
               },
             ]}
-          /> */}
+          />
 
-          <div
-            className={cn("relative h-[--container-size] w-[--container-size]")}
-          >
+          <div className={cn("h-full w-full px-4 py-16", "md:px-0")}>
             {children}
           </div>
         </main>

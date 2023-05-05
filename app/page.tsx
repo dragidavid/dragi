@@ -14,88 +14,99 @@ import type { Corners } from "components/ui/Cross";
 export default function Page() {
   return (
     <div
-      className={cn("relative flex h-full w-full items-center justify-center")}
+      className={cn(
+        "relative flex w-full flex-col items-center justify-center",
+        "md:h-[--container-size] md:flex-row"
+      )}
     >
-      <div
-        className={cn("absolute left-0 z-20 h-screen w-px", "bg-subtle-gray")}
-        style={{
-          transform: "translateX(-50%)",
-        }}
+      <Line
+        className={cn("-bottom-1/2 -top-1/2 left-0 w-px", "-translate-x-1/2")}
       />
 
       <Column>
         <Section
           corners={["tl", "tr"]}
-          sectionStyles="row-span-2"
-          lineStyles="absolute right-0 w-screen"
+          sectionStyles="md:row-span-2"
+          lineStyles="-right-full w-double md:right-0 md:w-screen"
         >
           <About />
         </Section>
 
         <Section
           corners={["tl", "tr", "bl", "br"]}
-          lineStyles="absolute right-0 w-screen"
-          topAndBottom
+          lineStyles="-right-full w-double md:right-0 md:w-screen"
+          showBottomLine
         >
           <Tools />
         </Section>
       </Column>
 
-      <div
-        className={cn("absolute left-1/2 z-20 h-screen w-px", "bg-subtle-gray")}
-        style={{
-          transform: `translateX(calc(var(--container-size) / -6 - 0.5px))`,
-        }}
+      <Line
+        className={cn(
+          "left-1/2 h-screen w-px",
+          "invisible",
+          "translate-x-[calc(var(--container-size)/-6-0.5px)]",
+          "md:visible"
+        )}
       />
 
       <Column>
         <Section
           corners={["tl"]}
-          sectionStyles="row-span-2 row-start-2"
-          lineStyles="absolute left-0 right-0"
-          topAndBottom
+          sectionStyles="md:row-span-2 md:row-start-2"
+          lineStyles="-left-1/2 -right-1/2 md:left-0 md:right-0"
+          showBottomLine
         >
           <Projects />
         </Section>
       </Column>
 
-      <div
+      <Line
         className={cn(
-          "absolute right-1/2 z-20 h-screen w-px",
-          "bg-subtle-gray"
+          "right-1/2 h-screen w-px",
+          "invisible",
+          "translate-x-[calc(var(--container-size)/6+0.5px)]",
+          "md:visible"
         )}
-        style={{
-          transform: `translateX(calc(var(--container-size) / 6 + 0.5px))`,
-        }}
       />
 
       <Column>
-        <Section corners={["tl", "tr"]} lineStyles="absolute left-0 w-screen">
+        <Section
+          corners={["tl", "tr"]}
+          lineStyles="-left-1/2 w-double md:left-0 md:w-screen"
+        >
           <Craft />
         </Section>
 
         <Section
           corners={["tl", "tr", "bl", "br"]}
-          sectionStyles="row-span-2"
-          lineStyles="absolute left-0 w-screen"
-          topAndBottom
+          sectionStyles="md:row-span-2"
+          lineStyles="-left-1/2 w-double md:left-0 md:w-screen"
+          showBottomLine
+          alwaysShowBottomLine
         >
           <Spotify />
         </Section>
       </Column>
 
-      <div
-        className={cn("absolute right-0 z-20 h-screen w-px", "bg-subtle-gray")}
-        style={{
-          transform: "translateX(50%)",
-        }}
+      <Line
+        className={cn("-bottom-1/2 -top-1/2 right-0 w-px", "translate-x-1/2")}
       />
     </div>
   );
 }
 
 function Column({ children }: { children: React.ReactNode }) {
-  return <div className={cn("grid h-full w-full grid-rows-3")}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        "h-full w-full",
+        "md:grid md:max-w-[calc(var(--container-size)/3)] md:grid-rows-3"
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
 function Section({
@@ -103,29 +114,40 @@ function Section({
   corners,
   sectionStyles,
   lineStyles,
-  topAndBottom,
+  showBottomLine,
+  alwaysShowBottomLine,
 }: {
   children: React.ReactNode;
   corners: Corners;
   sectionStyles?: string;
   lineStyles: string;
-  topAndBottom?: boolean;
+  showBottomLine?: boolean;
+  alwaysShowBottomLine?: boolean;
 }) {
   return (
-    <div className={cn("relative", sectionStyles)}>
-      <Line className={cn(lineStyles)} />
+    <div
+      className={cn(
+        "relative flex max-h-[calc(var(--container-size)/2)]",
+        sectionStyles,
+        "md:max-h-none"
+      )}
+    >
+      <Line className={cn(lineStyles, "h-px -translate-y-[0.5px]")} />
 
-      <div
-        className={cn(
-          "relative z-30 h-full w-full max-w-[calc(var(--container-size)/3)] p-[0.5px]"
-        )}
-      >
-        <Cross corners={corners} />
+      <Cross corners={corners} />
 
-        {children}
-      </div>
+      <div className={cn("flex-1 overflow-hidden p-[0.5px]")}>{children}</div>
 
-      {topAndBottom && <Line className={cn(lineStyles)} />}
+      {showBottomLine && (
+        <Line
+          className={cn(
+            lineStyles,
+            "bottom-0 h-px translate-y-[0.5px]",
+            !alwaysShowBottomLine && "invisible",
+            "md:visible"
+          )}
+        />
+      )}
     </div>
   );
 }

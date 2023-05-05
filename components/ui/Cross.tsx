@@ -53,7 +53,7 @@ export default function Cross({ corners }: { corners: Corners }) {
         <svg
           key={corner}
           viewBox="0 0 7 7"
-          className={cn("absolute z-[99] h-[7px] w-[7px]", "text-primary")}
+          className={cn("absolute z-40 h-[7px] w-[7px]", "text-primary")}
           style={VALUES[corner].position}
         >
           <line x1="3.5" x2="3.5" y2="7" stroke="currentColor" />

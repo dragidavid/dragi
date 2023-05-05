@@ -16,6 +16,9 @@ module.exports = {
         "almost-black": "var(--almost-black)",
         "subtle-gray": "var(--subtle-gray)",
       },
+      width: {
+        double: "200vw",
+      },
       backgroundImage: {
         noise: "url('/static/images/noise.png')",
       },
