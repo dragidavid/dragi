@@ -11,10 +11,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "var(--primary)",
-        secondary: "var(--secondary)",
-        "almost-black": "var(--almost-black)",
-        "subtle-gray": "var(--subtle-gray)",
+        primary: "rgb(var(--primary) / <alpha-value>)",
+        secondary: "rgb(var(--secondary) / <alpha-value>)",
+        "almost-black": "rgb(var(--almost-black) / <alpha-value>)",
+        "subtle-grey": "rgb(var(--subtle-grey) / <alpha-value>)",
       },
       width: {
         double: "200vw",
