@@ -2,7 +2,7 @@ import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 import clsx from "clsx";
 
 import Navigation from "components/Navigation";

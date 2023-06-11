@@ -23,71 +23,71 @@ export default function Page() {
         className={cn("-bottom-1/2 -top-1/2 left-0 w-px", "-translate-x-1/2")}
       />
 
-      <Column>
+      <Wrapper>
         <Section
           jointPositions={["tl", "tr"]}
-          sectionStyles="md:row-span-2"
-          lineStyles="-right-full w-double md:right-0 md:w-screen"
+          sectionStyles={cn("md:row-span-2")}
+          lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
         >
           <About />
         </Section>
 
         <Section
           jointPositions={["tl", "tr", "bl", "br"]}
-          lineStyles="-right-full w-double md:right-0 md:w-screen"
+          lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
           showBottomLine
         >
           <Tools />
         </Section>
-      </Column>
+      </Wrapper>
 
       <Line
         className={cn(
           "left-1/2 h-screen w-px",
-          "invisible",
           "translate-x-[calc(var(--container-size)/-6-0.5px)]",
+          "invisible",
           "md:visible"
         )}
       />
 
-      <Column>
+      <Wrapper>
         <Section
           jointPositions={["tl"]}
-          sectionStyles="md:row-span-2 md:row-start-2"
-          lineStyles="-left-1/2 -right-1/2 md:left-0 md:right-0"
+          sectionStyles={cn("md:row-span-2 md:row-start-2")}
+          lineStyles={cn("-left-1/2 -right-1/2", "md:left-0 md:right-0")}
           showBottomLine
         >
           <Projects />
         </Section>
-      </Column>
+      </Wrapper>
 
       <Line
         className={cn(
           "right-1/2 h-screen w-px",
-          "invisible",
           "translate-x-[calc(var(--container-size)/6+0.5px)]",
+          "invisible",
           "md:visible"
         )}
       />
 
-      <Column>
+      <Wrapper>
         <Section
           jointPositions={["tl", "tr"]}
-          lineStyles="-left-1/2 w-double md:left-0 md:w-screen"
+          lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
         >
           <Craft />
         </Section>
 
         <Section
           jointPositions={["tl", "tr", "bl", "br"]}
-          sectionStyles="md:row-span-2"
-          lineStyles="-left-1/2 w-double md:left-0 md:w-screen"
+          sectionStyles={cn("md:row-span-2")}
+          lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
           showBottomLine
           alwaysShowBottomLine
         >
           <Spotify />
         </Section>
-      </Column>
+      </Wrapper>
 
       <Line
         className={cn("-bottom-1/2 -top-1/2 right-0 w-px", "translate-x-1/2")}
@@ -96,7 +96,7 @@ export default function Page() {
   );
 }
 
-function Column({ children }: { children: React.ReactNode }) {
+function Wrapper({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
@@ -132,7 +132,7 @@ function Section({
         "md:max-h-none"
       )}
     >
-      <Line className={cn(lineStyles, "h-px -translate-y-[0.5px]")} />
+      <Line className={cn(lineStyles, "h-px", "-translate-y-[0.5px]")} />
 
       <Joint positions={jointPositions} />
 
@@ -142,7 +142,8 @@ function Section({
         <Line
           className={cn(
             lineStyles,
-            "bottom-0 h-px translate-y-[0.5px]",
+            "bottom-0 h-px",
+            "translate-y-[0.5px]",
             !alwaysShowBottomLine && "invisible",
             "md:visible"
           )}

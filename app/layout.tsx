@@ -21,7 +21,8 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-screen overflow-x-clip",
-          "bg-almost-black text-primary caret-fuchsia-500 selection:bg-fuchsia-500 selection:text-primary"
+          "bg-almost-black text-primary caret-fuchsia-500",
+          "selection:bg-fuchsia-500 selection:text-primary"
         )}
       >
         <main

@@ -11,7 +11,7 @@ export default function Line({ className }: { className: string }) {
         "absolute z-20",
         "pointer-events-none select-none",
         className,
-        "bg-subtle-gray"
+        "bg-subtle-grey"
       )}
     />
   );
