@@ -4,10 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
-import { LayoutGrid } from "lucide-react";
-
-import Fade from "components/ui/Fade";
-
 import { cn } from "lib/cn";
 
 const links = [
@@ -23,7 +19,20 @@ const links = [
   },
   {
     id: "home",
-    label: <LayoutGrid size={18} />,
+    label: (
+      <div
+        className={cn(
+          "relative flex h-6 w-6 rounded-full",
+          "select-none outline-none",
+          "bg-secondary blur-[2px]",
+          "transition-all duration-100 ease-in-out",
+          "hover:bg-primary",
+          "after:absolute after:inset-1 after:-z-10 after:bg-sky-500 after:blur-[1px]",
+          "before:absolute before:inset-1 before:-z-10 before:bg-fuchsia-500 before:blur-[1px]",
+          "glitch"
+        )}
+      />
+    ),
     href: "/",
   },
   {
@@ -44,38 +53,28 @@ export default function Navigation() {
   return (
     <nav
       className={cn(
-        "relative grid h-12 w-full grid-cols-5 overflow-hidden font-mono font-medium",
+        "relative flex h-[--navigation-height] w-full overflow-hidden font-mono font-medium",
         "text-secondary"
       )}
     >
-      <Fade
-        sides={[
-          // {
-          //   id: "middle",
-          //   styles:
-          //     "absolute z-20 top-1/4 left-[calc(50%-56px)] h-1/2 w-32 bg-gradient-to-r from-transparent via-subtle-gray to-transparent mix-blend-darken",
-          // },
-          {
-            id: "left",
-            styles:
-              "absolute z-20 top-1/4 left-0 h-1/2 w-16 bg-gradient-to-l from-transparent to-subtle-gray mix-blend-darken",
-          },
-          {
-            id: "right",
-            styles:
-              "absolute z-20 top-1/4 right-0 h-1/2 w-16 bg-gradient-to-r from-transparent to-subtle-gray mix-blend-darken",
-          },
-        ]}
-      />
-
-      {links.map(({ id, label, href }, i) => (
-        <Link key={id} href={href}>
+      {links.map(({ id, label, href }) => (
+        <Link
+          key={id}
+          href={href}
+          className={cn(
+            "flex-1",
+            "select-none outline-none",
+            "transition-all duration-100 ease-in-out",
+            // TODO figure out a better focus style here
+            "focus:text-primary focus-visible:bg-gradient-to-b focus-visible:from-transparent focus-visible:to-primary/[5%]"
+          )}
+        >
           <div
             className={cn(
-              "relative flex h-full items-center justify-center p-2",
+              "relative flex h-full items-center justify-center",
+              pathname === href && "text-primary",
               "transition-colors duration-100 ease-in-out",
-              "hover:text-primary",
-              pathname === href && "text-primary"
+              "hover:text-primary"
             )}
             style={{
               WebkitTapHighlightColor: "transparent",
@@ -85,10 +84,10 @@ export default function Navigation() {
 
             {pathname === href && (
               <motion.span
-                layoutId="underline"
-                transition={{ type: "spring", bounce: 0.2, duration: 7 }}
+                layoutId="strike-through"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.7 }}
                 className={cn(
-                  "absolute left-0 z-10 h-px w-full",
+                  "absolute z-10 h-px w-full",
                   "bg-primary mix-blend-exclusion"
                 )}
               />
