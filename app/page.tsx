@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+import { ArrowUpRight } from "lucide-react";
+
 import About from "components/Previews/About";
 import Tools from "components/Previews/Tools";
 import Projects from "components/Previews/Projects";
@@ -20,7 +24,7 @@ export default function Page() {
       )}
     >
       <Line
-        className={cn("-bottom-1/2 -top-1/2 left-0 w-px", "-translate-x-1/2")}
+        className={cn("-bottom-full -top-full left-0 w-px", "-translate-x-1/2")}
       />
 
       <Wrapper>
@@ -33,6 +37,7 @@ export default function Page() {
         </Section>
 
         <Section
+          href="tools"
           jointPositions={["tl", "tr", "bl", "br"]}
           lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
           showBottomLine
@@ -52,6 +57,7 @@ export default function Page() {
 
       <Wrapper>
         <Section
+          href="projects"
           jointPositions={["tl"]}
           sectionStyles={cn("md:row-span-2 md:row-start-2")}
           lineStyles={cn("-left-1/2 -right-1/2", "md:left-0 md:right-0")}
@@ -72,6 +78,7 @@ export default function Page() {
 
       <Wrapper>
         <Section
+          href="craft"
           jointPositions={["tl", "tr"]}
           lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
         >
@@ -79,6 +86,7 @@ export default function Page() {
         </Section>
 
         <Section
+          href="spotify"
           jointPositions={["tl", "tr", "bl", "br"]}
           sectionStyles={cn("md:row-span-2")}
           lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
@@ -90,7 +98,7 @@ export default function Page() {
       </Wrapper>
 
       <Line
-        className={cn("-bottom-1/2 -top-1/2 right-0 w-px", "translate-x-1/2")}
+        className={cn("-bottom-full -top-full right-0 w-px", "translate-x-1/2")}
       />
     </div>
   );
@@ -111,6 +119,8 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 
 function Section({
   children,
+  href,
+  extra,
   jointPositions,
   sectionStyles,
   lineStyles,
@@ -118,6 +128,8 @@ function Section({
   alwaysShowBottomLine,
 }: {
   children: React.ReactNode;
+  href?: string;
+  extra?: React.ReactNode;
   jointPositions: Positions;
   sectionStyles?: string;
   lineStyles: string;
@@ -129,14 +141,31 @@ function Section({
       className={cn(
         "relative flex max-h-[calc(var(--container-size)/2)]",
         sectionStyles,
-        "md:max-h-none"
+        "md:max-h-none md:max-w-[calc(var(--container-size)/3)]"
       )}
     >
       <Line className={cn(lineStyles, "h-px", "-translate-y-[0.5px]")} />
 
       <Joint positions={jointPositions} />
 
-      <div className={cn("flex-1 overflow-hidden p-[0.5px]")}>{children}</div>
+      <div className={cn("flex-1 overflow-hidden p-1")}>{children}</div>
+
+      {(extra || href) && (
+        <Link
+          href={`/${href}`}
+          className={cn("absolute right-0 top-0 z-50", "group")}
+        >
+          <ArrowUpRight
+            size={16}
+            className={cn(
+              "transition-transform duration-100",
+              "group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            )}
+            aria-hidden={true}
+          />
+          <span className="sr-only">Go to {href}</span>
+        </Link>
+      )}
 
       {showBottomLine && (
         <Line

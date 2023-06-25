@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       )}
     >
       <Line
-        className={cn("-bottom-1/2 -top-1/2 left-0 w-px", "-translate-x-1/2")}
+        className={cn("-bottom-full -top-full left-0 w-px", "-translate-x-1/2")}
       />
 
       <Section jointPositions={["tl", "tr"]}>
@@ -28,11 +28,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         jointPositions={["tl", "tr", "bl", "br"]}
         showBottomLine
       >
-        <div className={cn("flex-1 overflow-auto p-[0.5px]")}>{children}</div>
+        <div className={cn("h-full flex-1 overflow-auto p-[0.5px]")}>
+          {children}
+        </div>
       </Section>
 
       <Line
-        className={cn("-bottom-1/2 -top-1/2 right-0 w-px", "translate-x-1/2")}
+        className={cn("-bottom-full -top-full right-0 w-px", "translate-x-1/2")}
       />
     </div>
   );

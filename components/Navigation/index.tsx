@@ -22,14 +22,14 @@ const links = [
     label: (
       <div
         className={cn(
-          "relative flex h-6 w-6 rounded-full",
+          "relative flex h-6 w-6",
           "select-none outline-none",
-          "bg-secondary blur-[2px]",
+          "bg-secondary",
           "transition-all duration-100 ease-in-out",
-          "hover:bg-primary",
-          "after:absolute after:inset-1 after:-z-10 after:bg-sky-500 after:blur-[1px]",
-          "before:absolute before:inset-1 before:-z-10 before:bg-fuchsia-500 before:blur-[1px]",
-          "glitch"
+          "hover:bg-primary"
+          // "after:absolute after:inset-1 after:-z-10 after:bg-sky-500 after:blur-[1px]",
+          // "before:absolute before:inset-1 before:-z-10 before:bg-fuchsia-500 before:blur-[1px]",
+          // "glitch"
         )}
       />
     ),

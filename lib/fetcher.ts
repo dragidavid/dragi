@@ -1,8 +1,20 @@
-export default async function fetcher<JSON = any>(
-  url: RequestInfo,
-  init?: RequestInit
-): Promise<JSON> {
-  const res = await fetch(url, init);
+export async function fetcher(url: RequestInfo, init?: RequestInit) {
+  const res = await fetch(url, {
+    headers: { "Content-Type": "application/json" },
+    ...init,
+  });
 
-  return res.json();
+  const body = await res.json();
+
+  if (!res.ok) {
+    const { code } = body;
+
+    if (!code) {
+      throw new Error("UNKNOWN_ERROR");
+    }
+
+    throw new Error(code);
+  }
+
+  return body;
 }
