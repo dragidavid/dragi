@@ -1,123 +1,125 @@
+"use client";
+
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import useSWR from "swr";
-import { SignalSlashIcon, SignalIcon } from "@heroicons/react/20/solid";
+import { motion } from "framer-motion";
 
-import Blob from "components/Spotify/Blob";
-import TrackInformation from "components/Spotify/TrackInformation";
+import Marquee from "components/Spotify/Marquee";
+import PlaybackStatus from "components/Spotify/PlaybackStatus";
 
-import fetcher from "lib/fetcher";
-import { getColors, classNames } from "lib/utils";
+import { cn } from "lib/cn";
+import { fetcher } from "lib/fetcher";
+import { getColors } from "lib/utils";
 
-import { useLayoutContext } from "contexts/LayoutContext";
+import type { Color } from "lib/types";
 
-import type { Track, Color } from "lib/types";
+const Scene = dynamic(() => import("components/Spotify/Scene"), { ssr: true });
+const Blob = dynamic(() => import("components/Spotify/Blob"), {
+  ssr: false,
+});
 
-const Spotify = () => {
-  const [colors, setColors] = useState<Color[] | undefined>(undefined);
-  const [shouldFetchRecentlyPlayedTrack, setShouldFetchRecentlyPlayedTrack] =
-    useState<boolean>(false);
+export default function NewPlayer() {
+  const [colors, setColors] = useState<undefined | Color[]>(undefined);
 
-  const { setInlineGradient } = useLayoutContext();
-
-  const { data: nowPlaying } = useSWR<Track>(
-    "/api/spotify/now-playing",
-    fetcher,
-    {
-      revalidateOnFocus: false,
-    }
-  );
-  const { data: recentlyPlayed } = useSWR<Partial<Track>>(
-    shouldFetchRecentlyPlayedTrack ? "/api/spotify/recently-played" : null,
-    fetcher,
-    {
-      revalidateOnFocus: false,
-    }
-  );
+  const { data: nowPlaying } = useSWR("/api/spotify", fetcher, {
+    refreshInterval: 90000,
+    revalidateOnFocus: false,
+  });
 
   useEffect(() => {
-    if (nowPlaying && nowPlaying.isPlaying && nowPlaying.albumImageUrl) {
+    if (nowPlaying && nowPlaying.currentlyPlaying && nowPlaying.albumImageUrl) {
       getColors(nowPlaying.albumImageUrl).then((res) => {
         setColors(res);
-        setInlineGradient(
-          "spotify",
-          `linear-gradient(to bottom right, ${res[0].hex} 0%, ${res[1].hex} 100%)`
-        );
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nowPlaying]);
 
-  useEffect(() => {
-    if (
-      nowPlaying &&
-      !nowPlaying.isPlaying &&
-      Object.keys(nowPlaying).length === 1
-    ) {
-      setShouldFetchRecentlyPlayedTrack(true);
+    if (nowPlaying && !nowPlaying.currentlyPlaying) {
+      setColors(undefined);
     }
   }, [nowPlaying]);
 
+  console.log(colors);
+
   return (
-    <div className={nowPlaying?.isPlaying ? "text-white" : "text-current"}>
-      {colors && nowPlaying?.isPlaying && (
-        <div className="absolute inset-0 z-[1] overflow-hidden rounded-2xl">
-          {colors.map((color: Color) => (
-            <Blob color={color} key={color.name} />
-          ))}
-        </div>
+    <div className="relative h-full w-full overflow-hidden">
+      {/* Canvas and blobs */}
+      {colors && (
+        <motion.div
+          key={nowPlaying?.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.8,
+          }}
+          className={cn("absolute inset-0")}
+        >
+          <Scene>
+            <Blob colors={colors} />
+          </Scene>
+        </motion.div>
       )}
 
-      <div
-        className={classNames(
-          "absolute inset-0 z-[2] overflow-hidden rounded-2xl p-9 transition-all duration-500 ease-out md:p-6 lg:p-9",
-          nowPlaying?.isPlaying ? "bg-black/20" : "bg-transparent"
-        )}
-      >
-        <div className="flex h-full flex-col justify-between">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={classNames(
-                "h-[72px] w-[72px] md:h-12 md:w-12 lg:h-[72px] lg:w-[72px]",
-                nowPlaying?.isPlaying ? "fill-white" : "fill-current"
-              )}
-              viewBox="0 0 72 72"
-            >
-              <path d="M36 0C16.117 0 0 16.117 0 36s16.117 36 36 36 36-16.117 36-36C72 16.12 55.883.002 36 0Zm16.51 51.92a2.242 2.242 0 0 1-3.085.747c-8.453-5.166-19.095-6.333-31.625-3.47a2.242 2.242 0 0 1-2.688-1.688A2.24 2.24 0 0 1 16.8 44.82c13.712-3.132 25.476-1.783 34.966 4.014a2.245 2.245 0 0 1 .744 3.086Zm4.405-9.798a2.809 2.809 0 0 1-3.862.923c-9.674-5.947-24.427-7.669-35.872-4.196a2.81 2.81 0 0 1-3.503-1.869 2.812 2.812 0 0 1 1.872-3.5c13.073-3.968 29.328-2.047 40.439 4.782a2.805 2.805 0 0 1 .926 3.86Zm.378-10.21c-11.605-6.89-30.746-7.524-41.824-4.163a3.365 3.365 0 0 1-4.199-2.243 3.37 3.37 0 0 1 2.246-4.2c12.717-3.86 33.855-3.116 47.214 4.814a3.368 3.368 0 0 1-3.437 5.792Z" />
-            </svg>
-          </div>
+      {/* Backdrop blur */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
 
-          <div>
-            <div className="flex items-center text-xs font-extrabold uppercase tracking-tight">
-              {nowPlaying?.isPlaying ? (
-                <>
-                  <span>now playing</span>
-                  <SignalIcon className="ml-2 w-5 animate-pulse" />
-                </>
-              ) : (
-                <>
-                  <span>last played</span>
-                  <SignalSlashIcon className="ml-2 w-5" />
-                </>
-              )}
-            </div>
+      {/* Noise layer */}
+      <div className="absolute inset-0 bg-noise opacity-10" />
 
-            {/* TODO clean this up */}
-            <TrackInformation
-              text={nowPlaying?.title ?? recentlyPlayed?.title}
-              trackUrl={nowPlaying?.trackUrl ?? recentlyPlayed?.trackUrl}
-              className="mt-2 mb-1 text-3xl font-extrabold tracking-tighter hover:cursor-ne-resize hover:underline"
-            />
-
-            <TrackInformation
-              text={nowPlaying?.artist ?? recentlyPlayed?.artist}
-              className="text-xs"
-            />
-          </div>
+      {/* Spotify Logo and Track Information*/}
+      <div className="absolute inset-0 flex flex-col justify-between">
+        <div className={cn("h-16 w-16")}>
+          <svg viewBox="0 0 72 72" className="fill-primary">
+            <path d="M36 0C16.117 0 0 16.117 0 36s16.117 36 36 36 36-16.117 36-36C72 16.12 55.883.002 36 0Zm16.51 51.92a2.242 2.242 0 0 1-3.085.747c-8.453-5.166-19.095-6.333-31.625-3.47a2.242 2.242 0 0 1-2.688-1.688A2.24 2.24 0 0 1 16.8 44.82c13.712-3.132 25.476-1.783 34.966 4.014a2.245 2.245 0 0 1 .744 3.086Zm4.405-9.798a2.809 2.809 0 0 1-3.862.923c-9.674-5.947-24.427-7.669-35.872-4.196a2.81 2.81 0 0 1-3.503-1.869 2.812 2.812 0 0 1 1.872-3.5c13.073-3.968 29.328-2.047 40.439 4.782a2.805 2.805 0 0 1 .926 3.86Zm.378-10.21c-11.605-6.89-30.746-7.524-41.824-4.163a3.365 3.365 0 0 1-4.199-2.243 3.37 3.37 0 0 1 2.246-4.2c12.717-3.86 33.855-3.116 47.214 4.814a3.368 3.368 0 0 1-3.437 5.792Z" />
+          </svg>
         </div>
+
+        {nowPlaying ? (
+          <motion.div
+            key={nowPlaying?.id}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className={cn("flex flex-col gap-1")}
+          >
+            <PlaybackStatus
+              currentlyPlaying={Boolean(nowPlaying?.currentlyPlaying)}
+            />
+
+            <Marquee className={cn("text-4xl font-black")}>
+              <a
+                href={nowPlaying?.trackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn("hover:cursor-ne-resize hover:underline")}
+              >
+                {nowPlaying?.title}
+              </a>
+            </Marquee>
+
+            <Marquee className={cn("text-md font-medium")}>
+              {nowPlaying.artists.map(
+                (
+                  artist: { id: string; artistUrl: string; name: string },
+                  i: number
+                ) => (
+                  <a
+                    key={artist.id}
+                    href={artist.artistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn("hover:cursor-ne-resize hover:underline")}
+                  >
+                    {artist.name}
+                    {i !== nowPlaying.artists.length - 1 && ", "}
+                  </a>
+                )
+              )}
+            </Marquee>
+          </motion.div>
+        ) : null}
       </div>
     </div>
+    // </AnimatePresence>
   );
-};
-
-export default Spotify;
+}

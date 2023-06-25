@@ -11,7 +11,7 @@ const RECENTLY_PLAYED_ENDPOINT = `https://api.spotify.com/v1/me/player/recently-
 const TOP_TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/tracks`;
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
-const getAccessToken = async () => {
+export const getAccessToken = async () => {
   const response = await fetch(TOKEN_ENDPOINT, {
     method: "POST",
     headers: {

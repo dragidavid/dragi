@@ -1,7 +1,11 @@
+import Spotify from "components/Spotify";
+
+import { cn } from "lib/cn";
+
 export default function Page() {
   return (
-    <div>
-      <h1>Spotify</h1>
+    <div className={cn("h-full")}>
+      <Spotify />
     </div>
   );
 }

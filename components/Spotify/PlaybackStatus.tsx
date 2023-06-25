@@ -1,23 +1,25 @@
-import { SignalIcon, SignalSlashIcon } from "@heroicons/react/24/solid";
+import { Disc3 } from "lucide-react";
 
-interface PlaybackStatusProps {
-  isPlaying: boolean;
-}
+import { cn } from "lib/cn";
 
-export default function PlaybackStatus({ isPlaying }: PlaybackStatusProps) {
-  if (isPlaying) {
-    return (
-      <div className="mb-3 flex items-center text-xs font-black uppercase">
-        <span>now playing</span>
-        <SignalIcon className="ml-2 w-5 animate-pulse" />
-      </div>
-    );
-  }
-
+export default function PlaybackStatus({
+  currentlyPlaying,
+}: {
+  currentlyPlaying: boolean;
+}) {
   return (
-    <div className="mb-3 flex items-center text-xs font-black uppercase">
-      <span>last played</span>
-      <SignalSlashIcon className="ml-2 w-5" />
+    <div
+      className={cn(
+        "mb-3 flex items-center gap-2 text-xs font-black uppercase"
+      )}
+    >
+      {currentlyPlaying ? <span>now playing</span> : <span>last played</span>}
+
+      <Disc3
+        size={18}
+        className={cn(currentlyPlaying && "animate-spin")}
+        aria-hidden
+      />
     </div>
   );
 }

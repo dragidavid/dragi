@@ -1,44 +1,35 @@
-import { motion } from "framer-motion";
+import * as THREE from "three";
+import { MeshDistortMaterial, Instances } from "@react-three/drei";
 
-import { randomNumber, randomArray } from "lib/utils";
+import SingleBlobInstance from "components/Spotify/SingleBlobInstance";
+
+import { random } from "lib/utils";
 
 import type { Color } from "lib/types";
 
-type BlobProps = {
-  color: Color;
-};
+export default function InstancedBlobs({ colors = [] }: { colors?: Color[] }) {
+  if (colors.length <= 0) {
+    return null;
+  }
 
-const Blob = ({ color }: BlobProps) => {
+  const particles = Array.from({ length: 50 }, () => ({
+    factor: THREE.MathUtils.randInt(20, 100),
+    speed: THREE.MathUtils.randFloat(0.01, 1),
+    xFactor: THREE.MathUtils.randFloatSpread(80),
+    yFactor: THREE.MathUtils.randFloatSpread(40),
+    zFactor: THREE.MathUtils.randFloatSpread(40),
+    color: colors[random(0, colors.length - 1)].hex,
+  }));
+
   return (
-    <motion.div
-      key={color.name}
-      className="absolute mix-blend-normal blur-2xl filter"
-      style={{
-        backgroundColor: color.hex,
-        left: `${randomNumber(-20, 50)}%`,
-        top: `${randomNumber(-20, 50)}%`,
-        height: `${randomNumber(80, 90)}%`,
-        width: `${randomNumber(50, 90)}%`,
-        borderRadius: `${randomArray(4, 30, 90).join("% ")}%`,
-      }}
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: randomNumber(0.4, 1, true),
-        x: [0, ...randomArray(4, -100, 100), 0],
-        y: [0, ...randomArray(4, -100, 100), 0],
-        scale: [1, ...randomArray(3, 0.82, 2, true), 1],
-        rotate: 360,
-      }}
-      transition={{
-        opacity: { duration: 2 },
-        default: {
-          ease: "easeInOut",
-          duration: randomNumber(10, 14),
-          repeat: Infinity,
-        },
-      }}
-    />
-  );
-};
+    <Instances limit={particles.length}>
+      <icosahedronGeometry args={[1, 16]} />
 
-export default Blob;
+      <MeshDistortMaterial distort={0.5} opacity={0.8} transparent={true} />
+
+      {particles.map((blobData, i) => (
+        <SingleBlobInstance key={i} {...blobData} />
+      ))}
+    </Instances>
+  );
+}

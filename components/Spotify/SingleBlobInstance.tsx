@@ -4,15 +4,6 @@ import { Instance } from "@react-three/drei";
 
 import type { InstancedMesh } from "three";
 
-interface SingleBlobInstanceProps {
-  factor: number;
-  speed: number;
-  xFactor: number;
-  yFactor: number;
-  zFactor: number;
-  color: string;
-}
-
 export default function SingleBlobInstance({
   factor,
   speed,
@@ -20,12 +11,21 @@ export default function SingleBlobInstance({
   yFactor,
   zFactor,
   color,
-}: SingleBlobInstanceProps) {
+}: {
+  factor: number;
+  speed: number;
+  xFactor: number;
+  yFactor: number;
+  zFactor: number;
+  color: string;
+}) {
   const ref = useRef<InstancedMesh>(null!);
 
   useFrame((state) => {
     const t = factor + state.clock.elapsedTime * (speed / 2);
+
     ref.current.scale.setScalar(Math.max(4, Math.cos(t) * 10));
+
     ref.current.position.set(
       Math.cos(t) +
         Math.sin(t * 1) / 10 +
@@ -43,6 +43,7 @@ export default function SingleBlobInstance({
         Math.cos((t / 10) * factor) +
         (Math.sin(t * 3) * factor) / 10
     );
+
     ref.current.rotation.set(
       Math.cos(t / 4) / 2,
       Math.sin(t / 4) / 2,

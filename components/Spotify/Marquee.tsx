@@ -1,41 +1,31 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, useAnimation } from "framer-motion";
-import clsx from "clsx";
 
-import SeparatedList from "components/Spotify/SeparatedList";
-
-import type { Artist } from "lib/types";
-
-interface MarqueeProps {
-  type: "trackTitle" | "artists";
-  trackTitle?: string;
-  trackUrl?: string;
-  artists?: Artist[];
-  className: string;
-}
+import { cn } from "lib/cn";
 
 export default function Marquee({
-  type,
-  trackTitle,
-  trackUrl,
-  artists,
+  children,
   className,
-}: MarqueeProps) {
-  const [moveBy, setMoveBy] = useState<number | undefined>(undefined);
+}: {
+  children: React.ReactNode;
+  className: string;
+}) {
+  const [moveBy, setMoveBy] = useState<undefined | number>(undefined);
   const [isAnimationActive, setIsAnimationActive] = useState<boolean>(false);
   const [delay, setDelay] = useState<number>(3);
-
-  const controls = useAnimation();
 
   const containerRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
+  const controls = useAnimation();
+
   const getMoveBy = () => {
     if (textRef.current && containerRef.current) {
-      if (textRef.current?.offsetWidth > containerRef.current?.offsetWidth) {
-        setMoveBy(
-          textRef.current?.offsetWidth - containerRef.current?.clientWidth
-        );
+      const newMoveBy =
+        textRef.current?.offsetWidth - containerRef.current?.clientWidth;
+
+      if (newMoveBy !== moveBy && newMoveBy > 0) {
+        setMoveBy(newMoveBy);
       } else {
         setMoveBy(undefined);
       }
@@ -45,6 +35,7 @@ export default function Marquee({
   const startAnimation = useCallback(() => {
     if (!isAnimationActive && moveBy) {
       setIsAnimationActive(true);
+
       controls
         .start({ x: [0, -moveBy, -moveBy, 0] })
         .then(() => setIsAnimationActive(false));
@@ -53,17 +44,22 @@ export default function Marquee({
 
   useEffect(() => {
     window.addEventListener("resize", getMoveBy);
-  }, []);
+
+    return () => {
+      window.removeEventListener("resize", getMoveBy);
+    };
+  }, [getMoveBy]);
 
   useEffect(() => {
     getMoveBy();
-  }, [moveBy, trackTitle, artists]);
+  }, []);
 
   useEffect(() => {
     controls.set({ x: 0 });
 
     if (moveBy) {
       setIsAnimationActive(true);
+
       controls.start({ x: [0, -moveBy, -moveBy, 0] }).then(() => {
         setIsAnimationActive(false);
         setDelay(0);
@@ -71,43 +67,12 @@ export default function Marquee({
     }
   }, [moveBy, controls]);
 
-  const render: {
-    [key in typeof type]: JSX.Element;
-  } = {
-    trackTitle: (
-      <a
-        href={trackUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="hover:cursor-ne-resize hover:underline"
-      >
-        {trackTitle}
-      </a>
-    ),
-    artists: (
-      <SeparatedList
-        items={artists}
-        render={(artist: Artist) => (
-          <a
-            key={artist.id}
-            href={artist.artistUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:cursor-ne-resize hover:underline"
-          >
-            {artist.name}
-          </a>
-        )}
-      />
-    ),
-  };
-
   return (
     <motion.div
       ref={containerRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={clsx("overflow-hidden", className)}
+      className={className}
     >
       <motion.div
         ref={textRef}
@@ -120,10 +85,9 @@ export default function Marquee({
         }}
         onHoverStart={startAnimation}
         onTap={startAnimation}
-        style={{ textDecoration: "inherit" }}
-        className="w-max whitespace-nowrap will-change-transform"
+        className={cn("w-max whitespace-nowrap will-change-transform")}
       >
-        {render[type]}
+        {children}
       </motion.div>
     </motion.div>
   );
