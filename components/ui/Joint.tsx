@@ -43,13 +43,13 @@ export default function Joint({ positions }: { positions: Positions }) {
         <span
           key={position}
           className={cn(
-            "absolute z-40 h-[21px] w-[21px]",
+            "absolute z-40 h-[17px] w-[17px]",
             "pointer-events-none select-none",
             "text-primary"
           )}
           style={styles[position]}
         >
-          <svg viewBox="0 0 21 21">
+          <svg viewBox="0 0 17 17">
             <defs>
               <linearGradient id="vertical" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop stopColor="currentColor" stopOpacity="0" />
@@ -64,9 +64,8 @@ export default function Joint({ positions }: { positions: Positions }) {
               </linearGradient>
             </defs>
 
-            <rect x="10" y="0" width="1" height="21" fill="url(#vertical)" />
-
-            <rect x="0" y="10" width="21" height="1" fill="url(#horizontal)" />
+            <rect x="8" y="0" width="1" height="17" fill="url(#vertical)" />
+            <rect x="0" y="8" width="17" height="1" fill="url(#horizontal)" />
           </svg>
         </span>
       ))}
