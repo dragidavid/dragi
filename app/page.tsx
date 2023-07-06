@@ -1,7 +1,3 @@
-import Link from "next/link";
-
-import { ArrowUpRight } from "lucide-react";
-
 import About from "components/Previews/About";
 import Tools from "components/Previews/Tools";
 import Projects from "components/Previews/Projects";
@@ -10,6 +6,7 @@ import Spotify from "components/Previews/Spotify";
 
 import Line from "components/ui/Line";
 import Joint from "components/ui/Joint";
+import Expand from "components/ui/Expand";
 
 import { cn } from "lib/cn";
 
@@ -120,7 +117,6 @@ function Wrapper({ children }: { children: React.ReactNode }) {
 function Section({
   children,
   href,
-  extra,
   jointPositions,
   sectionStyles,
   lineStyles,
@@ -129,7 +125,6 @@ function Section({
 }: {
   children: React.ReactNode;
   href?: string;
-  extra?: React.ReactNode;
   jointPositions: Positions;
   sectionStyles?: string;
   lineStyles: string;
@@ -139,7 +134,7 @@ function Section({
   return (
     <div
       className={cn(
-        "relative flex max-h-[calc(var(--container-size)/2)]",
+        "relative flex max-h-[calc(var(--container-size)*2/3)]",
         sectionStyles,
         "md:max-h-none md:max-w-[calc(var(--container-size)/3)]"
       )}
@@ -148,24 +143,11 @@ function Section({
 
       <Joint positions={jointPositions} />
 
-      <div className={cn("flex-1 overflow-hidden p-1")}>{children}</div>
+      <div className={cn("flex-1 overflow-hidden")}>
+        {href && <Expand href={href} />}
 
-      {(extra || href) && (
-        <Link
-          href={`/${href}`}
-          className={cn("absolute right-0 top-0 z-50", "group")}
-        >
-          <ArrowUpRight
-            size={16}
-            className={cn(
-              "transition-transform duration-100",
-              "group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            )}
-            aria-hidden={true}
-          />
-          <span className="sr-only">Go to {href}</span>
-        </Link>
-      )}
+        {children}
+      </div>
 
       {showBottomLine && (
         <Line

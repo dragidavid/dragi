@@ -1,11 +1,9 @@
 import Navigation from "components/Navigation";
 
 import Line from "components/ui/Line";
-import Joint from "components/ui/Joint";
+import Joint, { type Positions } from "components/ui/Joint";
 
 import { cn } from "lib/cn";
-
-import type { Positions } from "components/ui/Joint";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

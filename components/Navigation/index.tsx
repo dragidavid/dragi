@@ -22,14 +22,11 @@ const links = [
     label: (
       <div
         className={cn(
-          "relative flex h-6 w-6",
+          "relative flex h-5 w-5",
           "select-none outline-none",
           "bg-secondary",
           "transition-all duration-100 ease-in-out",
           "hover:bg-primary"
-          // "after:absolute after:inset-1 after:-z-10 after:bg-sky-500 after:blur-[1px]",
-          // "before:absolute before:inset-1 before:-z-10 before:bg-fuchsia-500 before:blur-[1px]",
-          // "glitch"
         )}
       />
     ),
@@ -85,7 +82,7 @@ export default function Navigation() {
             {pathname === href && (
               <motion.span
                 layoutId="strike-through"
-                transition={{ type: "spring", bounce: 0.2, duration: 0.7 }}
+                transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
                 className={cn(
                   "absolute z-10 h-px w-full",
                   "bg-primary mix-blend-exclusion"
