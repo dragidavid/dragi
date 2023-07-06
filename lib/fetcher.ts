@@ -4,17 +4,11 @@ export async function fetcher(url: RequestInfo, init?: RequestInit) {
     ...init,
   });
 
-  const body = await res.json();
-
   if (!res.ok) {
-    const { code } = body;
-
-    if (!code) {
-      throw new Error("UNKNOWN_ERROR");
-    }
-
-    throw new Error(code);
+    throw new Error("UNKNOWN_ERROR");
   }
+
+  const body = await res.json();
 
   return body;
 }
