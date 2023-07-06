@@ -19,6 +19,11 @@ module.exports = {
       width: {
         double: "200vw",
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
       backgroundImage: {
         noise: "url('/static/images/noise.png')",
       },
@@ -40,5 +45,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
