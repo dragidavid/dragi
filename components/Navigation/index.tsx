@@ -1,10 +1,15 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+
+import Line from "components/ui/Line";
+import Joint from "components/ui/Joint";
 
 import { cn } from "lib/cn";
+import { debounce } from "lib/debounce";
 
 const links = [
   {
@@ -45,50 +50,96 @@ const links = [
 ];
 
 export default function Navigation() {
+  const [height, setHeight] = useState(0);
+
+  const navRef = useRef<HTMLDivElement>(null);
+
   const pathname = usePathname();
+
+  useEffect(() => {
+    const calculateHeight = debounce(() => {
+      const rect = navRef.current?.getBoundingClientRect();
+
+      if (rect) {
+        const vh = (rect.bottom / window.innerHeight) * 100;
+
+        setHeight(vh);
+      }
+    }, 800);
+
+    calculateHeight();
+
+    window.addEventListener("resize", calculateHeight);
+
+    return () => {
+      window.removeEventListener("resize", calculateHeight);
+    };
+  }, []);
 
   return (
     <nav
+      ref={navRef}
       className={cn(
-        "relative flex h-[--navigation-height] w-full overflow-hidden font-mono font-medium",
+        "relative flex h-[--navigation-height] w-full font-mono font-medium",
         "text-secondary"
       )}
     >
-      {links.map(({ id, label, href }) => (
+      {links.map(({ id, label, href }, index: number) => (
         <Link
           key={id}
           href={href}
           className={cn(
-            "flex-1",
+            "relative flex-1",
             "select-none outline-none",
+            pathname === href && "text-primary",
             "transition-all duration-100 ease-in-out",
-            // TODO figure out a better focus style here
-            "focus:text-primary focus-visible:bg-gradient-to-b focus-visible:from-transparent focus-visible:to-primary/[5%]"
+            "hover:text-primary",
+            "focus:text-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary"
           )}
         >
           <div
-            className={cn(
-              "relative flex h-full items-center justify-center",
-              pathname === href && "text-primary",
-              "transition-colors duration-100 ease-in-out",
-              "hover:text-primary"
-            )}
+            className={cn("relative flex h-full items-center justify-center")}
             style={{
               WebkitTapHighlightColor: "transparent",
             }}
           >
+            {index !== 0 && (
+              <>
+                <Line
+                  className={cn(
+                    "bottom-0 left-0 h-screen w-px",
+                    "-translate-x-1/2"
+                  )}
+                />
+
+                <Joint positions={["bl"]} />
+              </>
+            )}
+
             {label}
 
-            {pathname === href && (
-              <motion.span
-                layoutId="strike-through"
-                transition={{ type: "spring", bounce: 0.2, duration: 0.8 }}
-                className={cn(
-                  "absolute z-10 h-px w-full",
-                  "bg-primary mix-blend-exclusion"
-                )}
-              />
-            )}
+            <AnimatePresence>
+              {pathname === href && (
+                <motion.span
+                  initial={{
+                    height: "0vh",
+                  }}
+                  animate={{
+                    height: `${height}vh`,
+                  }}
+                  exit={{
+                    height: "0vh",
+                    opacity: 0,
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className={cn(
+                    "absolute bottom-0 -z-10 h-double w-full",
+                    "pointer-events-none",
+                    "bg-gradient-to-b from-transparent via-primary/5 to-primary/10"
+                  )}
+                />
+              )}
+            </AnimatePresence>
           </div>
         </Link>
       ))}

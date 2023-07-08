@@ -16,6 +16,9 @@ module.exports = {
         "almost-black": "rgb(var(--almost-black) / <alpha-value>)",
         "subtle-grey": "rgb(var(--subtle-grey) / <alpha-value>)",
       },
+      height: {
+        double: "200vh",
+      },
       width: {
         double: "200vw",
       },

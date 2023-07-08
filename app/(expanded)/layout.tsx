@@ -17,13 +17,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className={cn("-bottom-full -top-full left-0 w-px", "-translate-x-1/2")}
       />
 
-      <Section jointPositions={["tl", "tr"]}>
+      <Section>
         <Navigation />
       </Section>
 
       <Section
         className="flex h-[calc(100vh-8rem-var(--navigation-height))] md:h-[calc(var(--container-size)-var(--navigation-height))]"
         jointPositions={["tl", "tr", "bl", "br"]}
+        showTopLine
         showBottomLine
       >
         <div className={cn("h-full flex-1 overflow-auto p-[0.5px]")}>
@@ -42,38 +43,30 @@ function Section({
   children,
   className,
   jointPositions,
+  showTopLine,
   showBottomLine,
 }: {
   children: React.ReactNode;
-  className?: string;
-  jointPositions: Positions;
+  jointPositions?: Positions;
+  showTopLine?: boolean;
   showBottomLine?: boolean;
+  className?: string;
 }) {
   return (
     <div className={cn("relative w-full", className)}>
-      <Line className={cn("-left-full h-px w-double -translate-y-[0.5px]")} />
+      {showTopLine && (
+        <Line className={cn("-left-full h-px w-double -translate-y-1/2")} />
+      )}
 
-      <Joint positions={jointPositions} />
+      {jointPositions && <Joint positions={jointPositions} />}
 
       {children}
 
       {showBottomLine && (
         <Line
-          className={cn(
-            "-left-full bottom-0 h-px w-double translate-y-[0.5px]"
-          )}
+          className={cn("-left-full bottom-0 h-px w-double translate-y-1/2")}
         />
       )}
     </div>
   );
-}
-
-function Wrapper({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return <div className={cn("relative w-full", className)}>{children}</div>;
 }

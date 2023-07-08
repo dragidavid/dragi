@@ -139,7 +139,7 @@ function Section({
         "md:max-h-none md:max-w-[calc(var(--container-size)/3)]"
       )}
     >
-      <Line className={cn(lineStyles, "h-px", "-translate-y-[0.5px]")} />
+      <Line className={cn(lineStyles, "h-px", "-translate-y-1/2")} />
 
       <Joint positions={jointPositions} />
 
@@ -154,7 +154,7 @@ function Section({
           className={cn(
             lineStyles,
             "bottom-0 h-px",
-            "translate-y-[0.5px]",
+            "translate-y-1/2",
             !alwaysShowBottomLine && "invisible",
             "md:visible"
           )}

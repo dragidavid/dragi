@@ -104,7 +104,11 @@ export default function Spotify() {
                 transition={{
                   duration: 0.2,
                 }}
-                className={cn("relative flex flex-col gap-1")}
+                className={cn(
+                  "relative flex flex-col gap-1",
+                  "select-none",
+                  "md:select-text"
+                )}
               >
                 <PlaybackStatus
                   currentlyPlaying={Boolean(track.currentlyPlaying)}
