@@ -41,43 +41,43 @@ export default function RootLayout({
                 {
                   id: "top",
                   className: cn(
-                    "fixed left-0 top-0 z-50 h-[9%] w-screen",
+                    "fixed left-0 top-0 z-50 h-[9vh] w-screen invisible",
                     "bg-gradient-to-t from-transparent to-almost-black",
+                    "sm:visible",
                     "md:h-1/6"
                   ),
                 },
                 {
                   id: "left",
                   className: cn(
-                    "fixed top-0 left-0 z-50 h-screen hidden",
+                    "fixed top-0 left-0 z-50 h-screen w-[7vw] invisible",
                     "bg-gradient-to-l from-transparent to-almost-black",
-                    "xs:block xs:w-[7%]",
+                    "xs:visible",
                     "sm:w-1/6"
                   ),
                 },
                 {
                   id: "bottom",
                   className: cn(
-                    "fixed bottom-0 left-0 z-50 h-[9%] w-screen",
+                    "fixed bottom-0 left-0 z-50 h-[9vh] w-screen invisible",
                     "bg-gradient-to-b from-transparent to-almost-black",
+                    "sm:visible",
                     "md:h-1/6"
                   ),
                 },
                 {
                   id: "right",
                   className: cn(
-                    "fixed top-0 right-0 z-50 h-screen hidden",
+                    "fixed top-0 right-0 z-50 h-screen w-[7vw] invisible",
                     "bg-gradient-to-r from-transparent to-almost-black",
-                    "xs:block xs:w-[7%]",
+                    "xs:visible",
                     "sm:w-1/6"
                   ),
                 },
               ]}
             />
 
-            <div className={cn("h-full w-full pt-16", "md:px-0")}>
-              {children}
-            </div>
+            <div className={cn("h-full w-full")}>{children}</div>
           </main>
         </Providers>
       </body>
