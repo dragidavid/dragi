@@ -16,6 +16,9 @@ module.exports = {
         "almost-black": "rgb(var(--almost-black) / <alpha-value>)",
         "subtle-grey": "rgb(var(--subtle-grey) / <alpha-value>)",
       },
+      screens: {
+        xs: "448px",
+      },
       height: {
         double: "200vh",
       },
