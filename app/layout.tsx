@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" className={cn(inter.variable, "text-sm antialiased")}>
       <body
         className={cn(
-          "min-h-screen overflow-x-clip",
+          "overflow-x-clip",
           "bg-almost-black text-primary caret-fuchsia-500",
           "selection:bg-fuchsia-500 selection:text-primary"
         )}
@@ -30,9 +30,9 @@ export default function RootLayout({
         <Providers>
           <main
             className={cn(
-              "mx-auto min-h-screen w-screen max-w-[448px] overflow-y-hidden",
-              "xs:overflow-y-clip",
-              "sm:flex sm:items-center",
+              "mx-auto w-screen max-w-[448px] overflow-hidden",
+              "xs:overflow-y-clip xs:overflow-x-visible",
+              "xs:flex xs:min-h-screen xs:items-center",
               "md:w-[--container-size] md:max-w-none"
             )}
           >
@@ -77,7 +77,8 @@ export default function RootLayout({
               ]}
             />
 
-            <div className={cn("h-full w-full")}>{children}</div>
+            {/* <div className={cn("h-full w-full")}>{children}</div> */}
+            {children}
           </main>
         </Providers>
       </body>

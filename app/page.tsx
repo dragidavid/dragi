@@ -34,8 +34,8 @@ export default function Page() {
         <Section
           href="tools"
           jointPositions={["tl", "tr", "bl", "br"]}
-          lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
           showBottomLine
+          lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
         >
           <Tools />
         </Section>
@@ -54,9 +54,9 @@ export default function Page() {
         <Section
           href="projects"
           jointPositions={["tl"]}
+          showBottomLine
           sectionStyles={cn("md:row-span-2 md:row-start-2")}
           lineStyles={cn("-left-1/2 -right-1/2", "md:left-0 md:right-0")}
-          showBottomLine
         >
           <Projects />
         </Section>
@@ -83,10 +83,10 @@ export default function Page() {
         <Section
           href="spotify"
           jointPositions={["tl", "tr", "bl", "br"]}
-          sectionStyles={cn("md:row-span-2")}
-          lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
           showBottomLine
           alwaysShowBottomLine
+          sectionStyles={cn("md:row-span-2")}
+          lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
         >
           <Spotify />
         </Section>
@@ -114,18 +114,18 @@ function Section({
   children,
   href,
   jointPositions,
-  sectionStyles,
-  lineStyles,
   showBottomLine,
   alwaysShowBottomLine,
+  sectionStyles,
+  lineStyles,
 }: {
   children: React.ReactNode;
-  href?: string;
   jointPositions: Positions;
-  sectionStyles?: string;
-  lineStyles: string;
+  href?: string;
   showBottomLine?: boolean;
   alwaysShowBottomLine?: boolean;
+  sectionStyles?: string;
+  lineStyles: string;
 }) {
   return (
     <div

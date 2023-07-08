@@ -81,7 +81,7 @@ export default function Navigation() {
       ref={navRef}
       className={cn(
         "relative flex h-[--mobile-navigation-height] w-full font-mono font-medium",
-        "text-secondary",
+        "bg-almost-black text-secondary",
         "md:h-[--desktop-navigation-height]"
       )}
     >
@@ -102,7 +102,9 @@ export default function Navigation() {
           }}
         >
           <div
-            className={cn("relative flex h-full items-start justify-center")}
+            className={cn(
+              "relative flex h-full items-start justify-center py-7"
+            )}
             style={{
               WebkitTapHighlightColor: "transparent",
             }}
@@ -137,7 +139,7 @@ export default function Navigation() {
                   }}
                   transition={{ duration: 0.4 }}
                   className={cn(
-                    "absolute top-0 -z-10 h-double w-full",
+                    "absolute top-0 h-double w-full",
                     "pointer-events-none",
                     "bg-gradient-to-b from-primary/10 via-primary/5 to-transparent"
                   )}

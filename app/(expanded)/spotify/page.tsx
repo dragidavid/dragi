@@ -5,7 +5,7 @@ import { cn } from "lib/cn";
 
 export default function Page() {
   return (
-    <div className={cn("flex h-full flex-col gap-6", "md:flex-row")}>
+    <div className={cn("flex h-full flex-col", "md:flex-row")}>
       <div className={cn("md:w-2/5")}>
         <Spotify />
       </div>

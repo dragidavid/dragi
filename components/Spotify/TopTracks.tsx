@@ -41,8 +41,8 @@ export default function TopTracks() {
   );
 
   return (
-    <div className={cn("p-4")}>
-      <div className={cn("mb-6 flex w-full justify-between")}>
+    <div className={cn("flex flex-col")}>
+      <div className={cn("flex w-full justify-between")}>
         <h1 className={cn("text-4xl font-black")}>Top tracks</h1>
 
         <div>

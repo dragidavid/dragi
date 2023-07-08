@@ -9,36 +9,45 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "relative flex w-full flex-col items-center justify-center",
+        "relative w-full",
+        "xs:flex xs:flex-col xs:justify-center",
         "md:h-[--container-size]"
       )}
     >
       <Line
         className={cn(
-          "-bottom-full -top-full left-0 hidden w-px",
+          "left-0 hidden h-double w-px",
           "-translate-x-1/2",
           "xs:block"
         )}
       />
 
-      <Section>
-        <Navigation />
+      <Section
+        jointPositions={["tl", "tr"]}
+        className="pb-[--mobile-navigation-height] xs:h-[calc(100vh-8vh-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]"
+      >
+        <Line
+          className={cn(
+            "-left-full hidden h-px w-double -translate-y-1/2",
+            "xs:block"
+          )}
+        />
+
+        <div className={cn("h-full flex-1 overflow-auto")}>{children}</div>
       </Section>
 
       <Section
-        className="flex h-[calc(100vh-4rem-var(--navigation-height))] md:h-[calc(var(--container-size)-var(--navigation-height))]"
-        jointPositions={["tl", "tr", "bl", "br"]}
-        showTopLine
-        showBottomLine
+        jointPositions={["tl", "tr"]}
+        className="fixed bottom-0 left-0 xs:relative"
       >
-        <div className={cn("h-full flex-1 overflow-auto p-[0.5px]")}>
-          {children}
-        </div>
+        <Line className={cn("-left-full h-px w-double -translate-y-1/2")} />
+
+        <Navigation />
       </Section>
 
       <Line
         className={cn(
-          "-bottom-full -top-full right-0 hidden w-px",
+          "right-0 hidden h-double w-px",
           "translate-x-1/2",
           "xs:block"
         )}
@@ -49,32 +58,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 function Section({
   children,
-  className,
   jointPositions,
-  showTopLine,
-  showBottomLine,
+  className,
 }: {
   children: React.ReactNode;
   jointPositions?: Positions;
-  showTopLine?: boolean;
-  showBottomLine?: boolean;
   className?: string;
 }) {
   return (
     <div className={cn("relative w-full", className)}>
-      {showTopLine && (
-        <Line className={cn("-left-full h-px w-double -translate-y-1/2")} />
-      )}
-
       {jointPositions && <Joint positions={jointPositions} />}
 
       {children}
-
-      {showBottomLine && (
-        <Line
-          className={cn("-left-full bottom-0 h-px w-double translate-y-1/2")}
-        />
-      )}
     </div>
   );
 }
