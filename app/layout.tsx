@@ -30,7 +30,8 @@ export default function RootLayout({
         <Providers>
           <main
             className={cn(
-              "mx-auto min-h-screen w-screen max-w-[448px] overflow-y-clip",
+              "mx-auto min-h-screen w-screen max-w-[448px] overflow-y-hidden",
+              "xs:overflow-y-clip",
               "sm:flex sm:items-center",
               "md:w-[--container-size] md:max-w-none"
             )}
@@ -48,8 +49,9 @@ export default function RootLayout({
                 {
                   id: "left",
                   className: cn(
-                    "fixed top-0 left-0 z-50 h-screen w-[7%]",
+                    "fixed top-0 left-0 z-50 h-screen hidden",
                     "bg-gradient-to-l from-transparent to-almost-black",
+                    "xs:block xs:w-[7%]",
                     "sm:w-1/6"
                   ),
                 },
@@ -64,15 +66,16 @@ export default function RootLayout({
                 {
                   id: "right",
                   className: cn(
-                    "fixed top-0 right-0 z-50 h-screen w-[7%]",
+                    "fixed top-0 right-0 z-50 h-screen hidden",
                     "bg-gradient-to-r from-transparent to-almost-black",
+                    "xs:block xs:w-[7%]",
                     "sm:w-1/6"
                   ),
                 },
               ]}
             />
 
-            <div className={cn("h-full w-full px-4 py-16", "md:px-0")}>
+            <div className={cn("h-full w-full pt-16", "md:px-0")}>
               {children}
             </div>
           </main>

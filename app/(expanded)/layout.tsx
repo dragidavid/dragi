@@ -14,7 +14,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       )}
     >
       <Line
-        className={cn("-bottom-full -top-full left-0 w-px", "-translate-x-1/2")}
+        className={cn(
+          "-bottom-full -top-full left-0 hidden w-px",
+          "-translate-x-1/2",
+          "xs:block"
+        )}
       />
 
       <Section>
@@ -22,7 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Section>
 
       <Section
-        className="flex h-[calc(100vh-8rem-var(--navigation-height))] md:h-[calc(var(--container-size)-var(--navigation-height))]"
+        className="flex h-[calc(100vh-4rem-var(--navigation-height))] md:h-[calc(var(--container-size)-var(--navigation-height))]"
         jointPositions={["tl", "tr", "bl", "br"]}
         showTopLine
         showBottomLine
@@ -33,7 +37,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </Section>
 
       <Line
-        className={cn("-bottom-full -top-full right-0 w-px", "translate-x-1/2")}
+        className={cn(
+          "-bottom-full -top-full right-0 hidden w-px",
+          "translate-x-1/2",
+          "xs:block"
+        )}
       />
     </div>
   );
