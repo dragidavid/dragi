@@ -20,9 +20,7 @@ export default function Page() {
         "md:h-[--container-size] md:flex-row"
       )}
     >
-      <Line
-        className={cn("-bottom-full -top-full left-0 w-px", "-translate-x-1/2")}
-      />
+      <Line className={cn("left-0 h-double w-px", "-translate-x-1/2")} />
 
       <Wrapper>
         <Section
@@ -45,7 +43,7 @@ export default function Page() {
 
       <Line
         className={cn(
-          "left-1/2 h-screen w-px",
+          "left-1/2 h-double w-px",
           "translate-x-[calc(var(--container-size)/-6-0.5px)]",
           "invisible",
           "md:visible"
@@ -66,7 +64,7 @@ export default function Page() {
 
       <Line
         className={cn(
-          "right-1/2 h-screen w-px",
+          "right-1/2 h-double w-px",
           "translate-x-[calc(var(--container-size)/6+0.5px)]",
           "invisible",
           "md:visible"
@@ -94,9 +92,7 @@ export default function Page() {
         </Section>
       </Wrapper>
 
-      <Line
-        className={cn("-bottom-full -top-full right-0 w-px", "translate-x-1/2")}
-      />
+      <Line className={cn("right-0 h-double w-px", "translate-x-1/2")} />
     </div>
   );
 }
