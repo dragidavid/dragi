@@ -58,10 +58,10 @@ export default function Navigation() {
 
   useEffect(() => {
     const calculateHeight = debounce(() => {
-      const rect = navRef.current?.getBoundingClientRect();
+      const nav = navRef.current?.getBoundingClientRect();
 
-      if (rect) {
-        const vh = (rect.bottom / window.innerHeight) * 100;
+      if (nav) {
+        const vh = ((window.innerHeight - nav.top) / window.innerHeight) * 100;
 
         setHeight(vh);
       }
@@ -80,8 +80,9 @@ export default function Navigation() {
     <nav
       ref={navRef}
       className={cn(
-        "relative flex h-[--navigation-height] w-full font-mono font-medium",
-        "text-secondary"
+        "relative flex h-[--mobile-navigation-height] w-full font-mono font-medium",
+        "text-secondary",
+        "md:h-[--desktop-navigation-height]"
       )}
     >
       {links.map(({ id, label, href }, index: number) => (
@@ -96,9 +97,12 @@ export default function Navigation() {
             "hover:text-primary",
             "focus:text-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary"
           )}
+          style={{
+            height: `${height}vh`,
+          }}
         >
           <div
-            className={cn("relative flex h-full items-center justify-center")}
+            className={cn("relative flex h-full items-start justify-center")}
             style={{
               WebkitTapHighlightColor: "transparent",
             }}
@@ -107,12 +111,12 @@ export default function Navigation() {
               <>
                 <Line
                   className={cn(
-                    "bottom-0 left-0 h-screen w-px",
+                    "left-0 top-0 h-double w-px",
                     "-translate-x-1/2"
                   )}
                 />
 
-                <Joint positions={["bl"]} />
+                <Joint positions={["tl"]} />
               </>
             )}
 
@@ -133,9 +137,9 @@ export default function Navigation() {
                   }}
                   transition={{ duration: 0.4 }}
                   className={cn(
-                    "absolute bottom-0 -z-10 h-double w-full",
+                    "absolute top-0 -z-10 h-double w-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-transparent via-primary/5 to-primary/10"
+                    "bg-gradient-to-b from-primary/10 via-primary/5 to-transparent"
                   )}
                 />
               )}

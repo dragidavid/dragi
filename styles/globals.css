@@ -8,7 +8,8 @@
 
     --radius: 0.5rem;
 
-    --navigation-height: 48px;
+    --mobile-navigation-height: 96px;
+    --desktop-navigation-height: 48px;
 
     --primary: 224 224 224;
     --secondary: 158 158 158;
