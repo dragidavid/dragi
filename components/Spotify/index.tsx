@@ -135,8 +135,6 @@ export default function Spotify() {
   );
 }
 
-// TODO - REMOVE THE LINE ON THE BOTTOM ON MOBILE AND ALSO REMOVE THE JOINTS
-
 function Logo() {
   return (
     <div className={cn("h-[72px] w-[72px]", "pointer-events-none select-none")}>

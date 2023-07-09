@@ -8,7 +8,7 @@ export default function Marquee({
   className,
 }: {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }) {
   const [moveBy, setMoveBy] = useState<undefined | number>(undefined);
   const [isAnimationActive, setIsAnimationActive] = useState<boolean>(false);
@@ -22,7 +22,7 @@ export default function Marquee({
   const getMoveBy = useCallback(() => {
     if (textRef.current && containerRef.current) {
       const newMoveBy =
-        textRef.current?.offsetWidth - containerRef.current?.clientWidth;
+        textRef.current.offsetWidth - containerRef.current.clientWidth;
 
       if (newMoveBy !== moveBy && newMoveBy > 0) {
         setMoveBy(newMoveBy);
@@ -61,6 +61,7 @@ export default function Marquee({
 
       controls.start({ x: [0, -moveBy, -moveBy, 0] }).then(() => {
         setIsAnimationActive(false);
+
         setDelay(0);
       });
     }

@@ -23,6 +23,7 @@
     "node-vibrant": "3.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-fast-marquee": "^1.6.0",
     "swr": "^2.2.0",
     "three": "^0.151.3",
     "tunnel-rat": "^0.1.2"
