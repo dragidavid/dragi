@@ -1,23 +1,42 @@
-"use client";
+// "use client";
 
 import Marquee from "react-fast-marquee";
 
-import { cn } from "lib/cn";
-import VisitorLocation from "./VisitorLocation";
+import Clock from "components/Status/Clock";
 
-export default function Status() {
+import { cn } from "lib/cn";
+import { redis } from "lib/redis";
+
+export default async function Status() {
+  const location = (await redis.get("location")) as {
+    city: string;
+    country: string;
+  };
+
   return (
-    <div className={cn("relative h-full")}>
-      <Marquee speed={20}>
-        <div className={cn("mr-3 flex items-center gap-3")}>
-          <span>18:23:12</span>
-          <div className={cn("h-0.5 w-0.5 rounded-full", "bg-primary")} />
-          <span>london, uk</span>
-          <div className={cn("h-0.5 w-0.5 rounded-full", "bg-primary")} />
-          <VisitorLocation />
-          <div className={cn("h-0.5 w-0.5 rounded-full", "bg-primary")} />
-        </div>
-      </Marquee>
-    </div>
+    <Marquee speed={20} delay={3}>
+      <div
+        className={cn("mr-3 flex items-center gap-3 font-mono", "select-none")}
+      >
+        <Clock />
+
+        <div className={cn("h-1 w-1 rounded-full", "bg-primary")} />
+
+        <span>london, united kingdom</span>
+
+        {location && (
+          <>
+            <div className={cn("h-1 w-1 rounded-full", "bg-primary")} />
+
+            <span>
+              last visit from {location.city.toLowerCase()},{" "}
+              {location.country.toLowerCase()}
+            </span>
+
+            <div className={cn("h-1 w-1 rounded-full", "bg-primary")} />
+          </>
+        )}
+      </div>
+    </Marquee>
   );
 }

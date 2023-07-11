@@ -1,19 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { redis } from "lib/redis";
+import { getCountry } from "lib/country";
+
 export const config = {
   matcher: "/",
 };
 
 export async function middleware(req: NextRequest) {
-  const { nextUrl: url, geo } = req;
+  const { geo } = req;
 
-  const country = geo?.country || "US";
   const city = geo?.city || "San Francisco";
-  const region = geo?.region || "CA";
+  const country = geo?.country || "US";
 
-  url.searchParams.set("country", country);
-  url.searchParams.set("city", city);
-  url.searchParams.set("region", region);
+  const location = {
+    city,
+    country: getCountry(country),
+  };
 
-  return NextResponse.rewrite(url);
+  await redis.set("location", location);
+
+  return NextResponse.next();
 }
