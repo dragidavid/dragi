@@ -77,7 +77,6 @@ export default function RootLayout({
               ]}
             />
 
-            {/* <div className={cn("h-full w-full")}>{children}</div> */}
             {children}
           </main>
         </Providers>

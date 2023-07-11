@@ -5,157 +5,162 @@ import Craft from "components/Previews/Craft";
 import Spotify from "components/Previews/Spotify";
 
 import Line from "components/ui/Line";
-import Joint from "components/ui/Joint";
+import Joint, { type Positions } from "components/ui/Joint";
 import Expand from "components/ui/Expand";
 
 import { cn } from "lib/cn";
 
-import type { Positions } from "components/ui/Joint";
+const commonClasses = {
+  top: "hidden h-px -translate-y-1/2 md:block",
+  right: "right-0 hidden h-screen w-px translate-x-1/2 md:block",
+  bottom: "bottom-0 h-px translate-y-1/2",
+  left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block",
+};
+
+const sections = [
+  {
+    component: <About />,
+    lines: {
+      top: "-right-full w-double md:right-0 md:w-screen",
+      right: "bottom-0",
+      bottom: "-right-full w-double md:right-0 md:w-screen",
+      left: "bottom-0",
+    },
+    jointPositions: ["tl", "tr", "bl"],
+    sectionStyles: "md:col-span-2",
+  },
+  {
+    page: "tools",
+    component: <Tools />,
+    lines: {
+      top: "right-0 w-screen",
+      bottom: "-right-full w-double md:right-0 md:w-screen",
+      left: "top-0",
+    },
+    jointPositions: ["tl", "tr", "bl", "br"],
+    sectionStyles: "md:row-start-3",
+  },
+  {
+    page: "projects",
+    component: <Projects />,
+    lines: {
+      right: "top-0",
+      bottom: "-left-full w-double md:left-0 md:w-screen",
+      left: "top-0",
+    },
+    jointPositions: ["tl"],
+    sectionStyles: "md:row-span-2 md:row-start-2",
+  },
+  {
+    page: "craft",
+    component: <Craft />,
+    lines: {
+      top: "left-0 w-screen",
+      right: "bottom-0",
+      bottom: "-left-full w-double md:left-0 md:w-screen",
+    },
+    jointPositions: ["tl", "tr"],
+  },
+  {
+    page: "spotify",
+    component: <Spotify />,
+    lines: {
+      right: "top-0",
+    },
+    jointPositions: ["tl", "tr", "bl", "br"],
+    sectionStyles: "md:row-span-2",
+  },
+].map((section) => ({
+  ...section,
+  lines: (
+    Object.keys(section.lines) as Array<keyof typeof commonClasses>
+  ).reduce(
+    (lines, key) => ({
+      ...lines,
+      [key]: cn(commonClasses[key], section.lines[key]),
+    }),
+    {}
+  ),
+}));
 
 export default function Page() {
   return (
     <div
       className={cn(
         "relative flex w-full flex-col items-center justify-center",
-        "md:h-[--container-size] md:flex-row"
+        "md:grid md:h-[--container-size] md:grid-cols-3 md:grid-rows-3"
       )}
     >
-      <Line className={cn("left-0 h-double w-px", "-translate-x-1/2")} />
-
-      <Wrapper>
-        <Section
-          jointPositions={["tl", "tr"]}
-          sectionStyles={cn("md:row-span-2")}
-          lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
-        >
-          <About />
-        </Section>
-
-        <Section
-          href="tools"
-          jointPositions={["tl", "tr", "bl", "br"]}
-          showBottomLine
-          lineStyles={cn("-right-full w-double", "md:right-0 md:w-screen")}
-        >
-          <Tools />
-        </Section>
-      </Wrapper>
-
       <Line
         className={cn(
-          "left-1/2 h-double w-px",
-          "translate-x-[calc(var(--container-size)/-6-0.5px)]",
-          "invisible",
-          "md:visible"
+          "left-0 hidden h-double w-px",
+          "-translate-x-1/2",
+          "xs:block",
+          "md:hidden"
         )}
       />
 
-      <Wrapper>
+      {sections.map((section, i) => (
         <Section
-          href="projects"
-          jointPositions={["tl"]}
-          showBottomLine
-          sectionStyles={cn("md:row-span-2 md:row-start-2")}
-          lineStyles={cn("-left-1/2 -right-1/2", "md:left-0 md:right-0")}
+          key={i}
+          page={section.page}
+          lines={section.lines}
+          jointPositions={section.jointPositions as Positions}
+          sectionStyles={cn(section.sectionStyles)}
         >
-          <Projects />
+          {section.component}
         </Section>
-      </Wrapper>
+      ))}
 
       <Line
         className={cn(
-          "right-1/2 h-double w-px",
-          "translate-x-[calc(var(--container-size)/6+0.5px)]",
-          "invisible",
-          "md:visible"
+          "right-0 hidden h-double w-px",
+          "translate-x-1/2",
+          "xs:block",
+          "md:hidden"
         )}
       />
-
-      <Wrapper>
-        <Section
-          href="craft"
-          jointPositions={["tl", "tr"]}
-          lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
-        >
-          <Craft />
-        </Section>
-
-        <Section
-          href="spotify"
-          jointPositions={["tl", "tr", "bl", "br"]}
-          showBottomLine
-          alwaysShowBottomLine
-          sectionStyles={cn("md:row-span-2")}
-          lineStyles={cn("-left-1/2 w-double", "md:left-0 md:w-screen")}
-        >
-          <Spotify />
-        </Section>
-      </Wrapper>
-
-      <Line className={cn("right-0 h-double w-px", "translate-x-1/2")} />
-    </div>
-  );
-}
-
-function Wrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <div
-      className={cn(
-        "h-full w-full",
-        "md:grid md:max-w-[calc(var(--container-size)/3)] md:grid-rows-3"
-      )}
-    >
-      {children}
     </div>
   );
 }
 
 function Section({
   children,
-  href,
+  page,
+  lines,
   jointPositions,
-  showBottomLine,
-  alwaysShowBottomLine,
   sectionStyles,
-  lineStyles,
 }: {
   children: React.ReactNode;
+  page?: string;
+  lines?: {
+    top?: string;
+    right?: string;
+    bottom?: string;
+    left?: string;
+  };
   jointPositions: Positions;
-  href?: string;
-  showBottomLine?: boolean;
-  alwaysShowBottomLine?: boolean;
   sectionStyles?: string;
-  lineStyles: string;
 }) {
   return (
     <div
       className={cn(
-        "relative flex max-h-[calc(var(--container-size)*2/3)]",
-        sectionStyles,
-        "md:max-h-none md:max-w-[calc(var(--container-size)/3)]"
+        "relative flex h-full max-h-[calc(var(--container-size)*2/3)] w-full",
+        sectionStyles
       )}
     >
-      <Line className={cn(lineStyles, "h-px", "-translate-y-1/2")} />
+      {lines &&
+        (Object.keys(lines) as Array<keyof typeof lines>).map((side) => (
+          <Line key={side} className={cn(lines[side])} />
+        ))}
 
       <Joint positions={jointPositions} />
 
       <div className={cn("flex-1 overflow-hidden")}>
-        {href && <Expand href={href} />}
+        {page && <Expand href={page} />}
 
         {children}
       </div>
-
-      {showBottomLine && (
-        <Line
-          className={cn(
-            lineStyles,
-            "bottom-0 h-px",
-            "translate-y-1/2",
-            !alwaysShowBottomLine && "invisible",
-            "md:visible"
-          )}
-        />
-      )}
     </div>
   );
 }
