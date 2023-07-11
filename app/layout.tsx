@@ -59,9 +59,8 @@ export default function RootLayout({
                 {
                   id: "bottom",
                   className: cn(
-                    "fixed bottom-0 left-0 z-50 h-[9vh] w-screen invisible",
+                    "fixed bottom-0 left-0 z-50 h-[11vh] w-screen",
                     "bg-gradient-to-b from-transparent to-almost-black",
-                    "sm:visible",
                     "md:h-1/6"
                   ),
                 },

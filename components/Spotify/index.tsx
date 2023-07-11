@@ -224,7 +224,7 @@ function SmallFade() {
       className={cn(
         "absolute bottom-0 left-0 right-0 h-1/2",
         "pointer-events-none select-none",
-        "bg-gradient-to-b from-transparent via-almost-black/50 to-almost-black"
+        "bg-gradient-to-b from-transparent via-almost-black/50 to-almost-black/90"
       )}
     />
   );
