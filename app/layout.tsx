@@ -31,6 +31,7 @@ export default function RootLayout({
           <main
             className={cn(
               "mx-auto w-screen max-w-[448px] overflow-hidden",
+              "select-none",
               "xs:overflow-y-clip xs:overflow-x-visible",
               "xs:flex xs:min-h-screen xs:items-center",
               "md:w-[--container-size] md:max-w-none"

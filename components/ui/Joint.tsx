@@ -44,7 +44,7 @@ export default function Joint({ positions }: { positions: Positions }) {
           key={position}
           className={cn(
             "absolute z-40 h-[17px] w-[17px]",
-            "pointer-events-none select-none",
+            "pointer-events-none",
             "text-primary"
           )}
           style={styles[position]}

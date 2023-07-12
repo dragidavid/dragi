@@ -5,7 +5,7 @@ export default function Line({ className }: { className: string }) {
     <div
       className={cn(
         "absolute z-20",
-        "pointer-events-none select-none",
+        "pointer-events-none",
         className,
         "bg-subtle-grey"
       )}

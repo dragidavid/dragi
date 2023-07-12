@@ -52,7 +52,7 @@ export default function Expand({ href }: { href: string }) {
         onMouseLeave={() => setIsHovered(false)}
         className={cn(
           "absolute right-0.5 top-0.5 z-50",
-          "pointer-events-auto select-none outline-none",
+          "pointer-events-auto outline-none",
           "text-secondary",
           "transition-colors duration-75 ease-in-out",
           "hover:text-primary focus:text-primary",
@@ -67,7 +67,7 @@ export default function Expand({ href }: { href: string }) {
         <svg
           width={rect.width}
           height={rect.height}
-          className={cn("absolute inset-0 z-[99]", "text-primary/50")}
+          className={cn("absolute inset-0 z-50", "text-primary/50")}
         >
           <motion.path
             d={`M${rect.width},0 V${rect.height} H0 V0 Z`}
@@ -104,7 +104,7 @@ function Arrow() {
   };
 
   return (
-    <div className={cn("h-[18px] w-[18px]", "select-none")}>
+    <div className={cn("h-[18px] w-[18px]")}>
       <motion.svg
         viewBox="0 0 10 10"
         width="100%"
