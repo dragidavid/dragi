@@ -10,15 +10,18 @@ export const config = {
 export async function middleware(req: NextRequest) {
   const { geo } = req;
 
-  const city = geo?.city || "San Francisco";
-  const country = geo?.country || "US";
+  const city = geo?.city || "localhost";
+  const country = geo?.country || "3000";
 
   const location = {
     city,
     country: getCountry(country),
   };
 
-  await redis.set("location", location);
+  await redis.set(
+    "location",
+    `last visit from ${location.city.toLowerCase()}, ${location.country.toLowerCase()}`
+  );
 
   return NextResponse.next();
 }
