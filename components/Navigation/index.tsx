@@ -24,17 +24,7 @@ const links = [
   },
   {
     id: "home",
-    label: (
-      <div
-        className={cn(
-          "relative flex h-5 w-5",
-          "select-none outline-none",
-          "bg-secondary",
-          "transition-all duration-100 ease-in-out",
-          "hover:bg-primary"
-        )}
-      />
-    ),
+    label: <Logo />,
     href: "/",
   },
   {
@@ -91,7 +81,7 @@ export default function Navigation() {
           href={href}
           className={cn(
             "relative flex-1",
-            "select-none outline-none",
+            "outline-none",
             pathname === href && "text-primary",
             "transition-all duration-100 ease-in-out",
             "hover:text-primary",
@@ -150,5 +140,18 @@ export default function Navigation() {
         </Link>
       ))}
     </nav>
+  );
+}
+
+function Logo() {
+  return (
+    <div className={cn("h-5 w-5", "md:h-6 md:w-6")}>
+      <svg width="100%" height="100%" viewBox="0 0 30 30">
+        <path
+          fill="currentColor"
+          d="M0 30h10V20H0zM0 10h10V0H0zM20 10h10V0H20zM10 10h10V0H10zM10 20h10V10H10zM20 20h10V10H20zM20 30h10V20H20zM10 30h10V20H10z"
+        />
+      </svg>
+    </div>
   );
 }
