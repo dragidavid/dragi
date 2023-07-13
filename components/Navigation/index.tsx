@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
+import Icon from "components/ui/Icon";
 import Line from "components/ui/Line";
 import Joint from "components/ui/Joint";
 
@@ -14,27 +15,27 @@ import { debounce } from "lib/debounce";
 const links = [
   {
     id: "projects",
-    label: "Projects",
+    content: <Icon name="code" />,
     href: "/projects",
   },
   {
     id: "craft",
-    label: "Craft",
+    content: <Icon name="flask" />,
     href: "/craft",
   },
   {
     id: "home",
-    label: <Logo />,
+    content: <Icon name="home" />,
     href: "/",
   },
   {
     id: "tools",
-    label: "Tools",
+    content: <Icon name="tools" />,
     href: "/tools",
   },
   {
     id: "spotify",
-    label: "Spotify",
+    content: <Icon name="spotify" />,
     href: "/spotify",
   },
 ];
@@ -75,7 +76,7 @@ export default function Navigation() {
         "md:h-[--desktop-navigation-height]"
       )}
     >
-      {links.map(({ id, label, href }, index: number) => (
+      {links.map(({ id, content, href }, index: number) => (
         <Link
           key={id}
           href={href}
@@ -93,7 +94,7 @@ export default function Navigation() {
         >
           <div
             className={cn(
-              "relative flex h-full items-start justify-center py-7"
+              "relative flex h-full items-start justify-center py-8"
             )}
             style={{
               WebkitTapHighlightColor: "transparent",
@@ -112,7 +113,7 @@ export default function Navigation() {
               </>
             )}
 
-            {label}
+            {content}
 
             <AnimatePresence>
               {pathname === href && (
