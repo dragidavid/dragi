@@ -40,7 +40,7 @@ const icons = {
       stroke="currentColor"
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="m2 8 9.732-4.866a.6.6 0 0 1 .536 0L22 8m-2 3v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"
+      d="M17 21H7a4 4 0 0 1-4-4v-6.292a4 4 0 0 1 1.927-3.421l5-3.03a4 4 0 0 1 4.146 0l5 3.03A4 4 0 0 1 21 10.707V17a4 4 0 0 1-4 4zm-8-4h6"
     />
   ),
   tools: (

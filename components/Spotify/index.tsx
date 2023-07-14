@@ -89,7 +89,9 @@ export default function Spotify() {
 
           <AlbumImage albumImage={track?.album.image} />
 
-          <div className={cn("absolute inset-2 flex flex-col justify-between")}>
+          <div
+            className={cn("absolute inset-1.5 flex flex-col justify-between")}
+          >
             <Logo />
 
             {track ? (

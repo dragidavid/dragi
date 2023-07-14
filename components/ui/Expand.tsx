@@ -51,7 +51,7 @@ export default function Expand({ href }: { href: string }) {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         className={cn(
-          "absolute right-0.5 top-0.5 z-50",
+          "absolute right-0 top-0 z-50",
           "pointer-events-auto outline-none",
           "text-secondary",
           "transition-colors duration-75 ease-in-out",
@@ -106,9 +106,13 @@ function Arrow() {
   return (
     <div className={cn("h-[18px] w-[18px]")}>
       <motion.svg
-        viewBox="0 0 10 10"
+        xmlns="http://www.w3.org/2000/svg"
         width="100%"
         height="100%"
+        viewBox="0 0 10 10"
+        fill="none"
+        strokeWidth="1"
+        color="currentColor"
         initial="rest"
         whileHover="hover"
         animate="rest"
@@ -117,13 +121,14 @@ function Arrow() {
           x1="1"
           y1="9"
           stroke="currentColor"
-          strokeWidth="1"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           variants={variants}
         />
         <motion.path
           stroke="currentColor"
-          strokeWidth="1"
-          fill="transparent"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           variants={variants}
         />
       </motion.svg>
