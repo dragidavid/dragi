@@ -1,8 +1,8 @@
 import { cn } from "lib/cn";
 
-type Position = "tl" | "tr" | "bl" | "br";
+export type Position = "tl" | "tr" | "bl" | "br";
 
-export type Positions = [Position, ...Position[]] & { length: 1 | 2 | 3 | 4 };
+type Positions = [] | [Position, ...Position[]];
 
 const styles: Record<
   Position,
@@ -36,20 +36,33 @@ const styles: Record<
   },
 };
 
-export default function Joint({ positions }: { positions: Positions }) {
+export default function Joint({
+  origin,
+  positions,
+}: {
+  origin: string;
+  positions: { [key in Position]: string };
+}) {
   return (
     <>
-      {positions.map((position: Position) => (
+      {(Object.keys(positions) as Positions).map((position: Position) => (
         <span
-          key={position}
+          key={`${origin}-${position}`}
           className={cn(
-            "absolute z-40 h-[17px] w-[17px]",
+            "absolute z-40 h-[11px] w-[11px]",
             "pointer-events-none",
-            "text-primary"
+            "text-primary/70",
+            positions[position]
           )}
           style={styles[position]}
+          aria-hidden
         >
-          <svg viewBox="0 0 17 17">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 11 11"
+          >
             <defs>
               <linearGradient id="vertical" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop stopColor="currentColor" stopOpacity="0" />
@@ -64,8 +77,8 @@ export default function Joint({ positions }: { positions: Positions }) {
               </linearGradient>
             </defs>
 
-            <rect x="8" y="0" width="1" height="17" fill="url(#vertical)" />
-            <rect x="0" y="8" width="17" height="1" fill="url(#horizontal)" />
+            <rect x="5" y="0" width="1" height="11" fill="url(#vertical)" />
+            <rect x="0" y="5" width="11" height="1" fill="url(#horizontal)" />
           </svg>
         </span>
       ))}
