@@ -8,6 +8,7 @@ import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { AnimatePresence, motion } from "framer-motion";
 
+import Link from "components/Spotify/Link";
 import Artists from "components/Spotify/Artists";
 import PlaybackStatus from "components/Spotify/PlaybackStatus";
 
@@ -34,12 +35,12 @@ const blurAtom = atomWithStorage("showBlur", true);
 const noiseAtom = atomWithStorage("showNoise", true);
 const albumImageAtom = atomWithStorage("showAlbumImage", false);
 
-export default function Spotify() {
+export default function Spotify({ preview = false }: { preview?: boolean }) {
   const [colors, setColors] = useState<
     undefined | { name: string; hex: string }[]
   >(undefined);
 
-  const { data: track } = useSWR("/api/spotify/track", fetcher, {
+  const { data: track } = useSWR("/api/spotify/player", fetcher, {
     refreshInterval: 90000,
     revalidateOnFocus: false,
   });
@@ -90,7 +91,10 @@ export default function Spotify() {
           <AlbumImage albumImage={track?.album.image} />
 
           <div
-            className={cn("absolute inset-1.5 flex flex-col justify-between")}
+            className={cn(
+              "absolute inset-6 flex flex-col justify-between",
+              preview && "inset-4 md:inset-1.5"
+            )}
           >
             <Logo />
 
@@ -109,14 +113,7 @@ export default function Spotify() {
                 />
 
                 <Marquee className={cn("text-4xl font-black")}>
-                  <a
-                    href={track.trackUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn("hover:cursor-ne-resize hover:underline")}
-                  >
-                    {track.name}
-                  </a>
+                  <Link href={track.trackUrl} label={track.name} />
                 </Marquee>
 
                 <Marquee className={cn("text-md font-medium")}>
@@ -136,11 +133,14 @@ export default function Spotify() {
 function Logo() {
   return (
     <div className={cn("h-[72px] w-[72px]", "pointer-events-none")}>
-      <svg viewBox="0 0 72 72">
-        <path
-          d="M36 0C16.117 0 0 16.117 0 36s16.117 36 36 36 36-16.117 36-36C72 16.12 55.883.002 36 0Zm16.51 51.92a2.242 2.242 0 0 1-3.085.747c-8.453-5.166-19.095-6.333-31.625-3.47a2.242 2.242 0 0 1-2.688-1.688A2.24 2.24 0 0 1 16.8 44.82c13.712-3.132 25.476-1.783 34.966 4.014a2.245 2.245 0 0 1 .744 3.086Zm4.405-9.798a2.809 2.809 0 0 1-3.862.923c-9.674-5.947-24.427-7.669-35.872-4.196a2.81 2.81 0 0 1-3.503-1.869 2.812 2.812 0 0 1 1.872-3.5c13.073-3.968 29.328-2.047 40.439 4.782a2.805 2.805 0 0 1 .926 3.86Zm.378-10.21c-11.605-6.89-30.746-7.524-41.824-4.163a3.365 3.365 0 0 1-4.199-2.243 3.37 3.37 0 0 1 2.246-4.2c12.717-3.86 33.855-3.116 47.214 4.814a3.368 3.368 0 0 1-3.437 5.792Z"
-          fill="currentColor"
-        />
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="100%"
+        width="100%"
+        viewBox="0 0 72 72"
+        fill="currentColor"
+      >
+        <path d="M36 0C16.117 0 0 16.117 0 36s16.117 36 36 36 36-16.117 36-36C72 16.12 55.883.002 36 0Zm16.51 51.92a2.242 2.242 0 0 1-3.085.747c-8.453-5.166-19.095-6.333-31.625-3.47a2.242 2.242 0 0 1-2.688-1.688A2.24 2.24 0 0 1 16.8 44.82c13.712-3.132 25.476-1.783 34.966 4.014a2.245 2.245 0 0 1 .744 3.086Zm4.405-9.798a2.809 2.809 0 0 1-3.862.923c-9.674-5.947-24.427-7.669-35.872-4.196a2.81 2.81 0 0 1-3.503-1.869 2.812 2.812 0 0 1 1.872-3.5c13.073-3.968 29.328-2.047 40.439 4.782a2.805 2.805 0 0 1 .926 3.86Zm.378-10.21c-11.605-6.89-30.746-7.524-41.824-4.163a3.365 3.365 0 0 1-4.199-2.243 3.37 3.37 0 0 1 2.246-4.2c12.717-3.86 33.855-3.116 47.214 4.814a3.368 3.368 0 0 1-3.437 5.792Z" />
       </svg>
     </div>
   );
@@ -222,7 +222,7 @@ function SmallFade() {
       className={cn(
         "absolute bottom-0 left-0 right-0 h-1/2",
         "pointer-events-none",
-        "bg-gradient-to-b from-transparent via-almost-black/50 to-almost-black/90"
+        "bg-gradient-to-b from-transparent via-almost-black/50 to-almost-black"
       )}
     />
   );

@@ -1,4 +1,4 @@
-import { cn } from "lib/cn";
+import Link from "components/Spotify/Link";
 
 export default function Artists({
   artists,
@@ -7,14 +7,7 @@ export default function Artists({
 }) {
   return artists.map((artist, i: number) => (
     <span key={artist.id}>
-      <a
-        href={artist.artistUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={cn("hover:cursor-ne-resize hover:underline")}
-      >
-        {artist.name}
-      </a>
+      <Link href={artist.artistUrl} label={artist.name} />
 
       {i !== artists.length - 1 && ", "}
     </span>
