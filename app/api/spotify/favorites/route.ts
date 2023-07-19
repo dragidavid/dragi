@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 
-import { getTopTracks } from "lib/api/spotify";
+import { getFavorites } from "lib/api/spotify";
 
 export const runtime = "edge";
 
@@ -19,11 +19,11 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const topTracks = await getTopTracks(
+  const favorites = await getFavorites(
     range as "short_term" | "medium_term" | "long_term"
   );
 
-  if (topTracks.status > 400) {
+  if (favorites.status > 400) {
     return NextResponse.json(
       {
         code: "INTERNAL_SERVER_ERROR",
@@ -34,11 +34,11 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const topTracksResponse = await topTracks.json();
+  const favoritesResponse = await favorites.json();
 
   return NextResponse.json(
     [
-      ...topTracksResponse.items.map(
+      ...favoritesResponse.items.map(
         (track: {
           id: string;
           name: string;
