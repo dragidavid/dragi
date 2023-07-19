@@ -50,7 +50,6 @@ export default function Marquee({
     return () => {
       window.removeEventListener("resize", getMoveBy);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -86,6 +85,7 @@ export default function Marquee({
         onHoverStart={startAnimation}
         onTap={startAnimation}
         className={cn("w-max whitespace-nowrap", "will-change-transform")}
+        tabIndex={-1}
       >
         {children}
       </motion.div>
