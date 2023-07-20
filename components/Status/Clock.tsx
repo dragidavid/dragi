@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-import { cn } from "lib/cn";
-
 export default function Clock() {
   const [date, setDate] = useState(new Date());
 
@@ -19,5 +17,5 @@ export default function Clock() {
     };
   }, []);
 
-  return <span className={cn("w-[59px]")}>{date.toLocaleTimeString()}</span>;
+  return <span className="tabular-nums">{date.toLocaleTimeString()}</span>;
 }
