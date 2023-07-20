@@ -23,10 +23,10 @@ export default function Page() {
         <Joint
           origin="spotify-player"
           positions={{
-            tl: "invisible",
-            tr: "invisible md:visible",
-            bl: "invisible",
-            br: "invisible",
+            tl: "hidden",
+            tr: "hidden md:block",
+            bl: "hidden",
+            br: "hidden",
           }}
         />
       </div>
