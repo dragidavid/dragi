@@ -17,5 +17,9 @@ export default function Clock() {
     };
   }, []);
 
-  return <span className="tabular-nums">{date.toLocaleTimeString()}</span>;
+  return (
+    <span className="tabular-nums">
+      {date.toLocaleTimeString("en-GB", { timeZone: "Europe/London" })}
+    </span>
+  );
 }

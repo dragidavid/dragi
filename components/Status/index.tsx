@@ -8,7 +8,7 @@ import { redis } from "lib/redis";
 export default async function Status() {
   return (
     <Marquee speed={15} delay={3}>
-      <div className={cn("mr-4 flex items-center gap-3", "text-secondary")}>
+      <div className={cn("mr-3 flex items-center gap-3", "text-secondary")}>
         <Clock />
 
         <Separator />
@@ -33,6 +33,8 @@ async function LastVisitFrom() {
       <Separator />
 
       <span>{location}</span>
+
+      <Separator />
     </div>
   );
 }
