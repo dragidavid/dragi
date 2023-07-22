@@ -19,11 +19,14 @@ export default function Expand({ href }: { href: string }) {
     visible: {
       pathLength: 1,
       transition: {
-        default: { duration: 0.5, delay: 0.1 },
+        default: { duration: 0.4, delay: 0.1 },
       },
     },
     reversed: {
       pathLength: 0,
+      transition: {
+        default: { duration: 0.4 },
+      },
     },
   };
 
@@ -57,12 +60,7 @@ export default function Expand({ href }: { href: string }) {
         onBlur={() => setIsHovered(false)}
         className={cn(
           "absolute right-0 top-0 z-50",
-          "pointer-events-auto outline-none",
-          "text-secondary",
-          "transition-colors duration-75 ease-in-out",
-          "hover:text-primary",
-          "focus:text-primary",
-          "group"
+          "pointer-events-auto outline-none"
         )}
       >
         <Arrow isHovered={isHovered} />
@@ -71,47 +69,59 @@ export default function Expand({ href }: { href: string }) {
 
       {rect && (
         <svg
-          width={rect.width}
           height={rect.height}
-          className={cn(
-            "absolute inset-0 z-50",
-            "outline-none",
-            "text-primary"
-          )}
+          width={rect.width}
+          className={cn("absolute inset-0 z-50", "pointer-events-none")}
         >
-          {/* <motion.path
-            d={`M${rect.width},0 V${rect.height} H0 V0 Z`}
-            stroke="currentColor"
-            fill="transparent"
-            variants={path}
-            initial="hidden"
-            animate={isHovered ? "visible" : "reversed"}
-            transition={{
-              default: { duration: 0.5 },
-            }}
-          /> */}
+          <defs>
+            <linearGradient
+              id="gradientToBottom"
+              x1="0"
+              x2="0"
+              y1="0"
+              y2="1"
+              gradientUnits="objectBoundingBox"
+            >
+              <stop offset="0%" stopColor="rgb(var(--primary))" />
+              <stop
+                offset="100%"
+                stopColor="rgb(var(--primary))"
+                stopOpacity="0.2"
+              />
+            </linearGradient>
+            <linearGradient
+              id="gradientToLeft"
+              x1="1"
+              x2="0"
+              y1="0"
+              y2="0"
+              gradientUnits="objectBoundingBox"
+            >
+              <stop offset="0%" stopColor="rgb(var(--primary))" />
+              <stop
+                offset="100%"
+                stopColor="rgb(var(--primary))"
+                stopOpacity="0.2"
+              />
+            </linearGradient>
+          </defs>
 
           <motion.path
             d={`M${rect.width},0 V${rect.height} H0`}
-            stroke="currentColor"
+            stroke="url(#gradientToBottom)"
             fill="transparent"
             variants={path}
             initial="hidden"
             animate={isHovered ? "visible" : "reversed"}
-            transition={{
-              default: { duration: 0.5 },
-            }}
           />
+
           <motion.path
             d={`M${rect.width},0 H0 V${rect.height}`}
-            stroke="currentColor"
+            stroke="url(#gradientToLeft)"
             fill="transparent"
             variants={path}
             initial="hidden"
             animate={isHovered ? "visible" : "reversed"}
-            transition={{
-              default: { duration: 0.5 },
-            }}
           />
         </svg>
       )}
@@ -121,41 +131,19 @@ export default function Expand({ href }: { href: string }) {
 
 function Arrow({ isHovered }: { isHovered: boolean }) {
   const variants = {
-    line: {
-      rest: {
-        x2: 6,
-        y2: 4,
-        transition: {
-          duration: 0.1,
-          delay: 0.26,
-        },
-      },
-      hover: {
-        x2: 10,
-        y2: 0,
-        transition: {
-          duration: 0.1,
-        },
+    rest: {
+      x2: 6,
+      y2: 4,
+      transition: {
+        duration: 0.1,
+        delay: 0.4,
       },
     },
-    arrowHead: {
-      rest: {
-        opacity: 0,
-        pathLength: 0,
-        transition: {
-          duration: 0.2,
-          opacity: {
-            delay: 0.1,
-          },
-        },
-      },
-      hover: {
-        opacity: 1,
-        pathLength: 1,
-        transition: {
-          duration: 0.1,
-          delay: 0.13,
-        },
+    hover: {
+      x2: 10,
+      y2: 0,
+      transition: {
+        duration: 0.1,
       },
     },
   };
@@ -163,44 +151,22 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
   return (
     <div className={cn("h-[18px] w-[18px]")}>
       <motion.svg
-        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 10 10"
         height="100%"
         width="100%"
-        viewBox="0 0 10 10"
         fill="none"
         strokeWidth="0.5"
-        color="currentColor"
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
         <motion.line
-          x1="1"
-          y1="9"
-          stroke="currentColor"
+          x1="2"
+          y1="8"
+          stroke="rgb(var(--primary))"
           strokeLinecap="round"
           strokeLinejoin="round"
-          variants={variants.line}
+          variants={variants}
         />
-        {/* <motion.line
-          x1="8"
-          y1="2"
-          x2="2"
-          y2="2"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          variants={variants.arrowHead}
-        />
-        <motion.line
-          x1="8"
-          y1="2"
-          x2="8"
-          y2="8"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          variants={variants.arrowHead}
-        /> */}
       </motion.svg>
     </div>
   );
