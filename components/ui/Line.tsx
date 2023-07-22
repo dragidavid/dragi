@@ -7,8 +7,9 @@ export default function Line({ className }: { className: string }) {
         "absolute z-20",
         "pointer-events-none",
         className,
-        "bg-subtle-grey"
+        "bg-subtle-grey/40"
       )}
+      aria-hidden
     />
   );
 }

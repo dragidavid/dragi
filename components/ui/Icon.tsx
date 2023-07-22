@@ -89,13 +89,12 @@ export default memo(function Icon({
       className={cn("h-8 w-8", "xs:h-9 xs:w-9", "md:h-10 md:w-10", className)}
     >
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="100%"
         viewBox="0 0 24 24"
+        height="100%"
+        width="100%"
         fill="none"
-        strokeWidth="1"
         color="currentColor"
+        strokeWidth="1"
       >
         {icons[name]}
       </svg>

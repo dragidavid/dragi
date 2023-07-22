@@ -10,7 +10,12 @@ export default function Fade({
       {sides.map(({ id, className }) => (
         <div
           key={id}
-          className={cn("pointer-events-none", "backdrop-blur-sm", className)}
+          className={cn(
+            "fixed z-50",
+            "pointer-events-none",
+            "backdrop-blur-sm",
+            className
+          )}
           style={{
             WebkitMaskImage: `linear-gradient(to ${id}, transparent, rgb(var(--almost-black)))`,
           }}
