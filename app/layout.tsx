@@ -1,7 +1,5 @@
 import { Inter } from "next/font/google";
 
-import Fade from "components/ui/Fade";
-
 import Providers from "contexts/Providers";
 
 import { cn } from "lib/cn";
@@ -30,53 +28,13 @@ export default function RootLayout({
         <Providers>
           <main
             className={cn(
-              "mx-auto w-screen max-w-[448px] overflow-hidden",
+              "mx-auto w-screen max-w-[448px] overflow-hidden px-5",
               "select-none",
-              "xs:overflow-y-clip xs:overflow-x-visible",
-              "xs:flex xs:min-h-screen xs:items-center",
+              "xs:flex xs:min-h-screen xs:items-center xs:overflow-y-clip xs:overflow-x-visible",
+              "sm:px-4",
               "md:w-[--container-size] md:max-w-none"
             )}
           >
-            <Fade
-              sides={[
-                {
-                  id: "top",
-                  className: cn(
-                    "fixed left-0 top-0 z-50 h-[9vh] w-screen invisible",
-                    "bg-gradient-to-t from-transparent to-almost-black",
-                    "sm:visible",
-                    "md:h-1/6"
-                  ),
-                },
-                {
-                  id: "left",
-                  className: cn(
-                    "fixed top-0 left-0 z-50 h-screen w-[7vw] invisible",
-                    "bg-gradient-to-l from-transparent to-almost-black",
-                    "xs:visible",
-                    "sm:w-1/6"
-                  ),
-                },
-                {
-                  id: "bottom",
-                  className: cn(
-                    "fixed bottom-0 left-0 z-50 h-[11vh] w-screen",
-                    "bg-gradient-to-b from-transparent to-almost-black",
-                    "md:h-1/6"
-                  ),
-                },
-                {
-                  id: "right",
-                  className: cn(
-                    "fixed top-0 right-0 z-50 h-screen w-[7vw] invisible",
-                    "bg-gradient-to-r from-transparent to-almost-black",
-                    "xs:visible",
-                    "sm:w-1/6"
-                  ),
-                },
-              ]}
-            />
-
             {children}
           </main>
         </Providers>

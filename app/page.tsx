@@ -1,12 +1,13 @@
+import Module from "components/Module";
+
 import About from "components/Previews/About";
 import Tools from "components/Previews/Tools";
 import Projects from "components/Previews/Projects";
 import Craft from "components/Previews/Craft";
 import Spotify from "components/Previews/Spotify";
 
+import Fade from "components/ui/Fade";
 import Line from "components/ui/Line";
-import Joint, { type Positions } from "components/ui/Joint";
-import Expand from "components/ui/Expand";
 
 import { cn } from "lib/cn";
 
@@ -17,8 +18,9 @@ const commonClasses = {
   left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block",
 };
 
-const sections = [
+const modules = [
   {
+    id: "about",
     component: <About />,
     lines: {
       top: "-right-full w-double md:right-0 md:w-screen",
@@ -26,10 +28,16 @@ const sections = [
       bottom: "-right-full w-double md:right-0 md:w-screen",
       left: "bottom-0",
     },
-    jointPositions: ["tl", "tr", "bl"],
-    sectionStyles: "md:col-span-2",
+    joints: {
+      tl: "invisible md:visible",
+      tr: "invisible md:visible",
+      bl: "invisible md:visible",
+      br: "invisible",
+    },
+    moduleStyles: "md:col-span-2",
   },
   {
+    id: "tools",
     page: "tools",
     component: <Tools />,
     lines: {
@@ -37,10 +45,16 @@ const sections = [
       bottom: "-right-full w-double md:right-0 md:w-screen",
       left: "top-0",
     },
-    jointPositions: ["tl", "tr", "bl", "br"],
-    sectionStyles: "md:row-start-3",
+    joints: {
+      tl: "visible",
+      tr: "visible",
+      bl: "visible",
+      br: "visible",
+    },
+    moduleStyles: "md:row-start-3",
   },
   {
+    id: "projects",
     page: "projects",
     component: <Projects />,
     lines: {
@@ -48,10 +62,16 @@ const sections = [
       bottom: "-left-full w-double md:left-0 md:w-screen",
       left: "top-0",
     },
-    jointPositions: ["tl"],
-    sectionStyles: "md:row-span-2 md:row-start-2",
+    joints: {
+      tl: "invisible md:visible",
+      tr: "invisible",
+      bl: "visible md:invisible",
+      br: "visible md:invisible",
+    },
+    moduleStyles: "md:row-span-2 md:row-start-2",
   },
   {
+    id: "craft",
     page: "craft",
     component: <Craft />,
     lines: {
@@ -59,16 +79,27 @@ const sections = [
       right: "bottom-0",
       bottom: "-left-full w-double md:left-0 md:w-screen",
     },
-    jointPositions: ["tl", "tr"],
+    joints: {
+      tl: "invisible md:visible",
+      tr: "invisible md:visible",
+      bl: "visible md:invisible",
+      br: "visible md:invisible",
+    },
   },
   {
+    id: "spotify",
     page: "spotify",
     component: <Spotify />,
     lines: {
       right: "top-0",
     },
-    jointPositions: ["tl", "tr", "bl", "br"],
-    sectionStyles: "md:row-span-2",
+    joints: {
+      tl: "invisible md:visible",
+      tr: "invisible md:visible",
+      bl: "invisible md:visible",
+      br: "invisible md:visible",
+    },
+    moduleStyles: "md:row-span-2",
   },
 ].map((section) => ({
   ...section,
@@ -87,80 +118,82 @@ export default function Page() {
   return (
     <div
       className={cn(
-        "relative flex w-full flex-col items-center justify-center",
-        "md:grid md:h-[--container-size] md:grid-cols-3 md:grid-rows-3"
+        "relative flex min-h-screen w-full flex-col items-center justify-start py-12",
+        "xs:justify-center",
+        "md:grid md:h-[--container-size] md:min-h-0 md:grid-cols-3 md:grid-rows-3 md:py-0"
       )}
     >
+      <Fade
+        sides={[
+          {
+            id: "top",
+            className: cn(
+              "left-0 top-0 h-[9vh] w-screen",
+              "bg-gradient-to-t from-transparent to-almost-black",
+              "md:h-1/6"
+            ),
+          },
+          {
+            id: "left",
+            className: cn(
+              "top-0 left-0 h-screen w-[7vw] invisible",
+              "bg-gradient-to-l from-transparent to-almost-black",
+              "xs:visible",
+              "sm:w-1/6"
+            ),
+          },
+          {
+            id: "bottom",
+            className: cn(
+              "bottom-0 left-0 h-[11vh] w-screen",
+              "bg-gradient-to-b from-transparent to-almost-black",
+              "md:h-1/6"
+            ),
+          },
+          {
+            id: "right",
+            className: cn(
+              "top-0 right-0 h-screen w-[7vw] invisible",
+              "bg-gradient-to-r from-transparent to-almost-black",
+              "xs:visible",
+              "sm:w-1/6"
+            ),
+          },
+        ]}
+      />
+
       <Line
         className={cn(
-          "left-0 hidden h-double w-px",
+          "-bottom-full -top-full left-0 w-px",
           "-translate-x-1/2",
-          "xs:block",
           "md:hidden"
         )}
       />
 
-      {sections.map((section, i) => (
-        <Section
-          key={i}
-          page={section.page}
-          lines={section.lines}
-          jointPositions={section.jointPositions as Positions}
-          sectionStyles={cn(section.sectionStyles)}
+      {modules.map((module) => (
+        <Module
+          key={module.id}
+          id={module.id}
+          page={module.page}
+          preview
+          lines={module.lines}
+          joints={module.joints}
+          moduleStyles={cn(
+            "flex h-full max-h-[calc(var(--container-size)*2/3)]",
+            module.moduleStyles
+          )}
         >
-          {section.component}
-        </Section>
+          {module.component}
+        </Module>
       ))}
 
       <Line
         className={cn(
-          "right-0 hidden h-double w-px",
+          "-bottom-full -top-full right-0 w-px",
           "translate-x-1/2",
-          "xs:block",
           "md:hidden"
         )}
       />
-    </div>
-  );
-}
-
-function Section({
-  children,
-  page,
-  lines,
-  jointPositions,
-  sectionStyles,
-}: {
-  children: React.ReactNode;
-  page?: string;
-  lines?: {
-    top?: string;
-    right?: string;
-    bottom?: string;
-    left?: string;
-  };
-  jointPositions: Positions;
-  sectionStyles?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "relative flex h-full max-h-[calc(var(--container-size)*2/3)] w-full",
-        sectionStyles
-      )}
-    >
-      {lines &&
-        (Object.keys(lines) as Array<keyof typeof lines>).map((side) => (
-          <Line key={side} className={cn(lines[side])} />
-        ))}
-
-      <Joint positions={jointPositions} />
-
-      <div className={cn("flex-1 overflow-hidden")}>
-        {page && <Expand href={page} />}
-
-        {children}
-      </div>
     </div>
   );
 }

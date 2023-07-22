@@ -1,7 +1,9 @@
+import Module from "components/Module";
+
 import Navigation from "components/Navigation";
 
+import Fade from "components/ui/Fade";
 import Line from "components/ui/Line";
-import Joint, { type Positions } from "components/ui/Joint";
 
 import { cn } from "lib/cn";
 
@@ -14,62 +16,84 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         "md:h-[--container-size]"
       )}
     >
-      <Line
-        className={cn(
-          "left-0 hidden h-double w-px",
-          "-translate-x-1/2",
-          "xs:block"
-        )}
+      <Fade
+        sides={[
+          {
+            id: "top",
+            className: cn(
+              "left-0 top-0 h-[9vh] w-screen",
+              "bg-gradient-to-t from-transparent to-almost-black",
+              "md:h-1/6"
+            ),
+          },
+          {
+            id: "left",
+            className: cn(
+              "top-0 left-0 h-screen w-[7vw] invisible",
+              "bg-gradient-to-l from-transparent to-almost-black",
+              "xs:visible",
+              "sm:w-1/6"
+            ),
+          },
+          {
+            id: "bottom",
+            className: cn(
+              "bottom-0 left-0 h-[11vh] w-screen",
+              "bg-gradient-to-b from-transparent to-almost-black",
+              "md:h-1/6"
+            ),
+          },
+          {
+            id: "right",
+            className: cn(
+              "top-0 right-0 h-screen w-[7vw] invisible",
+              "bg-gradient-to-r from-transparent to-almost-black",
+              "xs:visible",
+              "sm:w-1/6"
+            ),
+          },
+        ]}
       />
 
-      <Section
-        jointPositions={["tl", "tr"]}
-        className="pb-[--mobile-navigation-height] xs:h-[calc(100vh-8vh-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]"
+      <Line
+        className={cn("-bottom-full -top-full left-0 w-px", "-translate-x-1/2")}
+      />
+
+      <Module
+        id="content"
+        lines={{
+          top: "-left-full -right-full hidden h-px -translate-y-1/2 xs:block",
+        }}
+        joints={{
+          tl: "invisible md:visible",
+          tr: "invisible md:visible",
+          bl: "invisible",
+          br: "invisible",
+        }}
+        moduleStyles="pb-[--mobile-navigation-height] h-[100dvh] xs:h-[calc(100vh-8vh-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]"
       >
-        <Line
-          className={cn(
-            "-left-full hidden h-px w-double -translate-y-1/2",
-            "xs:block"
-          )}
-        />
+        <div className="h-full flex-1 overflow-auto md:overflow-visible">
+          {children}
+        </div>
+      </Module>
 
-        <div className={cn("h-full flex-1 overflow-auto")}>{children}</div>
-      </Section>
-
-      <Section
-        jointPositions={["tl", "tr"]}
-        className="fixed bottom-0 left-0 xs:relative"
+      <Module
+        id="navigation"
+        lines={{ top: "-left-full -right-full h-px -translate-y-1/2" }}
+        joints={{
+          tl: "visible",
+          tr: "visible",
+          bl: "invisible",
+          br: "invisible",
+        }}
+        moduleStyles="fixed bottom-0 left-5 w-[calc(100vw-2.5rem)] xs:relative xs:left-auto xs:w-full"
       >
-        <Line className={cn("-left-full h-px w-double -translate-y-1/2")} />
-
         <Navigation />
-      </Section>
+      </Module>
 
       <Line
-        className={cn(
-          "right-0 hidden h-double w-px",
-          "translate-x-1/2",
-          "xs:block"
-        )}
+        className={cn("-bottom-full -top-full right-0 w-px", "translate-x-1/2")}
       />
-    </div>
-  );
-}
-
-function Section({
-  children,
-  jointPositions,
-  className,
-}: {
-  children: React.ReactNode;
-  jointPositions?: Positions;
-  className?: string;
-}) {
-  return (
-    <div className={cn("relative w-full", className)}>
-      {jointPositions && <Joint positions={jointPositions} />}
-
-      {children}
     </div>
   );
 }
