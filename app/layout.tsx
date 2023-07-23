@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Providers from "contexts/Providers";
 
 import { cn } from "lib/cn";
+import { satoshi, spaceGrotesk, switzer, outfit } from "lib/fonts";
 
 import "styles/globals.css";
 
@@ -17,9 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn(inter.variable, "text-sm antialiased")}>
+    <html
+      lang="en"
+      className={cn(
+        inter.variable,
+        satoshi.variable,
+        spaceGrotesk.variable,
+        switzer.variable,
+        outfit.variable,
+        "text-sm antialiased"
+      )}
+    >
       <body
         className={cn(
+          "font-switzer",
           "overflow-x-clip",
           "bg-almost-black text-primary caret-fuchsia-500",
           "selection:bg-fuchsia-500 selection:text-primary"

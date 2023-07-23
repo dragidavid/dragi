@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+
+export default {
   content: [
     "./app/**/*.{tsx,ts}",
     "./pages/**/*.{tsx,ts}",
@@ -49,6 +50,12 @@ module.exports = {
       animation: {
         flash: "flash 1.4s infinite linear",
       },
+    },
+    fontFamily: {
+      satoshi: ["var(--font-satoshi)"],
+      spaceGrotesk: ["var(--font-space-grotesk)"],
+      switzer: ["var(--font-switzer)"],
+      outfit: ["var(--font-outfit)"],
     },
   },
   plugins: [require("tailwindcss-animate")],
