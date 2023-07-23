@@ -30,7 +30,7 @@ export default function Module({
     <div key={id} className={cn("relative w-full", moduleStyles)}>
       {lines &&
         (Object.keys(lines) as Array<keyof typeof lines>).map((side) => (
-          <Line key={side} className={cn(lines[side])} />
+          <Line key={side} className={lines[side]} />
         ))}
 
       <Joint origin={id} positions={joints} />
