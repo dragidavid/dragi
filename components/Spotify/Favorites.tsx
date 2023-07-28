@@ -7,6 +7,8 @@ import useSWR from "swr";
 import Link from "components/Spotify/Link";
 import Artists from "components/Spotify/Artists";
 
+import Heading from "components/ui/Heading";
+
 import {
   Table,
   TableCaption,
@@ -49,8 +51,8 @@ export default function Favorites() {
 
   return (
     <div className={cn("flex flex-col pb-6")}>
-      <div className={cn("flex w-full justify-between p-6")}>
-        <h1 className={cn("text-4xl font-black")}>Favorites</h1>
+      <div className={cn("flex w-full items-center justify-between p-6")}>
+        <Heading>Favorites</Heading>
 
         <div>
           <Select
@@ -59,7 +61,10 @@ export default function Favorites() {
               setLocalSelectedRange(value)
             }
           >
-            <SelectTrigger className={cn("w-36", "border-none")}>
+            <SelectTrigger
+              className={cn("w-36", "border-none")}
+              aria-label="date_range"
+            >
               <SelectValue>{map[localSelectedRange]}</SelectValue>
             </SelectTrigger>
             <SelectContent>
@@ -80,7 +85,7 @@ export default function Favorites() {
           Most played tracks in the {map[localSelectedRange]}.
         </TableCaption>
         <TableHeader>
-          <TableRow className={cn("font-black", "border-subtle-grey/40")}>
+          <TableRow className={cn("font-black", "border-line/90")}>
             <TableHead className="w-11">#</TableHead>
             <TableHead>Title</TableHead>
           </TableRow>

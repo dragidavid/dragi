@@ -7,7 +7,7 @@ import { redis } from "lib/redis";
 
 export default async function Status() {
   return (
-    <Marquee speed={15} delay={3}>
+    <Marquee speed={15}>
       <div className={cn("mr-3 flex items-center gap-3", "text-secondary")}>
         <Clock />
 

@@ -158,7 +158,7 @@ function BlurLayer() {
           className={cn(
             "absolute inset-0",
             "pointer-events-none",
-            "bg-black/20 backdrop-blur-xl"
+            "bg-background/20 backdrop-blur-xl"
           )}
         />
       ) : null}
@@ -192,9 +192,9 @@ function NoiseLayer() {
               ></feTurbulence>
               <feColorMatrix type="saturate" values="0"></feColorMatrix>
               <feComponentTransfer>
-                <feFuncR type="linear" slope="0.4"></feFuncR>
-                <feFuncG type="linear" slope="0.4"></feFuncG>
-                <feFuncB type="linear" slope="0.4"></feFuncB>
+                <feFuncR type="linear" slope="0.5"></feFuncR>
+                <feFuncG type="linear" slope="0.5"></feFuncG>
+                <feFuncB type="linear" slope="0.5"></feFuncB>
                 <feFuncA type="linear" slope="0.52"></feFuncA>
               </feComponentTransfer>
               <feComponentTransfer>
@@ -217,7 +217,7 @@ function SmallFade() {
       className={cn(
         "absolute bottom-0 left-0 right-0 h-1/2",
         "pointer-events-none",
-        "bg-gradient-to-b from-transparent via-almost-black/50 to-almost-black"
+        "bg-gradient-to-b from-transparent via-background/50 to-background"
       )}
     />
   );
@@ -240,7 +240,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
           className={cn(
             "absolute left-1/2 top-1/2 h-[178px] w-[178px]",
             "pointer-events-none",
-            "shadow-lg shadow-almost-black/50",
+            "shadow-xl",
             "-translate-x-1/2 -translate-y-1/2"
           )}
         >

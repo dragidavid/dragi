@@ -51,7 +51,7 @@ export default function Joint({
           className={cn(
             "absolute z-40 h-[11px] w-[11px]",
             "pointer-events-none",
-            "text-primary/70",
+            "text-primary/50",
             positions[position]
           )}
           style={styles[position]}

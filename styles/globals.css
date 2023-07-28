@@ -8,13 +8,34 @@
 
     --radius: 0.5rem;
 
-    --mobile-navigation-height: 108px;
+    --mobile-navigation-height: 128px;
     --desktop-navigation-height: 48px;
 
-    --primary: 224 224 224;
-    --secondary: 158 158 158;
-    --almost-black: 13 13 13;
-    --subtle-grey: 61 61 61;
+    /* zinc-[50,900,500,300] */
+    /* --background: 0 0% 98%;
+    --primary: 240 6% 10%;
+    --secondary: 240 4% 46%;
+    --line: 240 5% 84%; */
+
+    /* gray-[50,900,500,300] */
+    --background: 210 20% 98%;
+    --primary: 221 39% 11%;
+    --secondary: 220 9% 46%;
+    --line: 216 12% 84%;
+  }
+
+  .dark {
+    /* zinc-[950, 50, 400, 800] */
+    /* --background: 240 10% 4%;
+    --primary: 0 0% 98%;
+    --secondary: 240 5% 65%;
+    --line: 240 4% 16%; */
+
+    /* gray-[950, 100, 400, 800] */
+    --background: 224 71% 4%;
+    --primary: 220 14% 96%;
+    --secondary: 218 11% 65%;
+    --line: 215 28% 17%;
   }
 }
 
@@ -42,4 +63,15 @@ input[type="email"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+*::-webkit-scrollbar {
+  height: 0px;
+  width: 0px;
+}
+
+@supports (scrollbar-width) {
+  * {
+    scrollbar-width: none;
+  }
 }

@@ -1,13 +1,13 @@
 import { cn } from "lib/cn";
 
-export default function Line({ className }: { className: string }) {
+export default function Line({ className }: { className?: string }) {
   return (
     <div
       className={cn(
         "absolute z-20",
         "pointer-events-none",
-        className,
-        "bg-subtle-grey/40"
+        "bg-line/90",
+        className
       )}
       aria-hidden
     />

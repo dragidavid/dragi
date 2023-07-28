@@ -17,7 +17,7 @@ export default function Fade({
             className
           )}
           style={{
-            WebkitMaskImage: `linear-gradient(to ${id}, transparent, rgb(var(--almost-black)))`,
+            WebkitMaskImage: `linear-gradient(to ${id}, transparent, hsl(var(--background)))`,
           }}
           aria-hidden
         />

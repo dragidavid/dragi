@@ -71,6 +71,7 @@ export default function Expand({ href }: { href: string }) {
         <svg
           height={rect.height}
           width={rect.width}
+          strokeWidth="1.5"
           className={cn("absolute inset-0 z-50", "pointer-events-none")}
         >
           <defs>
@@ -82,10 +83,10 @@ export default function Expand({ href }: { href: string }) {
               y2="1"
               gradientUnits="objectBoundingBox"
             >
-              <stop offset="0%" stopColor="rgb(var(--primary))" />
+              <stop offset="0%" stopColor="hsl(var(--primary))" />
               <stop
                 offset="100%"
-                stopColor="rgb(var(--primary))"
+                stopColor="hsl(var(--primary))"
                 stopOpacity="0.2"
               />
             </linearGradient>
@@ -97,10 +98,10 @@ export default function Expand({ href }: { href: string }) {
               y2="0"
               gradientUnits="objectBoundingBox"
             >
-              <stop offset="0%" stopColor="rgb(var(--primary))" />
+              <stop offset="0%" stopColor="hsl(var(--primary))" />
               <stop
                 offset="100%"
-                stopColor="rgb(var(--primary))"
+                stopColor="hsl(var(--primary))"
                 stopOpacity="0.2"
               />
             </linearGradient>
@@ -162,7 +163,7 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
         <motion.line
           x1="2"
           y1="8"
-          stroke="rgb(var(--primary))"
+          stroke="hsl(var(--primary))"
           strokeLinecap="round"
           strokeLinejoin="round"
           variants={variants}

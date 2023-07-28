@@ -129,7 +129,7 @@ export default function Page() {
             id: "top",
             className: cn(
               "left-0 top-0 h-[9vh] w-screen",
-              "bg-gradient-to-t from-transparent to-almost-black",
+              "bg-gradient-to-t from-transparent to-background",
               "md:h-1/6"
             ),
           },
@@ -137,7 +137,7 @@ export default function Page() {
             id: "left",
             className: cn(
               "top-0 left-0 h-screen w-[7vw] invisible",
-              "bg-gradient-to-l from-transparent to-almost-black",
+              "bg-gradient-to-l from-transparent to-background",
               "xs:visible",
               "sm:w-1/6"
             ),
@@ -146,7 +146,7 @@ export default function Page() {
             id: "bottom",
             className: cn(
               "bottom-0 left-0 h-[11vh] w-screen",
-              "bg-gradient-to-b from-transparent to-almost-black",
+              "bg-gradient-to-b from-transparent to-background",
               "md:h-1/6"
             ),
           },
@@ -154,7 +154,7 @@ export default function Page() {
             id: "right",
             className: cn(
               "top-0 right-0 h-screen w-[7vw] invisible",
-              "bg-gradient-to-r from-transparent to-almost-black",
+              "bg-gradient-to-r from-transparent to-background",
               "xs:visible",
               "sm:w-1/6"
             ),

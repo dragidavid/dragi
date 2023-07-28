@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: ["class"],
   content: [
     "./app/**/*.{tsx,ts}",
     "./pages/**/*.{tsx,ts}",
@@ -8,14 +9,13 @@ export default {
     "./contexts/**/*.{tsx,ts}",
     "./lib/**/*.{tsx,ts}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        primary: "rgb(var(--primary) / <alpha-value>)",
-        secondary: "rgb(var(--secondary) / <alpha-value>)",
-        "almost-black": "rgb(var(--almost-black) / <alpha-value>)",
-        "subtle-grey": "rgb(var(--subtle-grey) / <alpha-value>)",
+        background: "hsl(var(--background) / <alpha-value>)",
+        primary: "hsl(var(--primary) / <alpha-value>)",
+        secondary: "hsl(var(--secondary) / <alpha-value>)",
+        line: "hsl(var(--line) / <alpha-value>)",
       },
       screens: {
         xs: "448px",

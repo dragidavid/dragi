@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             id: "top",
             className: cn(
               "left-0 top-0 h-[9vh] w-screen",
-              "bg-gradient-to-t from-transparent to-almost-black",
+              "bg-gradient-to-t from-transparent to-background",
               "md:h-1/6"
             ),
           },
@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             id: "left",
             className: cn(
               "top-0 left-0 h-screen w-[7vw] invisible",
-              "bg-gradient-to-l from-transparent to-almost-black",
+              "bg-gradient-to-l from-transparent to-background",
               "xs:visible",
               "sm:w-1/6"
             ),
@@ -39,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             id: "bottom",
             className: cn(
               "bottom-0 left-0 h-[11vh] w-screen",
-              "bg-gradient-to-b from-transparent to-almost-black",
+              "bg-gradient-to-b from-transparent to-background",
               "md:h-1/6"
             ),
           },
@@ -47,7 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             id: "right",
             className: cn(
               "top-0 right-0 h-screen w-[7vw] invisible",
-              "bg-gradient-to-r from-transparent to-almost-black",
+              "bg-gradient-to-r from-transparent to-background",
               "xs:visible",
               "sm:w-1/6"
             ),
@@ -65,8 +65,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           top: "-left-full -right-full hidden h-px -translate-y-1/2 xs:block",
         }}
         joints={{
-          tl: "invisible md:visible",
-          tr: "invisible md:visible",
+          tl: "invisible xs:visible",
+          tr: "invisible xs:visible",
           bl: "invisible",
           br: "invisible",
         }}
@@ -86,7 +86,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           bl: "invisible",
           br: "invisible",
         }}
-        moduleStyles="fixed bottom-0 left-5 w-[calc(100vw-2.5rem)] xs:relative xs:left-auto xs:w-full"
+        moduleStyles="fixed z-30 bottom-0 left-5 w-[calc(100vw-2.5rem)] xs:relative xs:left-auto xs:w-full"
       >
         <Navigation />
       </Module>

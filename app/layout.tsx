@@ -28,16 +28,18 @@ export default function RootLayout({
         outfit.variable,
         "text-sm antialiased"
       )}
+      suppressHydrationWarning
     >
+      <head />
       <body
         className={cn(
-          "font-switzer",
+          // "font-switzer",
           "overflow-x-clip",
-          "bg-almost-black text-primary caret-fuchsia-500",
+          "bg-background text-primary caret-fuchsia-500",
           "selection:bg-fuchsia-500 selection:text-primary"
         )}
       >
-        <Providers>
+        <Providers attribute="class" defaultTheme="system" enableSystem>
           <main
             className={cn(
               "mx-auto w-screen max-w-[448px] overflow-hidden px-5",

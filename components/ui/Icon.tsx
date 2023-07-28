@@ -86,7 +86,12 @@ export default memo(function Icon({
 }) {
   return (
     <div
-      className={cn("h-8 w-8", "xs:h-9 xs:w-9", "md:h-10 md:w-10", className)}
+      className={cn(
+        "relative z-10 h-8 w-8",
+        "xs:h-9 xs:w-9",
+        "md:h-10 md:w-10",
+        className
+      )}
     >
       <svg
         viewBox="0 0 24 24"
@@ -94,7 +99,6 @@ export default memo(function Icon({
         width="100%"
         fill="none"
         color="currentColor"
-        strokeWidth="1"
       >
         {icons[name]}
       </svg>

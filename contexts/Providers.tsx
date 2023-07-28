@@ -1,7 +1,14 @@
 "use client";
 
 import { Provider as JotaiProvider } from "jotai";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
-  return <JotaiProvider>{children}</JotaiProvider>;
+import { type ThemeProviderProps } from "next-themes/dist/types";
+
+export default function Providers({ children, ...props }: ThemeProviderProps) {
+  return (
+    <NextThemesProvider {...props}>
+      <JotaiProvider>{children}</JotaiProvider>
+    </NextThemesProvider>
+  );
 }

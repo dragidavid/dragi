@@ -71,8 +71,8 @@ export default function Navigation() {
     <nav
       ref={navRef}
       className={cn(
-        "relative flex h-[--mobile-navigation-height] w-full font-mono font-medium",
-        "bg-almost-black text-secondary",
+        "relative flex h-[--mobile-navigation-height] w-full font-medium",
+        "bg-background text-secondary",
         "md:h-[--desktop-navigation-height]"
       )}
     >
@@ -141,7 +141,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-primary/10 via-primary/5 to-transparent"
+                    "bg-gradient-to-b from-line/90 via-line/50 to-transparent"
                   )}
                 />
               )}
