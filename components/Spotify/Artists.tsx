@@ -6,7 +6,7 @@ export default function Artists({
   artists: { id: string; artistUrl: string; name: string }[];
 }) {
   return artists.map((artist, i: number) => (
-    <span key={artist.id}>
+    <span key={artist.id} className="text-secondary">
       <Link href={artist.artistUrl} label={artist.name} />
 
       {i !== artists.length - 1 && ", "}

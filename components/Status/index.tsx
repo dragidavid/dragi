@@ -8,14 +8,18 @@ import { redis } from "lib/redis";
 export default async function Status() {
   return (
     <Marquee speed={15}>
-      <div className={cn("mr-3 flex items-center gap-3", "text-secondary")}>
+      <div className={cn("flex items-center text-sm", "text-secondary/50")}>
         <Clock />
 
         <Separator />
 
         <span>london, united kingdom</span>
 
+        <Separator />
+
         <LastVisitFrom />
+
+        <Separator />
       </div>
     </Marquee>
   );
@@ -29,16 +33,12 @@ async function LastVisitFrom() {
   }
 
   return (
-    <div className={cn("flex items-center gap-3")}>
-      <Separator />
-
+    <div className={cn("flex items-center")}>
       <span>{location}</span>
-
-      <Separator />
     </div>
   );
 }
 
 function Separator() {
-  return <div className={cn("h-1 w-1 rounded-full", "bg-secondary")} />;
+  return <div className={cn("mx-5 h-1 w-1 rounded-full", "bg-secondary/50")} />;
 }

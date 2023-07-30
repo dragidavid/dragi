@@ -158,8 +158,7 @@ export default function Favorites() {
 
                           <div
                             className={cn(
-                              "overflow-hidden text-ellipsis whitespace-nowrap",
-                              "text-secondary"
+                              "overflow-hidden text-ellipsis whitespace-nowrap"
                             )}
                           >
                             <Artists artists={track.artists} />

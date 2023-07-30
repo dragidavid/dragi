@@ -70,7 +70,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           bl: "invisible",
           br: "invisible",
         }}
-        moduleStyles="pb-[--mobile-navigation-height] h-[100dvh] xs:h-[calc(100vh-8vh-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]"
+        moduleStyles="h-[100dvh] pb-[--mobile-navigation-height] xs:h-[calc(100vh-8vh-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]"
       >
         <div className="h-full flex-1 overflow-auto md:overflow-visible">
           {children}
