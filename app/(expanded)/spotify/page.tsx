@@ -14,7 +14,7 @@ export default function Page() {
 
         <Line
           className={cn(
-            "bottom-0 right-0 hidden h-screen w-px",
+            "bottom-0 right-0 top-0 hidden w-px",
             "translate-x-1/2",
             "md:block"
           )}

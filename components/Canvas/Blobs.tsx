@@ -1,13 +1,11 @@
 import { useRef } from "react";
-import { MathUtils } from "three";
+import { MathUtils, type InstancedMesh } from "three";
 import { useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Instances, Instance } from "@react-three/drei";
 
-import { random } from "lib/utils";
+import { random } from "lib/random";
 
-import type { InstancedMesh } from "three";
-
-export default function InstancedBlobs({
+export default function Blobs({
   colors = [],
 }: {
   colors?: { name: string; hex: string }[];

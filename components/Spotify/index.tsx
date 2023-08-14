@@ -17,18 +17,18 @@ import Marquee from "components/ui/Marquee";
 import {
   ContextMenu,
   ContextMenuTrigger,
-  ContextMenuContent,
+  ContextMenuContent as ContextMenuContentPrimitive,
   ContextMenuLabel,
   ContextMenuSeparator,
   ContextMenuCheckboxItem,
 } from "components/ui/primitives/ContextMenu";
 
 import { cn } from "lib/cn";
+import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
-import { getColors } from "lib/utils";
 
-const Scene = dynamic(() => import("components/Spotify/Scene"), { ssr: false });
-const Blob = dynamic(() => import("components/Spotify/Blob"), {
+const Scene = dynamic(() => import("components/Canvas"), { ssr: false });
+const Blobs = dynamic(() => import("components/Canvas/Blobs"), {
   ssr: false,
 });
 
@@ -37,7 +37,7 @@ const noiseAtom = atomWithStorage("showNoise", true);
 const albumImageAtom = atomWithStorage("showAlbumImage", false);
 
 export default function Spotify({ preview = false }: { preview?: boolean }) {
-  const [colors, setColors] = useState<
+  const [localColors, setLocalColors] = useState<
     undefined | { name: string; hex: string }[]
   >(undefined);
 
@@ -48,13 +48,13 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
 
   useEffect(() => {
     if (track && track.currentlyPlaying && track.album.image) {
-      getColors(track.album.image).then((res) => {
-        setColors(res);
+      colors(track.album.image).then((res) => {
+        setLocalColors(res);
       });
     }
 
     if (track && !track.currentlyPlaying) {
-      setColors(undefined);
+      setLocalColors(undefined);
     }
   }, [track]);
 
@@ -66,7 +66,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
             "relative h-full min-h-[calc(var(--container-size)*2/3)] w-full overflow-hidden"
           )}
         >
-          {colors && (
+          {localColors && (
             <motion.div
               key={track?.id}
               initial={{ opacity: 0 }}
@@ -78,7 +78,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
               className={cn("absolute inset-0", "pointer-events-none")}
             >
               <Scene>
-                <Blob colors={colors} />
+                <Blobs colors={localColors} />
               </Scene>
             </motion.div>
           )}
@@ -93,7 +93,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
 
           <div
             className={cn(
-              "absolute inset-6 flex flex-col justify-between",
+              "absolute inset-6 z-10 flex flex-col justify-between",
               preview && "inset-4"
             )}
           >
@@ -126,7 +126,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
         </div>
       </ContextMenuTrigger>
 
-      <Content />
+      <ContextMenuContent />
     </ContextMenu>
   );
 }
@@ -156,7 +156,7 @@ function BlurLayer() {
             duration: 0.2,
           }}
           className={cn(
-            "absolute inset-0",
+            "absolute inset-0 z-10",
             "pointer-events-none",
             "bg-background/20 backdrop-blur-xl"
           )}
@@ -180,7 +180,7 @@ function NoiseLayer() {
           transition={{
             duration: 0.2,
           }}
-          className={cn("absolute inset-0", "pointer-events-none")}
+          className={cn("absolute inset-0 z-10", "pointer-events-none")}
         >
           <svg id="noice" height="100%" width="100%">
             <filter id="noise-filter">
@@ -215,7 +215,7 @@ function SmallFade() {
   return (
     <div
       className={cn(
-        "absolute bottom-0 left-0 right-0 h-1/2",
+        "absolute bottom-0 left-0 right-0 z-10 h-1/2",
         "pointer-events-none",
         "bg-gradient-to-b from-transparent via-background/50 to-background"
       )}
@@ -238,7 +238,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
             duration: 0.4,
           }}
           className={cn(
-            "absolute left-1/2 top-1/2 h-[178px] w-[178px]",
+            "absolute left-1/2 top-1/2 z-10 h-[178px] w-[178px]",
             "pointer-events-none",
             "shadow-xl",
             "-translate-x-1/2 -translate-y-1/2"
@@ -251,13 +251,13 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
   );
 }
 
-function Content() {
+function ContextMenuContent() {
   const [showBlur, setShowBlur] = useAtom(blurAtom);
   const [showNoise, setShowNoise] = useAtom(noiseAtom);
   const [showAlbumImage, setShowAlbumImage] = useAtom(albumImageAtom);
 
   return (
-    <ContextMenuContent className="w-64">
+    <ContextMenuContentPrimitive className="w-64">
       <ContextMenuLabel>Appearance</ContextMenuLabel>
       <ContextMenuSeparator />
       <ContextMenuCheckboxItem
@@ -278,6 +278,6 @@ function Content() {
       >
         Show noise
       </ContextMenuCheckboxItem>
-    </ContextMenuContent>
+    </ContextMenuContentPrimitive>
   );
 }
