@@ -11,7 +11,7 @@ export default function Module({
   preview = false,
   lines,
   joints,
-  moduleStyles,
+  className,
 }: {
   children: React.ReactNode;
   id: string;
@@ -23,17 +23,17 @@ export default function Module({
     bottom?: string;
     left?: string;
   };
-  joints: { [key in Position]: string };
-  moduleStyles?: string;
+  joints?: { [key in Position]: string };
+  className?: string;
 }) {
   return (
-    <div key={id} className={cn("relative w-full", moduleStyles)}>
+    <div key={id} className={cn("relative w-full", className)}>
       {lines &&
         (Object.keys(lines) as Array<keyof typeof lines>).map((side) => (
           <Line key={side} className={lines[side]} />
         ))}
 
-      <Joint origin={id} positions={joints} />
+      {joints && <Joint origin={id} positions={joints} />}
 
       {preview ? (
         <div className={cn("flex-1 overflow-hidden")}>

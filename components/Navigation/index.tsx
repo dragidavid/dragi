@@ -72,7 +72,7 @@ export default function Navigation() {
       ref={navRef}
       className={cn(
         "relative flex h-[--mobile-navigation-height] w-full font-medium",
-        "bg-background text-secondary",
+        "text-secondary",
         "md:h-[--desktop-navigation-height]"
       )}
     >

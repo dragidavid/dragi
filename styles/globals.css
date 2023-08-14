@@ -6,6 +6,8 @@
   :root {
     --container-size: 744px;
 
+    --expanded-side-width: 3rem;
+
     --radius: 0.5rem;
 
     --mobile-navigation-height: 128px;
