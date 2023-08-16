@@ -2,13 +2,15 @@ import Marquee from "react-fast-marquee";
 
 import Clock from "components/Status/Clock";
 
+import ThemeToggle from "components/ThemeToggle";
+
 import { cn } from "lib/cn";
 import { redis } from "lib/redis";
 
 export default async function Status() {
   return (
     <Marquee speed={15}>
-      <div className={cn("flex items-center text-sm", "text-secondary/50")}>
+      <div className={cn("flex items-center text-sm")}>
         <Clock />
 
         <Separator />
@@ -20,6 +22,8 @@ export default async function Status() {
         <LastVisitFrom />
 
         <Separator />
+
+        <ThemeToggle />
       </div>
     </Marquee>
   );

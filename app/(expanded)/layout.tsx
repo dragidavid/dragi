@@ -1,6 +1,7 @@
 import Module from "components/Module";
 
 import Navigation from "components/Navigation";
+import Status from "components/Status";
 
 import Fade from "components/ui/Fade";
 import Line from "components/ui/Line";
@@ -19,14 +20,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <Fade
           sides={[
-            {
-              id: "top",
-              className: cn(
-                "left-0 top-0 h-[9vh] w-screen",
-                "bg-gradient-to-t from-transparent to-background",
-                "md:h-1/6"
-              ),
-            },
+            // {
+            //   id: "top",
+            //   className: cn(
+            //     "left-0 top-0 h-[9vh] w-screen",
+            //     "bg-gradient-to-t from-transparent to-background",
+            //     "md:h-1/6"
+            //   ),
+            // },
             {
               id: "left",
               className: cn(
@@ -85,11 +86,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 "xs:[writing-mode:inherit]"
               )}
             >
-              stuff comes here
+              {/* this is broken on mobile now - wont be marquee once done */}
+              <Status />
             </div>
 
             <Pattern
-              name="squiggle"
+              name="plus"
               className={cn("xs:absolute xs:inset-0 xs:rotate-180")}
             />
           </div>
