@@ -7,7 +7,7 @@ export default function Line({ className }: { className?: string }) {
         "absolute z-30",
         "pointer-events-none",
         "bg-line/90",
-        className
+        className,
       )}
       aria-hidden
     />

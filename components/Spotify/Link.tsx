@@ -9,7 +9,7 @@ export default function Link({ href, label }: { href: string; label: string }) {
       className={cn(
         "outline-none",
         "hover:cursor-ne-resize hover:underline",
-        "focus:underline"
+        "focus:underline",
       )}
     >
       {label}

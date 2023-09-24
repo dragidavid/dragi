@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
+
 import { Check, ChevronRight, Circle } from "lucide-react";
 
 import { cn } from "lib/cn";
@@ -32,7 +33,7 @@ const ContextMenuSubTrigger = React.forwardRef<
       "focus:bg-primary/10",
       "data-[state=open]:bg-primary/10 data-[state=open]:text-primary",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   >
@@ -52,7 +53,7 @@ const ContextMenuSubContent = React.forwardRef<
       "z-50 min-w-[8rem] overflow-hidden rounded-md p-1",
       "border border-line/90 bg-background shadow-lg",
       "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -71,7 +72,7 @@ const ContextMenuContent = React.forwardRef<
         "border border-line/90 bg-background shadow-lg",
         "animate-in fade-in-80",
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
+        className,
       )}
       {...props}
     />
@@ -93,7 +94,7 @@ const ContextMenuItem = React.forwardRef<
       "focus:bg-primary/10",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -111,14 +112,14 @@ const ContextMenuCheckboxItem = React.forwardRef<
       "select-none outline-none",
       "focus:bg-primary/10",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     checked={checked}
     {...props}
   >
     <span
       className={cn(
-        "absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
+        "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
       )}
     >
       <ContextMenuPrimitive.ItemIndicator>
@@ -142,13 +143,13 @@ const ContextMenuRadioItem = React.forwardRef<
       "select-none outline-none",
       "focus:bg-primary/10",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     {...props}
   >
     <span
       className={cn(
-        "absolute left-2 flex h-3.5 w-3.5 items-center justify-center"
+        "absolute left-2 flex h-3.5 w-3.5 items-center justify-center",
       )}
     >
       <ContextMenuPrimitive.ItemIndicator>
@@ -173,7 +174,7 @@ const ContextMenuLabel = React.forwardRef<
       "select-none",
       "text-primary",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -201,7 +202,7 @@ const ContextMenuShortcut = ({
       className={cn(
         "ml-auto text-xs tracking-widest",
         "text-secondary",
-        className
+        className,
       )}
       {...props}
     />

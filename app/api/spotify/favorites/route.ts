@@ -15,12 +15,12 @@ export async function GET(req: NextRequest) {
       },
       {
         status: 400,
-      }
+      },
     );
   }
 
   const favorites = await getFavorites(
-    range as "short_term" | "medium_term" | "long_term"
+    range as "short_term" | "medium_term" | "long_term",
   );
 
   if (favorites.status > 400) {
@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 
@@ -69,11 +69,11 @@ export async function GET(req: NextRequest) {
             image: track.album.images[1].url,
             albumUrl: track.album.external_urls.spotify,
           },
-        })
+        }),
       ),
     ],
     {
       status: 200,
-    }
+    },
   );
 }

@@ -59,7 +59,7 @@ const TableRow = React.forwardRef<
       "transition-colors duration-100 ease-in-out",
       "hover:bg-primary/5",
       "data-[state=selected]:bg-primary/5",
-      className
+      className,
     )}
     {...props}
   />
@@ -76,7 +76,7 @@ const TableHead = React.forwardRef<
       "h-12 px-6 text-left align-middle",
       "text-primary",
       "[&:has([role=checkbox])]:pr-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -92,7 +92,7 @@ const TableCell = React.forwardRef<
     className={cn(
       "p-6 align-middle",
       "[&:has([role=checkbox])]:pr-0",
-      className
+      className,
     )}
     {...props}
   />

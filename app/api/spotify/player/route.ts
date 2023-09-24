@@ -15,7 +15,7 @@ export async function GET() {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 
@@ -38,7 +38,7 @@ export async function GET() {
               id: artist.id,
               name: artist.name,
               artistUrl: artist.external_urls.spotify,
-            })
+            }),
           ),
           album: {
             id: nowPlayingResponse.item.album.id,
@@ -49,7 +49,7 @@ export async function GET() {
         },
         {
           status: 200,
-        }
+        },
       );
     }
   }
@@ -63,7 +63,7 @@ export async function GET() {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 
@@ -87,7 +87,7 @@ export async function GET() {
           id: artist.id,
           name: artist.name,
           artistUrl: artist.external_urls.spotify,
-        })
+        }),
       ),
       album: {
         id: mostRecent.track.album.id,
@@ -98,6 +98,6 @@ export async function GET() {
     },
     {
       status: 200,
-    }
+    },
   );
 }

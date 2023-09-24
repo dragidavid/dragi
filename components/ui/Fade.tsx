@@ -14,7 +14,7 @@ export default function Fade({
             "fixed z-50",
             "pointer-events-none",
             "backdrop-blur-sm",
-            className
+            className,
           )}
           style={{
             WebkitMaskImage: `linear-gradient(to ${id}, transparent, hsl(var(--background)))`,

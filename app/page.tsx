@@ -110,7 +110,7 @@ const modules = [
       ...lines,
       [key]: cn(commonClasses[key], section.lines[key]),
     }),
-    {}
+    {},
   ),
 }));
 
@@ -121,7 +121,7 @@ export default function Page() {
         className={cn(
           "relative flex min-h-screen w-full flex-col items-center justify-start py-12",
           "xs:justify-center",
-          "md:grid md:h-[--container-size] md:min-h-0 md:grid-cols-3 md:grid-rows-3 md:py-0"
+          "md:grid md:h-[--container-size] md:min-h-0 md:grid-cols-3 md:grid-rows-3 md:py-0",
         )}
       >
         <Fade
@@ -131,7 +131,7 @@ export default function Page() {
               className: cn(
                 "left-0 top-0 h-[9vh] w-screen",
                 "bg-gradient-to-t from-transparent to-background",
-                "md:h-1/6"
+                "md:h-1/6",
               ),
             },
             {
@@ -140,7 +140,7 @@ export default function Page() {
                 "top-0 left-0 h-screen w-[7vw] invisible",
                 "bg-gradient-to-l from-transparent to-background",
                 "xs:visible",
-                "sm:w-1/6"
+                "sm:w-1/6",
               ),
             },
             {
@@ -148,7 +148,7 @@ export default function Page() {
               className: cn(
                 "bottom-0 left-0 h-[11vh] w-screen",
                 "bg-gradient-to-b from-transparent to-background",
-                "md:h-1/6"
+                "md:h-1/6",
               ),
             },
             {
@@ -157,7 +157,7 @@ export default function Page() {
                 "top-0 right-0 h-screen w-[7vw] invisible",
                 "bg-gradient-to-r from-transparent to-background",
                 "xs:visible",
-                "sm:w-1/6"
+                "sm:w-1/6",
               ),
             },
           ]}
@@ -167,7 +167,7 @@ export default function Page() {
           className={cn(
             "-bottom-full -top-full left-0 w-px",
             "-translate-x-1/2",
-            "md:hidden"
+            "md:hidden",
           )}
         />
 
@@ -181,7 +181,7 @@ export default function Page() {
             joints={module.joints}
             className={cn(
               "flex h-full max-h-[calc(var(--container-size)*2/3)]",
-              module.moduleStyles
+              module.moduleStyles,
             )}
           >
             {module.component}
@@ -192,7 +192,7 @@ export default function Page() {
           className={cn(
             "-bottom-full -top-full right-0 w-px",
             "translate-x-1/2",
-            "md:hidden"
+            "md:hidden",
           )}
         />
       </div>

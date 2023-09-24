@@ -26,7 +26,7 @@ export default function RootLayout({
         spaceGrotesk.variable,
         switzer.variable,
         outfit.variable,
-        "text-sm antialiased"
+        "text-sm antialiased",
       )}
       suppressHydrationWarning
     >
@@ -36,7 +36,7 @@ export default function RootLayout({
           // "font-switzer",
           "overflow-x-clip",
           "bg-background text-primary caret-primary",
-          "selection:bg-primary selection:text-background"
+          "selection:bg-primary selection:text-background",
         )}
       >
         <Providers attribute="class" defaultTheme="system" enableSystem>
@@ -45,7 +45,7 @@ export default function RootLayout({
               "mx-auto w-screen max-w-[448px] overflow-hidden",
               "select-none",
               "xs:flex xs:min-h-screen xs:items-center xs:overflow-y-clip xs:overflow-x-visible",
-              "md:w-[--container-size] md:max-w-none"
+              "md:w-[--container-size] md:max-w-none",
             )}
           >
             {children}

@@ -73,7 +73,7 @@ export default function Navigation() {
       className={cn(
         "relative flex h-[--mobile-navigation-height] w-full font-medium",
         "text-secondary",
-        "md:h-[--desktop-navigation-height]"
+        "md:h-[--desktop-navigation-height]",
       )}
     >
       {links.map(({ id, content, href }, index: number) => (
@@ -87,7 +87,7 @@ export default function Navigation() {
             pathname === href && "text-primary",
             "transition-all duration-100 ease-in-out",
             "hover:text-primary",
-            "focus:text-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary"
+            "focus:text-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary",
           )}
           style={{
             height: `${height}vh`,
@@ -95,7 +95,7 @@ export default function Navigation() {
         >
           <div
             className={cn(
-              "relative flex h-full items-start justify-center py-8"
+              "relative flex h-full items-start justify-center py-8",
             )}
             style={{
               WebkitTapHighlightColor: "transparent",
@@ -106,7 +106,7 @@ export default function Navigation() {
                 <Line
                   className={cn(
                     "left-0 top-0 h-double w-px",
-                    "-translate-x-1/2"
+                    "-translate-x-1/2",
                   )}
                 />
 
@@ -141,7 +141,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-line/90 via-line/50 to-transparent"
+                    "bg-gradient-to-b from-line/90 via-line/50 to-transparent",
                   )}
                 />
               )}

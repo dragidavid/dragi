@@ -63,7 +63,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
       <ContextMenuTrigger>
         <div
           className={cn(
-            "relative h-full min-h-[calc(var(--container-size)*2/3)] w-full overflow-hidden"
+            "relative h-full min-h-[calc(var(--container-size)*2/3)] w-full overflow-hidden",
           )}
         >
           {localColors && (
@@ -94,7 +94,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
           <div
             className={cn(
               "absolute inset-6 z-10 flex flex-col justify-between",
-              preview && "inset-4"
+              preview && "inset-4",
             )}
           >
             <Logo />
@@ -158,7 +158,7 @@ function BlurLayer() {
           className={cn(
             "absolute inset-0 z-10",
             "pointer-events-none",
-            "bg-background/20 backdrop-blur-xl"
+            "bg-background/20 backdrop-blur-xl",
           )}
         />
       ) : null}
@@ -217,7 +217,7 @@ function SmallFade() {
       className={cn(
         "absolute bottom-0 left-0 right-0 z-10 h-1/2",
         "pointer-events-none",
-        "bg-gradient-to-b from-transparent via-background/50 to-background"
+        "bg-gradient-to-b from-transparent via-background/50 to-background",
       )}
     />
   );
@@ -241,7 +241,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
             "absolute left-1/2 top-1/2 z-10 h-[178px] w-[178px]",
             "pointer-events-none",
             "shadow-xl",
-            "-translate-x-1/2 -translate-y-1/2"
+            "-translate-x-1/2 -translate-y-1/2",
           )}
         >
           <Image src={albumImage} fill alt="album-image" />

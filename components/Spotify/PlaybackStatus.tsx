@@ -10,7 +10,7 @@ export default function PlaybackStatus({
   return (
     <div
       className={cn(
-        "mb-3 flex items-center gap-2 text-xs font-black uppercase"
+        "mb-3 flex items-center gap-2 text-xs font-black uppercase",
       )}
     >
       {currentlyPlaying ? <span>now playing</span> : <span>last played</span>}

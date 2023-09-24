@@ -60,7 +60,7 @@ export default function Expand({ href }: { href: string }) {
         onBlur={() => setIsHovered(false)}
         className={cn(
           "absolute right-0 top-0 z-50",
-          "pointer-events-auto outline-none"
+          "pointer-events-auto outline-none",
         )}
       >
         <Arrow isHovered={isHovered} />

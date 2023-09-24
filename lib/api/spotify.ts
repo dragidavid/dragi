@@ -48,7 +48,7 @@ export const getRecentlyPlayed = async () => {
 };
 
 export const getFavorites = async (
-  range: "short_term" | "medium_term" | "long_term"
+  range: "short_term" | "medium_term" | "long_term",
 ) => {
   const { access_token } = await getAccessToken();
 

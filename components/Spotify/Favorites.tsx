@@ -101,7 +101,7 @@ export default function Favorites() {
 
                       <div
                         className={cn(
-                          "flex w-[calc(100%-40px-12px)] flex-col justify-between"
+                          "flex w-[calc(100%-40px-12px)] flex-col justify-between",
                         )}
                       >
                         <Skeleton
@@ -130,7 +130,7 @@ export default function Favorites() {
                     album: { image: string };
                     artists: { id: string; artistUrl: string; name: string }[];
                   },
-                  index: number
+                  index: number,
                 ) => (
                   <TableRow key={track.id} className="border-none">
                     <TableCell>{index + 1}</TableCell>
@@ -145,12 +145,12 @@ export default function Favorites() {
 
                         <div
                           className={cn(
-                            "flex w-[calc(100%-40px-12px)] flex-col justify-center"
+                            "flex w-[calc(100%-40px-12px)] flex-col justify-center",
                           )}
                         >
                           <div
                             className={cn(
-                              "overflow-hidden text-ellipsis whitespace-nowrap text-base"
+                              "overflow-hidden text-ellipsis whitespace-nowrap text-base",
                             )}
                           >
                             <Link href={track.trackUrl} label={track.name} />
@@ -158,7 +158,7 @@ export default function Favorites() {
 
                           <div
                             className={cn(
-                              "overflow-hidden text-ellipsis whitespace-nowrap"
+                              "overflow-hidden text-ellipsis whitespace-nowrap",
                             )}
                           >
                             <Artists artists={track.artists} />
@@ -167,7 +167,7 @@ export default function Favorites() {
                       </div>
                     </TableCell>
                   </TableRow>
-                )
+                ),
               )}
         </TableBody>
       </Table>

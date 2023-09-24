@@ -85,7 +85,7 @@ export default memo(function Icon({
         "relative z-10 h-8 w-8",
         "xs:h-9 xs:w-9",
         "md:h-10 md:w-10",
-        className
+        className,
       )}
     >
       <svg
