@@ -15,7 +15,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div
         className={cn(
           "relative w-full",
-          "xs:flex xs:flex-col xs:justify-center"
+          "xs:flex xs:flex-col xs:justify-center",
         )}
       >
         <Fade
@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             //   className: cn(
             //     "left-0 top-0 h-[9vh] w-screen",
             //     "bg-gradient-to-t from-transparent to-background",
-            //     "md:h-1/6"
+            //     "md:h-1/6",
             //   ),
             // },
             {
@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 "top-0 left-0 h-screen w-[7vw] invisible",
                 "bg-gradient-to-l from-transparent to-background",
                 "xs:visible",
-                "sm:w-1/6"
+                "sm:w-1/6",
               ),
             },
             {
@@ -42,7 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className: cn(
                 "bottom-0 left-0 h-[11vh] w-screen",
                 "bg-gradient-to-b from-transparent to-background",
-                "md:h-1/6"
+                "md:h-1/6",
               ),
             },
             {
@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 "top-0 right-0 h-screen w-[7vw] invisible",
                 "bg-gradient-to-r from-transparent to-background",
                 "xs:visible",
-                "sm:w-1/6"
+                "sm:w-1/6",
               ),
             },
           ]}
@@ -60,7 +60,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Line
           className={cn(
             "-bottom-full -top-full left-0 w-px",
-            "-translate-x-1/2"
+            "-translate-x-1/2",
           )}
         />
 
@@ -68,32 +68,28 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           id="status"
           className={cn(
             "fixed bottom-0 left-0 top-0 !w-[--expanded-side-width]",
-            "bg-background text-secondary/50",
+            "bg-background",
             "xs:relative xs:h-12 xs:!w-auto",
-            "md:h-[calc(calc(100vh-var(--container-size))/2)]"
+            "md:h-[calc(calc(100vh-var(--container-size))/2)]",
           )}
         >
           <div
             className={cn(
               "relative flex h-full w-full flex-col items-center justify-start whitespace-nowrap",
-              "xs:items-start xs:justify-end "
+              "xs:items-start xs:justify-end ",
             )}
           >
             <div
               className={cn(
                 "w-full",
-                "[writing-mode:vertical-lr]",
-                "xs:[writing-mode:inherit]"
+                "rotate-180 [writing-mode:vertical-lr]",
+                "xs:rotate-0 xs:[writing-mode:inherit]",
               )}
             >
-              {/* this is broken on mobile now - wont be marquee once done */}
               <Status />
             </div>
 
-            <Pattern
-              name="plus"
-              className={cn("xs:absolute xs:inset-0 xs:rotate-180")}
-            />
+            <Pattern className={cn("xs:absolute xs:inset-0 xs:rotate-180")} />
           </div>
         </Module>
 
@@ -110,7 +106,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }}
           className={cn(
             "h-[100dvh] pb-[--mobile-navigation-height]",
-            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]"
+            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]",
           )}
         >
           <div
@@ -133,7 +129,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }}
           className={cn(
             "fixed bottom-0 left-[--expanded-side-width] z-30 w-[calc(100vw-var(--expanded-side-width))]",
-            "xs:relative xs:left-auto xs:w-full"
+            "xs:relative xs:left-auto xs:w-full",
           )}
         >
           <Navigation />
@@ -142,7 +138,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Line
           className={cn(
             "-bottom-full -top-full right-0 w-px",
-            "translate-x-1/2"
+            "translate-x-1/2",
           )}
         />
       </div>
