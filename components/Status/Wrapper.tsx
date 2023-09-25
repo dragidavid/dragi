@@ -26,8 +26,10 @@ export default function Wrapper({
 
   const { isXs, isMobile, isDesktop } = useWindowSize();
 
+  const shouldRenderVerticalStatus = Boolean(isXs && pathname !== "/");
+
   const shouldRenderMarquee = Boolean(
-    (isMobile || play || pathname === "/") && !isXs,
+    (isMobile || play || pathname === "/") && !shouldRenderVerticalStatus,
   );
 
   const content = (
@@ -38,11 +40,12 @@ export default function Wrapper({
       exit={{ opacity: 0, transition: { duration: 0 } }}
       transition={{
         duration: 0.4,
+        delay: 0.4,
       }}
       className={cn(
         "flex w-full text-sm",
-        "text-secondary/50",
-        isXs && "py-6",
+        "text-secondary/80",
+        shouldRenderVerticalStatus && "py-6",
         isDesktop && "justify-between px-1 py-0.5",
       )}
     >
@@ -61,16 +64,18 @@ export default function Wrapper({
       </div>
 
       <div className={cn("flex items-center")}>
-        <Theme />
+        <Theme vertical={shouldRenderVerticalStatus} />
 
-        <Separator hidden={(isDesktop && !play) || isXs} />
+        <Separator
+          hidden={(isDesktop && !play) || shouldRenderVerticalStatus}
+        />
       </div>
     </motion.div>
   );
 
   return (
     <AnimatePresence mode="wait">
-      {shouldRenderMarquee ? <Marquee speed={10}>{content}</Marquee> : content}
+      {shouldRenderMarquee ? <Marquee speed={40}>{content}</Marquee> : content}
     </AnimatePresence>
   );
 }

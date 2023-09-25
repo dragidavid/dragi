@@ -9,7 +9,7 @@ import { cn } from "lib/cn";
 
 import { useWindowSize } from "lib/hooks/useWindowSize";
 
-export default function Theme() {
+export default function Theme({ vertical = false }: { vertical: boolean }) {
   const [mounted, setMounted] = useState(false);
 
   const { setTheme, theme } = useTheme();
@@ -29,11 +29,10 @@ export default function Theme() {
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       className={cn(
         "outline-none",
-        "rotate-180",
         "transition-colors duration-100 ease-in-out",
         "hover:text-primary",
         "focus:text-primary",
-        "xs:rotate-0",
+        vertical && "rotate-180",
       )}
     >
       <span>
