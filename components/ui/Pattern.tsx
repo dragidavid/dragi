@@ -8,7 +8,7 @@ export default memo(function Pattern({ className }: { className?: string }) {
       className={cn(
         "h-full w-full",
         "pointer-events-none",
-        "text-line",
+        "text-accent",
         className,
       )}
       style={{

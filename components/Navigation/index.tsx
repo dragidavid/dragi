@@ -141,7 +141,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-line/90 via-line/50 to-transparent",
+                    "from-accent/90 via-accent/50 bg-gradient-to-b to-transparent",
                   )}
                 />
               )}

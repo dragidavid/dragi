@@ -85,7 +85,7 @@ export default function Favorites() {
           Most played tracks in the {map[localSelectedRange]}.
         </TableCaption>
         <TableHeader>
-          <TableRow className={cn("font-black", "border-line/90")}>
+          <TableRow className={cn("font-black", "border-accent/90")}>
             <TableHead className="w-11">#</TableHead>
             <TableHead>Title</TableHead>
           </TableRow>

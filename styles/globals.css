@@ -17,7 +17,7 @@
     --background: 210 12% 96%;
     --primary: 215 28% 17%;
     --secondary: 220 9% 46%;
-    --line: 216 12% 85%;
+    --accent: 216 12% 85%;
   }
 
   .dark {
@@ -25,7 +25,7 @@
     --background: 224 71% 2%;
     --primary: 216 12% 84%;
     --secondary: 218 11% 49%;
-    --line: 215 28% 12%;
+    --accent: 215 28% 12%;
   }
 }
 

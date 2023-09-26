@@ -6,7 +6,7 @@ export default function Line({ className }: { className?: string }) {
       className={cn(
         "absolute z-30",
         "pointer-events-none",
-        "bg-line/90",
+        "bg-accent/90",
         className,
       )}
       aria-hidden

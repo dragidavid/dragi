@@ -14,7 +14,7 @@ module.exports = {
         background: "hsl(var(--background) / <alpha-value>)",
         primary: "hsl(var(--primary) / <alpha-value>)",
         secondary: "hsl(var(--secondary) / <alpha-value>)",
-        line: "hsl(var(--line) / <alpha-value>)",
+        accent: "hsl(var(--accent) / <alpha-value>)",
       },
       screens: {
         xs: "448px",
