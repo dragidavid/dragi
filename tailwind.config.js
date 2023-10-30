@@ -6,6 +6,7 @@ module.exports = {
     "./pages/**/*.{tsx,ts}",
     "./components/**/*.{tsx,ts}",
     "./contexts/**/*.{tsx,ts}",
+    "./content/**/*.{md,mdx}",
     "./lib/**/*.{tsx,ts}",
   ],
   theme: {
@@ -57,5 +58,5 @@ module.exports = {
       outfit: ["var(--font-outfit)"],
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };

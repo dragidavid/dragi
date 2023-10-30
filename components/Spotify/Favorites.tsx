@@ -85,7 +85,7 @@ export default function Favorites() {
           Most played tracks in the {map[localSelectedRange]}.
         </TableCaption>
         <TableHeader>
-          <TableRow className={cn("font-black", "border-accent/90")}>
+          <TableRow className={cn("font-black", "border-accent")}>
             <TableHead className="w-11">#</TableHead>
             <TableHead>Title</TableHead>
           </TableRow>
@@ -140,6 +140,7 @@ export default function Favorites() {
                           src={track.album.image}
                           width={40}
                           height={40}
+                          priority
                           alt="album-image"
                         />
 

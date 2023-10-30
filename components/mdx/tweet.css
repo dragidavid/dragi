@@ -1,0 +1,54 @@
+.tweet .react-tweet-theme {
+  --tweet-container-margin: 0;
+  --tweet-font-family: inherit;
+  --tweet-font-color: inherit;
+
+  /* light colors override */
+  --tweet-bg-color: white;
+  --tweet-bg-color-hover: white;
+  --tweet-quoted-bg-color-hover: hsl(var(--background));
+  --tweet-color-blue-secondary: theme("colors.gray.600");
+  --tweet-color-blue-secondary-hover: theme("colors.gray.100");
+  --tweet-font-color-secondary: theme("colors.gray.500");
+
+  --tweet-border: 1px solid hsl(var(--accent));
+
+  --tweet-skeleton-gradient: linear-gradient(
+    270deg,
+    hsl(var(--primary) / 0.2),
+    hsl(var(--primary) / 0.1),
+    hsl(var(--primary) / 0.1),
+    hsl(var(--primary) / 0.2)
+  );
+  --tweet-color-red-primary: rgb(249, 24, 128);
+  --tweet-color-red-primary-hover: rgba(249, 24, 128, 0.1);
+  --tweet-color-green-primary: rgb(0, 186, 124);
+  --tweet-color-green-primary-hover: rgba(0, 186, 124, 0.1);
+  --tweet-twitter-icon-color: var(--tweet-font-color);
+  --tweet-verified-old-color: rgb(130, 154, 171);
+  --tweet-verified-blue-color: var(--tweet-color-blue-primary);
+
+  @apply rounded-lg transition-none;
+}
+
+.dark .tweet .react-tweet-theme {
+  --tweet-bg-color: black;
+  --tweet-bg-color-hover: black;
+  --tweet-quoted-bg-color-hover: hsl(var(--background));
+  --tweet-color-blue-secondary: theme("colors.white");
+  --tweet-color-blue-secondary-hover: #333;
+  --tweet-font-color-secondary: theme("colors.gray.400");
+}
+
+.tweet .react-tweet-theme p {
+  font-size: inherit;
+  line-height: 1.4rem;
+}
+
+.tweet .react-tweet-theme p a {
+  @apply font-medium text-black underline decoration-accent underline-offset-2 hover:decoration-black;
+}
+
+.dark .tweet .react-tweet-theme p a {
+  @apply text-white hover:decoration-white;
+}

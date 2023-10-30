@@ -13,19 +13,55 @@
     --mobile-navigation-height: 128px;
     --desktop-navigation-height: 48px;
 
-    /* gray-[50,800,500,300] */
-    --background: 210 12% 96%;
-    --primary: 215 28% 17%;
-    --secondary: 220 9% 46%;
-    --accent: 216 12% 85%;
+    --background: 0 0% 97%;
+    --primary: 0 0% 21%;
+    --secondary: 0 0% 48%;
+    --accent: 0 0% 84%;
+
+    /* vercel stuff dark*/
+    /* --ds-gray-200-value: 0,0%,12%; border
+    --ds-gray-900-value: 0,0%,63%; secondary text
+    --ds-gray-900-value: 0,0%,93%; primary text
+    --ds-gray-600-value: 0,0%,53%; cross
+    bg 000*/
+
+    /* light */
+    /* --ds-gray-600-value: 0,0%,66%; cross
+    --ds-gray-900-value: 0,0%,40%; secondary text
+    --ds-gray-900-value: 0,0%,9%; primary text
+    --ds-gray-900-value: 0,0%,92%; border 
+    bg fafafa*/
+
+    --shiki-color-text: --primary;
+    --shiki-color-background: hsl(0deg 0% 95%);
+    --shiki-token-constant: --primary;
+    --shiki-token-string: #770000;
+    --shiki-token-comment: hsl(0deg 0% 53%);
+    --shiki-token-keyword: hsl(0deg 0% 48%);
+    --shiki-token-parameter: #aa0000;
+    --shiki-token-function: --primary;
+    --shiki-token-string-expression: hsl(0deg 0% 42%);
+    --shiki-token-punctuation: hsl(0deg 0% 51%);
+    --shiki-token-link: #ee0000;
   }
 
   .dark {
-    /* gray-[950, 300, 400 with changed lightness from 65, 800] */
-    --background: 224 71% 2%;
-    --primary: 216 12% 84%;
-    --secondary: 218 11% 49%;
-    --accent: 215 28% 12%;
+    --background: 0 0% 4%;
+    --primary: 0 0% 91%;
+    --secondary: 0 0% 52%;
+    --accent: 0 0% 16%;
+
+    --shiki-color-text: --primary;
+    --shiki-color-background: hsl(0deg 0% 5%);
+    --shiki-token-constant: --primary;
+    --shiki-token-string: #770000;
+    --shiki-token-comment: hsl(0deg 0% 47%);
+    --shiki-token-keyword: hsl(0deg 0% 52%);
+    --shiki-token-parameter: #aa0000;
+    --shiki-token-function: --primary;
+    --shiki-token-string-expression: hsl(0deg 0% 66%);
+    --shiki-token-punctuation: hsl(0deg 0% 49%);
+    --shiki-token-link: #ee0000;
   }
 }
 

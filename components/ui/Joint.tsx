@@ -51,8 +51,8 @@ export default function Joint({
           className={cn(
             "absolute z-40 h-[11px] w-[11px]",
             "pointer-events-none",
-            "text-primary/50",
-            positions[position]
+            "text-primary/80",
+            positions[position],
           )}
           style={styles[position]}
           aria-hidden

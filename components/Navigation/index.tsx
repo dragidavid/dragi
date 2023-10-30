@@ -47,6 +47,8 @@ export default function Navigation() {
 
   const pathname = usePathname();
 
+  const isActive = (href: string) => pathname.includes(href) && href !== "/";
+
   useEffect(() => {
     const calculateHeight = debounce(() => {
       const nav = navRef.current?.getBoundingClientRect();
@@ -84,7 +86,7 @@ export default function Navigation() {
           className={cn(
             "relative flex-1",
             "outline-none",
-            pathname === href && "text-primary",
+            isActive(href) && "text-primary",
             "transition-all duration-100 ease-in-out",
             "hover:text-primary",
             "focus:text-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary",
@@ -125,7 +127,7 @@ export default function Navigation() {
             {content}
 
             <AnimatePresence>
-              {pathname === href && (
+              {isActive(href) && (
                 <motion.span
                   initial={{
                     height: "0vh",
@@ -141,7 +143,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "from-accent/90 via-accent/50 bg-gradient-to-b to-transparent",
+                    "from-accent/80 via-accent/40 bg-gradient-to-b to-transparent",
                   )}
                 />
               )}

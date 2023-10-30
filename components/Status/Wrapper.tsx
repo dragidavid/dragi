@@ -44,7 +44,7 @@ export default function Wrapper({
       }}
       className={cn(
         "flex w-full text-sm",
-        "text-secondary/80",
+        "text-secondary",
         shouldRenderVerticalStatus && "py-6",
         isDesktop && "justify-between px-1 py-0.5",
       )}
