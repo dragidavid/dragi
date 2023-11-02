@@ -4,6 +4,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { getHighlighter } from "shiki";
+import { visit } from "unist-util-visit";
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -54,6 +55,17 @@ export default makeSource({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "pre") {
+            const [codeEl] = node.children;
+
+            if (codeEl.tagName !== "code") return;
+
+            node.__rawString__ = codeEl.children?.[0].value;
+          }
+        });
+      },
       [
         rehypePrettyCode,
         {
@@ -68,19 +80,28 @@ export default makeSource({
             }
           },
           onVisitHighlightedLine(node) {
-            const nodeClass = node.properties.className;
-            console.log("Highlighted Line", { node });
-            if (nodeClass && nodeClass.length > 0) {
-              node.properties.className.push("line--highlighted");
-            } else {
-              node.properties.className = ["line--highlighted"];
-            }
+            node.properties.className.push("line--highlighted");
           },
           onVisitHighlightedWord(node) {
             node.properties.className = ["word--highlighted"];
           },
         },
       ],
+      () => (tree) => {
+        visit(tree, (node) => {
+          if (node?.type === "element" && node?.tagName === "div") {
+            if (!("data-rehype-pretty-code-fragment" in node.properties)) {
+              return;
+            }
+
+            for (const child of node.children) {
+              if (child.tagName === "pre") {
+                child.properties["__rawString__"] = node.__rawString__;
+              }
+            }
+          }
+        });
+      },
       [
         rehypeAutolinkHeadings,
         {
