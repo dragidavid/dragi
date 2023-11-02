@@ -1,16 +1,10 @@
-import { Inter } from "next/font/google";
+import { GeistSans, GeistMono } from "geist/font";
 
 import Providers from "contexts/Providers";
 
 import { cn } from "lib/cn";
-import { satoshi, spaceGrotesk, switzer, outfit } from "lib/fonts";
 
 import "styles/globals.css";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
 
 export default function RootLayout({
   children,
@@ -21,11 +15,8 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        inter.variable,
-        satoshi.variable,
-        spaceGrotesk.variable,
-        switzer.variable,
-        outfit.variable,
+        GeistSans.variable,
+        GeistMono.variable,
         "text-sm antialiased",
       )}
       suppressHydrationWarning
@@ -33,7 +24,6 @@ export default function RootLayout({
       <head />
       <body
         className={cn(
-          // "font-switzer",
           "overflow-x-clip",
           "bg-background text-primary caret-primary",
           "selection:bg-primary selection:text-background",

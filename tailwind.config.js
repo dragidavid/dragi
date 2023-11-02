@@ -12,6 +12,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        extreme: "hsl(var(--extreme) / <alpha-value>)",
         background: "hsl(var(--background) / <alpha-value>)",
         primary: "hsl(var(--primary) / <alpha-value>)",
         secondary: "hsl(var(--secondary) / <alpha-value>)",
@@ -36,9 +37,12 @@ module.exports = {
       },
       inset: {
         0.75: "3px",
+        screen: "100vw",
+        "x-screen": ["100vw", "100vw"],
       },
       fontFamily: {
-        sans: ["var(--font-inter)"],
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
       },
       keyframes: {
         flash: {
@@ -50,12 +54,6 @@ module.exports = {
       animation: {
         flash: "flash 1.4s infinite linear",
       },
-    },
-    fontFamily: {
-      satoshi: ["var(--font-satoshi)"],
-      spaceGrotesk: ["var(--font-space-grotesk)"],
-      switzer: ["var(--font-switzer)"],
-      outfit: ["var(--font-outfit)"],
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
