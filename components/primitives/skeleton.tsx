@@ -1,6 +1,6 @@
 import { cn } from "lib/cn";
 
-function Skeleton({
+export function Skeleton({
   className,
   styles,
   ...props
@@ -15,5 +15,3 @@ function Skeleton({
     />
   );
 }
-
-export { Skeleton };
