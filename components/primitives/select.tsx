@@ -22,7 +22,7 @@ const SelectTrigger = React.forwardRef<
     className={cn(
       "flex h-10 w-full items-center justify-between rounded-sm px-3 py-2 text-sm",
       "select-none outline-none",
-      "border-accent/90 border bg-transparent text-secondary",
+      "border border-accent bg-transparent text-secondary",
       "transition-all duration-100 ease-in-out",
       "placeholder:text-secondary",
       "hover:text-primary",
@@ -49,7 +49,7 @@ const SelectContent = React.forwardRef<
       ref={ref}
       className={cn(
         "relative z-50 min-w-[8rem] overflow-hidden rounded-md",
-        "border-accent/90 border bg-background shadow-lg",
+        "border border-accent bg-extreme shadow-lg",
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" &&
           "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
@@ -120,7 +120,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px", "bg-accent/90", className)}
+    className={cn("-mx-1 my-1 h-px", "bg-accent", className)}
     {...props}
   />
 ));
