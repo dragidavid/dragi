@@ -26,7 +26,7 @@ const SelectTrigger = React.forwardRef<
       "transition-all duration-100 ease-in-out",
       "placeholder:text-secondary",
       "hover:text-primary",
-      "focus:bg-primary/10 focus:text-primary",
+      "focus:bg-accent focus:text-primary",
       "disabled:cursor-not-allowed disabled:opacity-50",
       className,
     )}
@@ -93,7 +93,7 @@ const SelectItem = React.forwardRef<
     className={cn(
       "relative flex w-full cursor-default items-center rounded-sm py-1.5 pl-8 pr-2 text-sm",
       "select-none outline-none",
-      "focus:bg-primary/10",
+      "focus:bg-accent",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}

@@ -9,7 +9,7 @@ export function Skeleton({
 }) {
   return (
     <div
-      className={cn("rounded-md", "bg-primary/10", "animate-pulse", className)}
+      className={cn("rounded-md", "bg-accent", "animate-pulse", className)}
       style={styles || {}}
       {...props}
     />

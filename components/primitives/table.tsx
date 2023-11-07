@@ -55,8 +55,8 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "hover:bg-primary/5",
-      "data-[state=selected]:bg-primary/5",
+      "hover:bg-accent/50",
+      "data-[state=selected]:bg-accent/50",
       className,
     )}
     {...props}
@@ -103,7 +103,7 @@ const TableCaption = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <caption
     ref={ref}
-    className={cn("mt-4 text-sm", "text-secondary", className)}
+    className={cn("mt-4 text-xs", "text-secondary", className)}
     {...props}
   />
 ));

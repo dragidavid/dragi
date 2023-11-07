@@ -30,8 +30,8 @@ const ContextMenuSubTrigger = React.forwardRef<
     className={cn(
       "flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm",
       "select-none outline-none",
-      "focus:bg-primary/10",
-      "data-[state=open]:bg-primary/10 data-[state=open]:text-primary",
+      "focus:bg-accent",
+      "data-[state=open]:bg-accent data-[state=open]:text-primary",
       inset && "pl-8",
       className,
     )}
@@ -91,7 +91,7 @@ const ContextMenuItem = React.forwardRef<
     className={cn(
       "relative flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm",
       "select-none outline-none",
-      "focus:bg-primary/10",
+      "focus:bg-accent",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
       className,
@@ -110,7 +110,7 @@ const ContextMenuCheckboxItem = React.forwardRef<
     className={cn(
       "relative flex cursor-default items-center rounded-sm py-1.5 pl-8 pr-2 text-sm",
       "select-none outline-none",
-      "focus:bg-primary/10",
+      "focus:bg-accent",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -141,7 +141,7 @@ const ContextMenuRadioItem = React.forwardRef<
     className={cn(
       "relative flex cursor-default items-center rounded-sm py-1.5 pl-8 pr-2 text-sm",
       "select-none outline-none",
-      "focus:bg-primary/10",
+      "focus:bg-accent",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
