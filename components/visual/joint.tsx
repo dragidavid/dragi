@@ -49,9 +49,9 @@ export default function Joint({
         <span
           key={`${origin}-${position}`}
           className={cn(
-            "absolute z-40 h-[11px] w-[11px]",
+            "absolute z-40 h-[13px] w-[13px]",
             "pointer-events-none",
-            "text-primary/80",
+            "text-inverse",
             positions[position],
           )}
           style={styles[position]}
@@ -61,13 +61,13 @@ export default function Joint({
             <defs>
               <linearGradient id="vertical" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop stopColor="currentColor" stopOpacity="0" />
-                <stop offset="50%" stopColor="currentColor" stopOpacity="1" />
+                <stop offset="50%" stopColor="currentColor" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
               </linearGradient>
 
               <linearGradient id="horizontal" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop stopColor="currentColor" stopOpacity="0" />
-                <stop offset="50%" stopColor="currentColor" stopOpacity="1" />
+                <stop offset="50%" stopColor="currentColor" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
               </linearGradient>
             </defs>

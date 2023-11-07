@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 import { Button } from "components/primitives/button";
 
-import Icon from "components/ui/icon";
+import Icon from "components/visual/icon";
 
 import { cn } from "lib/cn";
 

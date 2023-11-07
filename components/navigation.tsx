@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Icon from "components/ui/icon";
-import Line from "components/ui/line";
-import Joint from "components/ui/joint";
+import Icon from "components/visual/icon";
+import Line from "components/visual/line";
+import Joint from "components/visual/joint";
 
 import { cn } from "lib/cn";
 import { debounce } from "lib/debounce";

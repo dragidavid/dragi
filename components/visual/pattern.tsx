@@ -39,7 +39,7 @@ export default memo(function Pattern({ className }: { className?: string }) {
           width="100%"
           fill="url(#plus-pattern)"
           transform="translate(0,0)"
-        />{" "}
+        />
       </svg>
     </div>
   );

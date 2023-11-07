@@ -51,7 +51,10 @@ export default function Expand({ href }: { href: string }) {
   }, []);
 
   return (
-    <div ref={divRef} className={cn("absolute inset-0", "pointer-events-none")}>
+    <div
+      ref={divRef}
+      className={cn("absolute -inset-[0.5px]", "pointer-events-none")}
+    >
       <Link
         href={`/${href}`}
         onMouseEnter={() => setIsHovered(true)}
@@ -71,8 +74,11 @@ export default function Expand({ href }: { href: string }) {
         <svg
           height={rect.height}
           width={rect.width}
-          strokeWidth="1.5"
-          className={cn("absolute inset-0 z-50", "pointer-events-none")}
+          strokeWidth="2"
+          className={cn(
+            "absolute inset-0 z-50 text-inverse",
+            "pointer-events-none",
+          )}
         >
           <defs>
             <linearGradient
@@ -83,12 +89,8 @@ export default function Expand({ href }: { href: string }) {
               y2="1"
               gradientUnits="objectBoundingBox"
             >
-              <stop offset="0%" stopColor="hsl(var(--primary))" />
-              <stop
-                offset="100%"
-                stopColor="hsl(var(--primary))"
-                stopOpacity="0.2"
-              />
+              <stop offset="0%" stopColor="currentColor" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="gradientToLeft"
@@ -98,12 +100,8 @@ export default function Expand({ href }: { href: string }) {
               y2="0"
               gradientUnits="objectBoundingBox"
             >
-              <stop offset="0%" stopColor="hsl(var(--primary))" />
-              <stop
-                offset="100%"
-                stopColor="hsl(var(--primary))"
-                stopOpacity="0.2"
-              />
+              <stop offset="0%" stopColor="currentColor" />
+              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
             </linearGradient>
           </defs>
 
@@ -156,7 +154,7 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
         height="100%"
         width="100%"
         fill="none"
-        strokeWidth="0.5"
+        strokeWidth="1"
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
