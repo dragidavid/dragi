@@ -5,9 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Icon from "components/ui/Icon";
-import Line from "components/ui/Line";
-import Joint from "components/ui/Joint";
+import Icon from "components/ui/icon";
+import Line from "components/ui/line";
+import Joint from "components/ui/joint";
 
 import { cn } from "lib/cn";
 import { debounce } from "lib/debounce";
@@ -78,7 +78,7 @@ export default function Navigation() {
         "md:h-[--desktop-navigation-height]",
       )}
     >
-      {links.map(({ id, content, href }, index: number) => (
+      {links.map(({ id, content, href }, index) => (
         <Link
           key={id}
           href={href}
@@ -143,7 +143,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "from-accent/80 via-accent/40 bg-gradient-to-b to-transparent",
+                    "bg-gradient-to-b from-accent/80 via-accent/40 to-transparent",
                   )}
                 />
               )}

@@ -146,6 +146,7 @@ export default function Favorites() {
                           height={40}
                           priority
                           alt="album-image"
+                          className={cn("h-10 w-10")}
                         />
 
                         <div
@@ -155,7 +156,7 @@ export default function Favorites() {
                         >
                           <div
                             className={cn(
-                              "overflow-hidden text-ellipsis whitespace-nowrap text-base",
+                              "overflow-hidden text-ellipsis whitespace-nowrap text-sm",
                             )}
                           >
                             <StyledLink
@@ -166,7 +167,7 @@ export default function Favorites() {
 
                           <div
                             className={cn(
-                              "overflow-hidden text-ellipsis whitespace-nowrap",
+                              "overflow-hidden text-ellipsis whitespace-nowrap text-xs",
                             )}
                           >
                             <Artists artists={track.artists} />

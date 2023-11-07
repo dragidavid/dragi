@@ -5,11 +5,9 @@ import { MeshDistortMaterial, Instances, Instance } from "@react-three/drei";
 
 import { random } from "lib/random";
 
-export default function Blobs({
-  colors = [],
-}: {
-  colors?: { name: string; hex: string }[];
-}) {
+import { type Color } from "lib/types";
+
+export default function SimpleBlobs({ colors = [] }: { colors: Color[] }) {
   if (colors.length <= 0) {
     return null;
   }
@@ -29,8 +27,8 @@ export default function Blobs({
 
       <MeshDistortMaterial distort={0.5} opacity={0.8} transparent={true} />
 
-      {particles.map((blobData, i) => (
-        <SingleBlobInstance key={i} {...blobData} />
+      {particles.map((blobData, index) => (
+        <SingleBlobInstance key={`blob_${index}`} {...blobData} />
       ))}
     </Instances>
   );
