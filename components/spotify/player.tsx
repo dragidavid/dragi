@@ -4,15 +4,16 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { AnimatePresence, motion } from "framer-motion";
 
-import Link from "components/Spotify/Link";
-import Artists from "components/Spotify/Artists";
-import PlaybackStatus from "components/Spotify/PlaybackStatus";
+import { Disc3 } from "lucide-react";
 
-import Marquee from "components/ui/Marquee";
+import Artists from "components/spotify/artists";
+
+import Marquee from "components/marquee";
+import StyledLink from "components/styled-link";
 
 import {
   ContextMenu,
@@ -21,14 +22,18 @@ import {
   ContextMenuLabel,
   ContextMenuSeparator,
   ContextMenuCheckboxItem,
-} from "components/ui/primitives/ContextMenu";
+} from "components/primitives/context-menu";
 
 import { cn } from "lib/cn";
 import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
 
-const Scene = dynamic(() => import("components/Canvas"), { ssr: false });
-const Blobs = dynamic(() => import("components/Canvas/Blobs"), {
+import { type Track, type Color } from "lib/types";
+
+const Scene = dynamic(() => import("components/three/scene"), {
+  ssr: false,
+});
+const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
   ssr: false,
 });
 
@@ -36,15 +41,20 @@ const blurAtom = atomWithStorage("showBlur", true);
 const noiseAtom = atomWithStorage("showNoise", true);
 const albumImageAtom = atomWithStorage("showAlbumImage", false);
 
-export default function Spotify({ preview = false }: { preview?: boolean }) {
-  const [localColors, setLocalColors] = useState<
-    undefined | { name: string; hex: string }[]
-  >(undefined);
+export default function Player({ preview = false }: { preview?: boolean }) {
+  const [localColors, setLocalColors] = useState<Color[] | undefined>(
+    undefined,
+  );
 
-  const { data: track } = useSWR("/api/spotify/player", fetcher, {
-    refreshInterval: 90000,
-    revalidateOnFocus: false,
-  });
+  const { data: track, error: trackError } = useSWR<Track>(
+    "/api/spotify/player",
+    fetcher,
+    {
+      refreshInterval: 90000,
+      revalidateOnFocus: false,
+      errorRetryCount: 2,
+    },
+  );
 
   useEffect(() => {
     if (track && track.currentlyPlaying && track.album.image) {
@@ -60,7 +70,7 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger>
+      <ContextMenuTrigger disabled={trackError}>
         <div
           className={cn(
             "relative h-full min-h-[calc(var(--container-size)*2/3)] w-full overflow-hidden",
@@ -78,14 +88,14 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
               className={cn("absolute inset-0", "pointer-events-none")}
             >
               <Scene>
-                <Blobs colors={localColors} />
+                <SimpleBlobs colors={localColors} />
               </Scene>
             </motion.div>
           )}
 
           <BlurLayer />
 
-          <NoiseLayer />
+          <NoiseLayer hasError={Boolean(trackError)} />
 
           <SmallFade />
 
@@ -95,11 +105,16 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
             className={cn(
               "absolute inset-6 z-10 flex flex-col justify-between",
               preview && "inset-4",
+              (trackError || !track) && "text-secondary/20",
             )}
           >
             <Logo />
 
-            {track ? (
+            {trackError ? (
+              <div className={cn("text-sm")}>
+                <p>Something went wrong...</p>
+              </div>
+            ) : track ? (
               <motion.div
                 key={track.id}
                 initial={{ opacity: 0 }}
@@ -109,15 +124,29 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
                 }}
                 className={cn("relative flex flex-col gap-1")}
               >
-                <PlaybackStatus
-                  currentlyPlaying={Boolean(track.currentlyPlaying)}
-                />
+                <div
+                  className={cn(
+                    "mb-3 flex items-center gap-2 text-xs font-black uppercase",
+                  )}
+                >
+                  {track.currentlyPlaying ? (
+                    <span>now playing</span>
+                  ) : (
+                    <span>last played</span>
+                  )}
 
-                <Marquee className={cn("text-4xl font-black")}>
-                  <Link href={track.trackUrl} label={track.name} />
+                  <Disc3
+                    size={18}
+                    className={cn(track.currentlyPlaying && "animate-spin")}
+                    aria-hidden
+                  />
+                </div>
+
+                <Marquee className={cn("text-3xl font-black")}>
+                  <StyledLink href={track.trackUrl} label={track.name} />
                 </Marquee>
 
-                <Marquee className={cn("text-md font-medium")}>
+                <Marquee className={cn("text-sm font-medium")}>
                   <Artists artists={track.artists} />
                 </Marquee>
               </motion.div>
@@ -133,7 +162,13 @@ export default function Spotify({ preview = false }: { preview?: boolean }) {
 
 function Logo() {
   return (
-    <div className={cn("h-[72px] w-[72px]", "pointer-events-none")}>
+    <div
+      className={cn(
+        "h-[72px] w-[72px]",
+        "pointer-events-none",
+        "transition-colors duration-100 ease-in-out",
+      )}
+    >
       <svg viewBox="0 0 72 72" height="100%" width="100%" fill="currentColor">
         <path d="M36 0C16.117 0 0 16.117 0 36s16.117 36 36 36 36-16.117 36-36C72 16.12 55.883.002 36 0Zm16.51 51.92a2.242 2.242 0 0 1-3.085.747c-8.453-5.166-19.095-6.333-31.625-3.47a2.242 2.242 0 0 1-2.688-1.688A2.24 2.24 0 0 1 16.8 44.82c13.712-3.132 25.476-1.783 34.966 4.014a2.245 2.245 0 0 1 .744 3.086Zm4.405-9.798a2.809 2.809 0 0 1-3.862.923c-9.674-5.947-24.427-7.669-35.872-4.196a2.81 2.81 0 0 1-3.503-1.869 2.812 2.812 0 0 1 1.872-3.5c13.073-3.968 29.328-2.047 40.439 4.782a2.805 2.805 0 0 1 .926 3.86Zm.378-10.21c-11.605-6.89-30.746-7.524-41.824-4.163a3.365 3.365 0 0 1-4.199-2.243 3.37 3.37 0 0 1 2.246-4.2c12.717-3.86 33.855-3.116 47.214 4.814a3.368 3.368 0 0 1-3.437 5.792Z" />
       </svg>
@@ -142,7 +177,7 @@ function Logo() {
 }
 
 function BlurLayer() {
-  const [showBlur] = useAtom(blurAtom);
+  const showBlur = useAtomValue(blurAtom);
 
   return (
     <AnimatePresence mode="wait">
@@ -166,8 +201,12 @@ function BlurLayer() {
   );
 }
 
-function NoiseLayer() {
-  const [showNoise] = useAtom(noiseAtom);
+function NoiseLayer({ hasError = false }: { hasError?: boolean }) {
+  const [showNoise, setShowNoise] = useAtom(noiseAtom);
+
+  if (hasError) {
+    setShowNoise(true);
+  }
 
   return (
     <AnimatePresence mode="wait">
@@ -224,7 +263,7 @@ function SmallFade() {
 }
 
 function AlbumImage({ albumImage }: { albumImage?: string }) {
-  const [showAlbumImage] = useAtom(albumImageAtom);
+  const showAlbumImage = useAtomValue(albumImageAtom);
 
   return (
     <AnimatePresence mode="wait">

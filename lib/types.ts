@@ -6,13 +6,21 @@ export type Artist = {
   artistUrl: string;
 };
 
+export type Album = {
+  id: string;
+  name: string;
+  image: string;
+  albumUrl: string;
+};
+
 export type Track = {
-  album: string;
-  albumImageUrl: string;
-  artists: Artist[];
-  isPlaying: boolean;
+  currentlyPlaying?: boolean;
+  id: string;
+  name: string;
   trackUrl: string;
-  title: string;
+  playedAt?: string;
+  artists: Artist[];
+  album: Album;
 };
 
 export type Color = {

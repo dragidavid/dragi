@@ -4,10 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
 
-import Link from "components/Spotify/Link";
-import Artists from "components/Spotify/Artists";
+import Artists from "components/spotify/artists";
 
-import Heading from "components/ui/Heading";
+import Heading from "components/heading";
+import StyledLink from "components/styled-link";
 
 import {
   Table,
@@ -17,7 +17,7 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "components/ui/primitives/Table";
+} from "components/primitives/table";
 import {
   Select,
   SelectTrigger,
@@ -25,11 +25,13 @@ import {
   SelectGroup,
   SelectItem,
   SelectValue,
-} from "components/ui/primitives/Select";
-import { Skeleton } from "components/ui/primitives/Skeleton";
+} from "components/primitives/select";
+import { Skeleton } from "components/primitives/skeleton";
 
 import { cn } from "lib/cn";
 import { fetcher } from "lib/fetcher";
+
+import { type Track } from "lib/types";
 
 const map = {
   short_term: "last 4 weeks",
@@ -45,9 +47,14 @@ export default function Favorites() {
     data: favorites,
     isLoading: favoritesLoading,
     error: favoritesError,
-  } = useSWR(`/api/spotify/favorites?range=${localSelectedRange}`, fetcher, {
-    revalidateOnFocus: false,
-  });
+  } = useSWR<Track[]>(
+    `/api/spotify/favorites?range=${localSelectedRange}`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      errorRetryCount: 2,
+    },
+  );
 
   return (
     <div className={cn("flex flex-col pb-6")}>
@@ -80,58 +87,55 @@ export default function Favorites() {
         </div>
       </div>
 
-      <Table className="table-fixed">
-        <TableCaption>
-          Most played tracks in the {map[localSelectedRange]}.
-        </TableCaption>
-        <TableHeader>
-          <TableRow className={cn("font-black", "border-accent")}>
-            <TableHead className="w-11">#</TableHead>
-            <TableHead>Title</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {favoritesLoading
-            ? [...Array(10)].map((_, index) => (
-                <TableRow key={index} className="border-none">
-                  <TableCell>{index + 1}</TableCell>
-                  <TableCell>
-                    <div className={cn("flex gap-3")}>
-                      <Skeleton className={cn("h-[40px] w-[40px]")} />
+      {favoritesError ? (
+        <div
+          className={cn("flex justify-center pt-8 text-sm", "text-secondary")}
+        >
+          <p>Something went wrong...</p>
+        </div>
+      ) : (
+        <Table className="table-fixed">
+          <TableCaption>
+            Most played tracks in the {map[localSelectedRange]}.
+          </TableCaption>
+          <TableHeader>
+            <TableRow className={cn("font-black", "border-accent")}>
+              <TableHead className="w-11">#</TableHead>
+              <TableHead>Title</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {favoritesLoading
+              ? [...Array(10)].map((_, index) => (
+                  <TableRow key={index} className="border-none">
+                    <TableCell>{index + 1}</TableCell>
+                    <TableCell>
+                      <div className={cn("flex gap-3")}>
+                        <Skeleton className={cn("h-[40px] w-[40px]")} />
 
-                      <div
-                        className={cn(
-                          "flex w-[calc(100%-40px-12px)] flex-col justify-between",
-                        )}
-                      >
-                        <Skeleton
-                          className="h-[20px]"
-                          styles={{
-                            width: `78%`,
-                          }}
-                        />
-                        <Skeleton
-                          className="h-[17px]"
-                          styles={{
-                            width: `33%`,
-                          }}
-                        />
+                        <div
+                          className={cn(
+                            "flex w-[calc(100%-40px-12px)] flex-col justify-between",
+                          )}
+                        >
+                          <Skeleton
+                            className="h-[20px]"
+                            styles={{
+                              width: `78%`,
+                            }}
+                          />
+                          <Skeleton
+                            className="h-[17px]"
+                            styles={{
+                              width: `33%`,
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))
-            : favorites?.map(
-                (
-                  track: {
-                    id: string;
-                    name: string;
-                    trackUrl: string;
-                    album: { image: string };
-                    artists: { id: string; artistUrl: string; name: string }[];
-                  },
-                  index: number,
-                ) => (
+                    </TableCell>
+                  </TableRow>
+                ))
+              : favorites?.map((track, index) => (
                   <TableRow key={track.id} className="border-none">
                     <TableCell>{index + 1}</TableCell>
                     <TableCell title={track.name}>
@@ -154,7 +158,10 @@ export default function Favorites() {
                               "overflow-hidden text-ellipsis whitespace-nowrap text-base",
                             )}
                           >
-                            <Link href={track.trackUrl} label={track.name} />
+                            <StyledLink
+                              href={track.trackUrl}
+                              label={track.name}
+                            />
                           </div>
 
                           <div
@@ -168,10 +175,10 @@ export default function Favorites() {
                       </div>
                     </TableCell>
                   </TableRow>
-                ),
-              )}
-        </TableBody>
-      </Table>
+                ))}
+          </TableBody>
+        </Table>
+      )}
     </div>
   );
 }

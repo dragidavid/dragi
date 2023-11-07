@@ -1,15 +1,13 @@
-import Link from "components/Spotify/Link";
+import StyledLink from "components/styled-link";
 
-export default function Artists({
-  artists,
-}: {
-  artists: { id: string; artistUrl: string; name: string }[];
-}) {
-  return artists.map((artist, i: number) => (
-    <span key={artist.id} className="text-secondary">
-      <Link href={artist.artistUrl} label={artist.name} />
+import { type Artist } from "lib/types";
 
-      {i !== artists.length - 1 && ", "}
+export default function Artists({ artists }: { artists: Artist[] }) {
+  return artists.map(({ id, artistUrl, name }, index) => (
+    <span key={id} className="text-secondary">
+      <StyledLink href={artistUrl} label={name} />
+
+      {index !== artists.length - 1 && ", "}
     </span>
   ));
 }
