@@ -4,7 +4,7 @@ import {
   AlertTitle,
 } from "components/primitives/alert";
 
-import Icon, { type Icons } from "components/visual/icon";
+import Icon, { type Icons } from "components/ui/icon";
 
 export default function Callout({
   title,
