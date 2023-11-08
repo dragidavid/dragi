@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Clock = dynamic(() => import("components/tempstatus/clock"), {
+const Clock = dynamic(() => import("components/status/clock"), {
   ssr: false,
 });
-import ThemeToggle from "components/tempstatus/theme-toggle";
+import ThemeToggle from "components/status/theme-toggle";
 
 import { cn } from "lib/cn";
 import { useWindowSize } from "lib/hooks/useWindowSize";
