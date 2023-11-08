@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 
 import { getNowPlaying, getRecentlyPlayed } from "lib/api/spotify";
 
+import { type Track } from "lib/types";
+
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
 
@@ -71,7 +73,7 @@ export async function GET() {
 
   const mostRecent = recentlyPlayedResponse.items.at(0);
 
-  return NextResponse.json(
+  return NextResponse.json<Track>(
     {
       currentlyPlaying: false,
       id: mostRecent.track.id,

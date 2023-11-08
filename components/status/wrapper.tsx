@@ -74,7 +74,7 @@ export default function Wrapper({
   return (
     <AnimatePresence mode="wait">
       {shouldRenderMarquee ? (
-        <Marquee pauseOnHover speed={20}>
+        <Marquee speed={20} pauseOnHover>
           {content}
         </Marquee>
       ) : (

@@ -1,8 +1,8 @@
-import Spotify from "components/Spotify";
-import Favorites from "components/Spotify/Favorites";
+import Player from "components/spotify/player";
+import Favorites from "components/spotify/favorites";
 
-import Line from "components/ui/Line";
-import Joint from "components/ui/Joint";
+import Line from "components/ui/line";
+import Joint from "components/ui/joint";
 
 import { cn } from "lib/cn";
 
@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <div className={cn("flex h-full flex-col", "md:flex-row")}>
       <div className={cn("relative", "md:w-2/5")}>
-        <Spotify />
+        <Player />
 
         <Line
           className={cn(

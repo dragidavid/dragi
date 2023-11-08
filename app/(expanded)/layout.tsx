@@ -1,11 +1,11 @@
-import Module from "components/Module";
+import Module from "components/module";
 
-import Navigation from "components/Navigation";
-import Status from "components/Status";
+import Navigation from "components/navigation";
+import Status from "components/status";
 
-import Fade from "components/ui/Fade";
-import Line from "components/ui/Line";
-import Pattern from "components/ui/Pattern";
+import Fade from "components/ui/fade";
+import Line from "components/ui/line";
+import Pattern from "components/ui/pattern";
 
 import { cn } from "lib/cn";
 
@@ -68,7 +68,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           id="status"
           className={cn(
             "fixed bottom-0 left-0 top-0 !w-[--expanded-side-width]",
-            "bg-background",
             "xs:relative xs:h-12 xs:!w-auto",
             "md:h-[calc(calc(100vh-var(--container-size))/2)]",
           )}
@@ -96,7 +95,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="content"
           lines={{
-            top: "-left-full -right-full hidden h-px -translate-y-1/2 xs:block",
+            top: "-inset-x-screen hidden h-px -translate-y-1/2 xs:block",
           }}
           joints={{
             tl: "invisible xs:visible",
@@ -119,7 +118,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="navigation"
           lines={{
-            top: "left-0 -right-full h-px -translate-y-1/2 xs:-left-full",
+            top: "left-0 -right-screen h-px -translate-y-1/2 xs:-left-screen",
           }}
           joints={{
             tl: "visible xs:invisible",

@@ -2,6 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 
 import { getFavorites } from "lib/api/spotify";
 
+import { type Track } from "lib/types";
+
 export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
@@ -36,7 +38,7 @@ export async function GET(req: NextRequest) {
 
   const favoritesResponse = await favorites.json();
 
-  return NextResponse.json(
+  return NextResponse.json<Track[]>(
     [
       ...favoritesResponse.items.map(
         (track: {
@@ -58,11 +60,17 @@ export async function GET(req: NextRequest) {
           id: track.id,
           name: track.name,
           trackUrl: track.external_urls.spotify,
-          artists: track.artists.map((artist: any) => ({
-            id: artist.id,
-            name: artist.name,
-            artistUrl: artist.external_urls.spotify,
-          })),
+          artists: track.artists.map(
+            (artist: {
+              id: string;
+              name: string;
+              external_urls: { spotify: string };
+            }) => ({
+              id: artist.id,
+              name: artist.name,
+              artistUrl: artist.external_urls.spotify,
+            }),
+          ),
           album: {
             id: track.album.id,
             name: track.album.name,

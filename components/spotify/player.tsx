@@ -10,7 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Artists from "components/spotify/artists";
 
-import Marquee from "components/marquee";
+import Marquee from "components/custom-marquee";
 import StyledLink from "components/styled-link";
 
 import {
