@@ -15,27 +15,27 @@ import { debounce } from "lib/debounce";
 const links = [
   {
     id: "projects",
-    content: <Icon name="code" />,
+    icon: <Icon name="code" />,
     href: "/projects",
   },
   {
     id: "craft",
-    content: <Icon name="flask" />,
+    icon: <Icon name="lab" />,
     href: "/craft",
   },
   {
     id: "home",
-    content: <Icon name="home" />,
+    icon: <Icon name="home" />,
     href: "/",
   },
   {
     id: "tools",
-    content: <Icon name="tools" />,
+    icon: <Icon name="flame" />,
     href: "/tools",
   },
   {
     id: "spotify",
-    content: <Icon name="spotify" />,
+    icon: <Icon name="music" />,
     href: "/spotify",
   },
 ];
@@ -78,7 +78,7 @@ export default function Navigation() {
         "md:h-[--desktop-navigation-height]",
       )}
     >
-      {links.map(({ id, content, href }, index) => (
+      {links.map(({ id, icon, href }, index) => (
         <Link
           key={id}
           href={href}
@@ -124,7 +124,7 @@ export default function Navigation() {
               </>
             )}
 
-            {content}
+            {icon}
 
             <AnimatePresence>
               {isActive(href) && (
@@ -143,7 +143,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-accent/80 via-accent/40 to-transparent",
+                    "bg-gradient-to-b from-accent via-accent/40 to-transparent",
                   )}
                 />
               )}

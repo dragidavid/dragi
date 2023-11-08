@@ -1,6 +1,6 @@
-import Line from "components/ui/Line";
-import Joint, { type Position } from "components/ui/Joint";
-import Expand from "components/ui/Expand";
+import Line from "components/ui/line";
+import Joint, { type Position } from "components/ui/joint";
+import Expand from "components/ui/expand";
 
 import { cn } from "lib/cn";
 

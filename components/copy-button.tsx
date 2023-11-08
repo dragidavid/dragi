@@ -27,19 +27,19 @@ export default function CopyButton({
   return (
     <Button
       size="icon"
-      variant="ghost"
+      variant="subtle"
       onClick={() => {
         navigator.clipboard.writeText(value || "");
 
         setHasCopied(true);
       }}
-      className={cn("absolute right-4 top-4 h-6 w-6")}
+      className={cn("absolute right-4 top-4 h-6 w-6", "text-secondary")}
       {...props}
     >
       {hasCopied ? (
         <Icon name="check" size={12} />
       ) : (
-        <Icon name="copy" size={15} />
+        <Icon name="copy" size={16} />
       )}
       <span className="sr-only">Copy code</span>
     </Button>

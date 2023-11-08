@@ -1,10 +1,10 @@
 import * as React from "react";
-import Image, { ImageProps } from "next/image";
+import Image, { type ImageProps } from "next/image";
 import { useMDXComponent } from "next-contentlayer/hooks";
 
-import { Callout } from "components/mdx/callout";
-import { MdxCard } from "components/mdx/mdx-card";
-import { Tweet } from "components/mdx/tweet";
+import Tweet from "components/tweet";
+import Callout from "components/callout";
+import CopyButton from "components/copy-button";
 
 import { cn } from "lib/cn";
 
@@ -13,8 +13,7 @@ const components = {
     <h1
       className={cn(
         "mt-2 scroll-m-20 text-4xl font-extrabold tracking-tight",
-        "text-black",
-        "dark:text-white",
+        "text-inverse",
         className,
       )}
       {...props}
@@ -24,8 +23,7 @@ const components = {
     <h2
       className={cn(
         "mt-10 scroll-m-20 pb-1 text-3xl font-bold tracking-tight",
-        "text-black",
-        "dark:text-white",
+        "text-inverse",
         "first:mt-0",
         className,
       )}
@@ -36,8 +34,7 @@ const components = {
     <h3
       className={cn(
         "mt-8 scroll-m-20 text-2xl font-semibold tracking-tight",
-        "text-black",
-        "dark:text-white",
+        "text-inverse",
         className,
       )}
       {...props}
@@ -47,8 +44,7 @@ const components = {
     <h4
       className={cn(
         "mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-        "text-black",
-        "dark:text-white",
+        "text-inverse",
         className,
       )}
       {...props}
@@ -58,8 +54,7 @@ const components = {
     <h5
       className={cn(
         "mt-8 scroll-m-20 text-lg font-semibold tracking-tight",
-        "text-black",
-        "dark:text-white",
+        "text-inverse",
         className,
       )}
       {...props}
@@ -69,8 +64,7 @@ const components = {
     <h6
       className={cn(
         "mt-8 scroll-m-20 tracking-tight",
-        "text-black",
-        "dark:text-white",
+        "text-inverse",
         className,
       )}
       {...props}
@@ -80,10 +74,8 @@ const components = {
     <a
       className={cn(
         "font-medium",
-        "text-black underline decoration-accent underline-offset-2",
-        "hover:decoration-black",
-        "dark:text-white",
-        "dark:hover:decoration-white",
+        "text-inverse underline decoration-accent underline-offset-2",
+        "hover:decoration-inverse",
         className,
       )}
       {...props}
@@ -97,11 +89,7 @@ const components = {
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
-      className={cn(
-        "my-6 ml-10",
-        "list-disc marker:text-primary/50",
-        className,
-      )}
+      className={cn("my-6 ml-10", "list-disc marker:text-secondary", className)}
       {...props}
     />
   ),
@@ -109,7 +97,7 @@ const components = {
     <ol
       className={cn(
         "my-6 ml-10",
-        "list-decimal marker:text-primary/50",
+        "list-decimal marker:text-secondary",
         className,
       )}
       {...props}
@@ -123,8 +111,7 @@ const components = {
       className={cn(
         "mt-6 pl-6 font-medium italic",
         "border-l-2 border-accent",
-        "[&>*]:text-black",
-        "dark:[&>*]:text-white",
+        "[&>*]:text-inverse",
         className,
       )}
       {...props}
@@ -169,9 +156,8 @@ const components = {
     <th
       className={cn(
         "px-4 py-2 text-left font-bold",
-        "border-b border-accent text-black",
+        "border-b border-accent text-inverse",
         "[&[align=center]]:text-center [&[align=right]]:text-right",
-        "dark:text-white",
         className,
       )}
       {...props}
@@ -187,24 +173,33 @@ const components = {
       {...props}
     />
   ),
-  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
-    <pre
-      className={cn(
-        "not-prose",
-        "mb-4 mt-6 overflow-x-auto rounded-lg py-4",
-        "border border-accent",
-        "[&>code]:font-normal",
-        className,
-      )}
-      {...props}
-    />
-  ),
+  pre: ({
+    className,
+    __rawString__,
+    ...props
+  }: React.HTMLAttributes<HTMLPreElement> & {
+    __rawString__?: string;
+  }) => {
+    return (
+      <>
+        <pre
+          className={cn(
+            "overflow-x-auto rounded-lg py-4",
+            "border border-accent",
+            className,
+          )}
+          {...props}
+        />
+
+        <CopyButton value={__rawString__} />
+      </>
+    );
+  },
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "not-prose",
-        "font-mono relative rounded px-[0.3rem] py-[0.2rem] text-sm font-bold",
-        "border border-accent bg-[--shiki-color-background]",
+        "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-bold",
+        "border border-accent bg-extreme",
         className,
       )}
       {...props}
@@ -213,9 +208,8 @@ const components = {
   Image: (props: ImageProps) => (
     <Image {...props} alt={props.alt} className="rounded-lg" />
   ),
-  Callout,
-  Card: MdxCard,
   Tweet,
+  Callout,
 };
 
 interface MdxProps {
@@ -226,13 +220,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <article
-      className={cn(
-        // "prose",
-        "some-random-ass-class-so-the-line-breaks min-w-full",
-        "dark:prose-invert",
-      )}
-    >
+    <article className="min-w-full">
       <Component components={components} />
     </article>
   );
