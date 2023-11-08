@@ -5,14 +5,12 @@ import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { AnimatePresence, motion } from "framer-motion";
 
-const Clock = dynamic(() => import("components/Status/Clock"), { ssr: false });
-
-import Theme from "components/Status/Theme";
-
-import Separator from "components/ui/Separator";
+const Clock = dynamic(() => import("components/tempstatus/clock"), {
+  ssr: false,
+});
+import ThemeToggle from "components/tempstatus/theme-toggle";
 
 import { cn } from "lib/cn";
-
 import { useWindowSize } from "lib/hooks/useWindowSize";
 
 export default function Wrapper({
@@ -43,10 +41,10 @@ export default function Wrapper({
         delay: 0.4,
       }}
       className={cn(
-        "flex w-full text-sm",
+        "flex w-full py-0.5 text-sm",
         "text-secondary",
         shouldRenderVerticalStatus && "py-6",
-        isDesktop && "justify-between px-1 py-0.5",
+        isDesktop && "justify-between px-1",
       )}
     >
       <div className={cn("flex items-center")}>
@@ -64,7 +62,7 @@ export default function Wrapper({
       </div>
 
       <div className={cn("flex items-center")}>
-        <Theme vertical={shouldRenderVerticalStatus} />
+        <ThemeToggle vertical={shouldRenderVerticalStatus} />
 
         <Separator
           hidden={(isDesktop && !play) || shouldRenderVerticalStatus}
@@ -83,5 +81,21 @@ export default function Wrapper({
         content
       )}
     </AnimatePresence>
+  );
+}
+
+function Separator({ hidden = false }: { hidden?: boolean }) {
+  const { isXs } = useWindowSize();
+
+  if (hidden) return null;
+
+  return (
+    <div
+      className={cn(
+        "mx-5 h-1 w-1 rounded-full",
+        "bg-secondary/40",
+        isXs && "my-3",
+      )}
+    />
   );
 }
