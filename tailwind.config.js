@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       colors: {
         extreme: "hsl(var(--extreme) / <alpha-value>)",
+        inverse: "hsl(var(--inverse) / <alpha-value>)",
         background: "hsl(var(--background) / <alpha-value>)",
         primary: "hsl(var(--primary) / <alpha-value>)",
         secondary: "hsl(var(--secondary) / <alpha-value>)",
