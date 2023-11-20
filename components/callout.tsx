@@ -18,7 +18,7 @@ export default function Callout({
 }) {
   return (
     <Alert {...props}>
-      {icon && <Icon name={icon} size={24} />}
+      {icon && <Icon name={icon} size="18" />}
 
       {title && <AlertTitle>{title}</AlertTitle>}
 

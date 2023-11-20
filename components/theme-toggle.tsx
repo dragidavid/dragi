@@ -36,9 +36,9 @@ export default function ThemeToggle({
       {...props}
     >
       {theme === "light" ? (
-        <Icon name="moon" size={18} />
+        <Icon name="moon" size="theme-toggle" />
       ) : (
-        <Icon name="sun" size={18} />
+        <Icon name="sun" size="theme-toggle" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

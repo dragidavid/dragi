@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useAnimation } from "framer-motion";
+
+import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 
@@ -67,13 +69,13 @@ export default function Marquee({
   }, [moveBy, controls]);
 
   return (
-    <motion.div
+    <MotionDiv
       ref={containerRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={className}
     >
-      <motion.div
+      <MotionDiv
         ref={textRef}
         animate={controls}
         transition={{
@@ -88,7 +90,7 @@ export default function Marquee({
         tabIndex={-1}
       >
         {children}
-      </motion.div>
-    </motion.div>
+      </MotionDiv>
+    </MotionDiv>
   );
 }

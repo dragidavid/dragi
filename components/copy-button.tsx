@@ -37,9 +37,9 @@ export default function CopyButton({
       {...props}
     >
       {hasCopied ? (
-        <Icon name="check" size={12} />
+        <Icon name="check" size="14" />
       ) : (
-        <Icon name="copy" size={16} />
+        <Icon name="copy" size="20" />
       )}
       <span className="sr-only">Copy code</span>
     </Button>
