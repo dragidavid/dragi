@@ -212,11 +212,7 @@ const components = {
   Callout,
 };
 
-interface MdxProps {
-  code: string;
-}
-
-export function Mdx({ code }: MdxProps) {
+export default function Mdx({ code }: { code: string }) {
   const Component = useMDXComponent(code);
 
   return (
