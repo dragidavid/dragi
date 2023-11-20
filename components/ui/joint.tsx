@@ -60,14 +60,14 @@ export default function Joint({
           <svg viewBox="0 0 11 11" height="100%" width="100%">
             <defs>
               <linearGradient id="vertical" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop stopColor="currentColor" stopOpacity="0" />
-                <stop offset="50%" stopColor="currentColor" />
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+                <stop offset="50%" stopColor="currentColor" stopOpacity="1" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
               </linearGradient>
 
               <linearGradient id="horizontal" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop stopColor="currentColor" stopOpacity="0" />
-                <stop offset="50%" stopColor="currentColor" />
+                <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+                <stop offset="50%" stopColor="currentColor" stopOpacity="1" />
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
               </linearGradient>
             </defs>
