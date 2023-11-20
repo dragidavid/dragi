@@ -23,9 +23,15 @@ module.exports = {
         xs: "448px",
       },
       height: {
+        4.5: "1.125rem",
+        5.5: "1.375rem",
+        18: "4.5rem",
         double: "200vh",
       },
       width: {
+        4.5: "1.125rem",
+        5.5: "1.375rem",
+        18: "4.5rem",
         double: "200vw",
       },
       borderRadius: {
@@ -40,6 +46,9 @@ module.exports = {
         0.75: "3px",
         screen: "100vw",
         "x-screen": ["100vw", "100vw"],
+      },
+      blur: {
+        xs: "2px",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],
