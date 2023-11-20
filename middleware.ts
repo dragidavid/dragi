@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 import { redis } from "lib/redis";
 import { getCountry } from "lib/country";
@@ -10,18 +10,17 @@ export const config = {
 export async function middleware(req: NextRequest) {
   const { geo } = req;
 
-  const city = geo?.city || "localhost";
-  const country = geo?.country || "3000";
-
-  const location = {
-    city,
-    country: getCountry(country),
+  const currentLocation = {
+    city: geo?.city || "localhost",
+    country: geo?.country ? getCountry(geo.country) : "3000",
   };
 
   await redis.set(
     "location",
-    `last visit from ${location.city.toLowerCase()}, ${location.country.toLowerCase()}`
+    `last visit from ${currentLocation.city.toLowerCase()}, ${currentLocation.country.toLowerCase()}`,
   );
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+
+  return response;
 }
