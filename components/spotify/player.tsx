@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import useSWR from "swr";
 import { useAtom, useAtomValue } from "jotai";
 import { atomWithStorage } from "jotai/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
 import Artists from "components/spotify/artists";
 
@@ -21,13 +21,15 @@ import {
   ContextMenuSeparator,
   ContextMenuCheckboxItem,
 } from "components/primitives/context-menu";
+import { MotionDiv } from "components/primitives/motion";
+
+import Icon from "components/ui/icon";
 
 import { cn } from "lib/cn";
 import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
 
 import { type Track, type Color } from "lib/types";
-import Icon from "components/ui/icon";
 
 const Scene = dynamic(() => import("components/three/scene"), {
   ssr: false,
@@ -76,7 +78,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
           )}
         >
           {localColors && (
-            <motion.div
+            <MotionDiv
               key={track?.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -89,7 +91,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               <Scene>
                 <SimpleBlobs colors={localColors} />
               </Scene>
-            </motion.div>
+            </MotionDiv>
           )}
 
           <BlurLayer />
@@ -107,25 +109,33 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               (trackError || !track) && "text-secondary/20",
             )}
           >
-            <Icon name="spotify-logo" size={72} viewBox="0 0 72 72" />
+            <Icon
+              name="spotify-logo"
+              size="72"
+              viewBox="0 0 72 72"
+              className={cn(
+                "transition-opacity duration-200 ease-in-out",
+                track ? "opacity-100" : "opacity-0",
+              )}
+            />
 
             {trackError ? (
               <div className={cn("text-sm")}>
                 <p>Something went wrong...</p>
               </div>
             ) : track ? (
-              <motion.div
+              <MotionDiv
                 key={track.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
-                  duration: 0.2,
+                  duration: 0.4,
                 }}
                 className={cn("relative flex flex-col gap-1")}
               >
                 <div
                   className={cn(
-                    "mb-3 flex items-center gap-2 text-xs font-black uppercase",
+                    "mb-3 flex items-center gap-2 text-xs font-black",
                   )}
                 >
                   {track.currentlyPlaying ? (
@@ -136,7 +146,6 @@ export default function Player({ preview = false }: { preview?: boolean }) {
 
                   <Icon
                     name="player"
-                    size={18}
                     className={cn(track.currentlyPlaying && "animate-spin")}
                     aria-hidden
                   />
@@ -149,7 +158,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
                 <Marquee className={cn("text-sm font-medium")}>
                   <Artists artists={track.artists} />
                 </Marquee>
-              </motion.div>
+              </MotionDiv>
             ) : null}
           </div>
         </div>
@@ -166,7 +175,7 @@ function BlurLayer() {
   return (
     <AnimatePresence mode="wait">
       {showBlur ? (
-        <motion.div
+        <MotionDiv
           key="blur"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -195,7 +204,7 @@ function NoiseLayer({ hasError = false }: { hasError?: boolean }) {
   return (
     <AnimatePresence mode="wait">
       {showNoise ? (
-        <motion.div
+        <MotionDiv
           key="noise"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
@@ -226,9 +235,9 @@ function NoiseLayer({ hasError = false }: { hasError?: boolean }) {
                 <feFuncB type="linear" slope="1.56" intercept="-0.28" />
               </feComponentTransfer>
             </filter>
-            <rect width="100%" height="100%" filter="url(#noise-filter)"></rect>
+            <rect height="100%" width="100%" filter="url(#noise-filter)" />
           </svg>
-        </motion.div>
+        </MotionDiv>
       ) : null}
     </AnimatePresence>
   );
@@ -252,13 +261,13 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
   return (
     <AnimatePresence mode="wait">
       {albumImage && showAlbumImage ? (
-        <motion.div
+        <MotionDiv
           key="album-image"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.2 } }}
+          exit={{ opacity: 0 }}
           transition={{
-            duration: 0.4,
+            duration: 0.2,
           }}
           className={cn(
             "absolute left-1/2 top-1/2 z-10 h-[178px] w-[178px]",
@@ -268,7 +277,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
           )}
         >
           <Image src={albumImage} fill alt="album-image" />
-        </motion.div>
+        </MotionDiv>
       ) : null}
     </AnimatePresence>
   );
