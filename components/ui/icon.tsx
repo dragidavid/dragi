@@ -1,8 +1,28 @@
 import { memo } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "lib/cn";
 
 export type Icons = keyof typeof icons;
+
+const iconVariants = cva("relative z-10", {
+  variants: {
+    size: {
+      "14": "h-3.5 w-3.5",
+      "16": "h-4 w-4",
+      "18": "h-4.5 w-4.5",
+      "20": "h-5 w-5",
+      "22": "h-5.5 w-5.5",
+      "24": "h-6 w-6",
+      "72": "h-18 w-18",
+      navigation: "h-8 w-8 xs:h-9 xs:w-9 md:h-10 md:w-10",
+      "theme-toggle": "h-5.5 w-5.5 xs:h-4.5 xs:w-4.5",
+    },
+  },
+  defaultVariants: {
+    size: "18",
+  },
+});
 
 const icons = {
   code: (
@@ -137,6 +157,24 @@ const icons = {
   "spotify-logo": (
     <path d="M36 0C16.117 0 0 16.117 0 36s16.117 36 36 36 36-16.117 36-36C72 16.12 55.883.002 36 0Zm16.51 51.92a2.242 2.242 0 0 1-3.085.747c-8.453-5.166-19.095-6.333-31.625-3.47a2.242 2.242 0 0 1-2.688-1.688A2.24 2.24 0 0 1 16.8 44.82c13.712-3.132 25.476-1.783 34.966 4.014a2.245 2.245 0 0 1 .744 3.086Zm4.405-9.798a2.809 2.809 0 0 1-3.862.923c-9.674-5.947-24.427-7.669-35.872-4.196a2.81 2.81 0 0 1-3.503-1.869 2.812 2.812 0 0 1 1.872-3.5c13.073-3.968 29.328-2.047 40.439 4.782a2.805 2.805 0 0 1 .926 3.86Zm.378-10.21c-11.605-6.89-30.746-7.524-41.824-4.163a3.365 3.365 0 0 1-4.199-2.243 3.37 3.37 0 0 1 2.246-4.2c12.717-3.86 33.855-3.116 47.214 4.814a3.368 3.368 0 0 1-3.437 5.792Z" />
   ),
+  "arrow-left": (
+    <path
+      d="M10 18L4 12M4 12L10 6M4 12H20"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  ),
+  "arrow-right": (
+    <path
+      d="M14 6L20 12M20 12L14 18M20 12H4"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  ),
 };
 
 export default memo(function Icon({
@@ -146,28 +184,16 @@ export default memo(function Icon({
   className,
 }: {
   name: keyof typeof icons;
-  size?: number;
+  size?: VariantProps<typeof iconVariants>["size"];
   viewBox?: string;
   className?: string;
 }) {
-  const dynamicSizes = "h-8 w-8 xs:h-9 xs:w-9 md:h-10 md:w-10";
-
   return (
-    <div
-      className={cn("relative z-10", !size && dynamicSizes, className)}
-      style={
-        size
-          ? {
-              height: `${size}px`,
-              width: `${size}px`,
-            }
-          : {}
-      }
-    >
+    <div className={cn(iconVariants({ size, className }))}>
       <svg
-        viewBox={viewBox || "0 0 24 24"}
         height="100%"
         width="100%"
+        viewBox={viewBox || "0 0 24 24"}
         fill="currentColor"
         aria-hidden
       >
