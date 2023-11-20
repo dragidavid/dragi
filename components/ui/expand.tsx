@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+
+import {
+  MotionSvg,
+  MotionLine,
+  MotionPath,
+} from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 
@@ -74,6 +79,7 @@ export default function Expand({ href }: { href: string }) {
         <svg
           height={rect.height}
           width={rect.width}
+          fill="none"
           strokeWidth="2"
           className={cn(
             "absolute inset-0 z-50 text-inverse",
@@ -105,22 +111,20 @@ export default function Expand({ href }: { href: string }) {
             </linearGradient>
           </defs>
 
-          <motion.path
+          <MotionPath
+            variants={path}
+            initial="hidden"
+            animate={isHovered ? "visible" : "reversed"}
             d={`M${rect.width},0 V${rect.height} H0`}
             stroke="url(#gradientToBottom)"
-            fill="transparent"
-            variants={path}
-            initial="hidden"
-            animate={isHovered ? "visible" : "reversed"}
           />
 
-          <motion.path
-            d={`M${rect.width},0 H0 V${rect.height}`}
-            stroke="url(#gradientToLeft)"
-            fill="transparent"
+          <MotionPath
             variants={path}
             initial="hidden"
             animate={isHovered ? "visible" : "reversed"}
+            d={`M${rect.width},0 H0 V${rect.height}`}
+            stroke="url(#gradientToLeft)"
           />
         </svg>
       )}
@@ -149,24 +153,28 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
 
   return (
     <div className={cn("h-[18px] w-[18px]")}>
-      <motion.svg
+      <MotionSvg
         viewBox="0 0 10 10"
         height="100%"
         width="100%"
-        fill="none"
-        strokeWidth="1"
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
-        <motion.line
-          x1="2"
-          y1="8"
-          stroke="hsl(var(--primary))"
+        <defs>
+          <linearGradient id="expand" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+        <MotionLine
+          x1="0"
+          y1="10"
           strokeLinecap="round"
           strokeLinejoin="round"
           variants={variants}
+          stroke="url(#expand)"
         />
-      </motion.svg>
+      </MotionSvg>
     </div>
   );
 }
