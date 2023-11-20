@@ -1,13 +1,9 @@
-import Module from "components/Module";
+import Module from "components/module";
 
-import About from "components/Previews/About";
-import Tools from "components/Previews/Tools";
-import Projects from "components/Previews/Projects";
-import Craft from "components/Previews/Craft";
-import Spotify from "components/Previews/Spotify";
+import { About, Tools, Projects, Craft, Spotify } from "components/previews";
 
-import Fade from "components/ui/Fade";
-import Line from "components/ui/Line";
+import Fade from "components/ui/fade";
+import Line from "components/ui/line";
 
 import { cn } from "lib/cn";
 

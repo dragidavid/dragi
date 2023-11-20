@@ -14,11 +14,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        GeistSans.variable,
-        GeistMono.variable,
-        "text-sm antialiased",
-      )}
+      className={cn(GeistSans.variable, GeistMono.variable, "antialiased")}
       suppressHydrationWarning
     >
       <head />
