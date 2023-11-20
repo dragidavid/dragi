@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+
+import { MotionSpan } from "components/primitives/motion";
 
 import Icon from "components/ui/icon";
 import Line from "components/ui/line";
@@ -15,27 +17,27 @@ import { debounce } from "lib/debounce";
 const links = [
   {
     id: "projects",
-    icon: <Icon name="code" />,
+    icon: <Icon name="code" size="navigation" />,
     href: "/projects",
   },
   {
     id: "craft",
-    icon: <Icon name="lab" />,
+    icon: <Icon name="lab" size="navigation" />,
     href: "/craft",
   },
   {
     id: "home",
-    icon: <Icon name="home" />,
+    icon: <Icon name="home" size="navigation" />,
     href: "/",
   },
   {
     id: "tools",
-    icon: <Icon name="flame" />,
+    icon: <Icon name="flame" size="navigation" />,
     href: "/tools",
   },
   {
     id: "spotify",
-    icon: <Icon name="music" />,
+    icon: <Icon name="music" size="navigation" />,
     href: "/spotify",
   },
 ];
@@ -73,7 +75,7 @@ export default function Navigation() {
     <nav
       ref={navRef}
       className={cn(
-        "relative flex h-[--mobile-navigation-height] w-full font-medium",
+        "relative flex h-[--mobile-navigation-height] w-full",
         "text-secondary",
         "md:h-[--desktop-navigation-height]",
       )}
@@ -128,7 +130,7 @@ export default function Navigation() {
 
             <AnimatePresence>
               {isActive(href) && (
-                <motion.span
+                <MotionSpan
                   initial={{
                     height: "0vh",
                   }}
