@@ -1,11 +1,11 @@
-import Spotify from "components/Spotify";
+import Player from "components/spotify/player";
 
 import { cn } from "lib/cn";
 
 export default function Preview() {
   return (
     <div className={cn("relative h-full")}>
-      <Spotify preview />
+      <Player preview />
     </div>
   );
 }
