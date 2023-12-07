@@ -38,6 +38,7 @@ const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
   ssr: false,
 });
 
+const fractalGlassAtom = atomWithStorage("showFractalGlass", true);
 const blurAtom = atomWithStorage("showBlur", true);
 const noiseAtom = atomWithStorage("showNoise", true);
 const albumImageAtom = atomWithStorage("showAlbumImage", false);
@@ -93,8 +94,9 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               </Scene>
             </MotionDiv>
           )}
-
           <BlurLayer />
+
+          <FractalGlassLayer />
 
           <NoiseLayer hasError={Boolean(trackError)} />
 
@@ -152,7 +154,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
                 </div>
 
                 <Marquee className={cn("text-3xl font-black")}>
-                  <StyledLink href={track.trackUrl} label={track.name} />
+                  <StyledLink href={track.trackUrl}>{track.name}</StyledLink>
                 </Marquee>
 
                 <Marquee className={cn("text-sm font-medium")}>
@@ -166,6 +168,31 @@ export default function Player({ preview = false }: { preview?: boolean }) {
 
       <ContextMenuContent />
     </ContextMenu>
+  );
+}
+
+function FractalGlassLayer() {
+  const showFractalGlass = useAtomValue(fractalGlassAtom);
+
+  return (
+    <AnimatePresence mode="wait">
+      {showFractalGlass ? (
+        <MotionDiv
+          key="blur"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.2,
+          }}
+          className={cn(
+            "absolute inset-0 z-10",
+            "pointer-events-none",
+            "mix-blend-overlay backdrop-blur-xl [background-image:repeating-linear-gradient(90deg,rgba(255,255,255,0.12),rgba(0,0,0,0.14)_9.5%,rgba(255,255,255,0.17)_12%)]",
+          )}
+        />
+      ) : null}
+    </AnimatePresence>
   );
 }
 
@@ -284,6 +311,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
 }
 
 function ContextMenuContent() {
+  const [showFractalGlass, setShowFractalGlass] = useAtom(fractalGlassAtom);
   const [showBlur, setShowBlur] = useAtom(blurAtom);
   const [showNoise, setShowNoise] = useAtom(noiseAtom);
   const [showAlbumImage, setShowAlbumImage] = useAtom(albumImageAtom);
@@ -309,6 +337,12 @@ function ContextMenuContent() {
         onCheckedChange={() => setShowNoise(!showNoise)}
       >
         Show noise
+      </ContextMenuCheckboxItem>
+      <ContextMenuCheckboxItem
+        checked={showFractalGlass}
+        onCheckedChange={() => setShowFractalGlass(!showFractalGlass)}
+      >
+        Show fractal glass
       </ContextMenuCheckboxItem>
     </ContextMenuContentPrimitive>
   );
