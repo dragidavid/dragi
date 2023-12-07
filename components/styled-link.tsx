@@ -2,12 +2,10 @@ import { cn } from "lib/cn";
 
 export default function StyledLink({
   href,
-  label,
+  children,
   className,
   ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-  label: string;
-}) {
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   return (
     <a
       href={href}
@@ -15,14 +13,15 @@ export default function StyledLink({
       rel="noopener noreferrer"
       className={cn(
         "outline-none",
-        "underline-offset-2",
-        "hover:cursor-ne-resize hover:underline",
+        "underline decoration-transparent underline-offset-2",
+        "transition-[color,text-decoration-color] duration-150",
+        "hover:cursor-ne-resize hover:underline hover:decoration-inherit",
         "focus:underline",
         className,
       )}
       {...props}
     >
-      {label}
+      {children}
     </a>
   );
 }
