@@ -14,6 +14,7 @@ export type Album = {
 };
 
 export type Track = {
+  type: "track";
   currentlyPlaying?: boolean;
   id: string;
   name: string;
@@ -23,43 +24,15 @@ export type Track = {
   album: Album;
 };
 
+export type TimelineGap = {
+  type: "gap";
+  content?: JSX.Element;
+  height: number;
+};
+
+export type TimelineItem = Track | TimelineGap;
+
 export type Color = {
   name: string;
   hex: string;
-};
-
-export type GridTile = {
-  id: keyof typeof GRADIENTS;
-  component: JSX.Element;
-};
-
-export type Gradients = typeof GRADIENTS;
-
-export type StatDetails = {
-  display: string;
-  value: number | string;
-};
-
-export type Stats = {
-  currentStreak: StatDetails;
-  longestStreak: StatDetails;
-  contributionsThisYear: StatDetails;
-  totalContributions: StatDetails;
-  firstContribution: StatDetails;
-};
-
-export type GAEventDetails = {
-  action: string;
-  category: string;
-  label: string;
-  value?: number;
-};
-
-export type Cage = {
-  id: string;
-  navigationLabel: string | JSX.Element;
-  styles: string;
-  component?: JSX.Element;
-  hasOwnPage: boolean;
-  href: string;
 };
