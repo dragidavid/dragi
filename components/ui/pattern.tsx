@@ -15,7 +15,7 @@ export default memo(function Pattern({ className }: { className?: string }) {
         WebkitMaskImage: `linear-gradient(to bottom, transparent, hsl(var(--background)))`,
       }}
     >
-      <svg width="100%" height="100%">
+      <svg height="100%" width="100%">
         <defs>
           <pattern
             id="plus-pattern"

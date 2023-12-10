@@ -1,3 +1,5 @@
+import { MotionSpan } from "components/primitives/motion";
+
 import { cn } from "lib/cn";
 
 export type Position = "tl" | "tr" | "bl" | "br";
@@ -46,8 +48,11 @@ export default function Joint({
   return (
     <>
       {(Object.keys(positions) as Positions).map((position: Position) => (
-        <span
+        <MotionSpan
           key={`${origin}-${position}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2, delay: Math.random() * (0.8 - 0) + 0 }}
           className={cn(
             "absolute z-40 h-[13px] w-[13px]",
             "pointer-events-none",
@@ -74,7 +79,7 @@ export default function Joint({
             <rect x="5" y="0" height="11" width="1" fill="url(#vertical)" />
             <rect x="0" y="5" height="1" width="11" fill="url(#horizontal)" />
           </svg>
-        </span>
+        </MotionSpan>
       ))}
     </>
   );
