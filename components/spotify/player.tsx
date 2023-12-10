@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
-import { useAtom, useAtomValue } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { AnimatePresence } from "framer-motion";
 
 import Artists from "components/spotify/artists";
@@ -28,6 +27,13 @@ import Icon from "components/ui/icon";
 import { cn } from "lib/cn";
 import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
+import {
+  fractalGlassAtom,
+  blurAtom,
+  noiseAtom,
+  albumImageAtom,
+  playerTrackAtom,
+} from "lib/atoms";
 
 import { type Track, type Color } from "lib/types";
 
@@ -38,15 +44,12 @@ const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
   ssr: false,
 });
 
-const fractalGlassAtom = atomWithStorage("showFractalGlass", true);
-const blurAtom = atomWithStorage("showBlur", true);
-const noiseAtom = atomWithStorage("showNoise", true);
-const albumImageAtom = atomWithStorage("showAlbumImage", false);
-
 export default function Player({ preview = false }: { preview?: boolean }) {
   const [localColors, setLocalColors] = useState<Color[] | undefined>(
     undefined,
   );
+
+  const setPlayerTrack = useSetAtom(playerTrackAtom);
 
   const { data: track, error: trackError } = useSWR<Track>(
     "/api/spotify/player",
@@ -55,6 +58,9 @@ export default function Player({ preview = false }: { preview?: boolean }) {
       refreshInterval: 90000,
       revalidateOnFocus: false,
       errorRetryCount: 2,
+      onSuccess: (data) => {
+        setPlayerTrack(data);
+      },
     },
   );
 
