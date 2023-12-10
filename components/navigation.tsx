@@ -22,7 +22,7 @@ const links = [
   },
   {
     id: "craft",
-    icon: <Icon name="lab" size="navigation" />,
+    icon: <Icon name="craft" size="navigation" />,
     href: "/craft",
   },
   {
@@ -32,7 +32,7 @@ const links = [
   },
   {
     id: "tools",
-    icon: <Icon name="flame" size="navigation" />,
+    icon: <Icon name="toolbox" size="navigation" />,
     href: "/tools",
   },
   {
@@ -99,7 +99,7 @@ export default function Navigation() {
         >
           <div
             className={cn(
-              "relative flex h-full items-start justify-center py-8",
+              "relative flex h-full items-start justify-center py-6",
             )}
             style={{
               WebkitTapHighlightColor: "transparent",
