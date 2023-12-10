@@ -1,19 +1,26 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
-import { Mdx } from "components/mdx";
+import Mdx from "components/mdx-components";
+import Views from "components/views";
+
+import { buttonVariants } from "components/primitives/button";
+
+import Icon from "components/ui/icon";
 
 import { cn } from "lib/cn";
+import { formatDate } from "lib/utils";
 
 import { type Metadata } from "next";
 
 import "styles/mdx.css";
 
-import { formatDate } from "lib/utils";
+export const revalidate = 0;
 
-type PageProps = {
+interface PageProps {
   params: { slug: string[] };
-};
+}
 
 async function getPostFromParams(params: PageProps["params"]) {
   const slug = params?.slug?.join("/");
@@ -56,11 +63,30 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className={cn("h-full overflow-auto p-6")}>
-      <h1 className="mb-2">{post.title}</h1>
+      <div className={cn("mb-4 flex")}>
+        <Link
+          href="/craft"
+          className={cn(
+            buttonVariants({ size: "icon", variant: "subtle" }),
+            "h-5.5 w-5.5",
+            "text-secondary",
+          )}
+        >
+          <Icon name="arrow-left" size="22" />
+        </Link>
+      </div>
 
-      <p className="mt-0 text-xl text-slate-700 dark:text-slate-200">
-        {formatDate(post.date)}
-      </p>
+      <div className="mb-8">
+        <h3 className={cn("mb-1 text-2xl font-semibold tracking-tight")}>
+          {post.title}
+        </h3>
+
+        <div className={cn("flex justify-between text-sm", "text-secondary")}>
+          <span>{formatDate(post.date)}</span>
+
+          <Views slug={post.slugAsParams} track />
+        </div>
+      </div>
 
       <Mdx code={post.body.code} />
     </div>

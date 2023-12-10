@@ -1,55 +1,78 @@
 import Link from "next/link";
-import { compareDesc } from "date-fns";
+import { compareDesc, getYear, parseISO } from "date-fns";
 
-import { allPosts } from "contentlayer/generated";
+import { allPosts as posts } from "contentlayer/generated";
+
+import Views from "components/views";
+
+import { cn } from "lib/cn";
+import { redis } from "lib/redis";
 
 export default async function Page() {
-  const posts = allPosts.sort((a, b) => {
+  const sortedPosts = posts.sort((a, b) => {
     return compareDesc(new Date(a.date), new Date(b.date));
   });
 
+  const allViews = await redis.hgetall("post_views");
+
+  let lastYearShown = 0;
+
   return (
-    <div className="container max-w-4xl">
-      <div className="flex flex-col items-start gap-4 md:flex-row md:justify-between md:gap-8">
-        <div className="flex-1 space-y-4">
-          <h1 className="font-heading inline-block text-4xl tracking-tight lg:text-5xl">
-            Blog
-          </h1>
-          <p className="text-muted-foreground text-xl">
-            A blog built using Contentlayer. Posts are written in MDX.
-          </p>
-        </div>
+    <div className={cn("relative flex h-full flex-col p-6")}>
+      {/* <p>check out some of blah blah</p> */}
+
+      <div className={cn("mb-4 flex text-sm", "text-secondary")}>
+        <span className={cn("w-14 flex-none", "md:w-18")}>date</span>
+        <span className="flex-1">title</span>
+        <span className={cn("w-14 flex-none text-right", "md:w-18")}>
+          views
+        </span>
       </div>
-      <hr className="my-8" />
-      {posts?.length ? (
-        <div className="grid gap-10 sm:grid-cols-2">
-          {posts.map((post, index) => (
-            <article
-              key={post._id}
-              className="group relative flex flex-col space-y-2"
-            >
-              <h2 className="text-2xl font-extrabold">{post.title}</h2>
-              {post.description && (
-                <p className="text-muted-foreground">{post.description}</p>
-              )}
-              {post.date && (
-                <p className="text-muted-foreground text-sm">
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-              )}
-              <Link href={post.slug} className="absolute inset-0">
-                <span className="sr-only">View Article</span>
+
+      <div className={cn("flex flex-col", "group")}>
+        {sortedPosts.map((post) => {
+          const year = getYear(parseISO(post.date));
+          const show = year !== lastYearShown;
+
+          lastYearShown = year;
+
+          return (
+            <div key={post._id} className={cn("relative flex items-center")}>
+              <span
+                className={cn(
+                  "relative w-14 flex-none py-2 text-sm",
+                  "pointer-events-none",
+                  "tabular-nums text-secondary",
+                  "md:w-18",
+                  show ? "visible" : "invisible",
+                )}
+              >
+                {year}
+              </span>
+
+              <Link
+                href={post.slug}
+                className={cn(
+                  "absolute z-10 flex w-full items-center py-2 pl-14",
+                  "transition-all duration-100 ease-in-out",
+                  "hover:!text-primary hover:!blur-none",
+                  "group-hover:text-secondary group-hover:blur-xs",
+                  "md:pl-[72px]",
+                )}
+              >
+                <span className={cn("flex-1", "truncate")}>{post.title}</span>
+
+                <Views
+                  slug={post.slugAsParams}
+                  allViews={allViews}
+                  compact
+                  className={cn("w-14 flex-none text-right text-sm", "md:w-18")}
+                />
               </Link>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <p>No posts published.</p>
-      )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
