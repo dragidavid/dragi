@@ -51,6 +51,7 @@ export default function Favorites() {
     `/api/spotify/favorites?range=${localSelectedRange}`,
     fetcher,
     {
+      refreshInterval: 90000,
       revalidateOnFocus: false,
       errorRetryCount: 2,
     },
@@ -159,10 +160,9 @@ export default function Favorites() {
                               "overflow-hidden text-ellipsis whitespace-nowrap text-sm",
                             )}
                           >
-                            <StyledLink
-                              href={track.trackUrl}
-                              label={track.name}
-                            />
+                            <StyledLink href={track.trackUrl}>
+                              {track.name}
+                            </StyledLink>
                           </div>
 
                           <div
