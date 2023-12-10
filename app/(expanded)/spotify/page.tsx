@@ -1,5 +1,6 @@
 import Player from "components/spotify/player";
 import Favorites from "components/spotify/favorites";
+import Timeline from "components/spotify/timeline";
 
 import Line from "components/ui/line";
 import Joint from "components/ui/joint";
@@ -32,7 +33,7 @@ export default function Page() {
       </div>
 
       <div className={cn("md:w-3/5 md:overflow-auto")}>
-        <Favorites />
+        <Timeline />
       </div>
     </div>
   );

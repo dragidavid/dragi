@@ -75,6 +75,7 @@ export async function GET() {
 
   return NextResponse.json<Track>(
     {
+      type: "track",
       currentlyPlaying: false,
       id: mostRecent.track.id,
       name: mostRecent.track.name,
