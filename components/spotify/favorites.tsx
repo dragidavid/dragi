@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import useSWR from "swr";
 
-import Artists from "components/musicplayer/artists";
+import Artists from "components/spotify/artists";
 
 import Heading from "components/heading";
 import StyledLink from "components/styled-link";

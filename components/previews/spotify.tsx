@@ -1,4 +1,4 @@
-import Player from "components/musicplayer/player";
+import Player from "components/spotify/player";
 
 import { cn } from "lib/cn";
 
