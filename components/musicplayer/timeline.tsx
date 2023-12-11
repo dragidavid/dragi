@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { useAtomValue } from "jotai";
 import { v4 as uuidv4 } from "uuid";
 
-import Artists from "components/spotify/artists";
+import Artists from "components/musicplayer/artists";
 
 import Heading from "components/heading";
 import StyledLink from "components/styled-link";

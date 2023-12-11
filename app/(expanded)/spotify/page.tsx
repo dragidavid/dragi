@@ -1,6 +1,6 @@
-import Player from "components/spotify/player";
-import Favorites from "components/spotify/favorites";
-import Timeline from "components/spotify/timeline";
+import Player from "components/musicplayer/player";
+import Favorites from "components/musicplayer/favorites";
+import Timeline from "components/musicplayer/timeline";
 
 import Line from "components/ui/line";
 import Joint from "components/ui/joint";

@@ -7,7 +7,7 @@ import useSWR from "swr";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { AnimatePresence } from "framer-motion";
 
-import Artists from "components/spotify/artists";
+import Artists from "components/musicplayer/artists";
 
 import Marquee from "components/custom-marquee";
 import StyledLink from "components/styled-link";
