@@ -52,6 +52,7 @@ export default function Marquee({
     return () => {
       window.removeEventListener("resize", getMoveBy);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -38,3 +38,4 @@ yarn-error.log*
 
 # contentlayer
 .contentlayer
+.env*.local

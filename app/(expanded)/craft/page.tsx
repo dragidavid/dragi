@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Redis } from "@upstash/redis";
 import { compareDesc, getYear, parseISO } from "date-fns";
 
 import { allPosts as posts } from "contentlayer/generated";
@@ -6,7 +7,8 @@ import { allPosts as posts } from "contentlayer/generated";
 import Views from "components/views";
 
 import { cn } from "lib/cn";
-import { redis } from "lib/redis";
+
+const redis = Redis.fromEnv();
 
 export default async function Page() {
   const sortedPosts = posts.sort((a, b) => {

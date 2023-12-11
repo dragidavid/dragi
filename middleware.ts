@@ -1,11 +1,13 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { Redis } from "@upstash/redis";
 
-import { redis } from "lib/redis";
 import { getCountry } from "lib/country";
 
 export const config = {
   matcher: "/",
 };
+
+const redis = Redis.fromEnv();
 
 export async function middleware(req: NextRequest) {
   const { geo } = req;
