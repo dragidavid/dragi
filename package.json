@@ -24,7 +24,7 @@
     "geist": "^1.2.0",
     "jotai": "^2.6.0",
     "lucide-react": "^0.294.0",
-    "next": "14.0.5-canary.1",
+    "next": "14.0.4",
     "next-contentlayer": "^0.3.4",
     "next-themes": "^0.2.1",
     "node-vibrant": "3.1.6",
