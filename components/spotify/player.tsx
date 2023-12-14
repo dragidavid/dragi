@@ -119,10 +119,10 @@ export default function Player({ preview = false }: { preview?: boolean }) {
           >
             <Icon
               name="spotify-logo"
-              size="72"
-              viewBox="0 0 72 72"
+              size="80"
               className={cn(
                 "transition-opacity duration-200 ease-in-out",
+                "-translate-x-1.5 -translate-y-1.5",
                 track ? "opacity-100" : "opacity-0",
               )}
             />

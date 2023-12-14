@@ -62,7 +62,7 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <div className={cn("h-full overflow-auto p-6")}>
+    <div className={cn("h-full overflow-auto p-6", "xs:p-8")}>
       <div className={cn("mb-4 flex")}>
         <Link
           href="/craft"

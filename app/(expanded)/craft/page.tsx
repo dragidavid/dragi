@@ -20,7 +20,7 @@ export default async function Page() {
   let lastYearShown = 0;
 
   return (
-    <div className={cn("relative flex h-full flex-col p-6")}>
+    <div className={cn("relative flex h-full flex-col p-6", "xs:p-8")}>
       {/* <p>check out some of blah blah</p> */}
 
       <div className={cn("mb-4 flex text-sm", "text-secondary")}>
