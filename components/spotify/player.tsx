@@ -28,7 +28,7 @@ import { cn } from "lib/cn";
 import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
 import {
-  fractalGlassAtom,
+  glassAtom,
   blurAtom,
   noiseAtom,
   albumImageAtom,
@@ -102,7 +102,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
           )}
           <BlurLayer />
 
-          <FractalGlassLayer />
+          <GlassLayer />
 
           <NoiseLayer hasError={Boolean(trackError)} />
 
@@ -177,12 +177,12 @@ export default function Player({ preview = false }: { preview?: boolean }) {
   );
 }
 
-function FractalGlassLayer() {
-  const showFractalGlass = useAtomValue(fractalGlassAtom);
+function GlassLayer() {
+  const showGlass = useAtomValue(glassAtom);
 
   return (
     <AnimatePresence mode="wait">
-      {showFractalGlass ? (
+      {showGlass ? (
         <MotionDiv
           key="blur"
           initial={{ opacity: 0 }}
@@ -317,7 +317,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
 }
 
 function ContextMenuContent() {
-  const [showFractalGlass, setShowFractalGlass] = useAtom(fractalGlassAtom);
+  const [showGlass, setShowGlass] = useAtom(glassAtom);
   const [showBlur, setShowBlur] = useAtom(blurAtom);
   const [showNoise, setShowNoise] = useAtom(noiseAtom);
   const [showAlbumImage, setShowAlbumImage] = useAtom(albumImageAtom);
@@ -345,10 +345,10 @@ function ContextMenuContent() {
         Show noise
       </ContextMenuCheckboxItem>
       <ContextMenuCheckboxItem
-        checked={showFractalGlass}
-        onCheckedChange={() => setShowFractalGlass(!showFractalGlass)}
+        checked={showGlass}
+        onCheckedChange={() => setShowGlass(!showGlass)}
       >
-        Show fractal glass
+        Show glass
       </ContextMenuCheckboxItem>
     </ContextMenuContentPrimitive>
   );

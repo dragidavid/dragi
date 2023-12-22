@@ -42,9 +42,9 @@ export default async function Page() {
             <div key={post._id} className={cn("relative flex items-center")}>
               <span
                 className={cn(
-                  "relative w-14 flex-none py-2 text-sm",
+                  "relative w-14 flex-none py-2 text-sm tabular-nums",
                   "pointer-events-none",
-                  "tabular-nums text-secondary",
+                  "text-secondary",
                   "md:w-18",
                   show ? "visible" : "invisible",
                 )}

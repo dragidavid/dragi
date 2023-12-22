@@ -20,6 +20,7 @@ import { playerTrackAtom } from "lib/atoms";
 import { type Track, type TimelineGap, type TimelineItem } from "lib/types";
 import Joint from "components/ui/joint";
 import Icon from "components/ui/icon";
+import { MotionDiv, MotionLi } from "components/primitives/motion";
 
 type TrackWithType = Track & { type: "track" };
 type TrackOrGap = TrackWithType | { type: "gap"; height?: number };
@@ -63,7 +64,15 @@ export default function Timeline() {
   }
 
   return (
-    <div className={cn("flex py-8 text-sm")}>
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 0.4,
+        delay: 0.4,
+      }}
+      className={cn("flex py-8 text-sm")}
+    >
       <div className={cn("flex h-full w-full flex-col gap-4")}>
         {Object.entries(timelineItems).map(([date, items], index) => {
           const last = index === Object.keys(timelineItems).length - 1;
@@ -96,7 +105,7 @@ export default function Timeline() {
                     <span
                       className={cn(
                         "absolute -bottom-5 top-3/4 z-10 w-px",
-                        "from-spotify bg-gradient-to-b to-accent",
+                        "bg-gradient-to-b from-spotify to-accent",
                         "-translate-x-1/2",
                       )}
                     />
@@ -132,22 +141,30 @@ export default function Timeline() {
               <ul className={cn("w-2/3 flex-1 pl-4 pr-6", "xs:pr-8")}>
                 {items.map((item) =>
                   item.type === "gap" ? (
-                    <li
+                    <MotionLi
                       key={uuidv4()}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      transition={{ duration: 0.4 }}
+                      viewport={{ once: true }}
                       className="flex"
                       style={{ height: `${item.height}px` }}
                     >
                       {item.content}
-                    </li>
+                    </MotionLi>
                   ) : (
-                    <li
+                    <MotionLi
                       key={uuidv4()}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true }}
                       className={cn(
                         "overflow-hidden text-ellipsis whitespace-nowrap",
                       )}
                     >
                       {item.name}
-                    </li>
+                    </MotionLi>
                   ),
                 )}
               </ul>
@@ -155,7 +172,7 @@ export default function Timeline() {
           );
         })}
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 
