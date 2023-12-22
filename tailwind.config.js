@@ -56,14 +56,16 @@ module.exports = {
         mono: ["var(--font-geist-mono)"],
       },
       keyframes: {
-        flash: {
-          "0%": { opacity: "0.2" },
-          "20%": { opacity: "1" },
-          "100%": { opacity: "0.2" },
+        "mask-slide": {
+          "0%": { "-webkit-mask-position": "0 0", maskPosition: "0 0" },
+          "100%": {
+            "-webkit-mask-position": "1000px 1000px",
+            maskPosition: "1000px 1000px",
+          },
         },
       },
       animation: {
-        flash: "flash 1.4s infinite linear",
+        "mask-slide": "mask-slide 120s infinite linear",
       },
     },
   },

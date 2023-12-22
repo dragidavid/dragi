@@ -5,7 +5,6 @@
 @layer base {
   :root {
     --container-size: 768px;
-    /* --container-size: 744px; */
 
     --expanded-side-width: 3rem;
 
@@ -83,37 +82,5 @@ input[type="email"] {
 @supports (scrollbar-width) {
   * {
     scrollbar-width: none;
-  }
-}
-
-.dot-canvas {
-  /* width: 100%;
-  height: 100%; */
-  -webkit-mask-image: url("/static/images/perlin-noise.avif");
-  mask-image: url("/static/images/perlin-noise.avif");
-  /* -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat; */
-  animation:
-    fade-in 3s cubic-bezier(0.65, 0, 0.35, 1),
-    animate-mask 120s linear infinite;
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes animate-mask {
-  0% {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-  100% {
-    -webkit-mask-position: 1000px 1000px;
-    mask-position: 1000px 1000px;
   }
 }
