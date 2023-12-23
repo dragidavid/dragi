@@ -73,7 +73,7 @@ export default function Timeline() {
       }}
       className={cn("flex py-8 text-sm")}
     >
-      <div className={cn("flex h-full w-full flex-col gap-4")}>
+      <div className={cn("flex size-full flex-col gap-4")}>
         {Object.entries(timelineItems).map(([date, items], index) => {
           const last = index === Object.keys(timelineItems).length - 1;
 
@@ -111,20 +111,20 @@ export default function Timeline() {
                     />
                     <div
                       className={cn(
-                        "absolute left-0 top-1/2 z-20 flex h-4 w-4 items-center justify-center",
+                        "absolute left-0 top-1/2 z-20 flex size-4 items-center justify-center",
                         "-translate-x-1/2 -translate-y-1/2",
                       )}
                     >
                       <span
                         className={cn(
-                          "absolute h-3 w-3 rounded-full",
+                          "absolute size-3 rounded-full",
                           "bg-spotify",
                           "animate-ping",
                         )}
                       />
                       <span
                         className={cn(
-                          "absolute h-3 w-3 rounded-full",
+                          "absolute size-3 rounded-full",
                           "bg-background",
                         )}
                       />

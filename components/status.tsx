@@ -88,7 +88,7 @@ function Separator({ hidden = false }: { hidden?: boolean }) {
 
   return (
     <div
-      className={cn("mx-5 h-1 w-1 rounded-full", "bg-accent", isXs && "my-3")}
+      className={cn("mx-5 size-1 rounded-full", "bg-accent", isXs && "my-3")}
       aria-hidden
     />
   );

@@ -152,7 +152,7 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
   };
 
   return (
-    <div className={cn("h-[18px] w-[18px]")}>
+    <div className="size-[18px]">
       <MotionSvg
         viewBox="0 0 10 10"
         height="100%"

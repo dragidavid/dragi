@@ -28,7 +28,7 @@ export default function Socials() {
           size="icon"
           variant="subtle"
           onClick={() => window.open("https://x.com/dragidavid")}
-          className={cn("h-min w-min", "text-inherit")}
+          className={cn("!size-min", "text-inherit")}
         >
           <Icon name="x-logo" size="20" />
           <span className="sr-only">X/Twitter logo</span>
@@ -38,7 +38,7 @@ export default function Socials() {
           size="icon"
           variant="subtle"
           onClick={() => window.open("https://github.com/dragidavid")}
-          className={cn("h-min w-min", "text-inherit")}
+          className={cn("!size-min", "text-inherit")}
         >
           <Icon name="github-logo" size="20" />
           <span className="sr-only">GitHub logo</span>

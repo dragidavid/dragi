@@ -46,7 +46,7 @@ function ReactTweet(props: TweetProps) {
       fallback={
         <div
           className={cn(
-            "flex w-full max-w-[550px] flex-col gap-3 rounded-lg p-4",
+            "flex w-full max-w-lg flex-col gap-3 rounded-lg p-4",
             "border border-accent bg-extreme",
           )}
         >

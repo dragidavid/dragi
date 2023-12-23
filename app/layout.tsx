@@ -29,7 +29,7 @@ export default function RootLayout({
         <Providers attribute="class" defaultTheme="system" enableSystem>
           <main
             className={cn(
-              "mx-auto w-screen max-w-[448px] overflow-hidden",
+              "mx-auto w-screen max-w-md overflow-hidden",
               // "select-none",
               "xs:flex xs:min-h-screen xs:items-center xs:overflow-y-clip xs:overflow-x-visible",
               "md:w-[--container-size] md:max-w-none",

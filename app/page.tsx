@@ -112,7 +112,7 @@ const modules = [
 
 export default function Page() {
   return (
-    <div className={cn("h-full w-full px-5", "sm:px-4")}>
+    <div className={cn("size-full px-5", "sm:px-4")}>
       <div
         className={cn(
           "relative flex min-h-screen w-full flex-col items-center justify-start py-12",

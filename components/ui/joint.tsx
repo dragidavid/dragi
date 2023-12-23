@@ -54,7 +54,7 @@ export default function Joint({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: Math.random() * (0.8 - 0) + 0 }}
           className={cn(
-            "absolute z-40 h-[13px] w-[13px]",
+            "absolute z-40 size-[13px]",
             "pointer-events-none",
             "text-inverse",
             positions[position],

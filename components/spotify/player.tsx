@@ -303,7 +303,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
             duration: 0.2,
           }}
           className={cn(
-            "absolute left-1/2 top-1/2 z-10 h-[178px] w-[178px]",
+            "absolute left-1/2 top-1/2 z-10 size-[178px]",
             "pointer-events-none",
             "shadow-xl",
             "-translate-x-1/2 -translate-y-1/2",

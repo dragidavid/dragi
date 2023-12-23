@@ -33,7 +33,7 @@ export default function CopyButton({
 
         setHasCopied(true);
       }}
-      className={cn("absolute right-4 top-4 h-6 w-6", "text-secondary")}
+      className={cn("absolute right-4 top-4 !size-6", "text-secondary")}
       {...props}
     >
       {hasCopied ? (

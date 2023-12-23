@@ -111,7 +111,7 @@ const components = {
       className={cn(
         "mt-6 pl-6 font-medium italic",
         "border-l-2 border-accent",
-        "[&>*]:text-inverse",
+        "*:text-inverse",
         className,
       )}
       {...props}

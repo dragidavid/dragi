@@ -11,7 +11,7 @@ import { cn } from "lib/cn";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={cn("h-[100dvh] w-full pl-12", "xs:px-5", "sm:px-4")}>
+    <div className={cn("h-dvh w-full pl-12", "xs:px-5", "sm:px-4")}>
       <div
         className={cn(
           "relative w-full",
@@ -74,7 +74,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           <div
             className={cn(
-              "relative flex h-full w-full flex-col items-center justify-start whitespace-nowrap",
+              "relative flex size-full flex-col items-center justify-start whitespace-nowrap",
               "xs:items-start xs:justify-end ",
             )}
           >
@@ -104,8 +104,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             br: "invisible xs:visible",
           }}
           className={cn(
-            "h-[100dvh] pb-[--mobile-navigation-height]",
-            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))] xs:pb-0 md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]",
+            "h-dvh pb-[--mobile-navigation-height]",
+            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))] xs:pb-0",
+            "md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]",
           )}
         >
           <div

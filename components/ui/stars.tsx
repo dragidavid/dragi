@@ -94,7 +94,7 @@ export default function Stars({ className }: { className?: string }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 2 }}
-      className={cn("h-full w-full", "pointer-events-none", className)}
+      className={cn("size-full", "pointer-events-none", className)}
       style={{
         WebkitMaskImage: `linear-gradient(to bottom, transparent, hsl(var(--background)))`,
       }}

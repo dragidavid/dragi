@@ -32,7 +32,7 @@ export default function ThemeToggle({
       size="icon"
       variant="subtle"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className={cn("h-min w-min", "text-inherit", vertical && "rotate-180")}
+      className={cn("!size-min", "text-inherit", vertical && "rotate-180")}
       {...props}
     >
       {theme === "light" ? (

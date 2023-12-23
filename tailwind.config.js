@@ -35,6 +35,12 @@ module.exports = {
         18: "4.5rem",
         double: "200vw",
       },
+      size: {
+        4.5: "1.125rem",
+        5.5: "1.375rem",
+        18: "4.5rem",
+        double: "200vw",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -68,7 +68,7 @@ export default async function Page({ params }: PageProps) {
           href="/craft"
           className={cn(
             buttonVariants({ size: "icon", variant: "subtle" }),
-            "h-5.5 w-5.5",
+            "size-5.5",
             "text-secondary",
           )}
         >

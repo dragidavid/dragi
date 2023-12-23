@@ -8,16 +8,16 @@ export type Icons = keyof typeof icons;
 const iconVariants = cva("relative z-10", {
   variants: {
     size: {
-      "14": "h-3.5 w-3.5",
-      "16": "h-4 w-4",
-      "18": "h-4.5 w-4.5",
-      "20": "h-5 w-5",
-      "22": "h-5.5 w-5.5",
-      "24": "h-6 w-6",
-      "72": "h-18 w-18",
-      "80": "h-20 w-20",
-      navigation: "h-8 w-8 xs:h-9 xs:w-9 md:h-10 md:w-10",
-      "theme-toggle": "h-5.5 w-5.5 xs:h-4.5 xs:w-4.5",
+      "14": "size-3.5",
+      "16": "size-4",
+      "18": "size-4.5",
+      "20": "size-5",
+      "22": "size-5.5",
+      "24": "size-6",
+      "72": "size-18",
+      "80": "size-20",
+      navigation: "size-8 xs:size-9 md:size-10",
+      "theme-toggle": "size-5.5 xs:size-4.5",
     },
   },
   defaultVariants: {

@@ -88,10 +88,11 @@ export default function Navigation() {
           className={cn(
             "relative flex-1",
             "outline-none",
-            isActive(href) && "text-primary",
             "transition-all duration-100 ease-in-out",
             "hover:text-primary",
-            "focus:text-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary",
+            "focus:text-primary",
+            "focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary",
+            isActive(href) && "text-primary",
           )}
           style={{
             height: `${height}vh`,
