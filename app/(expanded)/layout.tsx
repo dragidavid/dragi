@@ -5,7 +5,7 @@ import Status from "components/status";
 
 import Fade from "components/ui/fade";
 import Line from "components/ui/line";
-import Twinkle from "components/ui/twinkle";
+import Stars from "components/ui/stars";
 
 import { cn } from "lib/cn";
 
@@ -88,7 +88,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Status />
             </div>
 
-            <Twinkle className={cn("xs:absolute xs:inset-0 xs:rotate-180")} />
+            <Stars className={cn("xs:absolute xs:inset-0 xs:rotate-180")} />
           </div>
         </Module>
 

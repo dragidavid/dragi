@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useTheme } from "next-themes";
 
 import { MotionDiv } from "components/primitives/motion";
@@ -8,27 +8,22 @@ import { MotionDiv } from "components/primitives/motion";
 import { cn } from "lib/cn";
 import { random } from "lib/random";
 
-export default function Twinkle({ className }: { className?: string }) {
+export default function Stars({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { theme } = useTheme();
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas?.getContext("2d");
-
-    const drawDots = (
-      canvas: HTMLCanvasElement,
-      context: CanvasRenderingContext2D,
-    ) => {
+  const drawDots = useCallback(
+    (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => {
       const numberOfDots = Math.floor((canvas.width * canvas.height) / 500);
       const dots: { x: number; y: number; size: number }[] = [];
 
       for (let i = 0; i < numberOfDots; i++) {
         let overlap = false;
 
-        const dotSize = Math.random() * 1 + 0.5;
+        const dotSize =
+          (theme === "light" ? 1.4 : 1) * (Math.random() * 1 + 0.5);
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
 
@@ -36,6 +31,7 @@ export default function Twinkle({ className }: { className?: string }) {
           const distance = Math.sqrt((dot.x - x) ** 2 + (dot.y - y) ** 2);
           if (distance < dot.size + dotSize) {
             overlap = true;
+
             break;
           }
         }
@@ -43,11 +39,10 @@ export default function Twinkle({ className }: { className?: string }) {
         if (!overlap) {
           const color =
             theme === "dark"
-              ? `hsl(0, 0%, ${random(60, 100, true)}%)`
-              : `hsl(0, 0%, ${random(0, 40, true)}%)`;
+              ? `hsl(0, 0%, ${random(70, 100, true)}%)`
+              : `hsl(0, 0%, ${random(0, 30, true)}%)`;
 
           context.fillStyle = color;
-
           context.beginPath();
           context.arc(x, y, dotSize, 0, Math.PI * 2);
           context.fill();
@@ -55,20 +50,27 @@ export default function Twinkle({ className }: { className?: string }) {
           dots.push({ x, y, size: dotSize });
         }
       }
-    };
+    },
+    [theme],
+  );
 
-    const resizeObserver = new ResizeObserver((entries) => {
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+
+    const resizeCallback = (entries: ResizeObserverEntry[]) => {
       for (let entry of entries) {
-        if (entry.target === containerRef.current) {
-          if (canvas && context) {
-            canvas.width = entry.contentRect.width;
-            canvas.height = entry.contentRect.height;
+        if (entry.target === containerRef.current && canvas && context) {
+          canvas.width = entry.contentRect.width;
+          canvas.height = entry.contentRect.height;
 
-            drawDots(canvas, context);
-          }
+          drawDots(canvas, context);
         }
       }
-    });
+    };
+
+    const throttledResize = throttle(resizeCallback, 100);
+    const resizeObserver = new ResizeObserver(throttledResize);
 
     if (containerRef.current) {
       resizeObserver.observe(containerRef.current);
@@ -84,7 +86,7 @@ export default function Twinkle({ className }: { className?: string }) {
     return () => {
       resizeObserver.disconnect();
     };
-  }, [theme]);
+  }, [drawDots]);
 
   return (
     <MotionDiv
@@ -100,10 +102,27 @@ export default function Twinkle({ className }: { className?: string }) {
       <canvas
         ref={canvasRef}
         className="dark:animate-mask-slide"
-        style={{
-          WebkitMaskImage: "url('/static/images/perlin-noise.avif')",
-        }}
+        style={{ WebkitMaskImage: "url('/static/images/perlin-noise.avif')" }}
       />
     </MotionDiv>
   );
+}
+
+function throttle(
+  callback: (entries: ResizeObserverEntry[]) => void,
+  limit: number,
+) {
+  let waiting = false;
+
+  return (entries: ResizeObserverEntry[]) => {
+    if (!waiting) {
+      callback(entries);
+
+      waiting = true;
+
+      setTimeout(() => {
+        waiting = false;
+      }, limit);
+    }
+  };
 }
