@@ -16,7 +16,7 @@ import { MotionDiv } from "components/primitives/motion";
 import { cn } from "lib/cn";
 import { useWindowSize } from "lib/hooks/useWindowSize";
 
-export default function Wrapper({ play = false }: { play?: boolean }) {
+export default function Status({ play = false }: { play?: boolean }) {
   const pathname = usePathname();
 
   const { isXs, isMobile, isDesktop } = useWindowSize();
@@ -38,8 +38,9 @@ export default function Wrapper({ play = false }: { play?: boolean }) {
         delay: 0.8,
       }}
       className={cn(
-        "flex w-full py-0.5 text-sm",
+        "flex w-full py-0.5 text-xs",
         "text-secondary",
+        "xs:text-sm",
         shouldRenderVerticalStatus && "py-6",
         isDesktop && "justify-between px-1",
       )}

@@ -143,7 +143,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               >
                 <div
                   className={cn(
-                    "mb-3 flex items-center gap-2 text-xs font-black",
+                    "mb-3 flex items-center gap-2 text-xs font-bold",
                   )}
                 >
                   {track.currentlyPlaying ? (
@@ -159,7 +159,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
                   />
                 </div>
 
-                <Marquee className={cn("text-3xl font-black")}>
+                <Marquee className={cn("text-3xl font-extrabold")}>
                   <StyledLink href={track.trackUrl}>{track.name}</StyledLink>
                 </Marquee>
 

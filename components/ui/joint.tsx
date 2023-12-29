@@ -56,7 +56,7 @@ export default function Joint({
           className={cn(
             "absolute z-40 size-[13px]",
             "pointer-events-none",
-            "text-inverse",
+            "text-secondary",
             positions[position],
           )}
           style={styles[position]}

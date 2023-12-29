@@ -6,9 +6,15 @@
   --tweet-font-color: inherit;
   --tweet-font-color-secondary: hsl(var(--secondary));
 
-  --tweet-header-font-size: theme("fontSize.sm");
-  --tweet-body-font-size: theme("fontSize.sm");
-  --tweet-info-font-size: theme("fontSize.xs");
+  --tweet-header-font-size: theme(fontSize.sm);
+  --tweet-body-font-size: theme(fontSize.sm);
+  --tweet-info-font-size: theme(fontSize.xs);
+
+  --tweet-actions-font-size: theme(fontSize.xs);
+  --tweet-actions-font-weight: theme(fontWeight.semibold);
+
+  --tweet-replies-font-size: theme(fontSize.xs);
+  --tweet-replies-font-weight: theme(fontWeight.semibold);
 
   --tweet-bg-color: hsl(var(--extreme));
   --tweet-bg-color-hover: hsl(var(--extreme));
@@ -24,6 +30,10 @@
 
 .tweet .react-tweet-theme article {
   @apply p-4;
+}
+
+a[class*="tweet-header_follow"] {
+  @apply font-medium;
 }
 
 div[class*="tweet-not-found_root"] {

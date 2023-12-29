@@ -22,8 +22,7 @@ export default function Stars({ className }: { className?: string }) {
       for (let i = 0; i < numberOfDots; i++) {
         let overlap = false;
 
-        const dotSize =
-          (theme === "light" ? 1.4 : 1) * (Math.random() * 1 + 0.5);
+        const dotSize = Math.random() * 1 + 0.5;
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
 
@@ -40,7 +39,7 @@ export default function Stars({ className }: { className?: string }) {
           const color =
             theme === "dark"
               ? `hsl(0, 0%, ${random(70, 100, true)}%)`
-              : `hsl(0, 0%, ${random(0, 30, true)}%)`;
+              : `hsl(0, 0%, ${random(30, 50, true)}%)`;
 
           context.fillStyle = color;
           context.beginPath();

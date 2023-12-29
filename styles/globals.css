@@ -6,11 +6,11 @@
   :root {
     --container-size: 768px;
 
-    --expanded-side-width: 3rem;
+    --expanded-side-width: 40px;
 
     --radius: 0.5rem;
 
-    --mobile-navigation-height: 128px;
+    --mobile-navigation-height: 14vh;
     --desktop-navigation-height: 48px;
 
     --spotify: 141 73% 42%;
