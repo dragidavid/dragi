@@ -11,7 +11,13 @@ import { cn } from "lib/cn";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={cn("h-dvh w-full pl-12", "xs:px-5", "sm:px-4")}>
+    <div
+      className={cn(
+        "h-dvh w-full pl-[--expanded-side-width]",
+        "xs:px-5",
+        "sm:px-4",
+      )}
+    >
       <div
         className={cn(
           "relative w-full",
@@ -75,6 +81,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div
             className={cn(
               "relative flex size-full flex-col items-center justify-start whitespace-nowrap",
+              "bg-extreme",
               "xs:items-start xs:justify-end ",
             )}
           >
@@ -88,7 +95,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Status />
             </div>
 
-            <Stars className={cn("xs:absolute xs:inset-0 xs:rotate-180")} />
+            <Stars
+              className={cn(
+                "absolute bottom-0 left-0 right-0 top-1/3 xs:inset-0 xs:rotate-180",
+              )}
+            />
           </div>
         </Module>
 

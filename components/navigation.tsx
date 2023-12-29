@@ -101,6 +101,7 @@ export default function Navigation() {
           <div
             className={cn(
               "relative flex h-full items-start justify-center py-6",
+              "bg-extreme",
             )}
             style={{
               WebkitTapHighlightColor: "transparent",
