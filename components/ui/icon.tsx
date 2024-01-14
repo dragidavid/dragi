@@ -16,7 +16,7 @@ const iconVariants = cva("relative z-10", {
       "24": "size-6",
       "72": "size-18",
       "80": "size-20",
-      navigation: "size-8 xs:size-9 md:size-10",
+      navigation: "size-7 xs:size-8",
       "theme-toggle": "size-5.5 xs:size-4.5",
     },
   },

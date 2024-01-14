@@ -28,10 +28,10 @@ import { cn } from "lib/cn";
 import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
 import {
-  glassAtom,
+  albumImageAtom,
   blurAtom,
   noiseAtom,
-  albumImageAtom,
+  glassAtom,
   playerTrackAtom,
 } from "lib/atoms";
 
@@ -82,6 +82,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
         <div
           className={cn(
             "relative h-full min-h-[calc(var(--container-size)*2/3)] w-full overflow-hidden",
+            "select-none",
           )}
         >
           {localColors && (
@@ -143,7 +144,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               >
                 <div
                   className={cn(
-                    "mb-3 flex items-center gap-2 text-xs font-bold",
+                    "mb-3 flex items-center gap-2 text-xs font-semibold",
                   )}
                 >
                   {track.currentlyPlaying ? (
@@ -159,7 +160,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
                   />
                 </div>
 
-                <Marquee className={cn("text-3xl font-extrabold")}>
+                <Marquee className={cn("text-2xl font-bold")}>
                   <StyledLink href={track.trackUrl}>{track.name}</StyledLink>
                 </Marquee>
 
@@ -177,14 +178,14 @@ export default function Player({ preview = false }: { preview?: boolean }) {
   );
 }
 
-function GlassLayer() {
-  const showGlass = useAtomValue(glassAtom);
+function AlbumImage({ albumImage }: { albumImage?: string }) {
+  const showAlbumImage = useAtomValue(albumImageAtom);
 
   return (
     <AnimatePresence mode="wait">
-      {showGlass ? (
+      {albumImage && showAlbumImage ? (
         <MotionDiv
-          key="blur"
+          key="album-image"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -192,11 +193,14 @@ function GlassLayer() {
             duration: 0.2,
           }}
           className={cn(
-            "absolute inset-0 z-10",
-            "pointer-events-none",
-            "mix-blend-overlay backdrop-blur-xl [background-image:repeating-linear-gradient(90deg,rgba(255,255,255,0.12),rgba(0,0,0,0.14)_9.5%,rgba(255,255,255,0.17)_12%)]",
+            "absolute left-1/2 top-1/2 z-10 size-[178px]",
+            "pointer-events-none overflow-hidden",
+            "rounded-md shadow-lg",
+            "-translate-x-1/2 -translate-y-1/2",
           )}
-        />
+        >
+          <Image src={albumImage} fill alt="album-image" />
+        </MotionDiv>
       ) : null}
     </AnimatePresence>
   );
@@ -247,13 +251,15 @@ function NoiseLayer({ hasError = false }: { hasError?: boolean }) {
           }}
           className={cn("absolute inset-0 z-10", "pointer-events-none")}
         >
-          <svg id="noice" height="100%" width="100%">
-            <filter id="noise-filter">
+          <svg height="100%" width="100%">
+            <filter id="noise">
               <feTurbulence
                 type="fractalNoise"
-                baseFrequency="1.08"
+                baseFrequency="0.8"
                 numOctaves="4"
+                seed="15"
                 stitchTiles="stitch"
+                result="turbulence"
               ></feTurbulence>
               <feColorMatrix type="saturate" values="0"></feColorMatrix>
               <feComponentTransfer>
@@ -268,8 +274,52 @@ function NoiseLayer({ hasError = false }: { hasError?: boolean }) {
                 <feFuncB type="linear" slope="1.56" intercept="-0.28" />
               </feComponentTransfer>
             </filter>
-            <rect height="100%" width="100%" filter="url(#noise-filter)" />
+            <rect height="100%" width="100%" filter="url(#noise)" />
           </svg>
+        </MotionDiv>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
+function GlassLayer() {
+  const showGlass = useAtomValue(glassAtom);
+
+  return (
+    <AnimatePresence mode="wait">
+      {showGlass ? (
+        <MotionDiv
+          key="glass"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.2,
+          }}
+          className={cn("absolute inset-0 z-10", "pointer-events-none")}
+        >
+          <div className={cn("absolute inset-0", "backdrop-blur-md")} />
+          <div
+            className={cn(
+              "absolute inset-0",
+              "bg-zinc-400/10 backdrop-blur-xl",
+            )}
+            style={{
+              maskImage:
+                "repeating-linear-gradient(90deg, black 0px, black 1px, transparent 3px, transparent 6px)",
+              WebkitMaskImage:
+                "repeating-linear-gradient(90deg, black 0px, black 1px, transparent 3px, transparent 6px)",
+            }}
+          />
+          <div
+            className={cn("absolute inset-0", "bg-indigo-300/10")}
+            style={{
+              maskImage:
+                "repeating-linear-gradient(90deg, transparent 0px, transparent 3px, black 4px, black 5px, transparent 6px)",
+              WebkitMaskImage:
+                "repeating-linear-gradient(90deg, transparent 0px, transparent 3px, black 4px, black 5px, transparent 6px)",
+            }}
+          />
         </MotionDiv>
       ) : null}
     </AnimatePresence>
@@ -288,39 +338,11 @@ function SmallFade() {
   );
 }
 
-function AlbumImage({ albumImage }: { albumImage?: string }) {
-  const showAlbumImage = useAtomValue(albumImageAtom);
-
-  return (
-    <AnimatePresence mode="wait">
-      {albumImage && showAlbumImage ? (
-        <MotionDiv
-          key="album-image"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: 0.2,
-          }}
-          className={cn(
-            "absolute left-1/2 top-1/2 z-10 size-[178px]",
-            "pointer-events-none",
-            "shadow-xl",
-            "-translate-x-1/2 -translate-y-1/2",
-          )}
-        >
-          <Image src={albumImage} fill alt="album-image" />
-        </MotionDiv>
-      ) : null}
-    </AnimatePresence>
-  );
-}
-
 function ContextMenuContent() {
-  const [showGlass, setShowGlass] = useAtom(glassAtom);
+  const [showAlbumImage, setShowAlbumImage] = useAtom(albumImageAtom);
   const [showBlur, setShowBlur] = useAtom(blurAtom);
   const [showNoise, setShowNoise] = useAtom(noiseAtom);
-  const [showAlbumImage, setShowAlbumImage] = useAtom(albumImageAtom);
+  const [showGlass, setShowGlass] = useAtom(glassAtom);
 
   return (
     <ContextMenuContentPrimitive className="w-64">
@@ -330,25 +352,25 @@ function ContextMenuContent() {
         checked={showAlbumImage}
         onCheckedChange={() => setShowAlbumImage(!showAlbumImage)}
       >
-        Show album image
+        Album image
       </ContextMenuCheckboxItem>
       <ContextMenuCheckboxItem
         checked={showBlur}
         onCheckedChange={() => setShowBlur(!showBlur)}
       >
-        Show blur
+        Blur
       </ContextMenuCheckboxItem>
       <ContextMenuCheckboxItem
         checked={showNoise}
         onCheckedChange={() => setShowNoise(!showNoise)}
       >
-        Show noise
+        Noise
       </ContextMenuCheckboxItem>
       <ContextMenuCheckboxItem
         checked={showGlass}
         onCheckedChange={() => setShowGlass(!showGlass)}
       >
-        Show glass
+        Glass
       </ContextMenuCheckboxItem>
     </ContextMenuContentPrimitive>
   );

@@ -77,7 +77,7 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <div className="mb-8">
-        <h3 className={cn("mb-1 text-2xl font-semibold tracking-tight")}>
+        <h3 className={cn("mb-1 text-xl font-semibold tracking-tight")}>
           {post.title}
         </h3>
 

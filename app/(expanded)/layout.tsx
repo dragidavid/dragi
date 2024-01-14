@@ -81,7 +81,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div
             className={cn(
               "relative flex size-full flex-col items-center justify-start whitespace-nowrap",
-              "bg-extreme",
               "xs:items-start xs:justify-end ",
             )}
           >
