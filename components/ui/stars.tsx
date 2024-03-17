@@ -12,7 +12,7 @@ import { cn } from "lib/cn";
 
 import { type Container } from "@tsparticles/engine";
 
-export default function Sparkles({
+export default function Stars({
   id,
   minSize,
   maxSize,
