@@ -31,7 +31,6 @@ import {
   albumImageAtom,
   blurAtom,
   noiseAtom,
-  glassAtom,
   playerTrackAtom,
 } from "lib/atoms";
 
@@ -44,6 +43,7 @@ const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
   ssr: false,
 });
 
+// Re-do the layers
 export default function Player({ preview = false }: { preview?: boolean }) {
   const [localColors, setLocalColors] = useState<Color[] | undefined>(
     undefined,
@@ -101,13 +101,12 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               </Scene>
             </MotionDiv>
           )}
-          <BlurLayer />
 
-          <GlassLayer />
+          <BlurLayer />
 
           <NoiseLayer hasError={Boolean(trackError)} />
 
-          <SmallFade />
+          <RadialFade />
 
           <AlbumImage albumImage={track?.album.image} />
 
@@ -193,10 +192,10 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
             duration: 0.2,
           }}
           className={cn(
-            "absolute left-1/2 top-1/2 z-10 size-[178px]",
+            "absolute left-1/2 top-1/2 z-10 size-40",
             "pointer-events-none overflow-hidden",
             "rounded-md shadow-lg",
-            "-translate-x-1/2 -translate-y-1/2",
+            "-translate-x-1/2 -translate-y-3/4",
           )}
         >
           <Image src={albumImage} fill alt="album-image" />
@@ -223,7 +222,7 @@ function BlurLayer() {
           className={cn(
             "absolute inset-0 z-10",
             "pointer-events-none",
-            "bg-background/20 backdrop-blur-xl",
+            "bg-background/10 backdrop-blur-xl",
           )}
         />
       ) : null}
@@ -282,57 +281,13 @@ function NoiseLayer({ hasError = false }: { hasError?: boolean }) {
   );
 }
 
-function GlassLayer() {
-  const showGlass = useAtomValue(glassAtom);
-
-  return (
-    <AnimatePresence mode="wait">
-      {showGlass ? (
-        <MotionDiv
-          key="glass"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: 0.2,
-          }}
-          className={cn("absolute inset-0 z-10", "pointer-events-none")}
-        >
-          <div className={cn("absolute inset-0", "backdrop-blur-md")} />
-          <div
-            className={cn(
-              "absolute inset-0",
-              "bg-zinc-400/10 backdrop-blur-xl",
-            )}
-            style={{
-              maskImage:
-                "repeating-linear-gradient(90deg, black 0px, black 1px, transparent 3px, transparent 6px)",
-              WebkitMaskImage:
-                "repeating-linear-gradient(90deg, black 0px, black 1px, transparent 3px, transparent 6px)",
-            }}
-          />
-          <div
-            className={cn("absolute inset-0", "bg-indigo-300/10")}
-            style={{
-              maskImage:
-                "repeating-linear-gradient(90deg, transparent 0px, transparent 3px, black 4px, black 5px, transparent 6px)",
-              WebkitMaskImage:
-                "repeating-linear-gradient(90deg, transparent 0px, transparent 3px, black 4px, black 5px, transparent 6px)",
-            }}
-          />
-        </MotionDiv>
-      ) : null}
-    </AnimatePresence>
-  );
-}
-
-function SmallFade() {
+function RadialFade() {
   return (
     <div
       className={cn(
-        "absolute bottom-0 left-0 right-0 z-10 h-1/2",
+        "absolute inset-0 z-10 ",
         "pointer-events-none",
-        "bg-gradient-to-b from-transparent via-background/50 to-background",
+        "bg-gradient-radial from-transparent via-background/50 to-background",
       )}
     />
   );
@@ -342,7 +297,6 @@ function ContextMenuContent() {
   const [showAlbumImage, setShowAlbumImage] = useAtom(albumImageAtom);
   const [showBlur, setShowBlur] = useAtom(blurAtom);
   const [showNoise, setShowNoise] = useAtom(noiseAtom);
-  const [showGlass, setShowGlass] = useAtom(glassAtom);
 
   return (
     <ContextMenuContentPrimitive className="w-64">
@@ -365,12 +319,6 @@ function ContextMenuContent() {
         onCheckedChange={() => setShowNoise(!showNoise)}
       >
         Noise
-      </ContextMenuCheckboxItem>
-      <ContextMenuCheckboxItem
-        checked={showGlass}
-        onCheckedChange={() => setShowGlass(!showGlass)}
-      >
-        Glass
       </ContextMenuCheckboxItem>
     </ContextMenuContentPrimitive>
   );

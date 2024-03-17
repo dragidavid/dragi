@@ -1,8 +1,10 @@
 import Line from "components/ui/line";
-import Joint, { type Position } from "components/ui/joint";
+import Cross from "components/ui/cross";
 import Expand from "components/ui/expand";
 
 import { cn } from "lib/cn";
+
+import { type Side, type CrossPosition } from "lib/types";
 
 export default function Module({
   children,
@@ -10,20 +12,15 @@ export default function Module({
   page,
   preview = false,
   lines,
-  joints,
+  crosses,
   className,
 }: {
   children: React.ReactNode;
   id: string;
   page?: string;
   preview?: boolean;
-  lines?: {
-    top?: string;
-    right?: string;
-    bottom?: string;
-    left?: string;
-  };
-  joints?: { [key in Position]: string };
+  lines?: Partial<Record<Side, string>>;
+  crosses?: Record<CrossPosition, string>;
   className?: string;
 }) {
   return (
@@ -33,7 +30,7 @@ export default function Module({
           <Line key={side} className={lines[side]} />
         ))}
 
-      {joints && <Joint origin={id} positions={joints} />}
+      {crosses && <Cross origin={id} positions={crosses} />}
 
       {preview ? (
         <div className={cn("flex-1 overflow-hidden")}>

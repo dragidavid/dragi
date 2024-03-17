@@ -7,7 +7,9 @@ import Line from "components/ui/line";
 
 import { cn } from "lib/cn";
 
-const commonClasses = {
+import { type Side } from "lib/types";
+
+const commonClasses: Record<Side, string> = {
   top: "hidden h-px -translate-y-1/2 md:block",
   right: "right-0 hidden h-screen w-px translate-x-1/2 md:block",
   bottom: "bottom-0 h-px translate-y-1/2",
@@ -19,12 +21,13 @@ const modules = [
     id: "about",
     component: <About />,
     lines: {
-      top: "-right-full w-double md:right-0 md:w-screen",
-      right: "bottom-0",
-      bottom: "-right-full w-double md:right-0 md:w-screen",
-      left: "bottom-0",
+      top: "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
+      right: "bottom-0 bg-vertical-dashed",
+      bottom:
+        "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
+      left: "bottom-0 bg-vertical-dashed",
     },
-    joints: {
+    crosses: {
       tl: "invisible md:visible",
       tr: "invisible md:visible",
       bl: "invisible md:visible",
@@ -37,11 +40,12 @@ const modules = [
     page: "tools",
     component: <Tools />,
     lines: {
-      top: "right-0 w-screen",
-      bottom: "-right-full w-double md:right-0 md:w-screen",
-      left: "top-0",
+      top: "right-0 w-screen bg-horizontal-dashed",
+      bottom:
+        "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
+      left: "top-0 bg-vertical-dashed",
     },
-    joints: {
+    crosses: {
       tl: "visible",
       tr: "visible",
       bl: "visible",
@@ -54,11 +58,10 @@ const modules = [
     page: "projects",
     component: <Projects />,
     lines: {
-      right: "top-0",
-      bottom: "-left-full w-double md:left-0 md:w-screen",
-      left: "top-0",
+      bottom: "-left-full w-double bg-horizontal-dashed md:left-0 md:w-full",
+      left: "top-0 bg-vertical-dashed",
     },
-    joints: {
+    crosses: {
       tl: "invisible md:visible",
       tr: "invisible",
       bl: "visible md:invisible",
@@ -71,11 +74,11 @@ const modules = [
     page: "craft",
     component: <Craft />,
     lines: {
-      top: "left-0 w-screen",
-      right: "bottom-0",
-      bottom: "-left-full w-double md:left-0 md:w-screen",
+      top: "left-0 w-screen bg-horizontal-dashed",
+      right: "bottom-0 bg-vertical-dashed",
+      bottom: "-left-full w-double bg-accent md:left-0 md:w-screen",
     },
-    joints: {
+    crosses: {
       tl: "invisible md:visible",
       tr: "invisible md:visible",
       bl: "visible md:invisible",
@@ -87,9 +90,11 @@ const modules = [
     page: "spotify",
     component: <Spotify />,
     lines: {
-      right: "top-0",
+      right: "top-0 bg-accent",
+      bottom: "-left-full w-double bg-accent md:left-0 md:w-screen",
+      left: "top-0 bg-accent",
     },
-    joints: {
+    crosses: {
       tl: "invisible md:visible",
       tr: "invisible md:visible",
       bl: "invisible md:visible",
@@ -162,6 +167,7 @@ export default function Page() {
         <Line
           className={cn(
             "-bottom-full -top-full left-0 w-px",
+            "bg-accent",
             "-translate-x-1/2",
             "md:hidden",
           )}
@@ -174,7 +180,7 @@ export default function Page() {
             page={module.page}
             preview
             lines={module.lines}
-            joints={module.joints}
+            crosses={module.crosses}
             className={cn(
               "flex h-full max-h-[calc(var(--container-size)*2/3)]",
               module.moduleStyles,
@@ -187,6 +193,7 @@ export default function Page() {
         <Line
           className={cn(
             "-bottom-full -top-full right-0 w-px",
+            "bg-accent",
             "translate-x-1/2",
             "md:hidden",
           )}

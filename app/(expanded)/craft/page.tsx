@@ -56,9 +56,13 @@ export default async function Page() {
                 href={post.slug}
                 className={cn(
                   "absolute z-10 flex w-full items-center py-2 pl-14",
-                  "transition-all duration-100 ease-in-out",
-                  "hover:!text-primary hover:!blur-none",
-                  "group-hover:text-secondary group-hover:blur-xs",
+                  "outline-none",
+                  "text-primary",
+                  "transition-[opacity,filter] duration-200 ease-in-out",
+                  "hover:!opacity-100 hover:!blur-none",
+                  "focus:!opacity-100 focus:!blur-none",
+                  "group-hover:opacity-50 group-hover:blur-sm",
+                  "group-focus-within:opacity-50 group-focus-within:blur-sm",
                   "md:pl-[72px]",
                 )}
               >

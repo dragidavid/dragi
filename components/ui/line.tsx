@@ -1,14 +1,11 @@
 import { cn } from "lib/cn";
 
-export default function Line({ className }: { className?: string }) {
+export default function Line({
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        "absolute z-30",
-        "pointer-events-none",
-        "bg-accent",
-        className,
-      )}
+      className={cn("absolute z-30", "pointer-events-none", className)}
       aria-hidden
     />
   );

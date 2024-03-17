@@ -9,26 +9,20 @@ import { cn } from "lib/cn";
 
 export default function Socials() {
   return (
-    <div className={cn("flex gap-2 text-sm", "text-secondary")}>
-      <StyledLink href="mailto:me@dragi.me" className="hover:text-primary">
+    <div className={cn("flex justify-between gap-2 text-sm", "text-secondary")}>
+      <StyledLink
+        href="mailto:me@dragi.me"
+        className={cn("hover:text-primary, focus:text-primary")}
+      >
         me@dragi.me
       </StyledLink>
-
-      <div className={cn("flex grow items-center")}>
-        <span
-          className={cn(
-            "h-px w-full",
-            "bg-gradient-to-r from-transparent via-accent to-transparent",
-          )}
-        />
-      </div>
 
       <div className={cn("flex items-center gap-4")}>
         <Button
           size="icon"
           variant="subtle"
           onClick={() => window.open("https://x.com/dragidavid")}
-          className={cn("!size-min", "text-inherit")}
+          className={cn("!size-min cursor-ne-resize", "text-inherit")}
         >
           <Icon name="x-logo" size="20" />
           <span className="sr-only">X/Twitter logo</span>
@@ -38,7 +32,7 @@ export default function Socials() {
           size="icon"
           variant="subtle"
           onClick={() => window.open("https://github.com/dragidavid")}
-          className={cn("!size-min", "text-inherit")}
+          className={cn("!size-min cursor-ne-resize", "text-inherit")}
         >
           <Icon name="github-logo" size="20" />
           <span className="sr-only">GitHub logo</span>

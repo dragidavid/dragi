@@ -2,20 +2,11 @@ import { MotionSpan } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 
-export type Position = "tl" | "tr" | "bl" | "br";
+import { type CrossPosition } from "lib/types";
 
-type Positions = [] | [Position, ...Position[]];
+type Positions = [] | [CrossPosition, ...CrossPosition[]];
 
-const styles: Record<
-  Position,
-  {
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-    transform?: string;
-  }
-> = {
+const styles: Record<CrossPosition, React.CSSProperties> = {
   tl: {
     top: 0,
     left: 0,
@@ -38,23 +29,23 @@ const styles: Record<
   },
 };
 
-export default function Joint({
+export default function Cross({
   origin,
   positions,
 }: {
   origin: string;
-  positions: { [key in Position]: string };
+  positions: Partial<Record<CrossPosition, string>>;
 }) {
   return (
     <>
-      {(Object.keys(positions) as Positions).map((position: Position) => (
+      {(Object.keys(positions) as Positions).map((position: CrossPosition) => (
         <MotionSpan
           key={`${origin}-${position}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: Math.random() * (0.8 - 0) + 0 }}
           className={cn(
-            "absolute z-40 size-[13px]",
+            "absolute z-40 size-2",
             "pointer-events-none",
             "text-secondary",
             positions[position],
@@ -76,8 +67,8 @@ export default function Joint({
                 <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
               </linearGradient>
             </defs>
-            <rect x="5" y="0" height="11" width="1" fill="url(#vertical)" />
-            <rect x="0" y="5" height="1" width="11" fill="url(#horizontal)" />
+            <rect x="5" y="0" height="11" width="1" fill="currentColor" />
+            <rect x="0" y="5" height="1" width="11" fill="currentColor" />
           </svg>
         </MotionSpan>
       ))}

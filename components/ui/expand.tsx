@@ -135,8 +135,9 @@ export default function Expand({ href }: { href: string }) {
 function Arrow({ isHovered }: { isHovered: boolean }) {
   const variants = {
     rest: {
-      x2: 6,
-      y2: 4,
+      x2: 4,
+      y2: 6,
+      stroke: "hsl(var(--secondary))",
       transition: {
         duration: 0.1,
         delay: 0.4,
@@ -145,6 +146,7 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
     hover: {
       x2: 10,
       y2: 0,
+      stroke: "currentColor",
       transition: {
         duration: 0.1,
       },
@@ -152,7 +154,7 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
   };
 
   return (
-    <div className="size-[18px]">
+    <div className="size-3">
       <MotionSvg
         viewBox="0 0 10 10"
         height="100%"
@@ -160,19 +162,11 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
-        <defs>
-          <linearGradient id="expand" x1="0" y1="1" x2="1" y2="0">
-            <stop offset="0%" stopColor="currentColor" stopOpacity="0" />
-            <stop offset="100%" stopColor="currentColor" stopOpacity="1" />
-          </linearGradient>
-        </defs>
         <MotionLine
           x1="0"
           y1="10"
           strokeLinecap="round"
-          strokeLinejoin="round"
           variants={variants}
-          stroke="url(#expand)"
         />
       </MotionSvg>
     </div>

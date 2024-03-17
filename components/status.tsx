@@ -50,6 +50,7 @@ export default function Status({ play = false }: { play?: boolean }) {
 
         <Separator />
 
+        {/* replace this with dynamic data */}
         <span>london, united kingdom</span>
 
         <Separator />
@@ -60,7 +61,7 @@ export default function Status({ play = false }: { play?: boolean }) {
       </div>
 
       <div className={cn("flex items-center")}>
-        <ThemeToggle vertical={shouldRenderVerticalStatus} />
+        <ThemeToggle />
 
         <Separator
           hidden={(isDesktop && !play) || shouldRenderVerticalStatus}

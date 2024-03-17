@@ -57,11 +57,14 @@ export default async function Preview() {
               className={cn(
                 "py-1",
                 "truncate",
-                "transition-all duration-100 ease-in-out",
-                // use opacity here instead of text color - fucks up the transitions
+                "select-none outline-none",
+                "text-primary",
+                "transition-[opacity,filter] duration-200 ease-in-out",
                 "first:pt-0",
-                "hover:!text-primary hover:!blur-none",
-                "group-hover:blur-xs group-hover:text-secondary",
+                "hover:!opacity-100 hover:!blur-none",
+                "focus:!opacity-100 focus:!blur-none",
+                "group-hover:opacity-50 group-hover:blur-sm",
+                "group-focus-within:opacity-50 group-focus-within:blur-sm",
               )}
             >
               {post.title}

@@ -19,8 +19,8 @@
     --inverse: 0 0% 0%;
     --background: 0 0% 98%;
     --primary: 0 0% 11%;
-    --secondary: 0 0% 45%;
-    --accent: 0 0% 87%;
+    --secondary: 0 0% 50%;
+    --accent: 0 0% 85%;
 
     --shiki-color-text: hsl(var(--primary));
     --shiki-color-background: hsl(var(--extreme));
@@ -40,8 +40,7 @@
     --inverse: 0 0% 100%;
     --background: 0 0% 2%;
     --primary: 0 0% 94%;
-    --secondary: 0 0% 52%;
-    --accent: 0 0% 13%;
+    --accent: 0 0% 12%;
 
     --shiki-color-text: hsl(var(--primary));
     --shiki-color-background: hsl(var(--extreme));

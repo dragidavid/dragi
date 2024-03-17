@@ -9,7 +9,7 @@ import { MotionSpan } from "components/primitives/motion";
 
 import Icon from "components/ui/icon";
 import Line from "components/ui/line";
-import Joint from "components/ui/joint";
+import Cross from "components/ui/cross";
 
 import { cn } from "lib/cn";
 import { debounce } from "lib/debounce";
@@ -88,7 +88,6 @@ export default function Navigation() {
           className={cn(
             "relative flex-1",
             "outline-none",
-            "transition-all duration-100 ease-in-out",
             "hover:text-primary",
             "focus:text-primary",
             "focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary",
@@ -111,11 +110,12 @@ export default function Navigation() {
                 <Line
                   className={cn(
                     "left-0 top-0 h-double w-px",
+                    "bg-vertical-dashed",
                     "-translate-x-1/2",
                   )}
                 />
 
-                <Joint
+                <Cross
                   origin={`link-${id}`}
                   positions={{
                     tl: "visible",
@@ -146,7 +146,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 h-double w-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-secondary/20 to-transparent",
+                    "bg-gradient-to-b from-primary/5 to-transparent",
                   )}
                 />
               )}

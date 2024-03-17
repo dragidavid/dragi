@@ -14,9 +14,8 @@ export default function StyledLink({
       className={cn(
         "outline-none",
         "underline decoration-transparent underline-offset-2",
-        "transition-[color,text-decoration-color] duration-100",
         "hover:cursor-alias hover:underline hover:decoration-inherit",
-        "focus:underline",
+        "focus:underline focus:decoration-inherit",
         className,
       )}
       {...props}

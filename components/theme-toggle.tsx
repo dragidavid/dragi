@@ -5,16 +5,11 @@ import { useTheme } from "next-themes";
 
 import { Button } from "components/primitives/button";
 
-import Icon from "components/ui/icon";
-
 import { cn } from "lib/cn";
 
 export default function ThemeToggle({
-  vertical = false,
   ...props
-}: React.HTMLAttributes<HTMLButtonElement> & {
-  vertical: boolean;
-}) {
+}: React.HTMLAttributes<HTMLButtonElement>) {
   const [mounted, setMounted] = useState(false);
 
   const { setTheme, theme } = useTheme();
@@ -32,15 +27,18 @@ export default function ThemeToggle({
       size="icon"
       variant="subtle"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className={cn("!size-min", "text-inherit", vertical && "rotate-180")}
+      className="size-5"
+      tabIndex={-1}
       {...props}
     >
-      {theme === "light" ? (
-        <Icon name="moon" size="theme-toggle" />
-      ) : (
-        <Icon name="sun" size="theme-toggle" />
-      )}
-      <span className="sr-only">Toggle theme</span>
+      <span
+        className={cn(
+          "size-3.5 rounded-full",
+          "bg-secondary",
+          "hover:bg-inverse",
+        )}
+      />
+      <span className="sr-only">Theme toggle</span>
     </Button>
   );
 }

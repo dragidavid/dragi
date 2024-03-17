@@ -2,7 +2,7 @@ import Player from "components/spotify/player";
 import Timeline from "components/spotify/timeline";
 
 import Line from "components/ui/line";
-import Joint from "components/ui/joint";
+import Cross from "components/ui/cross";
 
 import { cn } from "lib/cn";
 
@@ -15,12 +15,13 @@ export default function Page() {
         <Line
           className={cn(
             "bottom-0 right-0 top-0 hidden w-px",
+            "bg-accent",
             "translate-x-1/2",
             "md:block",
           )}
         />
 
-        <Joint
+        <Cross
           origin="spotify-player"
           positions={{
             tl: "hidden",
