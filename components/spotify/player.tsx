@@ -182,7 +182,7 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
 
   return (
     <AnimatePresence mode="wait">
-      {albumImage && showAlbumImage ? (
+      {showAlbumImage && (
         <MotionDiv
           key="album-image"
           initial={{ opacity: 0 }}
@@ -192,15 +192,15 @@ function AlbumImage({ albumImage }: { albumImage?: string }) {
             duration: 0.2,
           }}
           className={cn(
-            "absolute left-1/2 top-1/2 z-10 size-40",
+            "absolute left-1/2 top-1/2 z-10 flex size-40 items-center justify-center rounded-md",
             "pointer-events-none overflow-hidden",
-            "rounded-md shadow-lg",
+            "bg-primary/5 shadow-lg",
             "-translate-x-1/2 -translate-y-3/4",
           )}
         >
-          <Image src={albumImage} fill alt="album-image" />
+          {albumImage && <Image src={albumImage} fill alt="album-image" />}
         </MotionDiv>
-      ) : null}
+      )}
     </AnimatePresence>
   );
 }
