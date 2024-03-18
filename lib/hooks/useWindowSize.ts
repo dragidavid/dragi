@@ -1,3 +1,4 @@
+import { debounce } from "lib/debounce";
 import { useState, useEffect } from "react";
 
 export function useWindowSize() {
@@ -17,11 +18,13 @@ export function useWindowSize() {
       });
     }
 
-    window.addEventListener("resize", handleResize);
+    const debouncedResize = debounce(handleResize, 100);
+
+    window.addEventListener("resize", debouncedResize);
 
     handleResize();
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", debouncedResize);
   }, []);
 
   return {
