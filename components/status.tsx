@@ -39,6 +39,7 @@ export default function Status({ play = false }: { play?: boolean }) {
       }}
       className={cn(
         "flex w-full py-0.5 text-xs",
+        "select-none",
         "text-secondary",
         "xs:text-sm",
         shouldRenderVerticalStatus && "py-6",

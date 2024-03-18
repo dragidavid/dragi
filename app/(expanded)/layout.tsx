@@ -26,14 +26,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <Fade
           sides={[
-            // {
-            //   id: "top",
-            //   className: cn(
-            //     "left-0 top-0 h-[9vh] w-screen",
-            //     "bg-gradient-to-t from-transparent to-background",
-            //     "md:h-1/6",
-            //   ),
-            // },
             {
               id: "left",
               className: cn(
@@ -66,6 +58,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Line
           className={cn(
             "-bottom-full -top-full left-0 w-px",
+            "bg-accent",
             "-translate-x-1/2",
           )}
         />
@@ -95,6 +88,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <Stars
+              id="tsparticles"
+              minSize={0.2}
+              maxSize={1}
+              density={100}
               className={cn(
                 "absolute bottom-0 left-0 right-0 top-1/3 xs:inset-0 xs:rotate-180",
               )}
@@ -105,9 +102,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="content"
           lines={{
-            top: "-inset-x-screen hidden h-px -translate-y-1/2 xs:block",
+            top: "-inset-x-screen hidden h-px -translate-y-1/2 bg-accent xs:block",
           }}
-          joints={{
+          crosses={{
             tl: "invisible xs:visible",
             tr: "invisible xs:visible",
             bl: "invisible xs:visible",
@@ -129,9 +126,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="navigation"
           lines={{
-            top: "left-0 -right-screen h-px -translate-y-1/2 xs:-left-screen",
+            top: "left-0 -right-screen h-px -translate-y-1/2 bg-accent xs:-left-screen",
           }}
-          joints={{
+          crosses={{
             tl: "visible xs:invisible",
             tr: "invisible xs:visible",
             bl: "invisible",
@@ -148,6 +145,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Line
           className={cn(
             "-bottom-full -top-full right-0 w-px",
+            "bg-accent",
             "translate-x-1/2",
           )}
         />

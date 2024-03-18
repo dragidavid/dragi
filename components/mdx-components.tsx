@@ -123,7 +123,11 @@ const components = {
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn("rounded-md border", className)} alt={alt} {...props} />
+    <img
+      className={cn("rounded-md", "border", className)}
+      alt={alt}
+      {...props}
+    />
   ),
   hr: ({ ...props }) => (
     <hr
@@ -134,8 +138,8 @@ const components = {
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div
       className={cn(
-        "my-6 w-full overflow-y-auto",
-        "rounded-lg border border-accent",
+        "my-6 w-full overflow-y-auto rounded-lg",
+        "border border-accent",
       )}
     >
       <table className={cn("w-full", className)} {...props} />
