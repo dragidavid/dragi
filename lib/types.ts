@@ -1,5 +1,4 @@
-import { GRADIENTS } from "lib/gradients";
-
+// App Types
 export type Artist = {
   id: string;
   name: string;
@@ -24,6 +23,12 @@ export type Track = {
   album: Album;
 };
 
+// UI Types
+export type Color = {
+  name: string;
+  hex: string;
+};
+
 export type TimelineGap = {
   type: "gap";
   content?: JSX.Element;
@@ -32,7 +37,6 @@ export type TimelineGap = {
 
 export type TimelineItem = Track | TimelineGap;
 
-export type Color = {
-  name: string;
-  hex: string;
-};
+export type CrossPosition = "tl" | "tr" | "bl" | "br";
+
+export type Side = "top" | "right" | "bottom" | "left";
