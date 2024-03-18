@@ -85,7 +85,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
             "select-none",
           )}
         >
-          {localColors && (
+          {localColors && !trackError && (
             <MotionDiv
               key={track?.id}
               initial={{ opacity: 0 }}
@@ -108,7 +108,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
 
           <RadialFade />
 
-          <AlbumImage albumImage={track?.album.image} />
+          {!trackError && <AlbumImage albumImage={track?.album.image} />}
 
           <div
             className={cn(
