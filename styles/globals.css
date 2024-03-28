@@ -38,9 +38,9 @@
   .dark {
     --extreme: 0 0% 0%;
     --inverse: 0 0% 100%;
-    --background: 0 0% 2%;
+    --background: 0 0% 5%;
     --primary: 0 0% 94%;
-    --accent: 0 0% 12%;
+    --accent: 0 0% 15%;
 
     --shiki-color-text: hsl(var(--primary));
     --shiki-color-background: hsl(var(--extreme));

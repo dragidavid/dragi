@@ -17,9 +17,14 @@ export default function Preview() {
         )}
       >
         <div className={cn("flex flex-col gap-5")}>
-          <p className={cn("font-medium", "text-secondary")}>David Dragovacz</p>
+          <div className={cn("flex flex-col")}>
+            <p className="font-medium">David Dragovacz</p>
+            <p className={cn("text-sm font-light", "text-secondary")}>
+              design engineer
+            </p>
+          </div>
 
-          <p className={cn("text-balance text-lg font-light")}>
+          <p className={cn("text-balance font-light")}>
             Crafting web experiences with a keen eye for design and an obsession
             for the minutiae.
           </p>
