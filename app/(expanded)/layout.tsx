@@ -104,6 +104,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           lines={{
             top: "-inset-x-screen hidden h-px -translate-y-1/2 bg-accent xs:block",
           }}
+          tiltedLines={{
+            tl: "invisible left-0 top-0 h-screen w-px origin-top rotate-[135deg] bg-vertical-dashed xs:visible",
+            tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed xs:visible",
+            bl: "invisible bottom-0 left-0 h-screen w-px origin-bottom -rotate-[135deg] bg-vertical-dashed xs:visible",
+            br: "invisible bottom-0 right-0 h-screen w-px origin-bottom rotate-[135deg] bg-vertical-dashed xs:visible",
+          }}
           crosses={{
             tl: "invisible xs:visible",
             tr: "invisible xs:visible",

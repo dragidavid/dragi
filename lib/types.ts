@@ -9,6 +9,7 @@ export type Album = {
   id: string;
   name: string;
   image: string;
+  imageBlurHash: string;
   albumUrl: string;
 };
 
@@ -21,6 +22,28 @@ export type Track = {
   playedAt?: string;
   artists: Artist[];
   album: Album;
+};
+
+export type SpotifyTrackResponse = {
+  id: string;
+  name: string;
+  external_urls: { spotify: string };
+  artists: {
+    id: string;
+    name: string;
+    external_urls: { spotify: string };
+  }[];
+  album: {
+    id: string;
+    name: string;
+    images: { url: string }[];
+    external_urls: { spotify: string };
+  };
+};
+
+export type Player = {
+  nowPlaying: Track | null;
+  recentlyPlayed: Track[] | null;
 };
 
 // UI Types
@@ -37,6 +60,6 @@ export type TimelineGap = {
 
 export type TimelineItem = Track | TimelineGap;
 
-export type CrossPosition = "tl" | "tr" | "bl" | "br";
+export type Corner = "tl" | "tr" | "bl" | "br";
 
 export type Side = "top" | "right" | "bottom" | "left";

@@ -27,6 +27,9 @@ const modules = [
         "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
       left: "bottom-0 bg-vertical-dashed",
     },
+    tiltedLines: {
+      tl: "invisible left-0 top-0 h-screen w-px origin-top rotate-[135deg] bg-vertical-dashed md:visible",
+    },
     crosses: {
       tl: "invisible md:visible",
       tr: "invisible md:visible",
@@ -44,6 +47,9 @@ const modules = [
       bottom:
         "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
       left: "top-0 bg-vertical-dashed",
+    },
+    tiltedLines: {
+      bl: "invisible bottom-0 left-0 h-screen w-px origin-bottom -rotate-[135deg] bg-vertical-dashed md:visible",
     },
     crosses: {
       tl: "visible",
@@ -78,6 +84,9 @@ const modules = [
       right: "bottom-0 bg-vertical-dashed",
       bottom: "-left-full w-double bg-accent md:left-0 md:w-screen",
     },
+    tiltedLines: {
+      tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed md:visible",
+    },
     crosses: {
       tl: "invisible md:visible",
       tr: "invisible md:visible",
@@ -93,6 +102,9 @@ const modules = [
       right: "top-0 bg-accent",
       bottom: "-left-full w-double bg-accent md:left-0 md:w-screen",
       left: "top-0 bg-accent",
+    },
+    tiltedLines: {
+      br: "invisible bottom-0 right-0 h-screen w-px origin-bottom rotate-[135deg] bg-vertical-dashed md:visible",
     },
     crosses: {
       tl: "invisible md:visible",
@@ -180,6 +192,7 @@ export default function Page() {
             page={module.page}
             preview
             lines={module.lines}
+            tiltedLines={module.tiltedLines}
             crosses={module.crosses}
             className={cn(
               "flex h-full max-h-[calc(var(--container-size)*2/3)]",

@@ -4,7 +4,7 @@ import Expand from "components/ui/expand";
 
 import { cn } from "lib/cn";
 
-import { type Side, type CrossPosition } from "lib/types";
+import { type Side, type Corner } from "lib/types";
 
 export default function Module({
   children,
@@ -12,6 +12,7 @@ export default function Module({
   page,
   preview = false,
   lines,
+  tiltedLines,
   crosses,
   className,
 }: {
@@ -20,7 +21,8 @@ export default function Module({
   page?: string;
   preview?: boolean;
   lines?: Partial<Record<Side, string>>;
-  crosses?: Record<CrossPosition, string>;
+  tiltedLines?: Partial<Record<Corner, string>>;
+  crosses?: Record<Corner, string>;
   className?: string;
 }) {
   return (
@@ -31,6 +33,11 @@ export default function Module({
         ))}
 
       {crosses && <Cross origin={id} positions={crosses} />}
+
+      {tiltedLines &&
+        (Object.keys(tiltedLines) as Array<keyof typeof tiltedLines>).map(
+          (corner) => <Line key={corner} className={cn(tiltedLines[corner])} />,
+        )}
 
       {preview ? (
         <div className={cn("flex-1 overflow-hidden")}>

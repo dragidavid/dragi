@@ -2,11 +2,11 @@ import { MotionSpan } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 
-import { type CrossPosition } from "lib/types";
+import { type Corner } from "lib/types";
 
-type Positions = [] | [CrossPosition, ...CrossPosition[]];
+type Positions = [] | [Corner, ...Corner[]];
 
-const styles: Record<CrossPosition, React.CSSProperties> = {
+const styles: Record<Corner, React.CSSProperties> = {
   tl: {
     top: 0,
     left: 0,
@@ -34,11 +34,11 @@ export default function Cross({
   positions,
 }: {
   origin: string;
-  positions: Partial<Record<CrossPosition, string>>;
+  positions: Partial<Record<Corner, string>>;
 }) {
   return (
     <>
-      {(Object.keys(positions) as Positions).map((position: CrossPosition) => (
+      {(Object.keys(positions) as Positions).map((position: Corner) => (
         <MotionSpan
           key={`${origin}-${position}`}
           initial={{ opacity: 0 }}
