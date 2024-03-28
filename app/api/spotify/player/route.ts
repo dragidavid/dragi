@@ -2,63 +2,130 @@ import { NextResponse } from "next/server";
 
 import { getNowPlaying, getRecentlyPlayed } from "lib/api/spotify";
 
-import { type Track } from "lib/types";
+import { blur, placeholder } from "lib/blur";
+
+import { type SpotifyTrackResponse, type Track, type Player } from "lib/types";
 
 export const dynamic = "force-dynamic";
 export const runtime = "edge";
 
-export async function GET() {
-  const nowPlaying = await getNowPlaying();
+function format(
+  item: SpotifyTrackResponse & { is_playing?: boolean; played_at?: string },
+  blurHash: string,
+): Track {
+  return {
+    type: "track",
+    id: item.id,
+    currentlyPlaying: item.is_playing ?? undefined,
+    name: item.name,
+    trackUrl: item.external_urls.spotify,
+    playedAt: item.played_at ?? undefined,
+    artists: item.artists.map(
+      (artist: {
+        id: string;
+        name: string;
+        external_urls: { spotify: string };
+      }) => ({
+        id: artist.id,
+        name: artist.name,
+        artistUrl: artist.external_urls.spotify,
+      }),
+    ),
+    album: {
+      id: item.album.id,
+      name: item.album.name,
+      image: item.album.images[1].url,
+      imageBlurHash: blurHash ?? placeholder,
+      albumUrl: item.album.external_urls.spotify,
+    },
+  };
+}
 
-  if (nowPlaying.status > 400) {
-    return NextResponse.json(
-      {
-        code: "INTERNAL_SERVER_ERROR",
-      },
-      {
-        status: 500,
-      },
-    );
+async function fetchRecentlyPlayed() {
+  const recentlyPlayed = await getRecentlyPlayed();
+
+  if (recentlyPlayed.status > 400) {
+    throw new Error("Failed to fetch recently played tracks");
   }
 
-  if (nowPlaying.status !== 204) {
-    const nowPlayingResponse = await nowPlaying.json();
+  const recentlyPlayedResponse = await recentlyPlayed.json();
+  const recentlyPlayedBlurHash = await blur(
+    recentlyPlayedResponse.items[0].track.album.images[1].url,
+  );
 
-    if (nowPlayingResponse.is_playing) {
-      return NextResponse.json(
+  return {
+    recentlyPlayedResponse,
+    recentlyPlayedBlurHash,
+  };
+}
+
+export async function GET() {
+  try {
+    const nowPlaying = await getNowPlaying();
+
+    if (nowPlaying.status === 204) {
+      const { recentlyPlayedResponse, recentlyPlayedBlurHash } =
+        await fetchRecentlyPlayed();
+
+      return NextResponse.json<Player>(
         {
-          currentlyPlaying: true,
-          id: nowPlayingResponse.item.id,
-          name: nowPlayingResponse.item.name,
-          trackUrl: nowPlayingResponse.item.external_urls.spotify,
-          artists: nowPlayingResponse.item.artists.map(
-            (artist: {
-              id: string;
-              name: string;
-              external_urls: { spotify: string };
-            }) => ({
-              id: artist.id,
-              name: artist.name,
-              artistUrl: artist.external_urls.spotify,
-            }),
+          nowPlaying: null,
+          recentlyPlayed: recentlyPlayedResponse.items.map(
+            (
+              item: {
+                track: SpotifyTrackResponse;
+                played_at: string;
+              },
+              i: number,
+            ) =>
+              format(
+                { ...item.track, played_at: item.played_at },
+                i === 0 ? recentlyPlayedBlurHash : placeholder,
+              ),
           ),
-          album: {
-            id: nowPlayingResponse.item.album.id,
-            name: nowPlayingResponse.item.album.name,
-            image: nowPlayingResponse.item.album.images[1].url,
-            albumUrl: nowPlayingResponse.item.album.external_urls.spotify,
-          },
         },
         {
           status: 200,
         },
       );
     }
-  }
 
-  const recentlyPlayed = await getRecentlyPlayed();
+    const nowPlayingResponse = await nowPlaying.json();
+    const nowPlayingBlurHash = await blur(
+      nowPlayingResponse.item.album.images[1].url,
+    );
 
-  if (recentlyPlayed.status > 400) {
+    const { recentlyPlayedResponse, recentlyPlayedBlurHash } =
+      await fetchRecentlyPlayed();
+
+    return NextResponse.json<Player>(
+      {
+        nowPlaying: format(
+          {
+            ...nowPlayingResponse.item,
+            is_playing: nowPlayingResponse.is_playing,
+          },
+          nowPlayingBlurHash,
+        ),
+        recentlyPlayed: recentlyPlayedResponse.items.map(
+          (
+            item: {
+              track: SpotifyTrackResponse;
+              played_at: string;
+            },
+            i: number,
+          ) =>
+            format(
+              { ...item.track, played_at: item.played_at },
+              i === 0 ? recentlyPlayedBlurHash : placeholder,
+            ),
+        ),
+      },
+      {
+        status: 200,
+      },
+    );
+  } catch (e) {
     return NextResponse.json(
       {
         code: "INTERNAL_SERVER_ERROR",
@@ -68,39 +135,4 @@ export async function GET() {
       },
     );
   }
-
-  const recentlyPlayedResponse = await recentlyPlayed.json();
-
-  const mostRecent = recentlyPlayedResponse.items.at(0);
-
-  return NextResponse.json<Track>(
-    {
-      type: "track",
-      currentlyPlaying: false,
-      id: mostRecent.track.id,
-      name: mostRecent.track.name,
-      trackUrl: mostRecent.track.external_urls.spotify,
-      playedAt: mostRecent.played_at,
-      artists: mostRecent.track.artists.map(
-        (artist: {
-          id: string;
-          name: string;
-          external_urls: { spotify: string };
-        }) => ({
-          id: artist.id,
-          name: artist.name,
-          artistUrl: artist.external_urls.spotify,
-        }),
-      ),
-      album: {
-        id: mostRecent.track.album.id,
-        name: mostRecent.track.album.name,
-        image: mostRecent.track.album.images[1].url,
-        albumUrl: mostRecent.track.album.external_urls.spotify,
-      },
-    },
-    {
-      status: 200,
-    },
-  );
 }

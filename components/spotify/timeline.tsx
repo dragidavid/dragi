@@ -1,88 +1,110 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { useAtomValue } from "jotai";
+import { isEqual } from "lodash";
 import { v4 as uuidv4 } from "uuid";
 
 import Artists from "components/spotify/artists";
 
-import Heading from "components/heading";
+import BlurImage from "components/blur-image";
 import StyledLink from "components/styled-link";
 
-import { Skeleton } from "components/primitives/skeleton";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "components/primitives/tooltip";
+import { MotionDiv, MotionLi } from "components/primitives/motion";
+
+import Icon from "components/ui/icon";
 
 import { cn } from "lib/cn";
 import { fetcher } from "lib/fetcher";
-import { playerTrackAtom } from "lib/atoms";
 
-import { type Track, type TimelineGap, type TimelineItem } from "lib/types";
-import Joint from "components/ui/joint";
-import Icon from "components/ui/icon";
-import { MotionDiv, MotionLi } from "components/primitives/motion";
-
-type TrackWithType = Track & { type: "track" };
-type TrackOrGap = TrackWithType | { type: "gap"; height?: number };
+import { type Track, type TimelineItem, type Player } from "lib/types";
 
 export default function Timeline() {
+  const [localPlayer, setLocalPlayer] = useState<Player | null>(null);
   const [timelineItems, setTimelineItems] = useState<Record<
     string,
     TimelineItem[]
   > | null>(null);
 
-  const playerTrack = useAtomValue(playerTrackAtom);
-
   const {
-    data: recents,
-    isLoading: recentsLoading,
-    error: recentsError,
-  } = useSWR<Track[]>("/api/spotify/recents", fetcher, {
+    data: player,
+    isLoading: playerLoading,
+    error: playerError,
+  } = useSWR<Player>("/api/spotify/player", fetcher, {
     refreshInterval: 90000,
     revalidateOnFocus: false,
-    errorRetryCount: 2,
-    onSuccess: (data) => {
-      setTimelineItems(groupTracksByDate(data, playerTrack));
-    },
+    errorRetryCount: 1,
   });
 
-  if (recentsLoading || !recents || !timelineItems) {
-    return (
-      <div className={cn("flex flex-col pb-6")}>
-        <Heading>Recents</Heading>
-      </div>
-    );
+  useEffect(() => {
+    if (player && !localPlayer) {
+      setLocalPlayer(player);
+    }
+  }, [player, localPlayer]);
+
+  useEffect(() => {
+    if (player?.recentlyPlayed) {
+      if (!isEqual(player, localPlayer)) {
+        setLocalPlayer(player);
+
+        setTimelineItems(groupTracksByDate(player));
+      }
+    }
+  }, [player, localPlayer]);
+
+  if (playerLoading || !timelineItems) {
+    return null;
   }
 
-  if (recentsError) {
+  if ((playerError || !timelineItems) && !playerLoading) {
     return (
-      <div className={cn("flex flex-col pb-6")}>
-        <Heading>Recents</Heading>
-        <div className={cn("mt-4")}>Error loading recents</div>
-      </div>
+      <Container>
+        <MotionDiv
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.4,
+            delay: 0.8,
+          }}
+          className={cn(
+            "flex size-full flex-col items-center justify-center text-3xl",
+            "select-none",
+            "text-secondary/20",
+          )}
+        >
+          <span>×</span>
+        </MotionDiv>
+      </Container>
     );
   }
 
   return (
-    <MotionDiv
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{
-        duration: 0.4,
-        delay: 0.4,
-      }}
-      className={cn("flex py-8 text-sm")}
-    >
-      <div className={cn("flex size-full flex-col gap-4")}>
+    <Container>
+      <MotionDiv
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.4,
+          delay: 0.8,
+        }}
+        className={cn("flex size-full flex-col gap-4")}
+      >
         {Object.entries(timelineItems).map(([date, items], index) => {
+          const first = index === 0;
           const last = index === Object.keys(timelineItems).length - 1;
 
           return (
-            <div key={uuidv4()} className={cn("flex")}>
+            <div key={uuidv4()} className="flex">
               <div
                 className={cn(
                   "w-1/3 pl-6 pr-4 text-right font-mono text-xs leading-5",
-                  "text-accent shadow-secondary/50 [text-shadow:1px_1px_0_var(--tw-shadow-color)]",
+                  "select-none",
+                  "text-accent shadow-secondary [text-shadow:1px_1px_0_var(--tw-shadow-color)]",
                   "xs:pl-8",
                 )}
               >
@@ -90,22 +112,24 @@ export default function Timeline() {
                   {date}
                 </span>
               </div>
-              <div className={cn("relative")}>
-                <span
-                  key="middle-line"
+              <div className="relative">
+                <div
                   className={cn(
-                    "absolute -bottom-4 top-0 w-px bg-accent",
+                    "absolute -bottom-4 top-0 w-px",
+                    "bg-vertical-dashed",
                     "-translate-x-1/2",
                     date === "now" && "top-1/2",
+                    first && "-top-8",
                     last && "-bottom-8",
                   )}
                 />
+
                 {date === "now" && (
                   <>
                     <span
                       className={cn(
-                        "absolute -bottom-5 top-3/4 z-10 w-px",
-                        "bg-gradient-to-b from-spotify to-accent",
+                        "absolute -bottom-8 top-3/4 z-10 w-px",
+                        "bg-gradient-to-b from-spotify to-transparent",
                         "-translate-x-1/2",
                       )}
                     />
@@ -126,6 +150,12 @@ export default function Timeline() {
                         className={cn(
                           "absolute size-3 rounded-full",
                           "bg-background",
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "absolute size-12 rounded-full",
+                          "bg-spotify/40 blur-xl",
                         )}
                       />
                       <Icon
@@ -153,32 +183,98 @@ export default function Timeline() {
                       {item.content}
                     </MotionLi>
                   ) : (
-                    <MotionLi
-                      key={uuidv4()}
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true }}
-                      className={cn(
-                        "overflow-hidden text-ellipsis whitespace-nowrap",
-                      )}
-                    >
-                      {item.name}
-                    </MotionLi>
+                    <Tooltip key={uuidv4()}>
+                      <TooltipTrigger className={cn("flex w-full")}>
+                        <MotionLi
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{
+                            duration: 0.6,
+                          }}
+                          viewport={{ once: true }}
+                          className={cn(
+                            "overflow-hidden text-ellipsis whitespace-nowrap",
+                          )}
+                        >
+                          <StyledLink href={item.trackUrl}>
+                            {item.name}
+                          </StyledLink>
+                        </MotionLi>
+                      </TooltipTrigger>
+                      <TooltipContent
+                        className={cn(
+                          item.currentlyPlaying && "border-spotify/20",
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            "relative flex p-2",
+                            "bg-gradient-radial to-transparent bg-[length:800px_200px] bg-right bg-no-repeat",
+                            item.currentlyPlaying
+                              ? "from-spotify/20"
+                              : "from-primary/15",
+                          )}
+                        >
+                          <div
+                            className={cn(
+                              "flex-shrink-0 overflow-hidden rounded-sm",
+                              "pointer-events-none",
+                            )}
+                          >
+                            <BlurImage
+                              src={item.album.image}
+                              alt="album-image"
+                              width={64}
+                              height={64}
+                              blurDataURL={item.album.imageBlurHash}
+                              placeholder="blur"
+                            />
+                          </div>
+                          <div
+                            className={cn(
+                              "flex flex-col justify-between overflow-hidden pl-3",
+                            )}
+                          >
+                            <div className="text-sm">
+                              <StyledLink href={item.trackUrl}>
+                                {item.name}
+                              </StyledLink>
+
+                              <div className="text-secondary">
+                                <Artists artists={item.artists} />
+                              </div>
+                            </div>
+
+                            {item.playedAt && (
+                              <div className={cn("text-xs", "text-secondary")}>
+                                {new Date(item.playedAt).toLocaleTimeString(
+                                  [],
+                                  {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    hour12: true,
+                                  },
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </TooltipContent>
+                    </Tooltip>
                   ),
                 )}
               </ul>
             </div>
           );
         })}
-      </div>
-    </MotionDiv>
+      </MotionDiv>
+    </Container>
   );
 }
 
 function calculateAndInsertGaps(tracks: Track[]): TimelineItem[] {
   const maxHeight = 240;
-  const heightPerMinutes = 6;
+  const heightPerMinutes = 8;
 
   const result: TimelineItem[] = [];
 
@@ -189,7 +285,6 @@ function calculateAndInsertGaps(tracks: Track[]): TimelineItem[] {
       const currentTrackTime = new Date(tracks[i].playedAt!).getTime();
       const nextTrackTime = new Date(tracks[i + 1].playedAt!).getTime();
 
-      // Calculate time difference in minutes and ensure it's positive
       let timeDifferenceInMinutes =
         Math.abs(nextTrackTime - currentTrackTime) / (1000 * 60);
 
@@ -223,19 +318,16 @@ function calculateAndInsertGaps(tracks: Track[]): TimelineItem[] {
   return result;
 }
 
-function groupTracksByDate(
-  tracks: Track[],
-  playerTrack: Track | null,
-): Record<string, TimelineItem[]> {
+function groupTracksByDate(player: Player): Record<string, TimelineItem[]> {
   const grouped: Record<string, TimelineItem[]> = {};
 
-  // Add the currently playing track to the "now" group, if it exists
-  if (playerTrack?.currentlyPlaying) {
-    grouped["now"] = [playerTrack];
+  const { nowPlaying, recentlyPlayed } = player;
+
+  if (nowPlaying?.currentlyPlaying) {
+    grouped["now"] = [nowPlaying];
   }
 
-  // Group the tracks by their played date
-  tracks.forEach((track) => {
+  recentlyPlayed!.forEach((track) => {
     const playedAtDate = new Date(track.playedAt!).toLocaleDateString();
 
     if (!grouped[playedAtDate]) {
@@ -245,11 +337,9 @@ function groupTracksByDate(
     grouped[playedAtDate].push(track);
   });
 
-  // Calculate the gap between each track
   for (const date in grouped) {
     grouped[date] = calculateAndInsertGaps(grouped[date] as Track[]);
 
-    // Insert a gap at the start of every day except "now"
     if (date !== "now") {
       grouped[date].unshift({
         type: "gap",
@@ -258,12 +348,7 @@ function groupTracksByDate(
             <span
               className={cn(
                 "absolute -left-1/2 right-0 top-1/2 h-px",
-                // "absolute -left-1/2 -right-8 -z-10 h-px",
-                // "bg-gradient-to-r from-primary to-background",
-                "bg-accent",
-                // "bg-extreme",
-                // "shadow-[1px_1px_0_hsl(var(--accent))]",
-                // "mix-blend-difference",
+                "bg-horizontal-dashed",
                 "-translate-y-1/2",
               )}
             />
@@ -275,4 +360,10 @@ function groupTracksByDate(
   }
 
   return grouped;
+}
+
+function Container({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={cn("relative flex h-full py-8 text-sm")}>{children}</div>
+  );
 }
