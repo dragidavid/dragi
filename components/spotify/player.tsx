@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
 
@@ -131,12 +131,6 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               ) : (
                 <span>last played</span>
               )}
-
-              <Icon
-                name="player"
-                className={cn(track.currentlyPlaying && "animate-spin")}
-                aria-hidden
-              />
             </div>
 
             <Marquee className={cn("text-2xl font-bold")}>
@@ -227,13 +221,22 @@ function Noise() {
 
 function RadialFade() {
   return (
-    <div
-      className={cn(
-        "absolute inset-0 z-10 ",
-        "pointer-events-none",
-        "bg-gradient-radial from-transparent via-background/50 to-background",
-      )}
-    />
+    <>
+      <div
+        className={cn(
+          "absolute bottom-0 left-0 z-10 h-40 w-full",
+          "bg-gradient-to-b from-transparent to-background",
+          "md:hidden",
+        )}
+      />
+      <div
+        className={cn(
+          "absolute inset-0 z-10",
+          "pointer-events-none",
+          "bg-gradient-radial from-transparent via-background/50 to-background",
+        )}
+      />
+    </>
   );
 }
 

@@ -100,7 +100,8 @@ const modules = [
     component: <Spotify />,
     lines: {
       right: "top-0 bg-accent",
-      bottom: "-left-full w-double bg-accent md:left-0 md:w-screen",
+      bottom:
+        "-left-full hidden w-double bg-accent md:left-0 md:block md:w-screen",
       left: "top-0 bg-accent",
     },
     tiltedLines: {
@@ -129,7 +130,7 @@ const modules = [
 
 export default function Page() {
   return (
-    <div className={cn("size-full px-5", "sm:px-4")}>
+    <div className={cn("size-full px-5", "sm:px-4", "md:px-0")}>
       <div
         className={cn(
           "relative flex min-h-screen w-full flex-col items-center justify-start py-12",

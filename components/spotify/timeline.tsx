@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { isEqual } from "lodash";
 import { v4 as uuidv4 } from "uuid";
+import { differenceInDays } from "date-fns";
 
 import Artists from "components/spotify/artists";
 
@@ -30,6 +31,8 @@ export default function Timeline() {
     string,
     TimelineItem[]
   > | null>(null);
+
+  console.log(timelineItems);
 
   const {
     data: player,
@@ -102,10 +105,10 @@ export default function Timeline() {
             <div key={uuidv4()} className="flex">
               <div
                 className={cn(
-                  "w-1/3 pl-6 pr-4 text-right font-mono text-xs leading-5",
+                  "w-1/5 text-center font-mono text-sm leading-5",
                   "select-none",
                   "text-accent shadow-secondary [text-shadow:1px_1px_0_var(--tw-shadow-color)]",
-                  "xs:pl-8",
+                  "md:w-1/3 md:pl-8 md:pr-4 md:text-right",
                 )}
               >
                 <span className={cn(date === "now" && "invisible")}>
@@ -141,8 +144,8 @@ export default function Timeline() {
                     >
                       <span
                         className={cn(
-                          "absolute size-3 rounded-full",
-                          "bg-spotify",
+                          "absolute size-4 rounded-full",
+                          "bg-spotify blur-xs",
                           "animate-ping",
                         )}
                       />
@@ -328,7 +331,10 @@ function groupTracksByDate(player: Player): Record<string, TimelineItem[]> {
   }
 
   recentlyPlayed!.forEach((track) => {
-    const playedAtDate = new Date(track.playedAt!).toLocaleDateString();
+    const playedAtDate = `D+${differenceInDays(
+      new Date(),
+      new Date(track.playedAt!),
+    )}`;
 
     if (!grouped[playedAtDate]) {
       grouped[playedAtDate] = [];
@@ -347,9 +353,10 @@ function groupTracksByDate(player: Player): Record<string, TimelineItem[]> {
           <div className={cn("relative grow")}>
             <span
               className={cn(
-                "absolute -left-1/2 right-0 top-1/2 h-px",
+                "absolute -left-1/2 -right-1/2 top-1/2 h-px",
                 "bg-horizontal-dashed",
                 "-translate-y-1/2",
+                "md:right-0",
               )}
             />
           </div>
@@ -364,6 +371,8 @@ function groupTracksByDate(player: Player): Record<string, TimelineItem[]> {
 
 function Container({ children }: { children: React.ReactNode }) {
   return (
-    <div className={cn("relative flex h-full py-8 text-sm")}>{children}</div>
+    <div className={cn("relative flex h-full overflow-x-clip py-8 text-sm")}>
+      {children}
+    </div>
   );
 }

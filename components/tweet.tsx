@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import { getTweet } from "react-tweet/api";
-import { EmbeddedTweet, TweetNotFound, type TweetProps } from "react-tweet";
+import { unstable_cache } from "next/cache";
+import { getTweet as _getTweet } from "react-tweet/api";
+import { EmbeddedTweet, TweetNotFound } from "react-tweet";
 
 import { Divider } from "components/primitives/divider";
 import { Skeleton } from "components/primitives/skeleton";
@@ -8,6 +9,12 @@ import { Skeleton } from "components/primitives/skeleton";
 import { cn } from "lib/cn";
 
 import "styles/tweet.css";
+
+const getTweet = unstable_cache(
+  async (id: string) => _getTweet(id),
+  ["tweet"],
+  { revalidate: 3600 * 24 },
+);
 
 export default async function Tweet({ id }: { id: string }) {
   return (
@@ -17,30 +24,17 @@ export default async function Tweet({ id }: { id: string }) {
   );
 }
 
-async function Content({ id, components, onError }: TweetProps) {
-  let error;
+async function Content({ id }: { id: string }) {
+  try {
+    const tweet = await getTweet(id);
 
-  const tweet = id
-    ? await getTweet(id).catch((err) => {
-        if (onError) {
-          error = onError(err);
-        } else {
-          console.error(err);
-          error = err;
-        }
-      })
-    : undefined;
-
-  if (!tweet) {
-    const NotFound = components?.TweetNotFound || TweetNotFound;
-
-    return <NotFound error={error} />;
+    return tweet ? <EmbeddedTweet tweet={tweet} /> : <TweetNotFound />;
+  } catch (e) {
+    return <TweetNotFound error={e} />;
   }
-
-  return <EmbeddedTweet tweet={tweet} components={components} />;
 }
 
-function ReactTweet(props: TweetProps) {
+function ReactTweet({ id }: { id: string }) {
   return (
     <Suspense
       fallback={
@@ -60,7 +54,7 @@ function ReactTweet(props: TweetProps) {
         </div>
       }
     >
-      <Content {...props} />
+      <Content id={id} />
     </Suspense>
   );
 }

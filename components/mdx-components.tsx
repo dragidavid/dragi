@@ -7,6 +7,8 @@ import Callout from "components/callout";
 import CopyButton from "components/copy-button";
 
 import { cn } from "lib/cn";
+import BlurImage from "./blur-image";
+import { placeholder } from "lib/blur";
 
 const components = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -131,7 +133,11 @@ const components = {
   ),
   hr: ({ ...props }) => (
     <hr
-      className={cn("-mx-6 my-4", "border-px border-accent", "md:my-8")}
+      className={cn(
+        "-mx-8 my-4",
+        "border-px border-dashed border-accent",
+        "md:my-8",
+      )}
       {...props}
     />
   ),
@@ -210,7 +216,20 @@ const components = {
     />
   ),
   Image: (props: ImageProps) => (
-    <Image {...props} alt={props.alt} className="rounded-lg" />
+    <div
+      className={cn(
+        "overflow-hidden rounded-md",
+        "pointer-events-none select-none",
+        "shadow-lg",
+      )}
+    >
+      <BlurImage
+        {...props}
+        alt={props.alt}
+        blurDataURL={placeholder}
+        placeholder="blur"
+      />
+    </div>
   ),
   Tweet,
   Callout,

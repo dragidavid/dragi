@@ -16,6 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         "h-dvh w-full pl-[--expanded-side-width]",
         "xs:px-5",
         "sm:px-4",
+        "md:px-0",
       )}
     >
       <div
