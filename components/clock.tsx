@@ -19,7 +19,12 @@ export default function Clock() {
 
   return (
     <span className="tabular-nums">
-      {date.toLocaleTimeString("en-GB", { timeZone: "Europe/London" })}
+      {date.toLocaleTimeString([], {
+        timeZone: "Europe/London",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })}
     </span>
   );
 }

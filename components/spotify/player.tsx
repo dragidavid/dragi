@@ -224,7 +224,7 @@ function RadialFade() {
     <>
       <div
         className={cn(
-          "absolute bottom-0 left-0 z-10 h-40 w-full",
+          "absolute bottom-0 left-0 z-10 h-48 w-full",
           "bg-gradient-to-b from-transparent to-background",
           "md:hidden",
         )}
