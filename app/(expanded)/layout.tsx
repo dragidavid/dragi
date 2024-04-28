@@ -1,11 +1,9 @@
+import Fade from "components/fade";
+import Line from "components/line";
+import Stars from "components/stars";
 import Module from "components/module";
-
-import Navigation from "components/navigation";
 import Status from "components/status";
-
-import Fade from "components/ui/fade";
-import Line from "components/ui/line";
-import Stars from "components/ui/stars";
+import Navigation from "components/navigation";
 
 import { cn } from "lib/cn";
 

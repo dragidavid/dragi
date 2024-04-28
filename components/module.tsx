@@ -1,6 +1,6 @@
-import Line from "components/ui/line";
-import Cross from "components/ui/cross";
-import Expand from "components/ui/expand";
+import Line from "components/line";
+import Cross from "components/cross";
+import Expand from "components/expand";
 
 import { cn } from "lib/cn";
 

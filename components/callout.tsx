@@ -1,10 +1,10 @@
+import Icon, { type Icons } from "components/icon";
+
 import {
   Alert,
   AlertDescription,
   AlertTitle,
 } from "components/primitives/alert";
-
-import Icon, { type Icons } from "components/ui/icon";
 
 export default function Callout({
   title,

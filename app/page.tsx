@@ -1,9 +1,8 @@
+import Fade from "components/fade";
+import Line from "components/line";
 import Module from "components/module";
 
 import { About, Tools, Projects, Craft, Spotify } from "components/previews";
-
-import Fade from "components/ui/fade";
-import Line from "components/ui/line";
 
 import { cn } from "lib/cn";
 

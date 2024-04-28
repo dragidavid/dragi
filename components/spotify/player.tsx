@@ -6,13 +6,12 @@ import useSWR from "swr";
 
 import Artists from "components/spotify/artists";
 
+import Icon from "components/icon";
 import Marquee from "components/custom-marquee";
 import BlurImage from "components/blur-image";
 import StyledLink from "components/styled-link";
 
 import { MotionDiv } from "components/primitives/motion";
-
-import Icon from "components/ui/icon";
 
 import { cn } from "lib/cn";
 import { colors } from "lib/colors";

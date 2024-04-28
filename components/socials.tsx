@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "components/primitives/button";
-
-import Icon from "components/ui/icon";
+import Icon from "components/icon";
 import StyledLink from "components/styled-link";
+
+import { Button } from "components/primitives/button";
 
 import { cn } from "lib/cn";
 

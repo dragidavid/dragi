@@ -1,5 +1,6 @@
 import Status from "components/status";
 import Socials from "components/socials";
+import StyledLink from "components/styled-link";
 
 import { cn } from "lib/cn";
 
@@ -20,7 +21,8 @@ export default function Preview() {
           <div className={cn("flex flex-col")}>
             <p className="font-medium">David Dragovacz</p>
             <p className={cn("text-sm font-light", "text-secondary")}>
-              design engineer
+              swe at{" "}
+              <StyledLink href="https://www.remote.com">remote</StyledLink>
             </p>
           </div>
 

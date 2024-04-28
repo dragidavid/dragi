@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-import { Button } from "components/primitives/button";
+import Icon from "components/icon";
 
-import Icon from "components/ui/icon";
+import { Button } from "components/primitives/button";
 
 import { cn } from "lib/cn";
 

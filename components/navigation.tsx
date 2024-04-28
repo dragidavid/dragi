@@ -5,42 +5,36 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 
-import { MotionSpan } from "components/primitives/motion";
+import Line from "components/line";
+import Cross from "components/cross";
 
-import Icon from "components/ui/icon";
-import Line from "components/ui/line";
-import Cross from "components/ui/cross";
+import { MotionSpan } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 import { debounce } from "lib/debounce";
 
 const links = [
   {
-    id: "projects",
-    icon: <Icon name="code" size="navigation" />,
+    label: "projects",
     href: "/projects",
   },
   {
-    id: "craft",
-    icon: <Icon name="craft" size="navigation" />,
+    label: "craft",
     href: "/craft",
   },
   {
-    id: "home",
-    icon: <Icon name="home" size="navigation" />,
+    label: "home",
     href: "/",
   },
   {
-    id: "tools",
-    icon: <Icon name="toolbox" size="navigation" />,
+    label: "tools",
     href: "/tools",
   },
   {
-    id: "spotify",
-    icon: <Icon name="music" size="navigation" />,
+    label: "spotify",
     href: "/spotify",
   },
-];
+] as const;
 
 export default function Navigation() {
   const [height, setHeight] = useState(0);
@@ -75,16 +69,16 @@ export default function Navigation() {
     <nav
       ref={navRef}
       className={cn(
-        "relative flex h-[--mobile-navigation-height] w-full",
+        "relative flex h-[--mobile-navigation-height] w-full font-mono text-xs",
         "text-secondary",
-        "md:h-[--desktop-navigation-height]",
+        "md:h-[--desktop-navigation-height] md:text-sm",
       )}
     >
-      {links.map(({ id, icon, href }, index) => (
+      {links.map(({ label, href }, index) => (
         <Link
-          key={id}
+          key={label}
           href={href}
-          title={id}
+          title={label}
           className={cn(
             "relative flex-1",
             "outline-none",
@@ -116,7 +110,7 @@ export default function Navigation() {
                 />
 
                 <Cross
-                  origin={`link-${id}`}
+                  origin={`link-${label}`}
                   positions={{
                     tl: "visible",
                     tr: "invisible",
@@ -127,7 +121,13 @@ export default function Navigation() {
               </>
             )}
 
-            {icon}
+            <div className={cn("flex flex-col items-center gap-3")}>
+              <span>{label}</span>
+
+              {isActive(href) && (
+                <div className={cn("size-1.5 rounded-full bg-primary")} />
+              )}
+            </div>
 
             <AnimatePresence>
               {isActive(href) && (

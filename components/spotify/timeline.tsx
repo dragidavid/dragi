@@ -8,6 +8,7 @@ import { differenceInDays } from "date-fns";
 
 import Artists from "components/spotify/artists";
 
+import Icon from "components/icon";
 import BlurImage from "components/blur-image";
 import StyledLink from "components/styled-link";
 
@@ -17,8 +18,6 @@ import {
   TooltipContent,
 } from "components/primitives/tooltip";
 import { MotionDiv, MotionLi } from "components/primitives/motion";
-
-import Icon from "components/ui/icon";
 
 import { cn } from "lib/cn";
 import { fetcher } from "lib/fetcher";
@@ -32,13 +31,11 @@ export default function Timeline() {
     TimelineItem[]
   > | null>(null);
 
-  console.log(timelineItems);
-
   const {
     data: player,
     isLoading: playerLoading,
     error: playerError,
-  } = useSWR<Player>("/api/spotify/player", fetcher, {
+  } = useSWR<Player>("/api/player", fetcher, {
     refreshInterval: 90000,
     revalidateOnFocus: false,
     errorRetryCount: 1,

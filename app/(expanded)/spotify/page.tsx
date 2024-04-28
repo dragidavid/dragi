@@ -1,8 +1,8 @@
 import Player from "components/spotify/player";
 import Timeline from "components/spotify/timeline";
 
-import Line from "components/ui/line";
-import Cross from "components/ui/cross";
+import Line from "components/line";
+import Cross from "components/cross";
 
 import { cn } from "lib/cn";
 

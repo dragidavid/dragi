@@ -3,11 +3,10 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
 import Mdx from "components/mdx-components";
+import Icon from "components/icon";
 import Views from "components/views";
 
 import { buttonVariants } from "components/primitives/button";
-
-import Icon from "components/ui/icon";
 
 import { cn } from "lib/cn";
 import { formatDate } from "lib/utils";
