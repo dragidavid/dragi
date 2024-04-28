@@ -14,6 +14,7 @@ import LastVisitFrom from "components/last-visit-from";
 import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
+
 import { useWindowSize } from "lib/hooks/useWindowSize";
 
 export default function Status({ play = false }: { play?: boolean }) {

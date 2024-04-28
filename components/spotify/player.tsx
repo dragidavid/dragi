@@ -65,14 +65,12 @@ export default function Player({ preview = false }: { preview?: boolean }) {
             duration: 0.2,
           }}
           className={cn(
-            "absolute inset-6 z-10 flex flex-col justify-end",
+            "absolute inset-6 z-10 flex flex-col justify-end text-sm",
             "text-secondary/20",
             preview && "inset-4",
           )}
         >
-          <div className="text-sm">
-            <p>something went wrong...</p>
-          </div>
+          <span>something went wrong...</span>
         </MotionDiv>
       </Container>
     );
@@ -122,7 +120,9 @@ export default function Player({ preview = false }: { preview?: boolean }) {
           <div className={cn("relative flex flex-col gap-1")}>
             <div
               className={cn(
-                "mb-3 flex items-center gap-2 text-xs font-semibold",
+                "mb-3 flex items-center gap-2 font-mono text-xs",
+                "select-none",
+                "text-accent shadow-primary [text-shadow:1px_1px_0_var(--tw-shadow-color)]",
               )}
             >
               {track.currentlyPlaying ? (

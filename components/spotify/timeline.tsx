@@ -72,12 +72,12 @@ export default function Timeline() {
             delay: 0.8,
           }}
           className={cn(
-            "flex size-full flex-col items-center justify-center text-3xl",
+            "flex size-full flex-col items-center justify-center text-sm",
             "select-none",
             "text-secondary/20",
           )}
         >
-          <span>×</span>
+          <span>that "something" happened here too</span>
         </MotionDiv>
       </Container>
     );
@@ -119,7 +119,6 @@ export default function Timeline() {
                     "bg-vertical-dashed",
                     "-translate-x-1/2",
                     date === "now" && "top-1/2",
-                    first && "-top-8",
                     last && "-bottom-8",
                   )}
                 />
@@ -129,7 +128,7 @@ export default function Timeline() {
                     <span
                       className={cn(
                         "absolute -bottom-8 top-3/4 z-10 w-px",
-                        "bg-gradient-to-b from-spotify to-transparent",
+                        "bg-gradient-to-b from-spotify to-transparent backdrop-blur-sm",
                         "-translate-x-1/2",
                       )}
                     />
@@ -175,7 +174,7 @@ export default function Timeline() {
                       key={uuidv4()}
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
-                      transition={{ duration: 0.4 }}
+                      transition={{ duration: 0.8 }}
                       viewport={{ once: true }}
                       className="flex"
                       style={{ height: `${item.height}px` }}
@@ -246,15 +245,19 @@ export default function Timeline() {
                             </div>
 
                             {item.playedAt && (
-                              <div className={cn("text-xs", "text-secondary")}>
-                                {new Date(item.playedAt).toLocaleTimeString(
-                                  [],
-                                  {
-                                    hour: "2-digit",
-                                    minute: "2-digit",
-                                    hour12: true,
-                                  },
-                                )}
+                              <div
+                                className={cn("flex text-xs", "text-secondary")}
+                              >
+                                <span>
+                                  {new Date(item.playedAt).toLocaleTimeString(
+                                    [],
+                                    {
+                                      hour: "2-digit",
+                                      minute: "2-digit",
+                                      hour12: true,
+                                    },
+                                  )}
+                                </span>
                               </div>
                             )}
                           </div>

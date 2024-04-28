@@ -3,6 +3,8 @@ import { GeistMono } from "geist/font/mono";
 
 import Providers from "contexts/Providers";
 
+import Screen from "components/screen";
+
 import { cn } from "lib/cn";
 
 import "styles/globals.css";
@@ -36,6 +38,8 @@ export default function RootLayout({
             )}
           >
             {children}
+
+            <Screen />
           </main>
         </Providers>
       </body>
