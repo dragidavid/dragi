@@ -6,9 +6,6 @@ import { blur, placeholder } from "lib/blur";
 
 import { type SpotifyTrackResponse, type Track, type Player } from "lib/types";
 
-export const dynamic = "force-dynamic";
-export const runtime = "edge";
-
 function format(
   item: SpotifyTrackResponse & { is_playing?: boolean; played_at?: string },
   blurHash: string,
@@ -58,6 +55,9 @@ async function fetchRecentlyPlayed() {
     recentlyPlayedBlurHash,
   };
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function GET() {
   try {

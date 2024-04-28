@@ -36,7 +36,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
     data: player,
     isLoading: playerLoading,
     error: playerError,
-  } = useSWR<Player>("/api/spotify/player", fetcher, {
+  } = useSWR<Player>("/api/player", fetcher, {
     refreshInterval: 90000,
     revalidateOnFocus: false,
     errorRetryCount: 1,
