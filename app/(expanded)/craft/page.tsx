@@ -20,15 +20,23 @@ export default async function Page() {
   let lastYearShown = 0;
 
   return (
-    <div className={cn("relative flex h-full flex-col p-6", "xs:p-8")}>
-      {/* <p>check out some of blah blah</p> */}
-
-      <div className={cn("mb-4 flex text-sm", "text-secondary")}>
-        <span className={cn("w-14 flex-none", "md:w-18")}>date</span>
-        <span className="flex-1">title</span>
-        <span className={cn("w-14 flex-none text-right", "md:w-18")}>
-          views
-        </span>
+    <div className={cn("relative flex h-full flex-col gap-4 p-6", "xs:p-8")}>
+      <div
+        className={cn(
+          "text-sm",
+          "border-px border-b border-accent text-secondary",
+        )}
+      >
+        <p>
+          <span className={cn("mr-1 font-medium italic", "highlight")}>
+            thoughts
+          </span>{" "}
+          and{" "}
+          <span className={cn("mr-1 font-medium italic", "highlight")}>
+            snippets
+          </span>{" "}
+          from my desk
+        </p>
       </div>
 
       <div className={cn("flex flex-col", "group")}>
@@ -39,10 +47,13 @@ export default async function Page() {
           lastYearShown = year;
 
           return (
-            <div key={post._id} className={cn("relative flex items-center")}>
+            <div
+              key={post._id}
+              className={cn("relative flex items-center text-sm")}
+            >
               <span
                 className={cn(
-                  "relative w-14 flex-none py-2 text-sm tabular-nums",
+                  "relative w-14 flex-none py-2 tabular-nums",
                   "pointer-events-none",
                   "text-secondary",
                   "md:w-18",
@@ -72,7 +83,11 @@ export default async function Page() {
                   slug={post.slugAsParams}
                   allViews={allViews}
                   compact
-                  className={cn("w-14 flex-none text-right text-sm", "md:w-18")}
+                  className={cn(
+                    "w-14 flex-none text-right",
+                    "text-secondary",
+                    "md:w-18",
+                  )}
                 />
               </Link>
             </div>

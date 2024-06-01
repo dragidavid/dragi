@@ -55,7 +55,7 @@ export default async function Preview() {
               key={post._id}
               href={post.slug}
               className={cn(
-                "py-1",
+                "py-1 text-sm",
                 "truncate",
                 "select-none outline-none",
                 "text-primary",

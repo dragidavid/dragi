@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --container-size: 768px;
+    --container-size: 640px;
 
     --expanded-side-width: 40px;
 
@@ -53,6 +53,15 @@
     --shiki-token-string-expression: hsl(131deg 43% 57%);
     --shiki-token-punctuation: hsl(var(--primary));
     --shiki-token-link: hsl(131deg 43% 57%);
+  }
+}
+
+@layer components {
+  .highlight {
+    --tw-shadow-color: hsl(var(--secondary));
+
+    color: hsl(var(--accent));
+    text-shadow: 1px 1px 0 var(--tw-shadow-color);
   }
 }
 

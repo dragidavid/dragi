@@ -122,7 +122,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               className={cn(
                 "mb-3 flex items-center gap-2 font-mono text-xs",
                 "select-none",
-                "text-accent shadow-primary [text-shadow:1px_1px_0_var(--tw-shadow-color)]",
+                "highlight",
               )}
             >
               {track.currentlyPlaying ? (

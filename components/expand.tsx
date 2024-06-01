@@ -162,12 +162,7 @@ function Arrow({ isHovered }: { isHovered: boolean }) {
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
-        <MotionLine
-          x1="0"
-          y1="10"
-          strokeLinecap="round"
-          variants={variants}
-        />
+        <MotionLine x1="0" y1="10" strokeLinecap="round" variants={variants} />
       </MotionSvg>
     </div>
   );

@@ -17,16 +17,16 @@ export default function Preview() {
           "md:justify-between md:gap-0",
         )}
       >
-        <div className={cn("flex flex-col gap-5")}>
+        <div className={cn("flex flex-col gap-3")}>
           <div className={cn("flex flex-col")}>
             <p className="font-medium">David Dragovacz</p>
-            <p className={cn("text-sm font-light", "text-secondary")}>
-              swe at{" "}
+            <p className={cn("text-xs font-light", "text-secondary")}>
+              software engineer at{" "}
               <StyledLink href="https://www.remote.com">remote</StyledLink>
             </p>
           </div>
 
-          <p className={cn("text-balance font-light")}>
+          <p className={cn("text-balance text-sm font-light")}>
             Crafting web experiences with a keen eye for design and an obsession
             for the minutiae.
           </p>

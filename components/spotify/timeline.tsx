@@ -9,14 +9,8 @@ import { differenceInDays } from "date-fns";
 import Artists from "components/spotify/artists";
 
 import Icon from "components/icon";
-import BlurImage from "components/blur-image";
 import StyledLink from "components/styled-link";
 
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from "components/primitives/tooltip";
 import { MotionDiv, MotionLi } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
@@ -95,7 +89,6 @@ export default function Timeline() {
         className={cn("flex size-full flex-col gap-4")}
       >
         {Object.entries(timelineItems).map(([date, items], index) => {
-          const first = index === 0;
           const last = index === Object.keys(timelineItems).length - 1;
 
           return (
@@ -104,7 +97,7 @@ export default function Timeline() {
                 className={cn(
                   "w-1/5 text-center font-mono text-sm leading-5",
                   "select-none",
-                  "text-accent shadow-secondary [text-shadow:1px_1px_0_var(--tw-shadow-color)]",
+                  "highlight",
                   "md:w-1/3 md:pl-8 md:pr-4 md:text-right",
                 )}
               >
@@ -182,88 +175,35 @@ export default function Timeline() {
                       {item.content}
                     </MotionLi>
                   ) : (
-                    <Tooltip key={uuidv4()}>
-                      <TooltipTrigger className={cn("flex w-full")}>
-                        <MotionLi
-                          initial={{ opacity: 0, x: 20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{
-                            duration: 0.6,
-                          }}
-                          viewport={{ once: true }}
-                          className={cn(
-                            "overflow-hidden text-ellipsis whitespace-nowrap",
-                          )}
-                        >
-                          <StyledLink href={item.trackUrl}>
-                            {item.name}
-                          </StyledLink>
-                        </MotionLi>
-                      </TooltipTrigger>
-                      <TooltipContent
+                    <MotionLi
+                      key={uuidv4()}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{
+                        duration: 0.6,
+                      }}
+                      viewport={{ once: true }}
+                      className="flex"
+                    >
+                      <div
                         className={cn(
-                          item.currentlyPlaying && "border-spotify/20",
+                          "overflow-hidden text-ellipsis whitespace-nowrap",
                         )}
                       >
+                        <StyledLink href={item.trackUrl}>
+                          {item.name}
+                        </StyledLink>
+
                         <div
                           className={cn(
-                            "relative flex p-2",
-                            "bg-gradient-radial to-transparent bg-[length:800px_200px] bg-right bg-no-repeat",
-                            item.currentlyPlaying
-                              ? "from-spotify/20"
-                              : "from-primary/15",
+                            "overflow-hidden text-ellipsis whitespace-nowrap text-xs",
+                            "text-secondary",
                           )}
                         >
-                          <div
-                            className={cn(
-                              "flex-shrink-0 overflow-hidden rounded-sm",
-                              "pointer-events-none",
-                            )}
-                          >
-                            <BlurImage
-                              src={item.album.image}
-                              alt="album-image"
-                              width={64}
-                              height={64}
-                              blurDataURL={item.album.imageBlurHash}
-                              placeholder="blur"
-                            />
-                          </div>
-                          <div
-                            className={cn(
-                              "flex flex-col justify-between overflow-hidden pl-3",
-                            )}
-                          >
-                            <div className="text-sm">
-                              <StyledLink href={item.trackUrl}>
-                                {item.name}
-                              </StyledLink>
-
-                              <div className="text-secondary">
-                                <Artists artists={item.artists} />
-                              </div>
-                            </div>
-
-                            {item.playedAt && (
-                              <div
-                                className={cn("flex text-xs", "text-secondary")}
-                              >
-                                <span>
-                                  {new Date(item.playedAt).toLocaleTimeString(
-                                    [],
-                                    {
-                                      hour: "2-digit",
-                                      minute: "2-digit",
-                                      hour12: true,
-                                    },
-                                  )}
-                                </span>
-                              </div>
-                            )}
-                          </div>
+                          <Artists artists={item.artists} />
                         </div>
-                      </TooltipContent>
-                    </Tooltip>
+                      </div>
+                    </MotionLi>
                   ),
                 )}
               </ul>
@@ -353,7 +293,7 @@ function groupTracksByDate(player: Player): Record<string, TimelineItem[]> {
           <div className={cn("relative grow")}>
             <span
               className={cn(
-                "absolute -left-1/2 -right-1/2 top-1/2 h-px",
+                "absolute -left-[53%] -right-1/2 top-1/2 h-px",
                 "bg-horizontal-dashed",
                 "-translate-y-1/2",
                 "md:right-0",

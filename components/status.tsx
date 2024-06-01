@@ -39,10 +39,9 @@ export default function Status({ play = false }: { play?: boolean }) {
         delay: 0.8,
       }}
       className={cn(
-        "flex w-full py-0.5 text-xs",
+        "flex w-full py-0.5 font-mono text-xs",
         "select-none",
         "text-secondary",
-        "xs:text-sm",
         shouldRenderVerticalStatus && "py-6",
         isDesktop && "justify-between px-1",
       )}
