@@ -113,7 +113,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
 
           <Icon
             name="spotify-logo"
-            size="80"
+            size="64"
             className={cn("-translate-x-1.5 -translate-y-1.5")}
           />
 
@@ -132,11 +132,11 @@ export default function Player({ preview = false }: { preview?: boolean }) {
               )}
             </div>
 
-            <Marquee className={cn("text-2xl font-bold")}>
+            <Marquee className={cn("text-xl font-bold")}>
               <StyledLink href={track.trackUrl}>{track.name}</StyledLink>
             </Marquee>
 
-            <Marquee className={cn("text-sm font-medium", "text-secondary")}>
+            <Marquee className={cn("text-xs font-medium", "text-secondary")}>
               <Artists artists={track.artists} />
             </Marquee>
           </div>

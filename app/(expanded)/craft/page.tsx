@@ -4,6 +4,7 @@ import { compareDesc, getYear, parseISO } from "date-fns";
 
 import { allPosts as posts } from "contentlayer/generated";
 
+import Line from "components/line";
 import Views from "components/views";
 
 import { cn } from "lib/cn";
@@ -21,22 +22,15 @@ export default async function Page() {
 
   return (
     <div className={cn("relative flex h-full flex-col gap-4 p-6", "xs:p-8")}>
-      <div
-        className={cn(
-          "text-sm",
-          "border-px border-b border-accent text-secondary",
-        )}
-      >
-        <p>
-          <span className={cn("mr-1 font-medium italic", "highlight")}>
-            thoughts
-          </span>{" "}
-          and{" "}
-          <span className={cn("mr-1 font-medium italic", "highlight")}>
-            snippets
-          </span>{" "}
-          from my desk
-        </p>
+      <div className={cn("relative font-mono text-sm", "highlight")}>
+        <p>thoughts & snippets</p>
+
+        <Line
+          className={cn(
+            "inset-x-0 -bottom-2 h-px",
+            "bg-accent bg-horizontal-dashed",
+          )}
+        />
       </div>
 
       <div className={cn("flex flex-col", "group")}>

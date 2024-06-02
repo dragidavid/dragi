@@ -92,7 +92,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               maxSize={1}
               density={100}
               className={cn(
-                "absolute bottom-0 left-0 right-0 top-1/3 xs:inset-0 xs:rotate-180",
+                "absolute inset-x-0 bottom-0 top-1/3 xs:inset-0 xs:rotate-180",
               )}
             />
           </div>
