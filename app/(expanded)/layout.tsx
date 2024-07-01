@@ -73,7 +73,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div
             className={cn(
               "relative flex size-full flex-col items-center justify-start whitespace-nowrap",
-              "xs:items-start xs:justify-end ",
+              "xs:items-start xs:justify-end",
             )}
           >
             <div
@@ -118,7 +118,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           className={cn(
             "h-dvh pb-[--mobile-navigation-height]",
             "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))] xs:pb-0",
-            "md:h-[calc(var(--container-size)-var(--desktop-navigation-height))]",
+            "md:h-[--container-size]",
           )}
         >
           <div
