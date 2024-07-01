@@ -95,7 +95,7 @@ export default function Timeline() {
             <div key={uuidv4()} className="flex">
               <div
                 className={cn(
-                  "w-1/5 text-center font-mono text-sm leading-5",
+                  "w-1/5 text-center text-sm leading-5",
                   "select-none",
                   "highlight",
                   "md:w-1/3 md:pl-8 md:pr-4 md:text-right",
@@ -120,7 +120,7 @@ export default function Timeline() {
                   <>
                     <span
                       className={cn(
-                        "absolute -bottom-8 top-3/4 z-10 w-px",
+                        "absolute -bottom-8 top-3/4 z-10 w-px rounded-full",
                         "bg-gradient-to-b from-spotify to-transparent backdrop-blur-sm",
                         "-translate-x-1/2",
                       )}

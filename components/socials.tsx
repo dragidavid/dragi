@@ -22,7 +22,7 @@ export default function Socials() {
           size="icon"
           variant="subtle"
           onClick={() => window.open("https://x.com/dragidavid")}
-          className={cn("!size-min cursor-alias", "text-inherit")}
+          className={cn("!size-min cursor-alias rounded-sm", "text-inherit")}
         >
           <Icon name="x-logo" size="20" />
           <span className="sr-only">X/Twitter logo</span>
@@ -32,7 +32,7 @@ export default function Socials() {
           size="icon"
           variant="subtle"
           onClick={() => window.open("https://github.com/dragidavid")}
-          className={cn("!size-min cursor-alias", "text-inherit")}
+          className={cn("!size-min cursor-alias rounded-full", "text-inherit")}
         >
           <Icon name="github-logo" size="20" />
           <span className="sr-only">GitHub logo</span>

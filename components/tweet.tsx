@@ -44,13 +44,13 @@ function ReactTweet({ id }: { id: string }) {
             "border border-accent bg-extreme",
           )}
         >
-          <Skeleton className={cn("h-12")} />
-          <Skeleton className={cn("h-24")} />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-24" />
 
           <Divider />
 
-          <Skeleton className={cn("h-8")} />
-          <Skeleton className={cn("h-10")} />
+          <Skeleton className="h-8" />
+          <Skeleton className="h-10" />
         </div>
       }
     >

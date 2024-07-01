@@ -120,7 +120,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
           <div className={cn("relative flex flex-col gap-1")}>
             <div
               className={cn(
-                "mb-3 flex items-center gap-2 font-mono text-xs",
+                "mb-3 flex items-center gap-2 text-xs",
                 "select-none",
                 "highlight",
               )}
@@ -158,7 +158,7 @@ function AlbumImage({
       className={cn(
         "absolute left-1/2 top-1/2 z-10 overflow-hidden rounded-md",
         "pointer-events-none",
-        "shadow-lg",
+        "enhanced-shadow",
         "-translate-x-1/2 -translate-y-3/4",
       )}
     >

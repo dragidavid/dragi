@@ -1,5 +1,3 @@
-const fontSizes = require("tailwindcss/defaultTheme").fontSize;
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],

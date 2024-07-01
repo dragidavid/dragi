@@ -27,13 +27,16 @@ export default function ThemeToggle({
       size="icon"
       variant="subtle"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="size-5"
+      className={cn(
+        "size-5",
+        "focus-visible:ring-0 focus-visible:ring-background",
+      )}
       tabIndex={-1}
       {...props}
     >
       <span
         className={cn(
-          "size-3.5 rounded-full",
+          "size-3 rounded-full",
           "bg-secondary",
           "hover:bg-inverse",
         )}

@@ -220,7 +220,7 @@ const components = {
       className={cn(
         "overflow-hidden rounded-md",
         "pointer-events-none select-none",
-        "shadow-lg",
+        "enhanced-shadow",
       )}
     >
       <BlurImage

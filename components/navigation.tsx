@@ -54,7 +54,7 @@ export default function Navigation() {
 
         setHeight(vh);
       }
-    }, 800);
+    }, 500);
 
     calculateHeight();
 
@@ -124,9 +124,23 @@ export default function Navigation() {
             <div className={cn("flex flex-col items-center gap-3")}>
               <span>{label}</span>
 
-              {isActive(href) && (
-                <div className={cn("size-1.5 rounded-full bg-primary")} />
-              )}
+              <AnimatePresence>
+                {isActive(href) && (
+                  <MotionSpan
+                    initial={{
+                      scale: 0,
+                    }}
+                    animate={{
+                      scale: 1,
+                    }}
+                    exit={{
+                      scale: 0,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className={cn("size-1.5 rounded-full", "bg-primary")}
+                  />
+                )}
+              </AnimatePresence>
             </div>
 
             <AnimatePresence>
