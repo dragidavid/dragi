@@ -4,8 +4,8 @@ import { compareDesc, getYear, parseISO } from "date-fns";
 
 import { allPosts as posts } from "contentlayer/generated";
 
-import Line from "components/line";
 import Views from "components/views";
+import PageTitle from "components/page-title";
 
 import { cn } from "lib/cn";
 
@@ -22,16 +22,7 @@ export default async function Page() {
 
   return (
     <div className={cn("relative flex h-full flex-col gap-4 p-6", "xs:p-8")}>
-      <div className={cn("relative font-mono text-sm", "highlight")}>
-        <p>thoughts & snippets</p>
-
-        <Line
-          className={cn(
-            "inset-x-0 -bottom-2 h-px",
-            "bg-accent bg-horizontal-dashed",
-          )}
-        />
-      </div>
+      <PageTitle main="thoughts & snippets" />
 
       <div className={cn("flex flex-col", "group")}>
         {sortedPosts.map((post) => {
