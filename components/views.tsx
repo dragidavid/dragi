@@ -40,7 +40,7 @@ export default async function Views({
   const content = await getContent();
 
   return (
-    <span className={cn("tabular-nums", className)} {...props}>
+    <span className={cn("font-mono", className)} {...props}>
       {content} {!compact && "views"}
     </span>
   );

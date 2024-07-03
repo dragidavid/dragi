@@ -38,7 +38,7 @@ export default async function Page() {
             >
               <span
                 className={cn(
-                  "relative w-14 flex-none py-2 tabular-nums",
+                  "relative w-14 flex-none py-2 font-mono",
                   "pointer-events-none",
                   "text-secondary",
                   "md:w-18",

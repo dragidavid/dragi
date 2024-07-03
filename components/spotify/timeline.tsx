@@ -10,6 +10,7 @@ import Artists from "components/spotify/artists";
 
 import Icon from "components/icon";
 import StyledLink from "components/styled-link";
+import { CrossShape } from "components/cross";
 
 import { MotionDiv, MotionLi } from "components/primitives/motion";
 
@@ -101,14 +102,26 @@ export default function Timeline() {
                   "md:w-1/3 md:pl-8 md:pr-4 md:text-right",
                 )}
               >
-                <span className={cn(date === "now" && "invisible")}>
-                  {date}
-                </span>
+                <div
+                  className={cn(
+                    "relative flex items-center justify-end",
+                    date === "now" && "invisible",
+                  )}
+                >
+                  <span>{date}</span>
+
+                  <CrossShape
+                    className={cn(
+                      "absolute -right-4 z-10 size-2",
+                      "translate-x-1/2",
+                    )}
+                  />
+                </div>
               </div>
               <div className="relative">
                 <div
                   className={cn(
-                    "absolute -bottom-4 top-0 w-px",
+                    "absolute -bottom-4 top-2.5 w-px",
                     "bg-vertical-dashed",
                     "-translate-x-1/2",
                     date === "now" && "top-1/2",
@@ -120,7 +133,7 @@ export default function Timeline() {
                   <>
                     <span
                       className={cn(
-                        "absolute -bottom-8 top-3/4 z-10 w-px rounded-full",
+                        "absolute -bottom-8 top-3/4 z-20 w-px rounded-full",
                         "bg-gradient-to-b from-spotify to-transparent backdrop-blur-sm",
                         "-translate-x-1/2",
                       )}
