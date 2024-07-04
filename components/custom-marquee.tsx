@@ -8,10 +8,7 @@ import { cn } from "lib/cn";
 export default function Marquee({
   children,
   className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+}: React.HTMLAttributes<HTMLDivElement>) {
   const [moveBy, setMoveBy] = useState<number | undefined>(undefined);
   const [isAnimationActive, setIsAnimationActive] = useState(false);
   const [delay, setDelay] = useState(3);

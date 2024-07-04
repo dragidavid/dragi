@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import Marquee from "react-fast-marquee";
@@ -9,15 +10,17 @@ const Clock = dynamic(() => import("components/clock"), {
   ssr: false,
 });
 import ThemeToggle from "components/theme-toggle";
-import LastVisitFrom from "components/last-visit-from";
 
 import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
+import { getLocation } from "lib/actions";
 
 import { useWindowSize } from "lib/hooks/useWindowSize";
 
 export default function Status({ play = false }: { play?: boolean }) {
+  const [location, setLocation] = useState<string | null>(null);
+
   const pathname = usePathname();
 
   const { isXs, isMobile, isDesktop } = useWindowSize();
@@ -27,6 +30,16 @@ export default function Status({ play = false }: { play?: boolean }) {
   const shouldRenderMarquee = Boolean(
     (isMobile || play || pathname === "/") && !shouldRenderVerticalStatus,
   );
+
+  useEffect(() => {
+    async function fetchLocation() {
+      const location = await getLocation();
+
+      setLocation(location as string);
+    }
+
+    fetchLocation();
+  }, []);
 
   const content = (
     <MotionDiv
@@ -39,35 +52,34 @@ export default function Status({ play = false }: { play?: boolean }) {
         delay: 0.8,
       }}
       className={cn(
-        "flex w-full py-0.5 font-mono text-xs",
+        "flex w-full items-center py-0.5 font-mono text-xs",
         "select-none",
         "text-secondary",
         shouldRenderVerticalStatus && "py-6",
         isDesktop && "justify-between px-1",
       )}
     >
-      <div className={cn("flex items-center")}>
-        <Clock />
+      {location ? (
+        <>
+          <Clock />
 
-        <Separator />
+          <Separator />
 
-        {/* replace this with dynamic data */}
-        <span>london, united kingdom</span>
+          <span>london, united kingdom</span>
 
-        <Separator />
+          <Separator />
 
-        <LastVisitFrom />
+          <span>{location}</span>
 
-        <Separator hidden={isDesktop && !play} />
-      </div>
+          <Separator />
 
-      <div className={cn("flex items-center")}>
-        <ThemeToggle />
+          <ThemeToggle />
 
-        <Separator
-          hidden={(isDesktop && !play) || shouldRenderVerticalStatus}
-        />
-      </div>
+          <Separator
+            hidden={(isDesktop && !play) || shouldRenderVerticalStatus}
+          />
+        </>
+      ) : null}
     </MotionDiv>
   );
 
@@ -85,13 +97,21 @@ export default function Status({ play = false }: { play?: boolean }) {
 }
 
 function Separator({ hidden = false }: { hidden?: boolean }) {
+  const pathname = usePathname();
+
   const { isXs } = useWindowSize();
+
+  const shouldIncreaseYMargin = Boolean(isXs && pathname !== "/");
 
   if (hidden) return null;
 
   return (
     <div
-      className={cn("mx-5 size-1 rounded-full", "bg-accent", isXs && "my-3")}
+      className={cn(
+        "mx-3 size-1 rounded-full",
+        "bg-accent",
+        shouldIncreaseYMargin && "my-3",
+      )}
       aria-hidden
     />
   );
