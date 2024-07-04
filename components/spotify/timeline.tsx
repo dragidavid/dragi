@@ -96,15 +96,15 @@ export default function Timeline() {
             <div key={uuidv4()} className="flex">
               <div
                 className={cn(
-                  "w-1/5 text-center text-sm leading-5",
+                  "w-1/5 text-sm leading-5",
                   "select-none",
                   "highlight",
-                  "md:w-1/3 md:pl-8 md:pr-4 md:text-right",
+                  "md:w-1/3 md:pl-8",
                 )}
               >
                 <div
                   className={cn(
-                    "relative flex items-center justify-end",
+                    "relative flex items-center justify-end pr-4",
                     date === "now" && "invisible",
                   )}
                 >
@@ -112,7 +112,7 @@ export default function Timeline() {
 
                   <CrossShape
                     className={cn(
-                      "absolute -right-4 z-10 size-2",
+                      "absolute right-0 z-10 size-2",
                       "translate-x-1/2",
                     )}
                   />

@@ -23,13 +23,13 @@ export default function Marquee({
       const newMoveBy =
         textRef.current.offsetWidth - containerRef.current.clientWidth;
 
-      if (newMoveBy !== moveBy && newMoveBy > 0) {
+      if (newMoveBy > 0) {
         setMoveBy(newMoveBy);
       } else {
         setMoveBy(undefined);
       }
     }
-  }, [moveBy]);
+  }, []);
 
   const startAnimation = useCallback(() => {
     if (!isAnimationActive && moveBy) {
@@ -48,23 +48,23 @@ export default function Marquee({
 
     return () => {
       window.removeEventListener("resize", getMoveBy);
+      controls.stop();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getMoveBy, controls]);
 
   useEffect(() => {
-    controls.set({ x: 0 });
-
     if (moveBy) {
+      controls.set({ x: 0 });
       setIsAnimationActive(true);
 
       controls.start({ x: [0, -moveBy, -moveBy, 0] }).then(() => {
         setIsAnimationActive(false);
-
         setDelay(0);
       });
     }
   }, [moveBy, controls]);
+
+  const duration = moveBy ? (moveBy / 50) * 3 : 0;
 
   return (
     <MotionDiv
@@ -72,14 +72,16 @@ export default function Marquee({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       className={className}
+      aria-live="off"
+      aria-atomic="true"
     >
       <MotionDiv
         ref={textRef}
         animate={controls}
         transition={{
-          duration: (moveBy! / 50) * 3,
+          duration,
           times: [0, 0.45, 0.55, 1],
-          delay: delay,
+          delay,
           ease: "linear",
         }}
         onHoverStart={startAnimation}
