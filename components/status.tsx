@@ -25,10 +25,10 @@ export default function Status({ play = false }: { play?: boolean }) {
 
   const { isXs, isMobile, isDesktop } = useWindowSize();
 
-  const shouldRenderVerticalStatus = Boolean(isXs && pathname !== "/");
+  const isVertical = Boolean(isXs && pathname !== "/");
 
   const shouldRenderMarquee = Boolean(
-    (isMobile || play || pathname === "/") && !shouldRenderVerticalStatus,
+    (isMobile || play || pathname === "/") && !isVertical,
   );
 
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Status({ play = false }: { play?: boolean }) {
         "flex w-full items-center py-0.5 font-mono text-xs",
         "select-none",
         "text-secondary",
-        shouldRenderVerticalStatus && "py-6",
+        isVertical && "py-6",
         isDesktop && "justify-between px-1",
       )}
     >
@@ -73,11 +73,9 @@ export default function Status({ play = false }: { play?: boolean }) {
 
           <Separator />
 
-          <ThemeToggle />
+          <ThemeToggle isVertical={isVertical} />
 
-          <Separator
-            hidden={(isDesktop && !play) || shouldRenderVerticalStatus}
-          />
+          <Separator hidden={(isDesktop && !play) || isVertical} />
         </>
       ) : null}
     </MotionDiv>

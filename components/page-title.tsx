@@ -10,15 +10,20 @@ export default function PageTitle({
   sub?: string;
 }) {
   return (
-    <div className={cn("relative flex flex-col gap-2 text-sm")}>
-      <p className="highlight">{main}</p>
-
+    <div className={cn("relative flex items-end gap-1 text-sm")}>
       <Line
-        className={cn("inset-x-0 top-6 h-px", "bg-accent bg-horizontal-dashed")}
+        className={cn(
+          "inset-x-0 top-2.5 h-px -translate-y-1/2",
+          "bg-accent bg-horizontal-dashed",
+        )}
       />
 
+      <span className="highlight">{main}</span>
+
       {sub && (
-        <p className={cn("font-mono text-xs", "text-secondary/50")}>{sub}</p>
+        <span className={cn("font-mono text-xs italic", "text-secondary/50")}>
+          {sub}
+        </span>
       )}
     </div>
   );

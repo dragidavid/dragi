@@ -113,7 +113,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
 
           <Icon
             name="spotify-logo"
-            size="64"
+            size="72"
             className={cn("-translate-x-1.5 -translate-y-1.5")}
           />
 
@@ -180,7 +180,7 @@ function Blur() {
       className={cn(
         "absolute inset-0 z-10",
         "pointer-events-none",
-        "bg-background/10 backdrop-blur-xl",
+        "bg-background/10 saturate-150 backdrop-blur-xl",
       )}
     />
   );

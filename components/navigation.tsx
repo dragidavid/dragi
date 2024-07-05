@@ -69,9 +69,9 @@ export default function Navigation() {
     <nav
       ref={navRef}
       className={cn(
-        "relative flex h-[--mobile-navigation-height] w-full font-mono text-xs",
+        "text-2xs relative flex h-[--mobile-navigation-height] w-full font-mono",
         "text-secondary",
-        "md:h-[--desktop-navigation-height] md:text-sm",
+        "md:h-[--desktop-navigation-height] md:text-xs",
       )}
     >
       {links.map(({ label, href }, index) => (
@@ -124,23 +124,16 @@ export default function Navigation() {
             <div className={cn("flex flex-col items-center gap-3")}>
               <span>{label}</span>
 
-              <AnimatePresence>
-                {isActive(href) && (
-                  <MotionSpan
-                    initial={{
-                      scale: 0,
-                    }}
-                    animate={{
-                      scale: 1,
-                    }}
-                    exit={{
-                      scale: 0,
-                    }}
-                    transition={{ duration: 0.2 }}
-                    className={cn("size-1.5 rounded-full", "bg-primary")}
-                  />
+              <span
+                className={cn(
+                  "absolute -z-10 text-6xl font-extrabold",
+                  "text-primary opacity-5",
+                  "md:text-7xl",
+                  isActive(href) && "opacity-100",
                 )}
-              </AnimatePresence>
+              >
+                {index}
+              </span>
             </div>
 
             <AnimatePresence>

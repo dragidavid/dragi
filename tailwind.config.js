@@ -23,6 +23,9 @@ module.exports = {
       screens: {
         xs: "448px",
       },
+      fontSize: {
+        "2xs": "0.625rem",
+      },
       height: {
         4.5: "1.125rem",
         5.5: "1.375rem",
