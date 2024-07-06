@@ -27,8 +27,8 @@ const links = [
     href: "/",
   },
   {
-    label: "tools",
-    href: "/tools",
+    label: "/uses",
+    href: "/uses",
   },
   {
     label: "spotify",
@@ -69,7 +69,7 @@ export default function Navigation() {
     <nav
       ref={navRef}
       className={cn(
-        "text-2xs relative flex h-[--mobile-navigation-height] w-full font-mono",
+        "relative flex h-[--mobile-navigation-height] w-full font-mono text-2xs",
         "text-secondary",
         "md:h-[--desktop-navigation-height] md:text-xs",
       )}

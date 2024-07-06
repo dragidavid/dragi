@@ -80,7 +80,12 @@ export default async function Page({ params }: PageProps) {
           {post.title}
         </h3>
 
-        <div className={cn("flex justify-between text-sm", "text-secondary")}>
+        <div
+          className={cn(
+            "flex justify-between font-mono text-sm",
+            "text-secondary",
+          )}
+        >
           <span>{formatDate(post.date)}</span>
 
           <Views slug={post.slugAsParams} track />

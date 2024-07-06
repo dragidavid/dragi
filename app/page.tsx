@@ -2,11 +2,11 @@ import Fade from "components/fade";
 import Line from "components/line";
 import Module from "components/module";
 
-import { About, Tools, Projects, Craft, Spotify } from "components/previews";
+import { About, Uses, Projects, Craft, Spotify } from "components/previews";
 
 import { cn } from "lib/cn";
 
-import { type Side } from "lib/types";
+import { type Side, type Corner } from "lib/types";
 
 const commonClasses: Record<Side, string> = {
   top: "hidden h-px -translate-y-1/2 md:block",
@@ -15,7 +15,15 @@ const commonClasses: Record<Side, string> = {
   left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block",
 };
 
-const modules = [
+const modules: {
+  id: string;
+  page?: string;
+  component: React.ReactNode;
+  lines: Partial<Record<Side, string>>;
+  tiltedLines?: Partial<Record<Corner, string>>;
+  crosses: Record<Corner, string>;
+  moduleStyles?: string;
+}[] = [
   {
     id: "about",
     component: <About />,
@@ -38,9 +46,9 @@ const modules = [
     moduleStyles: "md:col-span-2",
   },
   {
-    id: "tools",
-    page: "tools",
-    component: <Tools />,
+    id: "uses",
+    page: "uses",
+    component: <Uses />,
     lines: {
       top: "right-0 w-screen bg-horizontal-dashed",
       bottom:
@@ -81,7 +89,7 @@ const modules = [
     lines: {
       top: "left-0 w-screen bg-horizontal-dashed",
       right: "bottom-0 bg-vertical-dashed",
-      bottom: "-left-full w-double bg-accent md:left-0 md:w-screen",
+      bottom: "-left-full w-double bg-horizontal-dashed md:left-0 md:w-screen",
     },
     tiltedLines: {
       tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed md:visible",
@@ -98,10 +106,10 @@ const modules = [
     page: "spotify",
     component: <Spotify />,
     lines: {
-      right: "top-0 bg-accent",
+      right: "top-0 bg-vertical-dashed",
       bottom:
-        "-left-full hidden w-double bg-accent md:left-0 md:block md:w-screen",
-      left: "top-0 bg-accent",
+        "-left-full hidden w-double bg-horizontal-dashed md:left-0 md:block md:w-screen",
+      left: "top-0 bg-vertical-dashed",
     },
     tiltedLines: {
       br: "invisible bottom-0 right-0 h-screen w-px origin-bottom rotate-[135deg] bg-vertical-dashed md:visible",
@@ -179,7 +187,7 @@ export default function Page() {
         <Line
           className={cn(
             "-bottom-full -top-full left-0 w-px",
-            "bg-accent",
+            "bg-muted",
             "-translate-x-1/2",
             "md:hidden",
           )}
@@ -206,7 +214,7 @@ export default function Page() {
         <Line
           className={cn(
             "-bottom-full -top-full right-0 w-px",
-            "bg-accent",
+            "bg-muted",
             "translate-x-1/2",
             "md:hidden",
           )}

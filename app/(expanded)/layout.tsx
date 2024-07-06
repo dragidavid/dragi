@@ -57,7 +57,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Line
           className={cn(
             "-bottom-full -top-full left-0 w-px",
-            "bg-accent",
+            "bg-muted",
             "-translate-x-1/2",
           )}
         />
@@ -101,7 +101,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="content"
           lines={{
-            top: "-inset-x-screen hidden h-px -translate-y-1/2 bg-accent xs:block",
+            top: "-inset-x-screen hidden h-px -translate-y-1/2 bg-muted xs:block",
           }}
           tiltedLines={{
             tl: "invisible left-0 top-0 h-screen w-px origin-top rotate-[135deg] bg-vertical-dashed xs:visible",
@@ -131,7 +131,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="navigation"
           lines={{
-            top: "left-0 -right-screen h-px -translate-y-1/2 bg-accent xs:-left-screen",
+            top: "left-0 -right-screen h-px -translate-y-1/2 bg-muted xs:-left-screen",
           }}
           crosses={{
             tl: "visible xs:invisible",
@@ -150,7 +150,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Line
           className={cn(
             "-bottom-full -top-full right-0 w-px",
-            "bg-accent",
+            "bg-muted",
             "translate-x-1/2",
           )}
         />

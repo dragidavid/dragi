@@ -29,7 +29,7 @@ export default function Module({
     <div key={id} className={cn("relative w-full", className)}>
       {lines &&
         (Object.keys(lines) as Array<keyof typeof lines>).map((side) => (
-          <Line key={side} className={lines[side]} />
+          <Line key={side} className={cn(lines[side])} />
         ))}
 
       {crosses && <Cross origin={id} positions={crosses} />}
@@ -41,6 +41,17 @@ export default function Module({
 
       {preview ? (
         <div className={cn("flex-1 overflow-hidden")}>
+          <div
+            className={cn(
+              "absolute -inset-[0.5px] z-30",
+              "pointer-events-none",
+              "border-b border-l border-r border-muted",
+              "md:border",
+              id === "about" && "border-t-0",
+              id === "spotify" && "border-b-0",
+            )}
+          />
+
           {page && <Expand href={page} />}
 
           {children}

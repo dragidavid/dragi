@@ -132,12 +132,8 @@ const components = {
     />
   ),
   hr: ({ ...props }) => (
-    <hr
-      className={cn(
-        "-mx-8 my-4",
-        "border-px border-dashed border-accent",
-        "md:my-8",
-      )}
+    <div
+      className={cn("my-4 h-px w-full", "bg-horizontal-dashed", "md:my-8")}
       {...props}
     />
   ),
@@ -218,7 +214,7 @@ const components = {
   Image: (props: ImageProps) => (
     <div
       className={cn(
-        "overflow-hidden rounded-md",
+        "my-6 size-auto overflow-hidden rounded-md",
         "pointer-events-none select-none",
         "shadow-xl",
         "dark:enhanced-shadow",

@@ -18,6 +18,7 @@ module.exports = {
         primary: "hsl(var(--primary) / <alpha-value>)",
         secondary: "hsl(var(--secondary) / <alpha-value>)",
         accent: "hsl(var(--accent) / <alpha-value>)",
+        muted: "hsl(var(--muted) / <alpha-value>)",
         spotify: "hsl(var(--spotify) / <alpha-value>)",
       },
       screens: {
