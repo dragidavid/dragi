@@ -8,10 +8,7 @@ import { Button } from "components/primitives/button";
 
 import { cn } from "lib/cn";
 
-export default function CopyButton({
-  value,
-  ...props
-}: React.HTMLAttributes<HTMLButtonElement> & { value?: string }) {
+export default function CopyButton({ value }: { value?: string }) {
   const [hasCopied, setHasCopied] = useState(false);
 
   useEffect(() => {
@@ -33,13 +30,15 @@ export default function CopyButton({
 
         setHasCopied(true);
       }}
-      className={cn("absolute right-4 top-4 !size-6", "text-secondary")}
-      {...props}
+      className={cn(
+        "absolute right-3.5 top-3.5 size-4.5 p-0.5",
+        "text-secondary",
+      )}
     >
       {hasCopied ? (
-        <Icon name="check" size="14" />
+        <Icon name="check" size="full" />
       ) : (
-        <Icon name="copy" size="20" />
+        <Icon name="copy" size="full" />
       )}
       <span className="sr-only">Copy code</span>
     </Button>
