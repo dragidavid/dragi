@@ -2,7 +2,7 @@ import Fade from "components/fade";
 import Line from "components/line";
 import Module from "components/module";
 
-import { About, Uses, Projects, Craft, Spotify } from "components/previews";
+import { About, Stack, Projects, Craft, Spotify } from "components/previews";
 
 import { cn } from "lib/cn";
 
@@ -46,9 +46,9 @@ const modules: {
     moduleStyles: "md:col-span-2",
   },
   {
-    id: "uses",
-    page: "uses",
-    component: <Uses />,
+    id: "stack",
+    page: "stack",
+    component: <Stack />,
     lines: {
       top: "right-0 w-screen bg-horizontal-dashed",
       bottom:

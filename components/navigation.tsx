@@ -27,8 +27,8 @@ const links = [
     href: "/",
   },
   {
-    label: "/uses",
-    href: "/uses",
+    label: "stack",
+    href: "/stack",
   },
   {
     label: "spotify",

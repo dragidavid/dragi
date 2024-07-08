@@ -1,11 +1,11 @@
-import Heading from "components/heading";
+import Stack from "components/stack";
 
 import { cn } from "lib/cn";
 
 export default function Preview() {
   return (
     <div className={cn("relative h-full")}>
-      <Heading>Uses</Heading>
+      <Stack />
     </div>
   );
 }
