@@ -28,27 +28,25 @@ module.exports = {
         "2xs": "0.625rem",
       },
       height: {
+        3.75: "0.9375rem",
         4.5: "1.125rem",
         5.5: "1.375rem",
         18: "4.5rem",
         double: "200vh",
       },
       width: {
+        3.75: "0.9375rem",
         4.5: "1.125rem",
         5.5: "1.375rem",
         18: "4.5rem",
         double: "200vw",
       },
       size: {
+        3.75: "0.9375rem",
         4.5: "1.125rem",
         5.5: "1.375rem",
         18: "4.5rem",
         double: "200vw",
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
       },
       backgroundImage: {
         noise: "url('/static/images/noise.png')",
