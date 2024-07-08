@@ -1,15 +1,15 @@
-"use client";
-
-import Icon from "components/icon";
 import StyledLink from "components/styled-link";
-
-import { Button } from "components/primitives/button";
 
 import { cn } from "lib/cn";
 
 export default function Socials() {
   return (
-    <div className={cn("flex justify-between gap-2 text-sm", "text-secondary")}>
+    <div
+      className={cn(
+        "flex items-center gap-5 font-mono text-xs",
+        "text-secondary",
+      )}
+    >
       <StyledLink
         href="mailto:me@dragi.me"
         className={cn("hover:text-primary, focus:text-primary")}
@@ -17,27 +17,19 @@ export default function Socials() {
         me@dragi.me
       </StyledLink>
 
-      <div className={cn("flex items-center gap-4")}>
-        <Button
-          size="icon"
-          variant="subtle"
-          onClick={() => window.open("https://x.com/dragidavid")}
-          className={cn("!size-min cursor-alias rounded-sm", "text-inherit")}
-        >
-          <Icon name="x-logo" size="20" />
-          <span className="sr-only">X/Twitter logo</span>
-        </Button>
+      <StyledLink
+        href="https://x.com/dragidavid"
+        className={cn("hover:text-primary, focus:text-primary")}
+      >
+        x/twitter
+      </StyledLink>
 
-        <Button
-          size="icon"
-          variant="subtle"
-          onClick={() => window.open("https://github.com/dragidavid")}
-          className={cn("!size-min cursor-alias rounded-full", "text-inherit")}
-        >
-          <Icon name="github-logo" size="20" />
-          <span className="sr-only">GitHub logo</span>
-        </Button>
-      </div>
+      <StyledLink
+        href="https://github.com/dragidavid"
+        className={cn("hover:text-primary, focus:text-primary")}
+      >
+        github
+      </StyledLink>
     </div>
   );
 }

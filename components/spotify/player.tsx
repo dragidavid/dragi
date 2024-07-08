@@ -6,11 +6,11 @@ import useSWR from "swr";
 
 import Artists from "components/spotify/artists";
 
-import Icon from "components/icon";
 import Marquee from "components/custom-marquee";
 import BlurImage from "components/blur-image";
 import StyledLink from "components/styled-link";
 
+import { logos } from "components/primitives/logo";
 import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
@@ -30,6 +30,8 @@ export default function Player({ preview = false }: { preview?: boolean }) {
   const [localColors, setLocalColors] = useState<Color[] | undefined>(
     undefined,
   );
+
+  const { spotify } = logos;
 
   const {
     data: player,
@@ -111,11 +113,7 @@ export default function Player({ preview = false }: { preview?: boolean }) {
             blurHash={track.album.imageBlurHash}
           />
 
-          <Icon
-            name="spotify-logo"
-            size="72"
-            className={cn("-translate-x-1.5 -translate-y-1.5")}
-          />
+          <spotify.Component className={cn("size-14")} />
 
           <div className={cn("relative flex flex-col gap-1")}>
             <div
