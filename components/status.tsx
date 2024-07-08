@@ -16,7 +16,7 @@ import { MotionDiv } from "components/primitives/motion";
 import { cn } from "lib/cn";
 import { getLocation } from "lib/actions";
 
-import { useWindowSize } from "lib/hooks/useWindowSize";
+import { useWindowSize } from "lib/hooks/use-window-size";
 
 export default function Status({ play = false }: { play?: boolean }) {
   const [location, setLocation] = useState<string | null>(null);
