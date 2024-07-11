@@ -153,8 +153,8 @@ export default function Timeline() {
                       />
                       <span
                         className={cn(
-                          "absolute size-3 rounded-full",
-                          "bg-background",
+                          "absolute size-1.5 rounded-full",
+                          "bg-spotify",
                         )}
                       />
                       <span
@@ -162,11 +162,6 @@ export default function Timeline() {
                           "absolute size-12 rounded-full",
                           "bg-spotify/40 blur-xl",
                         )}
-                      />
-                      <Icon
-                        name="spotify-logo"
-                        size="18"
-                        className="text-spotify"
                       />
                     </div>
                   </>
