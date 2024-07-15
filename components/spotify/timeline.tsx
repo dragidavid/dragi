@@ -8,7 +8,6 @@ import { differenceInDays } from "date-fns";
 
 import Artists from "components/spotify/artists";
 
-import Icon from "components/icon";
 import StyledLink from "components/styled-link";
 import { CrossShape } from "components/cross";
 
@@ -67,7 +66,7 @@ export default function Timeline() {
             delay: 0.8,
           }}
           className={cn(
-            "flex size-full flex-col items-center justify-center text-sm",
+            "grid size-full place-items-center font-mono text-xs",
             "select-none",
             "text-secondary/20",
           )}
@@ -140,7 +139,7 @@ export default function Timeline() {
                     />
                     <div
                       className={cn(
-                        "absolute left-0 top-1/2 z-20 flex size-4 items-center justify-center",
+                        "absolute left-0 top-1/2 z-20 grid size-4 place-items-center",
                         "-translate-x-1/2 -translate-y-1/2",
                       )}
                     >
@@ -153,7 +152,7 @@ export default function Timeline() {
                       />
                       <span
                         className={cn(
-                          "absolute size-1.5 rounded-full",
+                          "absolute size-2 rounded-full",
                           "bg-spotify",
                         )}
                       />
@@ -249,11 +248,11 @@ function calculateAndInsertGaps(tracks: Track[]): TimelineItem[] {
           gapHeight > 100 ? (
             <div
               className={cn(
-                "flex grow items-center justify-center",
+                "flex grow items-center justify-center font-mono text-xs",
                 "text-accent",
               )}
             >
-              <Icon name="snooze" size="18" />
+              <span>zzz</span>
             </div>
           ) : undefined;
 

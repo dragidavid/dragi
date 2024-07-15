@@ -48,7 +48,6 @@ export default function Cross({
             className={cn(
               "absolute z-40 size-2",
               "pointer-events-none",
-              "will-change-[opacity]",
               positions[position],
             )}
             style={styles[position]}
@@ -67,10 +66,7 @@ export function CrossShape({
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn(
-        "relative flex size-full items-center justify-center",
-        className,
-      )}
+      className={cn("relative grid size-full place-items-center", className)}
     >
       <span className={cn("absolute h-px w-full", "bg-secondary")} />
       <span className={cn("absolute h-full w-px", "bg-secondary")} />

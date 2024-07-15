@@ -18,6 +18,7 @@ const commonClasses: Record<Side, string> = {
 const modules: {
   id: string;
   page?: string;
+  expandable?: boolean;
   component: React.ReactNode;
   lines: Partial<Record<Side, string>>;
   tiltedLines?: Partial<Record<Corner, string>>;
@@ -48,6 +49,7 @@ const modules: {
   {
     id: "stack",
     page: "stack",
+    expandable: false,
     component: <Stack />,
     lines: {
       top: "right-0 w-screen bg-horizontal-dashed",
@@ -198,6 +200,7 @@ export default function Page() {
             key={module.id}
             id={module.id}
             page={module.page}
+            expandable={module.expandable}
             preview
             lines={module.lines}
             tiltedLines={module.tiltedLines}

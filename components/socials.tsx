@@ -6,7 +6,7 @@ export default function Socials() {
   return (
     <div
       className={cn(
-        "flex items-center gap-5 font-mono text-xs",
+        "flex items-center gap-8 font-mono text-xs",
         "text-secondary",
       )}
     >

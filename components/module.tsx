@@ -10,6 +10,7 @@ export default function Module({
   children,
   id,
   page,
+  expandable = true,
   preview = false,
   lines,
   tiltedLines,
@@ -19,6 +20,7 @@ export default function Module({
   children: React.ReactNode;
   id: string;
   page?: string;
+  expandable?: boolean;
   preview?: boolean;
   lines?: Partial<Record<Side, string>>;
   tiltedLines?: Partial<Record<Corner, string>>;
@@ -52,7 +54,7 @@ export default function Module({
             )}
           />
 
-          {page && <Expand href={page} />}
+          {page && expandable && <Expand href={page} />}
 
           {children}
         </div>

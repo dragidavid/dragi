@@ -54,7 +54,7 @@ export default async function Page() {
                   "absolute z-10 flex w-full items-center py-2 pl-14",
                   "outline-none",
                   "text-primary",
-                  "transition-[opacity,filter] duration-200 ease-in-out",
+                  "ease-in-out-quad transition-[opacity,filter] duration-200",
                   "hover:!opacity-100 hover:!blur-none",
                   "focus:!opacity-100 focus:!blur-none",
                   "group-hover:opacity-50 group-hover:blur-sm",

@@ -71,7 +71,7 @@ export default function Expand({ href }: { href: string }) {
           "pointer-events-auto outline-none",
         )}
       >
-        <Arrow isHovered={isHovered} />
+        <Pointer isHovered={isHovered} />
         <span className="sr-only">Expand</span>
       </Link>
 
@@ -132,7 +132,7 @@ export default function Expand({ href }: { href: string }) {
   );
 }
 
-function Arrow({ isHovered }: { isHovered: boolean }) {
+function Pointer({ isHovered }: { isHovered: boolean }) {
   const variants = {
     rest: {
       x2: 4,

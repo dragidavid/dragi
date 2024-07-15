@@ -59,7 +59,7 @@ export default async function Preview() {
                 "truncate",
                 "select-none outline-none",
                 "text-primary",
-                "transition-[opacity,filter] duration-200 ease-in-out",
+                "ease-in-out-quad transition-[opacity,filter] duration-200",
                 "first:pt-0",
                 "hover:!opacity-100 hover:!blur-none",
                 "focus:!opacity-100 focus:!blur-none",

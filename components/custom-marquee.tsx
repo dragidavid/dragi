@@ -86,7 +86,7 @@ export default function Marquee({
         }}
         onHoverStart={startAnimation}
         onTap={startAnimation}
-        className={cn("w-max whitespace-nowrap", "will-change-transform")}
+        className={cn("w-max whitespace-nowrap")}
         tabIndex={-1}
       >
         {children}
