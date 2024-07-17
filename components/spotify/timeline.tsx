@@ -68,7 +68,7 @@ export default function Timeline() {
           className={cn(
             "grid size-full place-items-center font-mono text-xs",
             "select-none",
-            "text-secondary/20",
+            "text-primary/20",
           )}
         >
           <span>that "something" happened here too</span>

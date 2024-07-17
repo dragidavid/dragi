@@ -67,8 +67,8 @@ export default function Player({ preview = false }: { preview?: boolean }) {
             duration: 0.2,
           }}
           className={cn(
-            "absolute inset-6 z-10 flex flex-col justify-end text-sm",
-            "text-secondary/20",
+            "absolute inset-6 z-10 flex flex-col justify-end font-mono text-xs",
+            "text-primary/20",
             preview && "inset-4",
           )}
         >
@@ -241,7 +241,7 @@ function Container({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "relative h-full min-h-[calc(var(--container-size)*2/3)] w-full overflow-hidden",
+        "relative size-full min-h-[calc(var(--container-size)*2/3)] overflow-hidden",
         "select-none",
       )}
     >

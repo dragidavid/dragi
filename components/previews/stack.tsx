@@ -12,8 +12,8 @@ export default function Preview() {
         className={cn(
           "absolute inset-0 z-10 grid place-items-center font-mono text-xs",
           "outline-none",
-          "scale-90 opacity-0",
-          "ease-out-quad transition-[opacity,transform] duration-200",
+          "scale-75 opacity-0",
+          "transition-[opacity,transform] duration-200 ease-out-quad",
           "peer",
           "focus-visible:scale-100 focus-visible:opacity-100",
           "group-hover:scale-100 group-hover:opacity-100",
@@ -24,7 +24,7 @@ export default function Preview() {
 
       <Stack
         className={cn(
-          "ease-out-quad transition-[opacity,filter] duration-200",
+          "transition-[opacity,filter] duration-200 ease-out-quad",
           "group-hover:opacity-40 group-hover:blur-sm",
           "peer-focus-visible:opacity-40 peer-focus-visible:blur-sm",
         )}

@@ -1,13 +1,16 @@
+const { createPreset } = require("fumadocs-ui/tailwind-plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
+  presets: [createPreset()],
   content: [
     "./app/**/*.{tsx,ts}",
-    "./pages/**/*.{tsx,ts}",
     "./components/**/*.{tsx,ts}",
-    "./contexts/**/*.{tsx,ts}",
     "./content/**/*.{md,mdx}",
+    "./contexts/**/*.{tsx,ts}",
     "./lib/**/*.{tsx,ts}",
+    "./node_modules/fumadocs-ui/dist/**/*.js",
   ],
   theme: {
     extend: {
@@ -49,7 +52,6 @@ module.exports = {
         double: "200vw",
       },
       backgroundImage: {
-        noise: "url('/static/images/noise.png')",
         "vertical-dashed": `repeating-linear-gradient(0deg, hsl(var(--accent)), hsl(var(--accent)) 4px,transparent 4px,transparent 10px)`,
         "horizontal-dashed": `repeating-linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent)) 4px,transparent 4px,transparent 10px)`,
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -66,21 +68,9 @@ module.exports = {
         sans: ["var(--font-geist-sans)"],
         mono: ["var(--font-geist-mono)"],
       },
-      keyframes: {
-        "mask-slide": {
-          "0%": { "-webkit-mask-position": "0 0", maskPosition: "0 0" },
-          "100%": {
-            "-webkit-mask-position": "1000px 1000px",
-            maskPosition: "1000px 1000px",
-          },
-        },
-      },
       transitionTimingFunction: {
         "out-quad": "cubic-bezier(0.25,0.46,0.45,0.94)",
         "in-out-quad": "cubic-bezier(0.455,0.03,0.515,0.955)",
-      },
-      animation: {
-        "mask-slide": "mask-slide 120s infinite linear",
       },
     },
   },

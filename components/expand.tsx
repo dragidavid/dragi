@@ -17,7 +17,7 @@ export default function Expand({ href }: { href: string }) {
 
   const divRef = useRef<HTMLDivElement>(null);
 
-  const path = {
+  const pathVariants = {
     hidden: {
       pathLength: 0,
     },
@@ -112,7 +112,7 @@ export default function Expand({ href }: { href: string }) {
           </defs>
 
           <MotionPath
-            variants={path}
+            variants={pathVariants}
             initial="hidden"
             animate={isHovered ? "visible" : "reversed"}
             d={`M${rect.width},0 V${rect.height} H0`}
@@ -120,7 +120,7 @@ export default function Expand({ href }: { href: string }) {
           />
 
           <MotionPath
-            variants={path}
+            variants={pathVariants}
             initial="hidden"
             animate={isHovered ? "visible" : "reversed"}
             d={`M${rect.width},0 H0 V${rect.height}`}
@@ -133,7 +133,7 @@ export default function Expand({ href }: { href: string }) {
 }
 
 function Pointer({ isHovered }: { isHovered: boolean }) {
-  const variants = {
+  const pointerVariants = {
     rest: {
       x2: 4,
       y2: 6,
@@ -162,7 +162,12 @@ function Pointer({ isHovered }: { isHovered: boolean }) {
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
-        <MotionLine x1="0" y1="10" strokeLinecap="round" variants={variants} />
+        <MotionLine
+          x1="0"
+          y1="10"
+          strokeLinecap="round"
+          variants={pointerVariants}
+        />
       </MotionSvg>
     </div>
   );

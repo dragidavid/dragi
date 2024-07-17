@@ -36,6 +36,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# contentlayer
-.contentlayer
 .env*.local

@@ -24,7 +24,9 @@
     --muted: 0 0% 90%;
 
     --shiki-color-text: hsl(var(--primary));
+    --shiki-foreground: hsl(var(--primary));
     --shiki-color-background: hsl(var(--extreme));
+    --shiki-background: hsl(var(--extreme));
     --shiki-token-constant: hsl(211deg 100% 42%);
     --shiki-token-string: hsl(133deg 50% 32%);
     --shiki-token-comment: hsl(0deg 0% 40%);

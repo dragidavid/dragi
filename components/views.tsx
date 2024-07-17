@@ -18,8 +18,8 @@ export default async function Views({
   compact?: boolean;
 }) {
   async function getContent(): Promise<string> {
-    if (process.env.NODE_ENV !== "development") {
-      return "▲";
+    if (process.env.NODE_ENV === "development") {
+      return "×";
     }
 
     if (track) {

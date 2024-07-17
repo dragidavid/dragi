@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Redis } from "@upstash/redis";
 import { compareDesc, getYear, parseISO } from "date-fns";
 
-import { allPosts as posts } from "contentlayer/generated";
+import { getPages } from "content/source";
 
 import Views from "components/views";
 import PageTitle from "components/page-title";
@@ -12,8 +12,10 @@ import { cn } from "lib/cn";
 const redis = Redis.fromEnv();
 
 export default async function Page() {
+  const posts = getPages();
+
   const sortedPosts = posts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date));
+    return compareDesc(new Date(a.data.date), new Date(b.data.date));
   });
 
   const allViews = await redis.hgetall("post_views");
@@ -26,14 +28,14 @@ export default async function Page() {
 
       <div className={cn("flex flex-col", "group")}>
         {sortedPosts.map((post) => {
-          const year = getYear(parseISO(post.date));
+          const year = getYear(parseISO(post.data.date));
           const show = year !== lastYearShown;
 
           lastYearShown = year;
 
           return (
             <div
-              key={post._id}
+              key={post.file.name}
               className={cn("relative flex items-center text-sm")}
             >
               <span
@@ -49,12 +51,12 @@ export default async function Page() {
               </span>
 
               <Link
-                href={post.slug}
+                href={post.url}
                 className={cn(
                   "absolute z-10 flex w-full items-center py-2 pl-14",
                   "outline-none",
                   "text-primary",
-                  "ease-in-out-quad transition-[opacity,filter] duration-200",
+                  "transition-[opacity,filter] duration-200 ease-in-out-quad",
                   "hover:!opacity-100 hover:!blur-none",
                   "focus:!opacity-100 focus:!blur-none",
                   "group-hover:opacity-50 group-hover:blur-sm",
@@ -62,10 +64,12 @@ export default async function Page() {
                   "md:pl-[72px]",
                 )}
               >
-                <span className={cn("flex-1", "truncate")}>{post.title}</span>
+                <span className={cn("flex-1", "truncate")}>
+                  {post.data.title}
+                </span>
 
                 <Views
-                  slug={post.slugAsParams}
+                  slug={post.file.name}
                   allViews={allViews}
                   compact
                   className={cn(
