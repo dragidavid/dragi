@@ -39,8 +39,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               className: cn(
                 "bottom-0 left-0 h-[11vh] w-screen",
                 "bg-gradient-to-b from-transparent to-background",
-                "md:h-1/6",
+                "md:h-[14%]",
               ),
+              blurSteps: 4,
             },
             {
               id: "right",

@@ -2,58 +2,46 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-
 import {
+  MotionPath,
   MotionSvg,
   MotionLine,
-  MotionPath,
 } from "components/primitives/motion";
-
 import { cn } from "lib/cn";
 
 export default function Expand({ href }: { href: string }) {
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-
   const divRef = useRef<HTMLDivElement>(null);
 
   const pathVariants = {
-    hidden: {
-      pathLength: 0,
-    },
+    hidden: { pathLength: 0 },
     visible: {
       pathLength: 1,
-      transition: {
-        default: { duration: 0.4, delay: 0.1 },
-      },
+      transition: { duration: 0.4, delay: 0.1 },
     },
     reversed: {
       pathLength: 0,
-      transition: {
-        default: { duration: 0.4 },
-      },
+      transition: { duration: 0.4 },
     },
   };
 
   useEffect(() => {
-    if (divRef.current) {
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (let entry of entries) {
-          if (entry.target === divRef.current) {
-            setRect(entry.contentRect);
-          }
-        }
-      });
+    if (!divRef.current) return;
 
-      resizeObserver.observe(divRef.current);
+    const resizeObserver = new ResizeObserver(([entry]) => {
+      if (entry && entry.target === divRef.current) {
+        setRect(entry.contentRect);
+      }
+    });
 
-      setRect(divRef.current.getBoundingClientRect());
+    resizeObserver.observe(divRef.current);
+    setRect(divRef.current.getBoundingClientRect());
 
-      return () => {
-        resizeObserver.disconnect();
-      };
-    }
+    return () => resizeObserver.disconnect();
   }, []);
+
+  const handleHover = (hovered: boolean) => () => setIsHovered(hovered);
 
   return (
     <div
@@ -62,10 +50,10 @@ export default function Expand({ href }: { href: string }) {
     >
       <Link
         href={`/${href}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onFocus={() => setIsHovered(true)}
-        onBlur={() => setIsHovered(false)}
+        onMouseEnter={handleHover(true)}
+        onMouseLeave={handleHover(false)}
+        onFocus={handleHover(true)}
+        onBlur={handleHover(false)}
         className={cn(
           "absolute right-0 top-0 z-50",
           "pointer-events-auto outline-none",
@@ -87,45 +75,36 @@ export default function Expand({ href }: { href: string }) {
           )}
         >
           <defs>
-            <linearGradient
-              id="gradientToBottom"
-              x1="0"
-              x2="0"
-              y1="0"
-              y2="1"
-              gradientUnits="objectBoundingBox"
-            >
-              <stop offset="0%" stopColor="currentColor" />
-              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="gradientToLeft"
-              x1="1"
-              x2="0"
-              y1="0"
-              y2="0"
-              gradientUnits="objectBoundingBox"
-            >
-              <stop offset="0%" stopColor="currentColor" />
-              <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-            </linearGradient>
+            {["Bottom", "Left"].map((direction) => (
+              <linearGradient
+                key={direction}
+                id={`gradientTo${direction}`}
+                x1={direction === "Bottom" ? "0" : "1"}
+                x2="0"
+                y1="0"
+                y2={direction === "Bottom" ? "1" : "0"}
+                gradientUnits="objectBoundingBox"
+              >
+                <stop offset="0%" stopColor="currentColor" />
+                <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+              </linearGradient>
+            ))}
           </defs>
 
-          <MotionPath
-            variants={pathVariants}
-            initial="hidden"
-            animate={isHovered ? "visible" : "reversed"}
-            d={`M${rect.width},0 V${rect.height} H0`}
-            stroke="url(#gradientToBottom)"
-          />
-
-          <MotionPath
-            variants={pathVariants}
-            initial="hidden"
-            animate={isHovered ? "visible" : "reversed"}
-            d={`M${rect.width},0 H0 V${rect.height}`}
-            stroke="url(#gradientToLeft)"
-          />
+          {["Bottom", "Left"].map((direction) => (
+            <MotionPath
+              key={direction}
+              variants={pathVariants}
+              initial="hidden"
+              animate={isHovered ? "visible" : "reversed"}
+              d={
+                direction === "Bottom"
+                  ? `M${rect.width},0 V${rect.height} H0`
+                  : `M${rect.width},0 H0 V${rect.height}`
+              }
+              stroke={`url(#gradientTo${direction})`}
+            />
+          ))}
         </svg>
       )}
     </div>
@@ -138,18 +117,13 @@ function Pointer({ isHovered }: { isHovered: boolean }) {
       x2: 4,
       y2: 6,
       stroke: "hsl(var(--secondary))",
-      transition: {
-        duration: 0.1,
-        delay: 0.4,
-      },
+      transition: { duration: 0.1, delay: 0.4 },
     },
     hover: {
       x2: 10,
       y2: 0,
       stroke: "currentColor",
-      transition: {
-        duration: 0.1,
-      },
+      transition: { duration: 0.1 },
     },
   };
 
