@@ -4,7 +4,7 @@ import Expand from "components/expand";
 
 import { cn } from "lib/cn";
 
-import { type Side, type Corner } from "lib/types";
+import type { Side, Corner } from "lib/types";
 
 export default function Module({
   children,
@@ -42,7 +42,7 @@ export default function Module({
         )}
 
       {preview ? (
-        <div className={cn("flex-1 overflow-hidden")}>
+        <div className={cn("max-w-full flex-1")}>
           <div
             className={cn(
               "absolute -inset-[0.5px] z-30",
