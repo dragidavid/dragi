@@ -17,11 +17,9 @@ import { cn } from "lib/cn";
 import { colors } from "lib/colors";
 import { fetcher } from "lib/fetcher";
 
-import { type Color, type Player } from "lib/types";
+import type { Album, Artist, Track, Color, Player } from "lib/types";
 
-const Scene = dynamic(() => import("components/three/scene"), {
-  ssr: false,
-});
+const Scene = dynamic(() => import("components/three/scene"), { ssr: false });
 const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
   ssr: false,
 });
@@ -30,8 +28,6 @@ export default function Player({ preview = false }: { preview?: boolean }) {
   const [localColors, setLocalColors] = useState<Color[] | undefined>(
     undefined,
   );
-
-  const { spotify } = logos;
 
   const {
     data: player,
@@ -46,110 +42,144 @@ export default function Player({ preview = false }: { preview?: boolean }) {
   const track = player?.nowPlaying || player?.recentlyPlayed?.[0];
 
   useEffect(() => {
-    if (track && track.currentlyPlaying && track.album.image) {
-      colors(track.album.image).then((res) => {
-        setLocalColors(res);
-      });
-    }
+    const updateColors = async () => {
+      if (track?.currentlyPlaying && track.album.image) {
+        const newColors = await colors(track.album.image);
 
-    if (track && !track.currentlyPlaying) {
-      setLocalColors(undefined);
-    }
+        setLocalColors(newColors);
+      } else {
+        setLocalColors(undefined);
+      }
+    };
+
+    updateColors();
   }, [track]);
 
   if ((playerError || !track) && !playerLoading) {
     return (
       <Container>
-        <MotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.2,
-          }}
-          className={cn(
-            "absolute inset-6 z-10 flex flex-col justify-end font-mono text-xs",
-            "text-primary/20",
-            preview && "inset-4",
-          )}
-        >
-          <span>something went wrong...</span>
-        </MotionDiv>
+        <ErrorMessage preview={preview} />
       </Container>
     );
   }
 
   return (
     <Container>
-      {localColors && (
-        <MotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.4,
-            delay: 0.8,
-          }}
-          className={cn("absolute inset-0", "pointer-events-none")}
-        >
-          <Scene>
-            <SimpleBlobs colors={localColors} />
-          </Scene>
-        </MotionDiv>
-      )}
+      {localColors && <BlobScene colors={localColors} />}
 
-      {!playerLoading && track && (
-        <MotionDiv
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.2,
-          }}
-          className={cn(
-            "absolute inset-6 z-10 flex flex-col justify-between",
-            preview && "inset-4",
-          )}
-        >
-          <AlbumImage
-            albumImage={track.album.image}
-            blurHash={track.album.imageBlurHash}
-          />
-
-          <spotify.Component className={cn("size-14")} />
-
-          <div className={cn("relative flex flex-col gap-1")}>
-            <div
-              className={cn(
-                "mb-3 flex items-center gap-2 text-xs",
-                "select-none",
-                "highlight",
-              )}
-            >
-              {track.currentlyPlaying ? (
-                <span>now playing</span>
-              ) : (
-                <span>last played</span>
-              )}
-            </div>
-
-            <Marquee className={cn("text-xl font-bold")}>
-              <StyledLink href={track.trackUrl}>{track.name}</StyledLink>
-            </Marquee>
-
-            <Marquee className={cn("text-xs font-medium", "text-secondary")}>
-              <Artists artists={track.artists} />
-            </Marquee>
-          </div>
-        </MotionDiv>
-      )}
+      {!playerLoading && track && <TrackInfo track={track} preview={preview} />}
     </Container>
   );
 }
 
+function ErrorMessage({ preview }: { preview: boolean }) {
+  return (
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className={cn(
+        "absolute inset-6 z-10 flex flex-col justify-end font-mono text-xs",
+        "select-text",
+        "text-primary/20",
+        preview && "inset-4",
+      )}
+    >
+      <span>something went wrong...</span>
+    </MotionDiv>
+  );
+}
+
+function BlobScene({ colors }: { colors: Color[] }) {
+  return (
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, delay: 0.8 }}
+      className={cn("absolute inset-0", "pointer-events-none")}
+    >
+      <Scene>
+        <SimpleBlobs colors={colors} />
+      </Scene>
+    </MotionDiv>
+  );
+}
+
+function TrackInfo({ track, preview }: { track: Track; preview: boolean }) {
+  const { spotify } = logos;
+
+  return (
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+      className={cn(
+        "absolute inset-6 z-10 flex flex-col justify-between",
+        preview && "inset-4",
+      )}
+    >
+      <AlbumImage
+        image={track.album.image}
+        blurHash={track.album.imageBlurHash}
+      />
+
+      <spotify.Component className={cn("size-14")} />
+
+      <div className={cn("relative flex flex-col gap-1")}>
+        <PlayingStatus currentlyPlaying={track.currentlyPlaying} />
+        <TrackName name={track.name} url={track.trackUrl} />
+        <ArtistNames artists={track.artists} />
+      </div>
+    </MotionDiv>
+  );
+}
+
+function PlayingStatus({
+  currentlyPlaying,
+}: {
+  currentlyPlaying: Track["currentlyPlaying"];
+}) {
+  return (
+    <div
+      className={cn(
+        "mb-3 flex items-center gap-2 text-xs",
+        "select-none",
+        "highlight",
+      )}
+    >
+      <span>{currentlyPlaying ? "now playing" : "last played"}</span>
+    </div>
+  );
+}
+
+function TrackName({
+  name,
+  url,
+}: {
+  name: Track["name"];
+  url: Track["trackUrl"];
+}) {
+  return (
+    <Marquee className={cn("text-xl font-bold")}>
+      <StyledLink href={url}>{name}</StyledLink>
+    </Marquee>
+  );
+}
+
+function ArtistNames({ artists }: { artists: Artist[] }) {
+  return (
+    <Marquee className={cn("text-xs font-medium", "text-secondary")}>
+      <Artists artists={artists} />
+    </Marquee>
+  );
+}
+
 function AlbumImage({
-  albumImage,
+  image,
   blurHash,
 }: {
-  albumImage: string;
-  blurHash: string;
+  image: Album["image"];
+  blurHash: Album["imageBlurHash"];
 }) {
   return (
     <div
@@ -161,7 +191,7 @@ function AlbumImage({
       )}
     >
       <BlurImage
-        src={albumImage}
+        src={image}
         alt="album-image"
         width={160}
         height={160}
@@ -186,7 +216,13 @@ function Blur() {
 
 function Noise() {
   return (
-    <div className={cn("absolute inset-0 z-10", "pointer-events-none")}>
+    <div
+      className={cn(
+        "absolute inset-0 z-10",
+        "pointer-events-none",
+        "opacity-40",
+      )}
+    >
       <svg height="100%" width="100%">
         <filter id="noise">
           <feTurbulence
@@ -196,13 +232,13 @@ function Noise() {
             seed="15"
             stitchTiles="stitch"
             result="turbulence"
-          ></feTurbulence>
-          <feColorMatrix type="saturate" values="0"></feColorMatrix>
+          />
+          <feColorMatrix type="saturate" values="0" />
           <feComponentTransfer>
-            <feFuncR type="linear" slope="0.5"></feFuncR>
-            <feFuncG type="linear" slope="0.5"></feFuncG>
-            <feFuncB type="linear" slope="0.5"></feFuncB>
-            <feFuncA type="linear" slope="0.52"></feFuncA>
+            <feFuncR type="linear" slope="0.5" />
+            <feFuncG type="linear" slope="0.5" />
+            <feFuncB type="linear" slope="0.5" />
+            <feFuncA type="linear" slope="0.52" />
           </feComponentTransfer>
           <feComponentTransfer>
             <feFuncR type="linear" slope="1.56" intercept="-0.28" />
@@ -216,23 +252,33 @@ function Noise() {
   );
 }
 
-function RadialFade() {
+function Vignette() {
   return (
     <>
       <div
         className={cn(
-          "absolute bottom-0 left-0 z-10 h-48 w-full",
-          "bg-gradient-to-b from-transparent to-background",
-          "md:hidden",
-        )}
-      />
-      <div
-        className={cn(
           "absolute inset-0 z-10",
           "pointer-events-none",
-          "bg-gradient-radial from-transparent via-background/50 to-background",
+          "bg-gradient-radial from-transparent to-background",
         )}
       />
+      {[32, 64].map((height) => (
+        <div
+          key={`stacked-fade-${height}`}
+          className={cn(
+            "absolute bottom-0 left-0 z-10 w-full",
+            "pointer-events-none",
+            "bg-gradient-to-b from-transparent backdrop-blur-sm",
+            height === 32 ? "to-background/70" : "to-background",
+            "md:hidden",
+            `h-${height}`,
+          )}
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent, black 100%)",
+          }}
+        />
+      ))}
     </>
   );
 }
@@ -246,10 +292,8 @@ function Container({ children }: { children: React.ReactNode }) {
       )}
     >
       <Blur />
-
       <Noise />
-
-      <RadialFade />
+      <Vignette />
 
       {children}
     </div>

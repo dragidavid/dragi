@@ -1,34 +1,43 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { MathUtils, type InstancedMesh } from "three";
 import { useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Instances, Instance } from "@react-three/drei";
 
-import { random } from "lib/random";
-
-import { type Color } from "lib/types";
+import type { Color } from "lib/types";
 
 export default function SimpleBlobs({ colors = [] }: { colors: Color[] }) {
-  if (colors.length <= 0) {
+  if (colors.length === 0) {
     return null;
   }
 
-  const particles = Array.from({ length: 50 }, () => ({
-    factor: MathUtils.randInt(20, 100),
-    speed: MathUtils.randFloat(0.01, 1),
-    xFactor: MathUtils.randFloatSpread(80),
-    yFactor: MathUtils.randFloatSpread(40),
-    zFactor: MathUtils.randFloatSpread(40),
-    color: colors[random(0, colors.length - 1)].hex,
-  }));
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 50 }, () => ({
+        factor: MathUtils.randInt(20, 100),
+        speed: MathUtils.randFloat(0.01, 1),
+        xFactor: MathUtils.randFloatSpread(80),
+        yFactor: MathUtils.randFloatSpread(40),
+        zFactor: MathUtils.randFloatSpread(40),
+        color: colors[Math.floor(Math.random() * colors.length)].hex,
+      })),
+    [colors],
+  );
 
   return (
     <Instances limit={particles.length}>
       <icosahedronGeometry args={[1, 16]} />
 
-      <MeshDistortMaterial distort={0.5} opacity={0.8} transparent={true} />
+      <MeshDistortMaterial
+        distort={0.6}
+        roughness={0.8}
+        metalness={1}
+        clearcoat={0.4}
+        clearcoatRoughness={1}
+        radius={1}
+      />
 
-      {particles.map((blobData, index) => (
-        <SingleBlobInstance key={`blob_${index}`} {...blobData} />
+      {particles.map((data, index) => (
+        <SingleBlobInstance key={`blob-${index}`} {...data} />
       ))}
     </Instances>
   );
@@ -50,34 +59,33 @@ function SingleBlobInstance({
   color: string;
 }) {
   const ref = useRef<InstancedMesh>(null!);
+  const initialSize = useRef(MathUtils.randFloat(2, 8));
+  const sizeChangeSpeed = useRef(MathUtils.randFloat(0.1, 0.5));
 
   useFrame((state) => {
-    const t = factor + state.clock.elapsedTime * (speed / 2);
+    const t = factor + state.clock.elapsedTime * speed;
+    const sizeNoise = Math.sin(t * sizeChangeSpeed.current) * 0.5 + 0.5;
+    const currentSize = MathUtils.lerp(
+      initialSize.current * 0.5,
+      initialSize.current * 1.5,
+      sizeNoise,
+    );
 
-    ref.current.scale.setScalar(Math.max(4, Math.cos(t) * 10));
+    ref.current.scale.setScalar(currentSize);
+
+    const positionNoise = (axis: number) =>
+      Math.sin(t * 0.2 + axis) * 2 + Math.cos(t * 0.3 + axis) * 3;
 
     ref.current.position.set(
-      Math.cos(t) +
-        Math.sin(t * 1) / 10 +
-        xFactor +
-        Math.cos((t / 10) * factor) +
-        (Math.sin(t * 1) * factor) / 10,
-      Math.sin(t) +
-        Math.cos(t * 2) / 10 +
-        yFactor +
-        Math.sin((t / 10) * factor) +
-        (Math.cos(t * 2) * factor) / 10,
-      Math.sin(t) +
-        Math.cos(t * 2) / 10 +
-        zFactor +
-        Math.cos((t / 10) * factor) +
-        (Math.sin(t * 3) * factor) / 10,
+      xFactor + positionNoise(0),
+      yFactor + positionNoise(1),
+      zFactor + positionNoise(2),
     );
 
     ref.current.rotation.set(
-      Math.cos(t / 4) / 2,
-      Math.sin(t / 4) / 2,
-      Math.cos(t / 1.5) / 2,
+      Math.sin(t * 0.3) * Math.PI,
+      Math.cos(t * 0.2) * Math.PI,
+      Math.sin(t * 0.1) * Math.PI,
     );
   });
 
