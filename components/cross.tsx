@@ -46,7 +46,7 @@ export default function Cross({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, delay: Math.random() * (0.8 - 0) + 0 }}
             className={cn(
-              "absolute z-40 size-2",
+              "absolute z-40 size-[9px]",
               "pointer-events-none",
               positions[position],
             )}

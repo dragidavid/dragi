@@ -52,8 +52,8 @@ module.exports = {
         double: "200vw",
       },
       backgroundImage: {
-        "vertical-dashed": `repeating-linear-gradient(0deg, hsl(var(--accent)), hsl(var(--accent)) 4px,transparent 4px,transparent 10px)`,
-        "horizontal-dashed": `repeating-linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent)) 4px,transparent 4px,transparent 10px)`,
+        "vertical-dashed": `repeating-linear-gradient(0deg, hsl(var(--accent)), hsl(var(--accent)) 5px,transparent 5px,transparent 10px)`,
+        "horizontal-dashed": `repeating-linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent)) 5px,transparent 5px,transparent 10px)`,
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
       inset: {

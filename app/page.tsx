@@ -9,10 +9,11 @@ import { cn } from "lib/cn";
 import type { Side, Corner } from "lib/types";
 
 const commonClasses: Record<Side, string> = {
-  top: "hidden h-px -translate-y-1/2 md:block",
-  right: "right-0 hidden h-screen w-px translate-x-1/2 md:block",
-  bottom: "bottom-0 h-px translate-y-1/2",
-  left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block",
+  top: "hidden h-px bg-muted -translate-y-1/2 md:block md:bg-horizontal-dashed",
+  right:
+    "right-0 hidden h-screen w-px translate-x-1/2 md:block md:bg-vertical-dashed",
+  bottom: "bottom-0 h-px bg-muted translate-y-1/2 md:bg-horizontal-dashed",
+  left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block md:bg-vertical-dashed",
 };
 
 const modules: {
@@ -29,10 +30,9 @@ const modules: {
     id: "about",
     component: <About />,
     lines: {
-      top: "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
+      top: "-right-full w-double md:right-0 md:w-screen",
       right: "bottom-0 bg-vertical-dashed",
-      bottom:
-        "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
+      bottom: "-right-full w-double md:right-0 md:w-screen",
       left: "bottom-0 bg-vertical-dashed",
     },
     tiltedLines: {
@@ -52,9 +52,8 @@ const modules: {
     expandable: false,
     component: <Stack />,
     lines: {
-      top: "right-0 w-screen bg-horizontal-dashed",
-      bottom:
-        "-right-full w-double bg-horizontal-dashed md:right-0 md:w-screen",
+      top: "right-0 w-screen",
+      bottom: "-right-full w-double md:right-0 md:w-screen",
       left: "top-0 bg-vertical-dashed",
     },
     tiltedLines: {
@@ -73,7 +72,7 @@ const modules: {
     page: "projects",
     component: <Projects />,
     lines: {
-      bottom: "-left-full w-double bg-horizontal-dashed md:left-0 md:w-full",
+      bottom: "-left-full w-double md:left-0 md:w-full",
       left: "top-0 bg-vertical-dashed",
     },
     crosses: {
@@ -89,9 +88,9 @@ const modules: {
     page: "craft",
     component: <Craft />,
     lines: {
-      top: "left-0 w-screen bg-horizontal-dashed",
+      top: "left-0 w-screen",
       right: "bottom-0 bg-vertical-dashed",
-      bottom: "-left-full w-double bg-horizontal-dashed md:left-0 md:w-screen",
+      bottom: "-left-full w-double md:left-0 md:w-screen",
     },
     tiltedLines: {
       tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed md:visible",
@@ -109,8 +108,7 @@ const modules: {
     component: <Spotify />,
     lines: {
       right: "top-0 bg-vertical-dashed",
-      bottom:
-        "-left-full hidden w-double bg-horizontal-dashed md:left-0 md:block md:w-screen",
+      bottom: "-left-full hidden w-double md:left-0 md:block md:w-screen",
       left: "top-0 bg-vertical-dashed",
     },
     tiltedLines: {
@@ -139,7 +137,7 @@ const modules: {
 
 export default function Page() {
   return (
-    <div className={cn("size-full px-5", "sm:px-4", "md:px-0")}>
+    <div className={cn("size-full px-3", "md:px-0")}>
       <div
         className={cn(
           "relative flex min-h-screen w-full flex-col items-center justify-start py-12",

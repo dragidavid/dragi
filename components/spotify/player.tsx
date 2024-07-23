@@ -262,18 +262,18 @@ function Vignette() {
           "bg-gradient-radial from-transparent to-background",
         )}
       />
-      {[32, 64].map((height) => (
+      {[30, 60].map((height) => (
         <div
           key={`stacked-fade-${height}`}
           className={cn(
             "absolute bottom-0 left-0 z-10 w-full",
             "pointer-events-none",
             "bg-gradient-to-b from-transparent backdrop-blur-sm",
-            height === 32 ? "to-background/70" : "to-background",
+            height === 30 ? "to-background/70" : "to-background",
             "md:hidden",
-            `h-${height}`,
           )}
           style={{
+            height: `${height}%`,
             WebkitMaskImage:
               "linear-gradient(to bottom, transparent, black 100%)",
           }}

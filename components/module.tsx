@@ -47,7 +47,7 @@ export default function Module({
             className={cn(
               "absolute -inset-[0.5px] z-30",
               "pointer-events-none",
-              "border-b border-l border-r border-muted",
+              "border-muted",
               "md:border",
               id === "about" && "border-t-0",
               id === "spotify" && "border-b-0",
