@@ -16,7 +16,7 @@ import { MotionDiv, MotionLi } from "components/primitives/motion";
 import { cn } from "lib/cn";
 import { fetcher } from "lib/fetcher";
 
-import { type Track, type TimelineItem, type Player } from "lib/types";
+import type { Track, TimelineItem, Player } from "lib/types";
 
 export default function Timeline() {
   const [timelineItems, setTimelineItems] = useState<Record<
@@ -28,7 +28,7 @@ export default function Timeline() {
     "/api/player",
     fetcher,
     {
-      refreshInterval: 10000,
+      refreshInterval: 90000,
       revalidateOnFocus: false,
       errorRetryCount: 1,
     },
@@ -209,7 +209,9 @@ function TimelineItems({ items }: { items: TimelineItem[] }) {
           </AnimatePresence>
         ) : (
           <TimelineItem
-            key={item.type === "gap" ? `gap-${index}` : item.id}
+            key={
+              item.type === "gap" ? `gap-${index}` : `track-${item.id}-${index}`
+            }
             item={item}
           />
         ),
@@ -229,8 +231,8 @@ function TimelineItem({ item }: { item: TimelineItem }) {
   return (
     <MotionLi
       ref={ref}
-      initial={{ opacity: 0, y: 15 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
     >
@@ -334,10 +336,9 @@ function groupTracksByDate(player: Player): Record<string, TimelineItem[]> {
           <div className={cn("relative grow")}>
             <span
               className={cn(
-                "absolute -left-[53%] -right-1/2 top-1/2 h-px",
+                "absolute -inset-x-screen top-1/2 h-px",
                 "bg-horizontal-dashed",
                 "-translate-y-1/2",
-                "md:right-0",
               )}
             />
           </div>

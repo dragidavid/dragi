@@ -1,7 +1,7 @@
 import Vibrant from "node-vibrant";
 import { invoke } from "lodash";
 
-import { type Color } from "lib/types";
+import type { Color } from "lib/types";
 
 export async function colors(src: string): Promise<Color[]> {
   const palette = await Vibrant.from(src).getPalette();

@@ -6,7 +6,7 @@ import { About, Stack, Projects, Craft, Spotify } from "components/previews";
 
 import { cn } from "lib/cn";
 
-import { type Side, type Corner } from "lib/types";
+import type { Side, Corner } from "lib/types";
 
 const commonClasses: Record<Side, string> = {
   top: "hidden h-px -translate-y-1/2 md:block",

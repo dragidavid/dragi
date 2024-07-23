@@ -1,5 +1,6 @@
-import { cn } from "lib/cn";
 import { useMemo } from "react";
+
+import { cn } from "lib/cn";
 
 export default function Fade({
   sides,

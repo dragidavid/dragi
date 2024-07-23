@@ -4,7 +4,7 @@ import { getNowPlaying, getRecentlyPlayed } from "lib/api/spotify";
 
 import { blur, placeholder } from "lib/blur";
 
-import { type SpotifyTrackResponse, type Track, type Player } from "lib/types";
+import type { SpotifyTrackResponse, Track, Player } from "lib/types";
 
 function format(
   item: SpotifyTrackResponse & { is_playing?: boolean; played_at?: string },

@@ -10,7 +10,7 @@ import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 
-import { type Container } from "@tsparticles/engine";
+import type { Container } from "@tsparticles/engine";
 
 export default function Stars({
   id,

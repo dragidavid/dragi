@@ -31,6 +31,8 @@ export default function Status({ play = false }: { play?: boolean }) {
     (isMobile || play || pathname === "/") && !isVertical,
   );
 
+  const shouldAddXMargin = pathname !== "/";
+
   useEffect(() => {
     async function fetchLocation() {
       const location = await getLocation();
@@ -52,11 +54,12 @@ export default function Status({ play = false }: { play?: boolean }) {
         delay: 0.8,
       }}
       className={cn(
-        "flex w-full items-center py-0.5 font-mono text-xs",
+        "flex w-full items-center py-0.5 font-mono text-2xs",
         "select-none",
         "text-secondary",
         isVertical && "py-6",
-        isDesktop && "justify-between px-1",
+        isDesktop && "justify-between",
+        isDesktop && shouldAddXMargin && "px-1",
       )}
     >
       {location ? (

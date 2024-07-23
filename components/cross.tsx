@@ -2,7 +2,7 @@ import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
 
-import { type Corner } from "lib/types";
+import type { Corner } from "lib/types";
 
 type Positions = [] | [Corner, ...Corner[]];
 
