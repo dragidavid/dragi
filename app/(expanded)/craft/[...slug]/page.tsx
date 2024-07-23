@@ -9,7 +9,7 @@ import Views from "components/views";
 import { cn } from "lib/cn";
 import { formatDate } from "lib/utils";
 
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 
 interface PageProps {
   params: { slug?: string[] };
@@ -68,7 +68,7 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      <DocsBody className="text-xs">
+      <DocsBody>
         <MDX />
       </DocsBody>
     </div>
