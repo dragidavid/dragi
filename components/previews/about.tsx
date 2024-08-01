@@ -7,7 +7,7 @@ import { cn } from "lib/cn";
 export default function Preview() {
   return (
     <div className={cn("relative flex h-full flex-col")}>
-      <div className="h-[19px]">
+      <div className={cn("flex h-6 items-center justify-center")}>
         <Status play />
       </div>
 

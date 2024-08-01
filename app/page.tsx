@@ -9,10 +9,10 @@ import { cn } from "lib/cn";
 import type { Side, Corner } from "lib/types";
 
 const commonClasses: Record<Side, string> = {
-  top: "hidden h-px bg-muted -translate-y-1/2 md:block md:bg-horizontal-dashed",
+  top: "hidden h-px -translate-y-1/2 md:block md:bg-horizontal-dashed",
   right:
     "right-0 hidden h-screen w-px translate-x-1/2 md:block md:bg-vertical-dashed",
-  bottom: "bottom-0 h-px bg-muted translate-y-1/2 md:bg-horizontal-dashed",
+  bottom: "bottom-0 h-px translate-y-1/2 md:bg-horizontal-dashed",
   left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block md:bg-vertical-dashed",
 };
 
