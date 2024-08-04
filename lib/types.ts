@@ -60,6 +60,8 @@ export type TimelineGap = {
 
 export type TimelineItem = Track | TimelineGap;
 
+export type Side = "top" | "right" | "bottom" | "left";
+
 export type Corner = "tl" | "tr" | "bl" | "br";
 
-export type Side = "top" | "right" | "bottom" | "left";
+export type LineExtension = `${Corner}-to-${Side}`;

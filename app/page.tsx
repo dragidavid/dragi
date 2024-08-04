@@ -6,37 +6,47 @@ import { About, Stack, Projects, Craft, Spotify } from "components/previews";
 
 import { cn } from "lib/cn";
 
-import type { Side, Corner } from "lib/types";
+import type { Side, LineExtension } from "lib/types";
 
-const commonClasses: Record<Side, string> = {
-  top: "hidden h-px -translate-y-1/2 md:block md:bg-horizontal-dashed",
-  right:
-    "right-0 hidden h-screen w-px translate-x-1/2 md:block md:bg-vertical-dashed",
-  bottom: "bottom-0 h-px translate-y-1/2 md:bg-horizontal-dashed",
-  left: "left-0 hidden h-screen w-px -translate-x-1/2 md:block md:bg-vertical-dashed",
+const commonBaseLineClasses: Record<Side, string> = {
+  top: "hidden h-px w-full -translate-y-1/2 bg-muted md:block",
+  right: "right-0 hidden h-full w-px translate-x-1/2 bg-muted md:block",
+  bottom: "bottom-0 h-px w-full translate-y-1/2 bg-muted",
+  left: "hidden h-full w-px -translate-x-1/2 bg-muted md:block",
 };
 
-const modules: {
-  id: string;
-  page?: string;
-  expandable?: boolean;
-  component: React.ReactNode;
-  lines: Partial<Record<Side, string>>;
-  tiltedLines?: Partial<Record<Corner, string>>;
-  crosses: Record<Corner, string>;
-  moduleStyles?: string;
-}[] = [
+const commonLineExtensions: Partial<Record<LineExtension, string>> = {
+  "tl-to-left":
+    "h-px w-screen origin-left -translate-y-1/2 rotate-180 bg-horizontal-dashed",
+  "bl-to-left":
+    "bottom-0 h-px w-screen origin-left translate-y-1/2 rotate-180 bg-horizontal-dashed",
+  "tr-to-right":
+    "right-0 h-px w-screen origin-right -translate-y-1/2 rotate-180 bg-horizontal-dashed",
+  "br-to-right":
+    "bottom-0 right-0 h-px w-screen origin-right translate-y-1/2 rotate-180 bg-horizontal-dashed",
+  "tl-to-top":
+    "hidden h-screen w-px origin-top -translate-x-1/2 rotate-180 bg-vertical-dashed md:block",
+  "tr-to-top":
+    "right-0 hidden h-screen w-px origin-top translate-x-1/2 rotate-180 bg-vertical-dashed md:block",
+  "bl-to-bottom":
+    "bottom-0 hidden h-screen w-px origin-bottom -translate-x-1/2 rotate-180 bg-vertical-dashed md:block",
+  "br-to-bottom":
+    "bottom-0 right-0 hidden h-screen w-px origin-bottom translate-x-1/2 rotate-180 bg-vertical-dashed md:block",
+};
+
+const modules = [
   {
     id: "about",
     component: <About />,
-    lines: {
-      top: "-right-full w-double md:right-0 md:w-screen",
-      right: "bottom-0 bg-vertical-dashed",
-      bottom: "-right-full w-double md:right-0 md:w-screen",
-      left: "bottom-0 bg-vertical-dashed",
-    },
+    baseLines: ["top", "right", "bottom", "left"],
     tiltedLines: {
       tl: "invisible left-0 top-0 h-screen w-px origin-top rotate-[135deg] bg-vertical-dashed md:visible",
+    },
+    lineExtensions: {
+      "tl-to-top": commonLineExtensions["tl-to-top"],
+      "tl-to-left": cn(commonLineExtensions["tl-to-left"], "hidden md:block"),
+      "tr-to-top": commonLineExtensions["tr-to-top"],
+      "bl-to-left": commonLineExtensions["bl-to-left"],
     },
     crosses: {
       tl: "invisible md:visible",
@@ -51,13 +61,17 @@ const modules: {
     page: "stack",
     expandable: false,
     component: <Stack />,
-    lines: {
-      top: "right-0 w-screen",
-      bottom: "-right-full w-double md:right-0 md:w-screen",
-      left: "top-0 bg-vertical-dashed",
-    },
+    baseLines: ["top", "bottom", "left"],
     tiltedLines: {
       bl: "invisible bottom-0 left-0 h-screen w-px origin-bottom -rotate-[135deg] bg-vertical-dashed md:visible",
+    },
+    lineExtensions: {
+      "tl-to-left": commonLineExtensions["tl-to-left"],
+      "bl-to-left": commonLineExtensions["bl-to-left"],
+      "tr-to-right": cn(commonLineExtensions["tr-to-right"], "md:hidden"),
+      "br-to-right": cn(commonLineExtensions["br-to-right"], "md:hidden"),
+      "bl-to-bottom": commonLineExtensions["bl-to-bottom"],
+      "br-to-bottom": commonLineExtensions["br-to-bottom"],
     },
     crosses: {
       tl: "visible",
@@ -71,9 +85,9 @@ const modules: {
     id: "projects",
     page: "projects",
     component: <Projects />,
-    lines: {
-      bottom: "-left-full w-double md:left-0 md:w-full",
-      left: "top-0 bg-vertical-dashed",
+    baseLines: ["bottom", "left"],
+    lineExtensions: {
+      "br-to-bottom": commonLineExtensions["br-to-bottom"],
     },
     crosses: {
       tl: "invisible md:visible",
@@ -87,13 +101,16 @@ const modules: {
     id: "craft",
     page: "craft",
     component: <Craft />,
-    lines: {
-      top: "left-0 w-screen",
-      right: "bottom-0 bg-vertical-dashed",
-      bottom: "-left-full w-double md:left-0 md:w-screen",
-    },
+    baseLines: ["top", "right", "bottom"],
     tiltedLines: {
       tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed md:visible",
+    },
+    lineExtensions: {
+      "tl-to-left": cn(commonLineExtensions["tl-to-left"], "md:hidden"),
+      "bl-to-left": cn(commonLineExtensions["bl-to-left"], "md:hidden"),
+      "tr-to-top": commonLineExtensions["tr-to-top"],
+      "tr-to-right": commonLineExtensions["tr-to-right"],
+      "br-to-right": commonLineExtensions["br-to-right"],
     },
     crosses: {
       tl: "invisible md:visible",
@@ -106,13 +123,16 @@ const modules: {
     id: "spotify",
     page: "spotify",
     component: <Spotify />,
-    lines: {
-      right: "top-0 bg-vertical-dashed",
-      bottom: "-left-full hidden w-double md:left-0 md:block md:w-screen",
-      left: "top-0 bg-vertical-dashed",
+    baseLines: ["right", "bottom", "left"],
+    lineOverrides: {
+      bottom: "hidden md:block",
     },
     tiltedLines: {
       br: "invisible bottom-0 right-0 h-screen w-px origin-bottom rotate-[135deg] bg-vertical-dashed md:visible",
+    },
+    lineExtensions: {
+      "br-to-right": cn(commonLineExtensions["br-to-right"], "hidden md:block"),
+      "br-to-bottom": commonLineExtensions["br-to-bottom"],
     },
     crosses: {
       tl: "invisible md:visible",
@@ -124,16 +144,42 @@ const modules: {
   },
 ].map((section) => ({
   ...section,
-  lines: (
-    Object.keys(section.lines) as Array<keyof typeof commonClasses>
-  ).reduce(
+  lines: (section.baseLines as Side[]).reduce(
     (lines, key) => ({
       ...lines,
-      [key]: cn(commonClasses[key], section.lines[key]),
+      [key]: cn(
+        commonBaseLineClasses[key as keyof typeof commonBaseLineClasses],
+        section.lineOverrides?.[key as keyof typeof section.lineOverrides],
+      ),
     }),
-    {},
+    {} as Record<Side, string>,
   ),
 }));
+
+const fadeClasses = {
+  top: cn(
+    "left-0 top-0 h-[9vh] w-screen",
+    "bg-gradient-to-t from-transparent to-background",
+    "md:h-1/6",
+  ),
+  left: cn(
+    "top-0 left-0 h-screen w-[7vw] invisible",
+    "bg-gradient-to-l from-transparent to-background",
+    "xs:visible",
+    "sm:w-1/6",
+  ),
+  bottom: cn(
+    "bottom-0 left-0 h-[11vh] w-screen",
+    "bg-gradient-to-b from-transparent to-background",
+    "md:h-1/6",
+  ),
+  right: cn(
+    "top-0 right-0 h-screen w-[7vw] invisible",
+    "bg-gradient-to-r from-transparent to-background",
+    "xs:visible",
+    "sm:w-1/6",
+  ),
+};
 
 export default function Page() {
   return (
@@ -146,42 +192,10 @@ export default function Page() {
         )}
       >
         <Fade
-          sides={[
-            {
-              id: "top",
-              className: cn(
-                "left-0 top-0 h-[9vh] w-screen",
-                "bg-gradient-to-t from-transparent to-background",
-                "md:h-1/6",
-              ),
-            },
-            {
-              id: "left",
-              className: cn(
-                "top-0 left-0 h-screen w-[7vw] invisible",
-                "bg-gradient-to-l from-transparent to-background",
-                "xs:visible",
-                "sm:w-1/6",
-              ),
-            },
-            {
-              id: "bottom",
-              className: cn(
-                "bottom-0 left-0 h-[11vh] w-screen",
-                "bg-gradient-to-b from-transparent to-background",
-                "md:h-1/6",
-              ),
-            },
-            {
-              id: "right",
-              className: cn(
-                "top-0 right-0 h-screen w-[7vw] invisible",
-                "bg-gradient-to-r from-transparent to-background",
-                "xs:visible",
-                "sm:w-1/6",
-              ),
-            },
-          ]}
+          sides={Object.entries(fadeClasses).map(([id, className]) => ({
+            id,
+            className,
+          }))}
         />
 
         <Line
@@ -202,6 +216,7 @@ export default function Page() {
             preview
             lines={module.lines}
             tiltedLines={module.tiltedLines}
+            lineExtensions={module.lineExtensions}
             crosses={module.crosses}
             className={cn(
               "flex h-full max-h-[calc(var(--container-size)*2/3)]",
