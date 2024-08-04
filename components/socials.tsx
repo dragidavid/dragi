@@ -4,32 +4,12 @@ import { cn } from "lib/cn";
 
 export default function Socials() {
   return (
-    <div
-      className={cn(
-        "flex items-center gap-8 font-mono text-xs",
-        "text-secondary",
-      )}
-    >
-      <StyledLink
-        href="mailto:me@dragi.me"
-        className={cn("hover:text-primary, focus:text-primary")}
-      >
-        me@dragi.me
-      </StyledLink>
+    <div className={cn("flex items-center gap-8 text-xs", "text-secondary")}>
+      <StyledLink href="https://x.com/dragidavid">x/twitter</StyledLink>
 
-      <StyledLink
-        href="https://x.com/dragidavid"
-        className={cn("hover:text-primary, focus:text-primary")}
-      >
-        x/twitter
-      </StyledLink>
+      <StyledLink href="https://github.com/dragidavid">github</StyledLink>
 
-      <StyledLink
-        href="https://github.com/dragidavid"
-        className={cn("hover:text-primary, focus:text-primary")}
-      >
-        github
-      </StyledLink>
+      <StyledLink copy>me@dragi.me</StyledLink>
     </div>
   );
 }

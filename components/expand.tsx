@@ -70,27 +70,10 @@ export default function Expand({ href }: { href: string }) {
           fill="none"
           strokeWidth="2"
           className={cn(
-            "absolute inset-0 z-50 text-inverse",
+            "absolute inset-0 z-50 text-secondary",
             "pointer-events-none",
           )}
         >
-          <defs>
-            {["Bottom", "Left"].map((direction) => (
-              <linearGradient
-                key={direction}
-                id={`gradientTo${direction}`}
-                x1={direction === "Bottom" ? "0" : "1"}
-                x2="0"
-                y1="0"
-                y2={direction === "Bottom" ? "1" : "0"}
-                gradientUnits="objectBoundingBox"
-              >
-                <stop offset="0%" stopColor="currentColor" />
-                <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
-              </linearGradient>
-            ))}
-          </defs>
-
           {["Bottom", "Left"].map((direction) => (
             <MotionPath
               key={direction}
@@ -102,7 +85,7 @@ export default function Expand({ href }: { href: string }) {
                   ? `M${rect.width},0 V${rect.height} H0`
                   : `M${rect.width},0 H0 V${rect.height}`
               }
-              stroke={`url(#gradientTo${direction})`}
+              stroke="currentColor"
             />
           ))}
         </svg>
@@ -114,34 +97,29 @@ export default function Expand({ href }: { href: string }) {
 function Pointer({ isHovered }: { isHovered: boolean }) {
   const pointerVariants = {
     rest: {
-      x2: 4,
-      y2: 6,
-      stroke: "hsl(var(--secondary))",
+      x2: 16,
+      y2: 8,
+      stroke: "hsl(var(--primary))",
       transition: { duration: 0.1, delay: 0.4 },
     },
     hover: {
-      x2: 10,
+      x2: 24,
       y2: 0,
-      stroke: "currentColor",
+      stroke: "hsl(var(--secondary))",
       transition: { duration: 0.1 },
     },
   };
 
   return (
-    <div className="size-3">
+    <div className="size-6">
       <MotionSvg
-        viewBox="0 0 10 10"
+        viewBox="0 0 24 24"
         height="100%"
         width="100%"
         initial="rest"
         animate={isHovered ? "hover" : "rest"}
       >
-        <MotionLine
-          x1="0"
-          y1="10"
-          strokeLinecap="round"
-          variants={pointerVariants}
-        />
+        <MotionLine x1="8" y1="16" variants={pointerVariants} strokeWidth="1" />
       </MotionSvg>
     </div>
   );

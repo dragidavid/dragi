@@ -125,14 +125,14 @@ devDependencies:
     specifier: ^9.1.0
     version: 9.1.0(eslint@9.8.0)
   fumadocs-core:
-    specifier: ^13.0.4
-    version: 13.0.4(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^13.0.6
+    version: 13.0.6(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
   fumadocs-mdx:
     specifier: ^9.0.0
-    version: 9.0.0(fumadocs-core@13.0.4)(next@14.2.5)
+    version: 9.0.0(fumadocs-core@13.0.6)(next@14.2.5)
   fumadocs-ui:
-    specifier: ^13.0.4
-    version: 13.0.4(@types/react-dom@18.3.0)(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.7)
+    specifier: ^13.0.6
+    version: 13.0.6(@types/react-dom@18.3.0)(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.7)
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -3474,8 +3474,8 @@ packages:
     dev: true
     optional: true
 
-  /fumadocs-core@13.0.4(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-pfIlGvCYKbCPmXti27RDMZe3VzMQCYBjgsCTmo5gQZD05INkpQL2xoGk+PdKikyWwFl5dF+W3hhlXToleewykQ==}
+  /fumadocs-core@13.0.6(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-lwjDFn1zoB1JyleuHqIRCCePfIUp/BDoM9+Je0bzRtX/oPw2V7EIJWnPvE5K2AxqlKIUmaueXeTTKjBQN8iC6A==}
     peerDependencies:
       next: '>= 14.1.0'
       react: '>= 18'
@@ -3504,7 +3504,7 @@ packages:
       - supports-color
     dev: true
 
-  /fumadocs-mdx@9.0.0(fumadocs-core@13.0.4)(next@14.2.5):
+  /fumadocs-mdx@9.0.0(fumadocs-core@13.0.6)(next@14.2.5):
     resolution: {integrity: sha512-H/TUt+43K+W/OD6ryvrFRakZ4lL3C8bh/QYpWgiGVcrhwilT4SVeXV7sSQ0riayCSHHbCvu8OzdGjdKXksNcUA==}
     peerDependencies:
       fumadocs-core: 13.x.x
@@ -3514,7 +3514,7 @@ packages:
       cross-spawn: 7.0.3
       estree-util-value-to-estree: 3.1.2
       fast-glob: 3.3.2
-      fumadocs-core: 13.0.4(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
+      fumadocs-core: 13.0.6(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
       gray-matter: 4.0.3
       next: 14.2.5(react-dom@18.3.1)(react@18.3.1)
       zod: 3.23.8
@@ -3522,8 +3522,8 @@ packages:
       - supports-color
     dev: true
 
-  /fumadocs-ui@13.0.4(@types/react-dom@18.3.0)(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.7):
-    resolution: {integrity: sha512-hpQaqJPnBYR51B85D4+VPW+6EIgqt5Uoq46Mt00fwnyft5ot37x12iOE0+oSZcwNj7hZlacgU5TFZjKgrfcyCA==}
+  /fumadocs-ui@13.0.6(@types/react-dom@18.3.0)(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)(tailwindcss@3.4.7):
+    resolution: {integrity: sha512-p++0xDludeUoqRjfnwGXRZFJPRUszjfYOVNGEq3fJv8OmecOzYvf1SEfFZI4DjeIqL3btiO0en+Tp5SyRB7dRg==}
     peerDependencies:
       next: '>= 14.1.0'
       react: '>= 18'
@@ -3539,7 +3539,7 @@ packages:
       '@tailwindcss/typography': 0.5.13(tailwindcss@3.4.7)
       class-variance-authority: 0.7.0
       cmdk: 1.0.0(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)
-      fumadocs-core: 13.0.4(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
+      fumadocs-core: 13.0.6(@types/react@18.3.3)(next@14.2.5)(react-dom@18.3.1)(react@18.3.1)
       lucide-react: 0.414.0(react@18.3.1)
       next: 14.2.5(react-dom@18.3.1)(react@18.3.1)
       next-themes: 0.3.0(react-dom@18.3.1)(react@18.3.1)

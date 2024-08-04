@@ -126,9 +126,10 @@ export default function Navigation() {
 
               <span
                 className={cn(
-                  "absolute text-5xl font-extrabold",
+                  "absolute font-sans text-5xl font-black",
                   "text-primary opacity-5",
-                  "md:text-7xl",
+                  "translate-y-1",
+                  "md:translate-y-0 md:text-7xl",
                   isActive(href) && "opacity-100",
                 )}
               >
