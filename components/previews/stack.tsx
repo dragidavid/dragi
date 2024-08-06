@@ -10,13 +10,14 @@ export default function Preview() {
       <Link
         href="/stack"
         className={cn(
-          "absolute inset-0 z-10 grid place-items-center font-mono text-xs",
+          "absolute inset-0 z-10 hidden place-items-center font-mono text-xs",
           "outline-none",
           "scale-75 opacity-0",
           "transition-[opacity,transform] duration-200 ease-out-quad",
           "peer",
           "focus-visible:scale-100 focus-visible:opacity-100",
           "group-hover:scale-100 group-hover:opacity-100",
+          "md:grid",
         )}
       >
         <span>view the stack</span>
@@ -25,8 +26,8 @@ export default function Preview() {
       <Stack
         className={cn(
           "transition-[opacity,filter] duration-200 ease-out-quad",
-          "group-hover:opacity-40 group-hover:blur-sm",
-          "peer-focus-visible:opacity-40 peer-focus-visible:blur-sm",
+          "md:group-hover:opacity-40 md:group-hover:blur-sm",
+          "md:peer-focus-visible:opacity-40 md:peer-focus-visible:blur-sm",
         )}
       />
     </div>

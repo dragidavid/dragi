@@ -1,37 +1,38 @@
+import { useState, useEffect, useCallback } from "react";
+
 import { debounce } from "lib/debounce";
-import { useState, useEffect } from "react";
 
 export function useWindowSize() {
-  const [windowSize, setWindowSize] = useState<{
-    width: number | undefined;
-    height: number | undefined;
-  }>({
-    width: undefined,
-    height: undefined,
-  });
+  const [windowSize, setWindowSize] = useState(() => ({
+    width: typeof window !== "undefined" ? window.innerWidth : undefined,
+    height: typeof window !== "undefined" ? window.innerHeight : undefined,
+  }));
+
+  const handleResize = useCallback(() => {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+  }, []);
 
   useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
+    if (typeof window === "undefined") return;
 
     const debouncedResize = debounce(handleResize, 100);
 
     window.addEventListener("resize", debouncedResize);
 
-    handleResize();
-
     return () => window.removeEventListener("resize", debouncedResize);
-  }, []);
+  }, [handleResize]);
+
+  const isXs = windowSize.width !== undefined && windowSize.width < 448;
+  const isMobile = windowSize.width !== undefined && windowSize.width < 768;
+  const isDesktop = windowSize.width !== undefined && windowSize.width >= 768;
 
   return {
     windowSize,
-    isXs: typeof windowSize?.width === "number" && windowSize?.width < 448,
-    isMobile: typeof windowSize?.width === "number" && windowSize?.width < 768,
-    isDesktop:
-      typeof windowSize?.width === "number" && windowSize?.width >= 768,
+    isXs,
+    isMobile,
+    isDesktop,
   };
 }
