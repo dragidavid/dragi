@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import Logos from "components/stack/logos";
 
 import { cn } from "lib/cn";
@@ -8,7 +10,7 @@ export default async function Stack({
   return (
     <div
       className={cn(
-        "grid h-full auto-rows-auto grid-cols-3 grid-rows-[repeat(2,auto)] gap-px",
+        "relative grid h-full auto-rows-auto grid-cols-3 grid-rows-[repeat(2,auto)] gap-px",
         "bg-muted",
         "md:grid-rows-[repeat(3,auto)]",
         className,
@@ -16,13 +18,21 @@ export default async function Stack({
     >
       <div
         className={cn(
-          "col-span-3 grid min-h-10 place-items-center",
+          "col-span-3 grid min-h-10 place-items-center font-mono text-xs",
           "bg-background",
           "md:hidden",
         )}
       >
-        <span className={cn("font-mono text-xs")}>my stack</span>
+        <span
+          className={cn("group-hover:bg-primary group-hover:text-background")}
+        >
+          view the stack
+        </span>
       </div>
+
+      <Link href="/stack" className={cn("absolute inset-0", "md:hidden")}>
+        <span className="sr-only">view the stack</span>
+      </Link>
 
       <Logos />
     </div>

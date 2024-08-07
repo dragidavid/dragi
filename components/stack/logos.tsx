@@ -63,7 +63,7 @@ function Loop({ startIndex, delay }: { startIndex: number; delay: number }) {
   return (
     <div
       className={cn(
-        "grid size-auto min-h-20 place-items-center",
+        "grid size-auto min-h-16 place-items-center",
         "bg-background",
         "md:hidden",
       )}
@@ -80,7 +80,7 @@ function Loop({ startIndex, delay }: { startIndex: number; delay: number }) {
             delay: delay / 1000,
           }}
         >
-          <Component className="size-4.5" />
+          <Component className="size-4" />
         </MotionDiv>
       </AnimatePresence>
     </div>

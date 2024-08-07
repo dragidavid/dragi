@@ -12,7 +12,7 @@ export default function Preview() {
         className={cn(
           "absolute inset-0 z-10 hidden place-items-center font-mono text-xs",
           "outline-none",
-          "scale-75 opacity-0",
+          "scale-75 opacity-0 backdrop-blur-sm",
           "transition-[opacity,transform] duration-200 ease-out-quad",
           "peer",
           "focus-visible:scale-100 focus-visible:opacity-100",
@@ -20,14 +20,14 @@ export default function Preview() {
           "md:grid",
         )}
       >
-        <span>view the stack</span>
+        <span className={cn("bg-primary text-background")}>view the stack</span>
       </Link>
 
       <Stack
         className={cn(
-          "transition-[opacity,filter] duration-200 ease-out-quad",
-          "md:group-hover:opacity-40 md:group-hover:blur-sm",
-          "md:peer-focus-visible:opacity-40 md:peer-focus-visible:blur-sm",
+          "transition-opacity duration-200 ease-out-quad",
+          "md:group-hover:opacity-40",
+          "md:peer-focus-visible:opacity-40",
         )}
       />
     </div>
