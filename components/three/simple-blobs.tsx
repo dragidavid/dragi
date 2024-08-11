@@ -10,18 +10,22 @@ export default function SimpleBlobs({ colors = [] }: { colors: Color[] }) {
     return null;
   }
 
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 50 }, () => ({
-        factor: MathUtils.randInt(20, 100),
-        speed: MathUtils.randFloat(0.01, 1),
-        xFactor: MathUtils.randFloatSpread(80),
-        yFactor: MathUtils.randFloatSpread(40),
-        zFactor: MathUtils.randFloatSpread(40),
-        color: colors[Math.floor(Math.random() * colors.length)].hex,
-      })),
-    [colors],
-  );
+  const particles = useMemo(() => {
+    if (colors.length === 0) return [];
+
+    return Array.from({ length: 50 }, () => ({
+      factor: MathUtils.randInt(20, 100),
+      speed: MathUtils.randFloat(0.01, 1),
+      xFactor: MathUtils.randFloatSpread(80),
+      yFactor: MathUtils.randFloatSpread(40),
+      zFactor: MathUtils.randFloatSpread(40),
+      color: colors[Math.floor(Math.random() * colors.length)].hex,
+    }));
+  }, [colors]);
+
+  if (particles.length === 0) {
+    return null;
+  }
 
   return (
     <Instances limit={particles.length}>

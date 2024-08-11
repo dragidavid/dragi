@@ -6,6 +6,7 @@ export default function Scene({ children }: { children: React.ReactNode }) {
   return (
     <Canvas
       dpr={[1, 2]}
+      gl={{ antialias: false }}
       camera={{ fov: 50, position: [0, 0, 50], near: 1, far: 200 }}
     >
       <ambientLight intensity={1.5} />

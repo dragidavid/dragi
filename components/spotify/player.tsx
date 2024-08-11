@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
 import dynamic from "next/dynamic";
 import useSWR from "swr";
+import Image from "next/image";
 
 import Artists from "components/spotify/artists";
-
 import Marquee from "components/custom-marquee";
-import BlurImage from "components/blur-image";
 import StyledLink from "components/styled-link";
 
 import { logos } from "components/primitives/logo";
@@ -53,26 +52,33 @@ export default function Player({ preview = false }: { preview?: boolean }) {
     };
 
     updateColors();
-  }, [track]);
+  }, [track?.currentlyPlaying, track?.album.image]);
 
-  if ((playerError || !track) && !playerLoading) {
-    return (
-      <Container>
-        <ErrorMessage preview={preview} />
-      </Container>
-    );
-  }
-
-  return (
-    <Container>
-      {localColors && <BlobScene colors={localColors} />}
-
-      {!playerLoading && track && <TrackInfo track={track} preview={preview} />}
-    </Container>
+  const memoizedBlobScene = useMemo(
+    () => localColors && <BlobScene colors={localColors} />,
+    [localColors],
   );
+
+  const memoizedContainer = useMemo(
+    () => (
+      <Container>
+        {memoizedBlobScene}
+
+        {!playerLoading && track && (
+          <TrackInfo track={track} preview={preview} />
+        )}
+        {(playerError || !track) && !playerLoading && (
+          <ErrorMessage preview={preview} />
+        )}
+      </Container>
+    ),
+    [memoizedBlobScene, playerLoading, track, preview, playerError],
+  );
+
+  return memoizedContainer;
 }
 
-function ErrorMessage({ preview }: { preview: boolean }) {
+const ErrorMessage = memo(({ preview }: { preview: boolean }) => {
   return (
     <MotionDiv
       initial={{ opacity: 0 }}
@@ -88,9 +94,9 @@ function ErrorMessage({ preview }: { preview: boolean }) {
       <span>something went wrong...</span>
     </MotionDiv>
   );
-}
+});
 
-function BlobScene({ colors }: { colors: Color[] }) {
+const BlobScene = memo(({ colors }: { colors: Color[] }) => {
   return (
     <MotionDiv
       initial={{ opacity: 0 }}
@@ -103,106 +109,104 @@ function BlobScene({ colors }: { colors: Color[] }) {
       </Scene>
     </MotionDiv>
   );
-}
+});
 
-function TrackInfo({ track, preview }: { track: Track; preview: boolean }) {
-  const { spotify } = logos;
+const TrackInfo = memo(
+  ({ track, preview }: { track: Track; preview: boolean }) => {
+    const { spotify } = logos;
 
-  return (
-    <MotionDiv
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-      className={cn(
-        "absolute inset-6 z-10 flex flex-col justify-between",
-        preview && "inset-4",
-      )}
-    >
-      <AlbumImage
-        image={track.album.image}
-        blurHash={track.album.imageBlurHash}
-      />
+    return (
+      <MotionDiv
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.2 }}
+        className={cn(
+          "absolute inset-6 z-10 flex flex-col justify-between",
+          preview && "inset-4",
+        )}
+      >
+        <AlbumImage
+          image={track.album.image}
+          blurHash={track.album.imageBlurHash}
+        />
 
-      <spotify.Component className={cn("size-14")} />
+        <spotify.Component className={cn("size-14")} />
 
-      <div className={cn("relative flex flex-col gap-1")}>
-        <PlayingStatus currentlyPlaying={track.currentlyPlaying} />
-        <TrackName name={track.name} url={track.trackUrl} />
-        <ArtistNames artists={track.artists} />
+        <div className={cn("relative flex flex-col gap-1")}>
+          <PlayingStatus currentlyPlaying={track.currentlyPlaying} />
+          <TrackName name={track.name} url={track.trackUrl} />
+          <ArtistNames artists={track.artists} />
+        </div>
+      </MotionDiv>
+    );
+  },
+);
+
+const PlayingStatus = memo(
+  ({ currentlyPlaying }: { currentlyPlaying: Track["currentlyPlaying"] }) => {
+    return (
+      <div
+        className={cn(
+          "mb-3 flex items-center gap-2 text-xs",
+          "select-none",
+          "highlight",
+        )}
+      >
+        <span>{currentlyPlaying ? "now playing" : "last played"}</span>
       </div>
-    </MotionDiv>
-  );
-}
+    );
+  },
+);
 
-function PlayingStatus({
-  currentlyPlaying,
-}: {
-  currentlyPlaying: Track["currentlyPlaying"];
-}) {
-  return (
-    <div
-      className={cn(
-        "mb-3 flex items-center gap-2 text-xs",
-        "select-none",
-        "highlight",
-      )}
-    >
-      <span>{currentlyPlaying ? "now playing" : "last played"}</span>
-    </div>
-  );
-}
+const TrackName = memo(
+  ({ name, url }: { name: Track["name"]; url: Track["trackUrl"] }) => {
+    return (
+      <Marquee className={cn("text-xl font-bold")}>
+        <StyledLink href={url}>{name}</StyledLink>
+      </Marquee>
+    );
+  },
+);
 
-function TrackName({
-  name,
-  url,
-}: {
-  name: Track["name"];
-  url: Track["trackUrl"];
-}) {
-  return (
-    <Marquee className={cn("text-xl font-bold")}>
-      <StyledLink href={url}>{name}</StyledLink>
-    </Marquee>
-  );
-}
-
-function ArtistNames({ artists }: { artists: Artist[] }) {
+const ArtistNames = memo(({ artists }: { artists: Artist[] }) => {
   return (
     <Marquee className={cn("text-xs font-medium", "text-secondary")}>
       <Artists artists={artists} />
     </Marquee>
   );
-}
+});
 
-function AlbumImage({
-  image,
-  blurHash,
-}: {
-  image: Album["image"];
-  blurHash: Album["imageBlurHash"];
-}) {
-  return (
-    <div
-      className={cn(
-        "absolute left-1/2 top-1/2 z-10 overflow-hidden rounded-md",
-        "pointer-events-none",
-        "enhanced-shadow",
-        "-translate-x-1/2 -translate-y-3/4",
-      )}
-    >
-      <BlurImage
-        src={image}
-        alt="album-image"
-        width={160}
-        height={160}
-        blurDataURL={blurHash}
-        placeholder="blur"
-      />
-    </div>
-  );
-}
+const AlbumImage = memo(
+  ({
+    image,
+    blurHash,
+  }: {
+    image: Album["image"];
+    blurHash: Album["imageBlurHash"];
+  }) => {
+    return (
+      <div
+        className={cn(
+          "absolute left-1/2 top-1/2 z-10 overflow-hidden rounded-md",
+          "pointer-events-none",
+          "enhanced-shadow",
+          "-translate-x-1/2 -translate-y-3/4",
+        )}
+      >
+        <Image
+          src={image}
+          alt="album-image"
+          width={160}
+          height={160}
+          blurDataURL={blurHash}
+          placeholder="blur"
+        />
+      </div>
+    );
+  },
+);
 
-function Blur() {
+const Blur = memo(() => {
   return (
     <div
       className={cn(
@@ -212,9 +216,9 @@ function Blur() {
       )}
     />
   );
-}
+});
 
-function Noise() {
+const Noise = memo(() => {
   return (
     <div
       className={cn(
@@ -250,9 +254,9 @@ function Noise() {
       </svg>
     </div>
   );
-}
+});
 
-function Vignette() {
+const Vignette = memo(() => {
   return (
     <>
       <div
@@ -281,9 +285,9 @@ function Vignette() {
       ))}
     </>
   );
-}
+});
 
-function Container({ children }: { children: React.ReactNode }) {
+const Container = memo(({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={cn(
@@ -298,4 +302,4 @@ function Container({ children }: { children: React.ReactNode }) {
       {children}
     </div>
   );
-}
+});

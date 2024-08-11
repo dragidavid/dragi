@@ -15,8 +15,8 @@ export default function Expand({ href }: { href: string }) {
   const divRef = useRef<HTMLDivElement>(null);
 
   const pathVariants = {
-    hidden: { pathLength: 0 },
-    visible: {
+    initial: { pathLength: 0 },
+    animate: {
       pathLength: 1,
       transition: { duration: 0.4, delay: 0.1 },
     },
@@ -78,8 +78,8 @@ export default function Expand({ href }: { href: string }) {
             <MotionPath
               key={direction}
               variants={pathVariants}
-              initial="hidden"
-              animate={isHovered ? "visible" : "reversed"}
+              initial="initial"
+              animate={isHovered ? "animate" : "reversed"}
               d={
                 direction === "Bottom"
                   ? `M${rect.width},0 V${rect.height} H0`

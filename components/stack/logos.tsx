@@ -14,6 +14,12 @@ const ROTATION_INTERVAL = 4000;
 const LOGO_GROUPS = [0, 3, 6];
 const STAGGER_DELAY = 80;
 
+const logoVariants = {
+  initial: { opacity: 0, scale: 0.75, filter: "blur(8px)" },
+  animate: { opacity: 1, scale: 1, filter: "blur(0px)" },
+  exit: { opacity: 0, scale: 0.75, filter: "blur(8px)" },
+};
+
 export default function LogoShowcase() {
   return (
     <>
@@ -63,7 +69,7 @@ function Loop({ startIndex, delay }: { startIndex: number; delay: number }) {
   return (
     <div
       className={cn(
-        "grid size-auto min-h-16 place-items-center",
+        "relative grid min-h-16 place-items-center",
         "bg-background",
         "md:hidden",
       )}
@@ -71,14 +77,16 @@ function Loop({ startIndex, delay }: { startIndex: number; delay: number }) {
       <AnimatePresence mode="wait">
         <MotionDiv
           key={id}
-          initial={{ opacity: 0, scale: 0.75, filter: "blur(8px)" }}
-          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, scale: 0.75, filter: "blur(8px)" }}
+          variants={logoVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
           transition={{
             duration: 0.4,
             ease: [0.455, 0.03, 0.515, 0.955],
             delay: delay / 1000,
           }}
+          className="absolute"
         >
           <Component className="size-4" />
         </MotionDiv>

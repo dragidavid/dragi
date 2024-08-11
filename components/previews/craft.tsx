@@ -18,21 +18,21 @@ export default async function Preview() {
   });
 
   const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
+    initial: { opacity: 0 },
+    animate: {
       opacity: 1,
       transition: {
-        delayChildren: 0.2,
+        delayChildren: 0.15,
         staggerChildren: 0.1,
       },
     },
   };
 
   const linkVariants = {
-    hidden: { opacity: 0, x: 10 },
-    visible: {
+    initial: { opacity: 0, y: 10 },
+    animate: {
       opacity: 1,
-      x: 0,
+      y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
@@ -47,8 +47,8 @@ export default async function Preview() {
         <AnimatedSVG />
         <MotionDiv
           variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial="initial"
+          animate="animate"
           className={cn(
             "absolute inset-4 grid place-items-center font-mono text-xs",
             "text-primary/20",
@@ -66,8 +66,8 @@ export default async function Preview() {
 
       <MotionDiv
         variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        initial="initial"
+        animate="animate"
         className={cn("h-full px-4 py-6")}
       >
         <div className={cn("flex flex-col gap-2", "group")}>
@@ -81,12 +81,14 @@ export default async function Preview() {
                 "truncate",
                 "select-none outline-none",
                 "text-primary",
-                "transition-[opacity,filter] duration-200 ease-in-out-quad",
                 "first:pt-0",
-                "hover:!opacity-100 hover:!blur-none",
-                "focus:!opacity-100 focus:!blur-none",
-                "group-hover:opacity-50 group-hover:blur-sm",
-                "group-focus-within:opacity-50 group-focus-within:blur-sm",
+                "hover:bg-primary hover:text-background",
+                "focus:bg-primary focus:text-background",
+                "xs:transition-[opacity,filter] xs:duration-200 xs:ease-in-out-quad",
+                "xs:hover:bg-inherit xs:hover:text-inherit xs:hover:!opacity-100 xs:hover:!blur-none",
+                "xs:focus:bg-inherit xs:focus:text-inherit xs:focus:!opacity-100 xs:focus:!blur-none",
+                "xs:group-hover:opacity-50 xs:group-hover:blur-sm",
+                "xs:group-focus-within:opacity-50 xs:group-focus-within:blur-sm",
               )}
             >
               {post.data.title}
