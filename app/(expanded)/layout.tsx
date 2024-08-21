@@ -12,18 +12,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div
       className={cn(
         "size-full pl-[--expanded-side-width]",
-        "xs:h-dvh xs:px-5",
-        "sm:px-4",
+        "xs:min-h-screen xs:px-3",
         "md:px-0",
       )}
     >
-      <div
-        className={cn(
-          "relative w-full",
-          "xs:flex xs:flex-col xs:justify-center",
-        )}
-      >
-        {/* <Fade
+      <div className={cn("relative size-full min-h-dvh")}>
+        <Fade
           sides={[
             {
               id: "left",
@@ -53,7 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ),
             },
           ]}
-        /> */}
+        />
 
         <Line
           className={cn(
@@ -67,7 +61,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           id="status"
           className={cn(
             "fixed bottom-0 left-0 top-0 !w-[--expanded-side-width]",
-            "xs:relative xs:h-12 xs:!w-auto",
+            "xs:relative xs:h-[7vh] xs:!w-auto",
             "md:h-[calc(calc(100vh-var(--container-size))/2)]",
           )}
         >
@@ -116,10 +110,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             bl: "invisible xs:visible",
             br: "invisible xs:visible",
           }}
-          className={cn(
-            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))]",
-            "md:h-[--container-size]",
-          )}
+          className={cn("xs:h-[80vh]", "md:h-[--container-size]")}
         >
           <div
             className={cn("h-full flex-1 overflow-auto", "md:overflow-visible")}
@@ -140,9 +131,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             br: "invisible",
           }}
           className={cn(
-            "fixed inset-x-6 bottom-0 z-30 w-auto rounded-lg",
+            "fixed inset-x-4 bottom-4 z-50 w-auto rounded-full",
             "border border-muted bg-extreme",
-            "xs:relative xs:inset-x-auto xs:bottom-auto xs:left-auto xs:w-full xs:border-none xs:bg-transparent",
+            "xs:relative xs:inset-x-auto xs:bottom-0 xs:z-30 xs:h-[13vh] xs:w-full xs:border-none xs:bg-transparent",
+            "md:h-[calc(calc(100vh-var(--container-size))/2)]",
           )}
         >
           <Navigation />
