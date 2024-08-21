@@ -11,8 +11,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "h-dvh w-full pl-[--expanded-side-width]",
-        "xs:px-5",
+        "size-full pl-[--expanded-side-width]",
+        "xs:h-dvh xs:px-5",
         "sm:px-4",
         "md:px-0",
       )}
@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           "xs:flex xs:flex-col xs:justify-center",
         )}
       >
-        <Fade
+        {/* <Fade
           sides={[
             {
               id: "left",
@@ -53,7 +53,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               ),
             },
           ]}
-        />
+        /> */}
 
         <Line
           className={cn(
@@ -117,8 +117,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             br: "invisible xs:visible",
           }}
           className={cn(
-            "h-dvh pb-[--mobile-navigation-height]",
-            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))] xs:pb-0",
+            "xs:h-[calc(100vh-6rem-var(--mobile-navigation-height))]",
             "md:h-[--container-size]",
           )}
         >
@@ -132,17 +131,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="navigation"
           lines={{
-            top: "left-0 -right-screen h-px -translate-y-1/2 bg-muted xs:-left-screen",
+            top: "invisible -left-screen -right-screen h-px -translate-y-1/2 bg-muted xs:visible",
           }}
           crosses={{
-            tl: "visible xs:invisible",
+            tl: "invisible",
             tr: "invisible xs:visible",
             bl: "invisible",
             br: "invisible",
           }}
           className={cn(
-            "fixed bottom-0 left-[--expanded-side-width] z-30 w-[calc(100vw-var(--expanded-side-width))]",
-            "xs:relative xs:left-auto xs:w-full",
+            "fixed inset-x-6 bottom-0 z-30 w-auto rounded-lg",
+            "border border-muted bg-extreme",
+            "xs:relative xs:inset-x-auto xs:bottom-auto xs:left-auto xs:w-full xs:border-none xs:bg-transparent",
           )}
         >
           <Navigation />

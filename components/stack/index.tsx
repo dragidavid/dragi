@@ -30,7 +30,7 @@ export default async function Stack({
         </span>
       </div>
 
-      <Link href="/stack" className={cn("absolute inset-0", "md:hidden")}>
+      <Link href="/stack" className={cn("absolute inset-0 z-10", "md:hidden")}>
         <span className="sr-only">view the stack</span>
       </Link>
 

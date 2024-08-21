@@ -31,8 +31,6 @@ export default function Status({ play = false }: { play?: boolean }) {
     (isMobile || play || pathname === "/") && !isVertical,
   );
 
-  const shouldAddXMargin = pathname !== "/";
-
   useEffect(() => {
     async function fetchLocation() {
       const location = await getLocation();
@@ -54,12 +52,12 @@ export default function Status({ play = false }: { play?: boolean }) {
         delay: 0.8,
       }}
       className={cn(
-        "flex w-full items-center py-0.5 font-mono text-2xs",
+        "flex w-full items-center font-mono text-2xs",
         "select-none",
         "text-secondary",
-        isVertical && "py-6",
-        isDesktop && "justify-between",
-        isDesktop && shouldAddXMargin && "px-1",
+        "xs:py-0.5",
+        "md:justify-between",
+        pathname !== "/" && "py-6 md:px-1",
       )}
     >
       {location ? (
@@ -100,10 +98,6 @@ export default function Status({ play = false }: { play?: boolean }) {
 function Separator({ hidden = false }: { hidden?: boolean }) {
   const pathname = usePathname();
 
-  const { isXs } = useWindowSize();
-
-  const shouldIncreaseYMargin = Boolean(isXs && pathname !== "/");
-
   if (hidden) return null;
 
   return (
@@ -111,7 +105,8 @@ function Separator({ hidden = false }: { hidden?: boolean }) {
       className={cn(
         "mx-3 size-1 rounded-full",
         "bg-accent",
-        shouldIncreaseYMargin && "my-3",
+        "xs:my-0",
+        pathname !== "/" && "my-3",
       )}
       aria-hidden
     />

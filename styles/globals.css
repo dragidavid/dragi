@@ -10,7 +10,7 @@
 
     --radius: 0.5rem;
 
-    --mobile-navigation-height: 14vh;
+    --mobile-navigation-height: 12vh;
     --desktop-navigation-height: 48px;
 
     --spotify: 141 73% 42%;
@@ -41,7 +41,7 @@
   .dark {
     --extreme: 0 0% 0%;
     --inverse: 0 0% 100%;
-    --background: 0 0% 3%;
+    --background: 0 0% 4%;
     --primary: 0 0% 94%;
     --accent: 0 0% 15%;
     --muted: 0 0% 10%;
