@@ -26,7 +26,7 @@ export default function Module({
   lines?: Partial<Record<Side, string>>;
   tiltedLines?: Partial<Record<Corner, string>>;
   lineExtensions?: Partial<Record<LineExtension, string>>;
-  crosses?: Record<Corner, string>;
+  crosses?: Partial<Record<Corner, string>>;
   className?: string;
 }) {
   return (
