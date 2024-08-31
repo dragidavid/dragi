@@ -222,6 +222,7 @@ function TimelineItems({ items }: { items: TimelineItem[] }) {
 
 function TimelineItem({ item }: { item: TimelineItem }) {
   const ref = useRef(null);
+
   const isInView = useInView(ref, { once: true, amount: 0.8 });
 
   if (item.type === "gap") {

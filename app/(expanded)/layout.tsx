@@ -131,9 +131,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             br: "invisible",
           }}
           className={cn(
-            "fixed inset-x-4 bottom-4 z-50 w-auto rounded-full",
-            "border border-muted bg-extreme",
-            "xs:relative xs:inset-x-auto xs:bottom-0 xs:z-30 xs:h-[13vh] xs:w-full xs:border-none xs:bg-transparent",
+            "fixed inset-x-4 bottom-4 z-50 w-auto rounded-3xl",
+            "xs:relative xs:inset-x-auto xs:bottom-0 xs:z-30 xs:h-[13vh] xs:w-full",
             "md:h-[calc(calc(100vh-var(--container-size))/2)]",
           )}
         >

@@ -12,6 +12,7 @@ import { cn } from "lib/cn";
 export default function Expand({ href }: { href: string }) {
   const [rect, setRect] = useState<DOMRect | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+
   const divRef = useRef<HTMLDivElement>(null);
 
   const pathVariants = {
