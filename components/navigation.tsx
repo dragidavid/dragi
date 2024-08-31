@@ -100,11 +100,10 @@ export default function Navigation() {
     <MotionNav
       style={{ scale, transformOrigin: "bottom center" }}
       className={cn(
-        "relative flex h-auto w-full overflow-hidden rounded-3xl font-mono text-2xs",
-        "bg-gradient-to-b text-secondary backdrop-blur-md",
-        "from-extreme to-inverse/[0.02]",
-        "shadow-[0px_0px_0px_1px,0px_1px_1px_-0.5px,0px_3px_3px_-1.5px,0px_6px_6px_-3px,0px_12px_12px_-6px,0px_24px_24px_-12px] shadow-inverse/[0.04]",
-        "dark:from-inverse/[0.01] dark:to-extreme/20",
+        "relative flex h-auto w-full overflow-hidden rounded-3xl text-2xs",
+        "bg-gradient-to-b from-extreme to-inverse/[0.02] backdrop-blur-md",
+        "shadow-[0px_0px_0px_1px,0px_1px_1px_-0.5px,0px_3px_3px_-1.5px,0px_6px_6px_-3px,0px_12px_12px_-6px,0px_24px_24px_-12px] shadow-inverse/[0.03]",
+        "dark:from-inverse/[0.02] dark:to-extreme/10",
         "dark:shadow-[inset_0px_1px_0px_0px_hsla(var(--inverse)/0.05),inset_0px_0px_1px_0px_hsla(var(--inverse)/0.08),0_0_1px_hsla(var(--extreme)/0.3),0_2px_2px_hsla(var(--extreme)/0.3),0_4px_4px_hsla(var(--extreme)/0.3),0_8px_8px_hsla(var(--extreme)/0.3)]",
         "xs:h-full xs:overflow-visible xs:rounded-none xs:bg-transparent xs:!shadow-none xs:backdrop-blur-none xs:![background-image:none]",
         "md:text-xs",
@@ -127,7 +126,8 @@ export default function Navigation() {
         >
           <div
             className={cn(
-              "relative flex h-full items-start justify-center py-6",
+              "relative flex h-full items-center justify-center py-6",
+              "xs:items-start",
             )}
             style={{
               WebkitTapHighlightColor: "transparent",
@@ -156,22 +156,44 @@ export default function Navigation() {
               </>
             )}
 
-            <div className={cn("flex flex-col items-center gap-3")}>
-              <span>{label}</span>
+            <div
+              className={cn(
+                "relative isolate flex size-full flex-col items-center gap-3",
+              )}
+            >
+              <span
+                className={cn(
+                  "absolute z-20 font-medium",
+                  "text-primary/10",
+                  isActive(href) && "text-primary/80 dark:text-primary",
+                )}
+              >
+                {label}
+              </span>
+
+              <div
+                className={cn(
+                  "absolute inset-0 z-10 hidden",
+                  "pointer-events-none",
+                  "bg-gradient-to-t from-transparent to-background",
+                  "xs:block",
+                )}
+                style={{
+                  backdropFilter: "blur(2px)",
+                  WebkitMaskImage:
+                    "linear-gradient(to top, transparent, hsla(var(--background)/0.8))",
+                }}
+                aria-hidden
+              />
 
               <span
                 className={cn(
-                  "absolute font-sans text-5xl font-black",
-                  "text-background",
-                  "translate-y-1",
-                  "md:translate-y-0.5 md:text-7xl",
-                  isActive(href) && "text-primary",
+                  "absolute font-sans text-7xl font-black",
+                  "bg-gradient-to-b from-transparent to-inverse/10 bg-clip-text text-transparent",
+                  "translate-y-2",
+                  "xs:translate-y-0",
+                  isActive(href) && "to-inverse",
                 )}
-                style={{
-                  WebkitTextStroke: isActive(href)
-                    ? "1px hsla(var(--inverse)/0.04)"
-                    : "1px hsl(var(--muted))",
-                }}
               >
                 {index}
               </span>
@@ -194,9 +216,9 @@ export default function Navigation() {
                   }}
                   transition={{ duration: 0.4 }}
                   className={cn(
-                    "absolute top-0 size-full",
+                    "absolute top-0 z-20 size-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-muted/80 to-transparent",
+                    "bg-gradient-to-b from-primary/10 to-transparent",
                   )}
                 />
               )}
