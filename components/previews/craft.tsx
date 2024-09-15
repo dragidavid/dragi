@@ -1,6 +1,6 @@
 import { compareDesc } from "date-fns";
 
-import { getPages } from "content/source";
+import { source } from "app/source";
 
 import {
   MotionDiv,
@@ -11,7 +11,7 @@ import {
 import { cn } from "lib/cn";
 
 export default async function Preview() {
-  const posts = getPages();
+  const posts = source.getPages();
 
   const sortedPosts = posts.sort((a, b) => {
     return compareDesc(new Date(a.data.date), new Date(b.data.date));

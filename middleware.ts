@@ -19,7 +19,7 @@ export async function middleware(req: NextRequest) {
 
   await redis.set(
     "location",
-    `last visit from ${currentLocation.city.toLowerCase()}, ${currentLocation.country.toLowerCase()}`,
+    `last visit from ${currentLocation.city}, ${currentLocation.country}`,
   );
 
   const response = NextResponse.next();

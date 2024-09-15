@@ -1,23 +1,6 @@
-import createMDX from "fumadocs-mdx/config";
-import { createCssVariablesTheme } from "shiki/core";
+import { createMDX } from "fumadocs-mdx/next";
 
-const vercel = createCssVariablesTheme({
-  name: "css-variables",
-  variablePrefix: "--shiki-",
-  variableDefaults: {},
-  fontStyle: true,
-});
-
-const withMDX = createMDX({
-  mdxOptions: {
-    rehypeCodeOptions: {
-      themes: {
-        light: vercel,
-        dark: vercel,
-      },
-    },
-  },
-});
+const withMDX = createMDX();
 
 /** @type {import('next').NextConfig} */
 const config = {

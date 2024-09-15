@@ -11,6 +11,7 @@ export default {
     "./contexts/**/*.{tsx,ts}",
     "./lib/**/*.{tsx,ts}",
     "./node_modules/fumadocs-ui/dist/**/*.js",
+    "./mdx-components.tsx",
   ],
   theme: {
     extend: {

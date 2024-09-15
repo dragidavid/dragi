@@ -9,10 +9,9 @@ import { cn } from "lib/cn";
 
 import type { MDXComponents } from "mdx/types";
 
-export function useMDXComponents(components: MDXComponents): MDXComponents {
+export function useMDXComponents(): MDXComponents {
   return {
     ...defaultComponents,
-    ...components,
     img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
       return (
         <ImageZoom
@@ -21,7 +20,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         />
       );
     },
-    pre: ({ ref: _ref, title, ...props }) => (
+    pre: ({ title, ...props }: React.ComponentPropsWithoutRef<typeof Pre>) => (
       <CodeBlock
         title={title}
         {...props}

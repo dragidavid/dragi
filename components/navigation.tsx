@@ -42,8 +42,9 @@ const useScrollDirection = (pathname: string) => {
   const { scrollY } = useScroll();
 
   const scale = useSpring(1, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 300,
+    damping: 20,
+    mass: 0.5,
   });
 
   useEffect(() => {
@@ -103,7 +104,7 @@ export default function Navigation() {
         "relative flex h-auto w-full overflow-hidden rounded-3xl text-2xs",
         "bg-gradient-to-b from-extreme to-inverse/[0.02] backdrop-blur-md",
         "shadow-[0px_0px_0px_1px,0px_1px_1px_-0.5px,0px_3px_3px_-1.5px,0px_6px_6px_-3px,0px_12px_12px_-6px,0px_24px_24px_-12px] shadow-inverse/[0.03]",
-        "dark:from-inverse/[0.02] dark:to-extreme/10",
+        "dark:from-inverse/[0.02] dark:to-extreme/20",
         "dark:shadow-[inset_0px_1px_0px_0px_hsla(var(--inverse)/0.05),inset_0px_0px_1px_0px_hsla(var(--inverse)/0.08),0_0_1px_hsla(var(--extreme)/0.3),0_2px_2px_hsla(var(--extreme)/0.3),0_4px_4px_hsla(var(--extreme)/0.3),0_8px_8px_hsla(var(--extreme)/0.3)]",
         "xs:h-full xs:overflow-visible xs:rounded-none xs:bg-transparent xs:!shadow-none xs:backdrop-blur-none xs:![background-image:none]",
         "md:text-xs",
@@ -190,7 +191,7 @@ export default function Navigation() {
                 className={cn(
                   "absolute font-sans text-7xl font-black",
                   "bg-gradient-to-b from-transparent to-inverse/10 bg-clip-text text-transparent",
-                  "translate-y-2",
+                  "translate-y-1.5",
                   "xs:translate-y-0",
                   isActive(href) && "to-inverse",
                 )}

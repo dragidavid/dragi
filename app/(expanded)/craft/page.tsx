@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Redis } from "@upstash/redis";
 import { compareDesc, getYear, parseISO } from "date-fns";
 
-import { getPages } from "content/source";
+import { source } from "app/source";
 
 import Views from "components/views";
 import PageTitle from "components/page-title";
@@ -12,7 +12,7 @@ import { cn } from "lib/cn";
 const redis = Redis.fromEnv();
 
 export default async function Page() {
-  const posts = getPages();
+  const posts = source.getPages();
 
   const sortedPosts = posts.sort((a, b) => {
     return compareDesc(new Date(a.data.date), new Date(b.data.date));

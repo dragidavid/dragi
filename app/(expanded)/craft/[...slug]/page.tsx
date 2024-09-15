@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DocsBody } from "fumadocs-ui/page";
 
-import { getPage, getPages } from "content/source";
+import { source } from "app/source";
 
 import Views from "components/views";
 
@@ -10,38 +10,21 @@ import { cn } from "lib/cn";
 import { formatDate } from "lib/utils";
 
 import type { Metadata } from "next";
+import { useMDXComponents } from "mdx-components";
 
-interface PageProps {
+type PageProps = {
   params: { slug?: string[] };
-}
-
-export async function generateMetadata({ params }: PageProps) {
-  const post = getPage(params.slug);
-
-  if (!post) {
-    notFound();
-  }
-
-  return {
-    title: post.data.title,
-    description: post.data.description,
-  } satisfies Metadata;
-}
-
-export async function generateStaticParams() {
-  return getPages().map((page) => ({
-    slug: page.slugs,
-  }));
-}
+};
 
 export default async function Page({ params }: PageProps) {
-  const post = getPage(params.slug);
+  const post = source.getPage(params.slug);
 
   if (!post) {
     notFound();
   }
 
-  const MDX = post.data.exports.default;
+  const MDX = post.data.body;
+  const components = useMDXComponents();
 
   return (
     <div className={cn("h-full overflow-auto p-6", "xs:p-8")}>
@@ -76,8 +59,25 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <DocsBody>
-        <MDX />
+        <MDX components={components} />
       </DocsBody>
     </div>
   );
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const post = source.getPage(params.slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  return {
+    title: post.data.title,
+    description: post.data.description,
+  } satisfies Metadata;
+}
+
+export async function generateStaticParams() {
+  return source.generateParams();
 }
