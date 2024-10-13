@@ -130,7 +130,7 @@ const TrackInfo = memo(
           blurHash={track.album.imageBlurHash}
         />
 
-        <spotify.Component className={cn("size-14")} />
+        <spotify.Component className={cn("size-10")} />
 
         <div className={cn("relative flex flex-col gap-1")}>
           <PlayingStatus currentlyPlaying={track.currentlyPlaying} />
@@ -162,7 +162,9 @@ const TrackName = memo(
   ({ name, url }: { name: Track["name"]; url: Track["trackUrl"] }) => {
     return (
       <Marquee className={cn("text-xl font-bold")}>
-        <StyledLink href={url}>{name}</StyledLink>
+        <StyledLink href={url} className="decoration-transparent">
+          {name}
+        </StyledLink>
       </Marquee>
     );
   },

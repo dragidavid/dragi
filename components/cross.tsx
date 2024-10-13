@@ -30,10 +30,10 @@ const styles: Record<Corner, React.CSSProperties> = {
 };
 
 export default function Cross({
-  origin,
+  parent,
   positions,
 }: {
-  origin: string;
+  parent: string;
   positions: Partial<Record<Corner, string>>;
 }) {
   return (
@@ -41,7 +41,7 @@ export default function Cross({
       {(Object.keys(positions) as Positions).map(
         (position: Corner, index: number) => (
           <MotionDiv
-            key={`${origin}-${position}`}
+            key={`${parent}-${position}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2, delay: Math.random() * (0.8 - 0) + 0 }}

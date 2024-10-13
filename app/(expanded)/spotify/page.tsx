@@ -22,7 +22,7 @@ export default function Page() {
         />
 
         <Cross
-          origin="spotify-player"
+          parent="spotify-player"
           positions={{
             tl: "hidden",
             tr: "hidden md:block",

@@ -20,7 +20,7 @@ export default function Preview() {
           "md:grid",
         )}
       >
-        <span className={cn("bg-primary text-background")}>view the stack</span>
+        <span>view stack</span>
       </Link>
 
       <Stack

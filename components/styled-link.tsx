@@ -34,8 +34,9 @@ export default function StyledLink({
       rel={href ? "noopener noreferrer" : undefined}
       className={cn(
         "outline-none",
-        "hover:bg-primary hover:text-background",
-        "focus:bg-primary focus:text-background",
+        "underline decoration-muted underline-offset-[3px]",
+        "hover:decoration-current",
+        "focus:decoration-current",
         className,
       )}
       onClick={handleClick}

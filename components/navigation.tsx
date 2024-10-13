@@ -146,7 +146,7 @@ export default function Navigation() {
                 />
 
                 <Cross
-                  origin={`link-${label}`}
+                  parent={`link-${label}`}
                   positions={{
                     tl: "invisible xs:visible",
                     tr: "invisible",
@@ -219,7 +219,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 z-20 size-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-primary/10 to-transparent",
+                    "bg-gradient-to-b from-inverse/5 to-transparent",
                   )}
                 />
               )}

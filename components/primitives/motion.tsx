@@ -11,4 +11,4 @@ export const MotionSvg = motion.svg;
 export const MotionLine = motion.line;
 export const MotionPath = motion.path;
 export const MotionSpan = motion.span;
-export const MotionLink = motion(Link);
+export const MotionLink = motion.create(Link);

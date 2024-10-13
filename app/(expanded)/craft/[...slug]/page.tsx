@@ -58,7 +58,7 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      <DocsBody>
+      <DocsBody className="prose-sm">
         <MDX components={components} />
       </DocsBody>
     </div>

@@ -2,29 +2,23 @@
 
 import { useState, useEffect } from "react";
 
-export default function Clock() {
-  const [date, setDate] = useState(new Date());
+function getFormattedTime() {
+  return new Date().toLocaleTimeString([], {
+    timeZone: "Europe/London",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
 
-  function refreshClock() {
-    setDate(new Date());
-  }
+export default function Clock() {
+  const [time, setTime] = useState(getFormattedTime());
 
   useEffect(() => {
-    const timerId = setInterval(refreshClock, 1000);
+    const timerId = setInterval(() => setTime(getFormattedTime()), 1000);
 
-    return () => {
-      clearInterval(timerId);
-    };
+    return () => clearInterval(timerId);
   }, []);
 
-  return (
-    <span className="tabular-nums">
-      {date.toLocaleTimeString([], {
-        timeZone: "Europe/London",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      })}
-    </span>
-  );
+  return <span className="tabular-nums">{time}</span>;
 }

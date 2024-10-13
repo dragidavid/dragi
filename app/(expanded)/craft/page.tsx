@@ -24,7 +24,7 @@ export default async function Page() {
 
   return (
     <div className={cn("relative flex h-full flex-col gap-4 p-6", "xs:p-8")}>
-      <PageTitle main="thoughts & snippets" />
+      <PageTitle main="thoughts & experiments" />
 
       <div className={cn("flex flex-col", "group")}>
         {sortedPosts.map((post) => {
