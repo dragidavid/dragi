@@ -111,7 +111,7 @@ export default function Stars({
                 },
                 groups: {},
                 move: {
-                  direction: "bottom",
+                  direction: "top",
                   enable: true,
                   random: true,
                   size: true,

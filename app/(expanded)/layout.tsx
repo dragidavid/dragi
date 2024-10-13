@@ -7,6 +7,31 @@ import Navigation from "components/navigation";
 
 import { cn } from "lib/cn";
 
+const fadeClasses = {
+  top: cn(
+    "left-0 top-0 h-[7vh] w-screen",
+    "bg-gradient-to-t from-transparent to-background",
+    "md:h-[1/6]",
+  ),
+  left: cn(
+    "top-0 left-0 h-screen w-[7vw] invisible",
+    "bg-gradient-to-l from-transparent to-background",
+    "xs:visible",
+    "sm:w-1/6",
+  ),
+  bottom: cn(
+    "bottom-0 left-0 h-[11vh] w-screen",
+    "bg-gradient-to-b from-transparent to-background",
+    "md:h-1/6",
+  ),
+  right: cn(
+    "top-0 right-0 h-screen w-[7vw] invisible",
+    "bg-gradient-to-r from-transparent to-background",
+    "xs:visible",
+    "sm:w-1/6",
+  ),
+};
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
@@ -18,35 +43,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     >
       <div className={cn("relative size-full min-h-dvh")}>
         <Fade
-          sides={[
-            {
-              id: "left",
-              className: cn(
-                "top-0 left-0 h-screen w-[7vw] invisible",
-                "bg-gradient-to-l from-transparent to-background",
-                "xs:visible",
-                "sm:w-1/6",
-              ),
-            },
-            {
-              id: "bottom",
-              className: cn(
-                "bottom-0 left-0 h-[11vh] w-screen",
-                "bg-gradient-to-b from-transparent to-background",
-                "md:h-[14%]",
-              ),
-              blurSteps: 4,
-            },
-            {
-              id: "right",
-              className: cn(
-                "top-0 right-0 h-screen w-[7vw] invisible",
-                "bg-gradient-to-r from-transparent to-background",
-                "xs:visible",
-                "sm:w-1/6",
-              ),
-            },
-          ]}
+          sides={Object.entries(fadeClasses).map(([id, className]) => ({
+            id,
+            className,
+          }))}
         />
 
         <Line
@@ -86,9 +86,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               minSize={0.2}
               maxSize={1}
               density={100}
-              className={cn(
-                "absolute inset-x-0 bottom-0 top-1/3 xs:inset-0 xs:rotate-180",
-              )}
+              className={cn("absolute inset-0")}
             />
           </div>
         </Module>
@@ -99,10 +97,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             top: "-inset-x-screen hidden h-px -translate-y-1/2 bg-muted xs:block",
           }}
           tiltedLines={{
-            tl: "invisible left-0 top-0 h-screen w-px origin-top rotate-[135deg] bg-vertical-dashed xs:visible",
-            tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed xs:visible",
-            bl: "invisible bottom-0 left-0 h-screen w-px origin-bottom -rotate-[135deg] bg-vertical-dashed xs:visible",
-            br: "invisible bottom-0 right-0 h-screen w-px origin-bottom rotate-[135deg] bg-vertical-dashed xs:visible",
+            tl: "invisible left-0 top-0 bg-horizontal-dashed xs:visible",
+            tr: "invisible right-0 top-0 bg-horizontal-dashed xs:visible",
+            bl: "invisible bottom-0 left-0 bg-horizontal-dashed xs:visible",
+            br: "invisible bottom-0 right-0 bg-horizontal-dashed xs:visible",
           }}
           crosses={{
             tl: "invisible xs:visible",
