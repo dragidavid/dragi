@@ -1,13 +1,16 @@
 import { forwardRef } from "react";
 
 const createLogoWrapper = (svg: React.ReactNode) => {
-  return forwardRef<HTMLDivElement, { className?: string }>(
+  const LogoWrapper = forwardRef<HTMLDivElement, { className?: string }>(
     ({ className }, ref) => (
       <div ref={ref} className={className}>
         {svg}
       </div>
     ),
   );
+  LogoWrapper.displayName = "LogoWrapper";
+
+  return LogoWrapper;
 };
 
 export const logos = {

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DocsBody } from "fumadocs-ui/page";
 
+import { useMDXComponents } from "mdx-components";
+
 import { source } from "app/source";
 
 import Views from "components/views";
@@ -10,7 +12,6 @@ import { cn } from "lib/cn";
 import { formatDate } from "lib/utils";
 
 import type { Metadata } from "next";
-import { useMDXComponents } from "mdx-components";
 
 type PageProps = {
   params: Promise<{ slug?: string[] }>;

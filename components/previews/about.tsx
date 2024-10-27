@@ -1,4 +1,3 @@
-import Status from "components/status";
 import Socials from "components/socials";
 import StyledLink from "components/styled-link";
 

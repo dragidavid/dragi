@@ -95,6 +95,7 @@ const ErrorMessage = memo(({ preview }: { preview: boolean }) => {
     </MotionDiv>
   );
 });
+ErrorMessage.displayName = "ErrorMessage";
 
 const BlobScene = memo(({ colors }: { colors: Color[] }) => {
   return (
@@ -110,6 +111,7 @@ const BlobScene = memo(({ colors }: { colors: Color[] }) => {
     </MotionDiv>
   );
 });
+BlobScene.displayName = "BlobScene";
 
 const TrackInfo = memo(
   ({ track, preview }: { track: Track; preview: boolean }) => {
@@ -141,6 +143,7 @@ const TrackInfo = memo(
     );
   },
 );
+TrackInfo.displayName = "TrackInfo";
 
 const PlayingStatus = memo(
   ({ currentlyPlaying }: { currentlyPlaying: Track["currentlyPlaying"] }) => {
@@ -157,6 +160,7 @@ const PlayingStatus = memo(
     );
   },
 );
+PlayingStatus.displayName = "PlayingStatus";
 
 const TrackName = memo(
   ({ name, url }: { name: Track["name"]; url: Track["trackUrl"] }) => {
@@ -169,6 +173,7 @@ const TrackName = memo(
     );
   },
 );
+TrackName.displayName = "TrackName";
 
 const ArtistNames = memo(({ artists }: { artists: Artist[] }) => {
   return (
@@ -177,6 +182,7 @@ const ArtistNames = memo(({ artists }: { artists: Artist[] }) => {
     </Marquee>
   );
 });
+ArtistNames.displayName = "ArtistNames";
 
 const AlbumImage = memo(
   ({
@@ -207,6 +213,7 @@ const AlbumImage = memo(
     );
   },
 );
+AlbumImage.displayName = "AlbumImage";
 
 const Blur = memo(() => {
   return (
@@ -219,7 +226,7 @@ const Blur = memo(() => {
     />
   );
 });
-
+Blur.displayName = "Blur";
 const Noise = memo(() => {
   return (
     <div
@@ -257,6 +264,7 @@ const Noise = memo(() => {
     </div>
   );
 });
+Noise.displayName = "Noise";
 
 const Vignette = memo(() => {
   return (
@@ -288,6 +296,7 @@ const Vignette = memo(() => {
     </>
   );
 });
+Vignette.displayName = "Vignette";
 
 const Container = memo(({ children }: { children: React.ReactNode }) => {
   return (
@@ -305,3 +314,4 @@ const Container = memo(({ children }: { children: React.ReactNode }) => {
     </div>
   );
 });
+Container.displayName = "Container";

@@ -51,6 +51,7 @@ const useScrollDirection = (pathname: string) => {
     if (scale.get() !== 1) {
       scale.set(1);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {

@@ -75,7 +75,7 @@ function ErrorMessage() {
         "text-primary/20",
       )}
     >
-      <span>that "something" happened here too</span>
+      <span>that &ldquo;something&rdquo; happened here too</span>
     </MotionDiv>
   );
 }
@@ -281,7 +281,7 @@ function calculateAndInsertGaps(tracks: Track[]): TimelineItem[] {
       const currentTrackTime = new Date(tracks[i].playedAt!).getTime();
       const nextTrackTime = new Date(tracks[i + 1].playedAt!).getTime();
 
-      let timeDifferenceInMinutes =
+      const timeDifferenceInMinutes =
         Math.abs(nextTrackTime - currentTrackTime) / (1000 * 60);
 
       const gapHeight = Math.min(

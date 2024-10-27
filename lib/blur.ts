@@ -10,7 +10,9 @@ export async function blur(url: string) {
     const base64 = Buffer.from(buffer).toString("base64");
 
     return `data:image/png;base64,${base64}`;
-  } catch (error) {
+  } catch (e) {
+    console.error("Blur Error:", e);
+
     return "data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
   }
 }
