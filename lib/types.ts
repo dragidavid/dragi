@@ -54,7 +54,7 @@ export type Color = {
 
 export type TimelineGap = {
   type: "gap";
-  content?: JSX.Element;
+  content?: React.ReactNode;
   height: number;
 };
 

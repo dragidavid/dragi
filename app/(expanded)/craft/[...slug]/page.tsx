@@ -13,10 +13,11 @@ import type { Metadata } from "next";
 import { useMDXComponents } from "mdx-components";
 
 type PageProps = {
-  params: { slug?: string[] };
+  params: Promise<{ slug?: string[] }>;
 };
 
-export default async function Page({ params }: PageProps) {
+export default async function Page(props: PageProps) {
+  const params = await props.params;
   const post = source.getPage(params.slug);
 
   if (!post) {
@@ -65,7 +66,8 @@ export default async function Page({ params }: PageProps) {
   );
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   const post = source.getPage(params.slug);
 
   if (!post) {

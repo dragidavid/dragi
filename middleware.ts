@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { geolocation } from "@vercel/functions";
 import { Redis } from "@upstash/redis";
 
 import { getCountry } from "lib/country";
@@ -10,7 +11,7 @@ export const config = {
 const redis = Redis.fromEnv();
 
 export async function middleware(req: NextRequest) {
-  const { geo } = req;
+  const geo = geolocation(req);
 
   const currentLocation = {
     city: geo?.city || "localhost",

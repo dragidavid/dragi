@@ -182,7 +182,7 @@ export default function Navigation() {
                 style={{
                   backdropFilter: "blur(2px)",
                   WebkitMaskImage:
-                    "linear-gradient(to top, transparent, hsla(var(--background)/0.8))",
+                    "linear-gradient(to top, transparent, hsla(var(--background)/0.6))",
                 }}
                 aria-hidden
               />
