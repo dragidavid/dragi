@@ -8,8 +8,24 @@ import ThemeToggle from "components/theme-toggle";
 
 import { cn } from "lib/cn";
 
+type ItemProps = {
+  position: "tl" | "tr" | "bl" | "br";
+  children: React.ReactNode;
+};
+
+const positions: Record<ItemProps["position"], string> = {
+  tl: "left-4 top-4",
+  tr: "right-4 top-4",
+  bl: "bottom-4 left-4 md:visible invisible",
+  br: "bottom-4 right-4 md:visible invisible",
+};
+
 export default function Frame() {
   const pathname = usePathname();
+
+  if (pathname !== "/" && !pathname.match(/^\/(?:\?|$)/)) {
+    return null;
+  }
 
   return (
     <div
@@ -20,23 +36,34 @@ export default function Frame() {
         pathname !== "/" && "hidden xs:block",
       )}
     >
-      {/* <Status /> */}
-      <div className={cn("fixed left-4 top-4")}>
+      <Item position="tl">
         <Clock />
-      </div>
+      </Item>
 
-      <div className={cn("fixed right-4 top-4")}>
+      <Item position="tr">
         <ThemeToggle />
-      </div>
+      </Item>
 
-      <div className={cn("invisible fixed bottom-4 left-4", "md:visible")}>
-        {/* TODO: Add location 👀 */}
-        <span>london, united kingdom</span>
-      </div>
-
-      <div className={cn("invisible fixed bottom-4 right-4", "md:visible")}>
+      <Item position="bl">
         <Location />
-      </div>
+      </Item>
+
+      <Item position="br">
+        <Location />
+      </Item>
+    </div>
+  );
+}
+
+function Item({ position, children }: ItemProps) {
+  return (
+    <div
+      className={cn(
+        "fixed duration-200 animate-in fade-in",
+        positions[position],
+      )}
+    >
+      {children}
     </div>
   );
 }

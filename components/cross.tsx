@@ -39,23 +39,36 @@ export default function Cross({
   return (
     <>
       {(Object.keys(positions) as Positions).map(
-        (position: Corner, index: number) => (
-          <MotionDiv
-            key={`${parent}-${position}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: Math.random() * (0.8 - 0) + 0 }}
-            className={cn(
-              "absolute z-40 size-[9px]",
-              "pointer-events-none",
-              positions[position],
-            )}
-            style={styles[position]}
-            aria-hidden
-          >
-            <CrossShape />
-          </MotionDiv>
-        ),
+        (position: Corner, index: number) => {
+          const randomDelay = Math.random() * (0.8 - 0) + 0;
+
+          return (
+            <MotionDiv
+              key={`${parent}-${position}`}
+              initial={{
+                opacity: 0,
+                filter: "brightness(200%) contrast(200%)",
+              }}
+              animate={{
+                opacity: 1,
+                filter: "brightness(100%) contrast(100%)",
+              }}
+              transition={{
+                opacity: { duration: 0.2, delay: randomDelay },
+                filter: { duration: 0.4, delay: randomDelay + 0.2 },
+              }}
+              className={cn(
+                "absolute z-40 size-[9px]",
+                "pointer-events-none",
+                positions[position],
+              )}
+              style={styles[position]}
+              aria-hidden
+            >
+              <CrossShape />
+            </MotionDiv>
+          );
+        },
       )}
     </>
   );

@@ -9,8 +9,9 @@ import { cn } from "lib/cn";
 
 const fadeClasses = {
   top: cn(
-    "left-0 top-0 h-[7vh] w-screen",
+    "left-0 top-0 h-[7vh] w-screen invisible",
     "bg-gradient-to-t from-transparent to-background",
+    "xs:visible",
     "md:h-[1/6]",
   ),
   left: cn(
@@ -73,9 +74,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           >
             <div
               className={cn(
-                "w-full",
                 "rotate-180 [writing-mode:vertical-lr]",
-                "xs:rotate-0 xs:[writing-mode:inherit]",
+                "xs:hidden",
               )}
             >
               <Status />

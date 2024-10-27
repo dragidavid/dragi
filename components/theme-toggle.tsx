@@ -7,7 +7,7 @@ import { Button } from "components/primitives/button";
 
 import { cn } from "lib/cn";
 
-export default function ThemeToggle({ isVertical }: { isVertical: boolean }) {
+export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   const { setTheme, theme } = useTheme();
@@ -25,16 +25,15 @@ export default function ThemeToggle({ isVertical }: { isVertical: boolean }) {
   }
 
   return (
-    <div className={cn("grid place-items-center", isVertical && "size-5")}>
+    <div className={cn("grid place-items-center")}>
       <Button
         size="icon"
         variant="subtle"
         onClick={toggleTheme}
         className={cn(
-          "size-3 rounded-full",
+          "size-4 rounded-full",
           "bg-secondary",
           "hover:bg-inverse",
-          isVertical && "size-3.5",
         )}
         tabIndex={-1}
       />

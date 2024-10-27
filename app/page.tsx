@@ -40,7 +40,7 @@ const modules = [
     component: <About />,
     baseLines: ["top", "right", "bottom", "left"],
     tiltedLines: {
-      tl: "invisible left-0 top-0 h-screen w-px origin-top rotate-[135deg] bg-vertical-dashed md:visible",
+      tl: "invisible left-0 top-0 bg-horizontal-dashed md:visible",
     },
     lineExtensions: {
       "tl-to-top": commonLineExtensions["tl-to-top"],
@@ -63,7 +63,7 @@ const modules = [
     component: <Stack />,
     baseLines: ["top", "bottom", "left"],
     tiltedLines: {
-      bl: "invisible bottom-0 left-0 h-screen w-px origin-bottom -rotate-[135deg] bg-vertical-dashed md:visible",
+      bl: "invisible bottom-0 left-0 bg-horizontal-dashed md:visible",
     },
     lineExtensions: {
       "tl-to-left": commonLineExtensions["tl-to-left"],
@@ -103,7 +103,7 @@ const modules = [
     component: <Craft />,
     baseLines: ["top", "right", "bottom"],
     tiltedLines: {
-      tr: "invisible right-0 top-0 h-screen w-px origin-top -rotate-[135deg] bg-vertical-dashed md:visible",
+      tr: "invisible right-0 top-0 bg-horizontal-dashed md:visible",
     },
     lineExtensions: {
       "tl-to-left": cn(commonLineExtensions["tl-to-left"], "md:hidden"),
@@ -128,7 +128,7 @@ const modules = [
       bottom: "hidden md:block",
     },
     tiltedLines: {
-      br: "invisible bottom-0 right-0 h-screen w-px origin-bottom rotate-[135deg] bg-vertical-dashed md:visible",
+      br: "invisible bottom-0 right-0 bg-horizontal-dashed md:visible",
     },
     lineExtensions: {
       "br-to-right": cn(commonLineExtensions["br-to-right"], "hidden md:block"),
@@ -229,7 +229,7 @@ export default function Page() {
 
         <Line
           className={cn(
-            "-bottom-full -top-full right-0 w-px",
+            "-inset-y-full right-0 w-px",
             "bg-muted",
             "translate-x-1/2",
             "md:hidden",

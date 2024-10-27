@@ -1,114 +1,43 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
-import Marquee from "react-fast-marquee";
-import { AnimatePresence } from "framer-motion";
-
-const Clock = dynamic(() => import("components/clock"), {
-  ssr: false,
-});
+import Clock from "components/clock";
+import Location from "components/location";
 import ThemeToggle from "components/theme-toggle";
 
 import { MotionDiv } from "components/primitives/motion";
 
 import { cn } from "lib/cn";
-import { getLocation } from "lib/actions";
 
-import { useWindowSize } from "lib/hooks/use-window-size";
-
-export default function Status({ play = false }: { play?: boolean }) {
-  const [location, setLocation] = useState<string | null>(null);
-
-  const pathname = usePathname();
-
-  const { isXs, isMobile, isDesktop } = useWindowSize();
-
-  const isVertical = Boolean(isXs && pathname !== "/");
-
-  const shouldRenderMarquee = Boolean(
-    (isMobile || play || pathname === "/") && !isVertical,
-  );
-
-  useEffect(() => {
-    async function fetchLocation() {
-      const location = await getLocation();
-
-      setLocation(location as string);
-    }
-
-    fetchLocation();
-  }, []);
-
-  const content = (
+export default function Status() {
+  return (
     <MotionDiv
       key="status"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0, transition: { duration: 0 } }}
-      transition={{
-        duration: 0.4,
-        delay: 0.8,
-      }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2, delay: 0.4 }}
       className={cn(
-        "flex w-full items-center font-mono text-2xs",
+        "flex min-w-max items-center justify-between gap-3 py-6 font-mono text-2xs",
         "select-none",
         "text-secondary",
-        "xs:py-0.5",
-        "md:justify-between",
-        pathname !== "/" && "py-6 md:px-1",
+        "xs:text-xs",
       )}
     >
-      {location ? (
-        <>
-          <Clock />
+      <Clock />
 
-          <Separator />
+      <Separator />
 
-          <span>london, united kingdom</span>
+      <span>london, united kingdom</span>
 
-          <Separator />
+      <Separator />
 
-          <span>{location}</span>
+      <Location />
 
-          <Separator />
+      <Separator />
 
-          <ThemeToggle isVertical={isVertical} />
-
-          <Separator hidden={(isDesktop && !play) || isVertical} />
-        </>
-      ) : null}
+      <ThemeToggle />
     </MotionDiv>
-  );
-
-  return (
-    <AnimatePresence mode="wait">
-      {shouldRenderMarquee ? (
-        <Marquee speed={20} pauseOnHover>
-          {content}
-        </Marquee>
-      ) : (
-        content
-      )}
-    </AnimatePresence>
   );
 }
 
-function Separator({ hidden = false }: { hidden?: boolean }) {
-  const pathname = usePathname();
-
-  if (hidden) return null;
-
-  return (
-    <div
-      className={cn(
-        "mx-3 size-1 rounded-full",
-        "bg-accent",
-        "xs:my-0",
-        pathname !== "/" && "my-3",
-      )}
-      aria-hidden
-    />
-  );
+function Separator() {
+  return <div className={cn("size-1 rounded-full", "bg-accent")} aria-hidden />;
 }
