@@ -23,10 +23,6 @@ const positions: Record<ItemProps["position"], string> = {
 export default function Frame() {
   const pathname = usePathname();
 
-  if (pathname !== "/" && !pathname.match(/^\/(?:\?|$)/)) {
-    return null;
-  }
-
   return (
     <div
       className={cn(
