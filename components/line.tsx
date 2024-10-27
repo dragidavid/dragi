@@ -21,10 +21,6 @@ export default function Line({
   length?: number;
   origin?: Corner;
 }) {
-  if (angle) {
-    console.log(angle);
-  }
-
   const tiltedLineStyle: React.CSSProperties = {
     position: "absolute",
     width: `${length}px`,
