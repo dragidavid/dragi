@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DocsBody } from "fumadocs-ui/page";
-
-import { useMDXComponents } from "mdx-components";
+import defaultComponents from "fumadocs-ui/mdx";
+import {
+  ImageZoom,
+  type ImageZoomProps,
+} from "fumadocs-ui/components/image-zoom";
+import { Pre, CodeBlock } from "fumadocs-ui/components/codeblock";
 
 import { source } from "app/source";
 
@@ -26,7 +30,6 @@ export default async function Page(props: PageProps) {
   }
 
   const MDX = post.data.body;
-  const components = useMDXComponents();
 
   return (
     <div className={cn("h-full overflow-auto p-6", "xs:p-8")}>
@@ -61,7 +64,31 @@ export default async function Page(props: PageProps) {
       </div>
 
       <DocsBody className="prose-sm">
-        <MDX components={components} />
+        <MDX
+          components={{
+            ...defaultComponents,
+            img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+              return (
+                <ImageZoom
+                  {...(props as ImageZoomProps)}
+                  className={cn("rounded-lg", "border border-accent")}
+                />
+              );
+            },
+            pre: ({
+              title,
+              ...props
+            }: React.ComponentPropsWithoutRef<typeof Pre>) => (
+              <CodeBlock
+                title={title}
+                {...props}
+                className={cn("border-accent bg-extreme")}
+              >
+                <Pre {...props} />
+              </CodeBlock>
+            ),
+          }}
+        />
       </DocsBody>
     </div>
   );
