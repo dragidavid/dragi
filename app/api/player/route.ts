@@ -126,15 +126,16 @@ export async function GET() {
       },
     );
   } catch (e) {
-    console.error('Spotify API Error:', e);
-    
+    console.error("Spotify API Error:", e);
+
     return NextResponse.json(
       {
         code: "INTERNAL_SERVER_ERROR",
-        message: e instanceof Error ? e.message : 'Unknown error occurred',
+        message: e instanceof Error ? e.message : "Unknown error occurred",
       },
       {
         status: 500,
       },
     );
   }
+}
