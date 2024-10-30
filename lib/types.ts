@@ -1,3 +1,4 @@
+import type { JSX } from "react";
 // App Types
 export type Artist = {
   id: string;
@@ -54,7 +55,7 @@ export type Color = {
 
 export type TimelineGap = {
   type: "gap";
-  content?: React.ReactNode;
+  content?: JSX.Element;
   height: number;
 };
 

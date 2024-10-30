@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, Preload, Lightformer } from "@react-three/drei";
-import { EffectComposer, Bloom } from "@react-three/postprocessing";
+import { Bloom } from "@react-three/postprocessing";
 
 export default function Scene({ children }: { children: React.ReactNode }) {
   return (
@@ -21,14 +21,12 @@ export default function Scene({ children }: { children: React.ReactNode }) {
 
       <Preload all />
 
-      <EffectComposer multisampling={8}>
-        <Bloom
-          luminanceThreshold={0}
-          luminanceSmoothing={0.02}
-          opacity={18}
-          intensity={1.4}
-        />
-      </EffectComposer>
+      <Bloom
+        luminanceThreshold={0}
+        luminanceSmoothing={0.02}
+        opacity={18}
+        intensity={1.4}
+      />
 
       <Environment preset="city">
         <Lightformer

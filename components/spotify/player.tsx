@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo, memo } from "react";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import useSWR from "swr";
 import Image from "next/image";
 
@@ -18,10 +18,10 @@ import { fetcher } from "lib/fetcher";
 
 import type { Album, Artist, Track, Color, Player } from "lib/types";
 
-// const Scene = dynamic(() => import("components/three/scene"), { ssr: false });
-// const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
-//   ssr: false,
-// });
+const Scene = dynamic(() => import("components/three/scene"), { ssr: false });
+const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
+  ssr: false,
+});
 
 export default function Player({ preview = false }: { preview?: boolean }) {
   const [localColors, setLocalColors] = useState<Color[] | undefined>(
@@ -105,9 +105,9 @@ const BlobScene = memo(({ colors }: { colors: Color[] }) => {
       transition={{ duration: 0.4, delay: 0.8 }}
       className={cn("absolute inset-0", "pointer-events-none")}
     >
-      {/* <Scene>
+      <Scene>
         <SimpleBlobs colors={colors} />
-      </Scene> */}
+      </Scene>
     </MotionDiv>
   );
 });
