@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Redis } from "@upstash/redis";
+
 import { compareDesc, getYear, parseISO } from "date-fns";
 
 import { source } from "app/source";
@@ -8,8 +8,7 @@ import Views from "components/views";
 import PageTitle from "components/page-title";
 
 import { cn } from "lib/cn";
-
-const redis = Redis.fromEnv();
+import { redis } from "lib/redis";
 
 export default async function Page() {
   const posts = source.getPages();

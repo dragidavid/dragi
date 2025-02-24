@@ -12,6 +12,9 @@ importers:
 
   .:
     dependencies:
+      '@drgd/aura':
+        specifier: ^0.0.2
+        version: 0.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       '@emotion/is-prop-valid':
         specifier: ^1.3.1
         version: 1.3.1
@@ -20,13 +23,13 @@ importers:
         version: 1.1.0(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
       '@react-three/drei':
         specifier: ^9.115.0
-        version: 9.115.0(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)
+        version: 9.115.0(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)
       '@react-three/fiber':
         specifier: 9.0.0-beta.0
-        version: 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)
+        version: 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)
       '@react-three/postprocessing':
         specifier: ^2.16.3
-        version: 2.16.3(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)
+        version: 2.16.3(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)
       '@tsparticles/engine':
         specifier: ^3.5.0
         version: 3.5.0
@@ -37,14 +40,14 @@ importers:
         specifier: ^3.5.0
         version: 3.5.0
       '@upstash/redis':
-        specifier: ^1.34.3
-        version: 1.34.3
+        specifier: ^1.34.4
+        version: 1.34.4
       '@vercel/analytics':
         specifier: ^1.3.2
         version: 1.3.2(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       '@vercel/functions':
-        specifier: ^1.4.2
-        version: 1.4.2
+        specifier: ^1.5.0
+        version: 1.5.0
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -59,7 +62,7 @@ importers:
         version: 12.0.0-alpha.1(@emotion/is-prop-valid@1.3.1)(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       framer-motion-3d:
         specifier: 12.0.0-alpha.1
-        version: 12.0.0-alpha.1(@emotion/is-prop-valid@1.3.1)(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)
+        version: 12.0.0-alpha.1(@emotion/is-prop-valid@1.3.1)(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)
       fumadocs-core:
         specifier: ^14.1.1
         version: 14.1.1(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
@@ -67,8 +70,8 @@ importers:
         specifier: ^11.1.1
         version: 11.1.1(acorn@8.14.0)(fumadocs-core@14.1.1(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1))(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))
       fumadocs-ui:
-        specifier: ^14.1.1
-        version: 14.1.1(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
+        specifier: ^14.2.0
+        version: 14.2.0(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(tailwindcss@3.4.14)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
       geist:
         specifier: ^1.3.1
         version: 1.3.1(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))
@@ -83,7 +86,7 @@ importers:
         version: 3.1.6
       postprocessing:
         specifier: ^6.36.3
-        version: 6.36.3(three@0.169.0)
+        version: 6.36.3(three@0.170.0)
       react:
         specifier: 19.0.0-rc-69d4b800-20241021
         version: 19.0.0-rc-69d4b800-20241021
@@ -96,6 +99,9 @@ importers:
       react-use-measure:
         specifier: ^2.1.1
         version: 2.1.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
+      sharp:
+        specifier: ^0.33.5
+        version: 0.33.5
       shiki:
         specifier: ^1.22.2
         version: 1.22.2
@@ -103,8 +109,8 @@ importers:
         specifier: ^2.2.5
         version: 2.2.5(react@19.0.0-rc-69d4b800-20241021)
       three:
-        specifier: ^0.169.0
-        version: 0.169.0
+        specifier: ^0.170.0
+        version: 0.170.0
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -119,8 +125,8 @@ importers:
         specifier: ^2.0.13
         version: 2.0.13
       '@types/node':
-        specifier: ^22.8.4
-        version: 22.8.4
+        specifier: ^22.8.5
+        version: 22.8.5
       '@types/react':
         specifier: npm:types-react@19.0.0-rc.1
         version: types-react@19.0.0-rc.1
@@ -218,6 +224,13 @@ packages:
   '@babel/runtime@7.26.0':
     resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
     engines: {node: '>=6.9.0'}
+
+  '@drgd/aura@0.0.2':
+    resolution: {integrity: sha512-Bn6kjjpl+JyFW7hLJMak5Od9r/VKNJv1JlhbPyxLm6S4ZMRp8BFJUGB5Q1gyLx3RtHNV+5sUzLTw9w/bCYAGOQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
+      react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
 
   '@emnapi/runtime@1.3.1':
     resolution: {integrity: sha512-kEBmG8KyqtxJZv+ygbEim+KCGtIq1fC22Ms3S4ziXmYKm8uyoLX0MHONVKwp+9opg390VaKRNt4a7A9NwmpNhw==}
@@ -1316,8 +1329,8 @@ packages:
   '@types/node@16.9.1':
     resolution: {integrity: sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==}
 
-  '@types/node@22.8.4':
-    resolution: {integrity: sha512-SpNNxkftTJOPk0oN+y2bIqurEXHTA2AOZ3EJDDKeJ5VzkvvORSvmQXGQarcOzWV1ac7DCaPBEdMDxBsM+d8jWw==}
+  '@types/node@22.8.5':
+    resolution: {integrity: sha512-5iYk6AMPtsMbkZqCO1UGF9W5L38twq11S2pYWkybGHH2ogPUvXWNlQqJBzuEZWKj/WRH+QTeiv6ySWqJtvIEgA==}
 
   '@types/offscreencanvas@2019.7.3':
     resolution: {integrity: sha512-ieXiYmgSRXUDeOntE1InxjWyvEelZGP63M+cGuquuRLuIKKT1osnkXjxev9B7d1nXSug5vpunx+gNlbVxMlC9A==}
@@ -1403,8 +1416,8 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@upstash/redis@1.34.3':
-    resolution: {integrity: sha512-VT25TyODGy/8ljl7GADnJoMmtmJ1F8d84UXfGonRRF8fWYJz7+2J6GzW+a6ETGtk4OyuRTt7FRSvFG5GvrfSdQ==}
+  '@upstash/redis@1.34.4':
+    resolution: {integrity: sha512-AZx2iD5s1Pu/KCrRA7KVCffu3NSoaYnNY7N9YI7aLAYhcJfsriQKTe+8OxQWJqGqFbrvm17Lyr9HFnDLvqNpfA==}
 
   '@use-gesture/core@10.3.1':
     resolution: {integrity: sha512-WcINiDt8WjqBdUXye25anHiNxPc0VOrlT8F6LLkU6cycrOGUDyY/yyFmsg3k8i5OLvv25llc0QC45GhR/C8llw==}
@@ -1425,8 +1438,8 @@ packages:
       react:
         optional: true
 
-  '@vercel/functions@1.4.2':
-    resolution: {integrity: sha512-WLY3g6NT1SVJDAoAqz5pJfJ8uyOmEejZkatZn0q57Dn6qXNrh/pjbeffolQy9npWRYJPcfwjgqw8tUqolTEyuw==}
+  '@vercel/functions@1.5.0':
+    resolution: {integrity: sha512-ub3ptVeOsx8UPgiTv9+rpQJqmF7VG8QIzguBZo0E0VRAyJliB8bt1ooB9Wrh3333dKzMNS8NMe3iFtf6OPUP3A==}
     engines: {node: '>= 16'}
     peerDependencies:
       '@aws-sdk/credential-provider-web-identity': '*'
@@ -1653,12 +1666,6 @@ packages:
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
-
-  cmdk@1.0.1:
-    resolution: {integrity: sha512-BrrauUJHeF0zGGDdWTXxok9mT1JN7fcgI7OK2wCwPRZFNj3ku/fzF07+OduSfQV8unyoTDbzX+0seoZwIwyBcQ==}
-    peerDependencies:
-      react: ^18 || ^19 || ^19.0.0-rc
-      react-dom: ^18 || ^19 || ^19.0.0-rc
 
   collapse-white-space@2.1.0:
     resolution: {integrity: sha512-loKTxY1zCOuG4j9f6EPnuyyYkf58RnhhWTvRoZEokgB+WbdXehfjFviyOVYkqzEWz1Q5kRiZdBYS5SwxbQYwzw==}
@@ -2128,6 +2135,26 @@ packages:
       react-dom:
         optional: true
 
+  fumadocs-core@14.2.0:
+    resolution: {integrity: sha512-cRahw/8hIox/T1drQpghn1hvN6r2hpy1Z2egU4E1xF2KaB+r16ZN6YpyGkpS1f9lziLgU8Ve2gtOiqIJwl3oCA==}
+    peerDependencies:
+      '@oramacloud/client': 1.x.x
+      algoliasearch: 4.24.0
+      next: 14.x.x || 15.x.x
+      react: '>= 18'
+      react-dom: '>= 18'
+    peerDependenciesMeta:
+      '@oramacloud/client':
+        optional: true
+      algoliasearch:
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   fumadocs-mdx@11.1.1:
     resolution: {integrity: sha512-78Nu/PHfBaRnPWTDTGVVZrG+A7rfK3NU7DX1aCEnZHEfwuY0NmuIOtDIYcoidZxjc88DnoewV+cJoBNn7I/D8Q==}
     hasBin: true
@@ -2135,12 +2162,16 @@ packages:
       fumadocs-core: ^14.0.0
       next: 14.x.x || 15.x.x
 
-  fumadocs-ui@14.1.1:
-    resolution: {integrity: sha512-/l9IhBzEOayoWyvNuobCx73h9uoUYy7FDAT7bCwJr7626qavUEGKBHF2f7LbeXLwnV5eb/LJezGXLu0DQ4dmQg==}
+  fumadocs-ui@14.2.0:
+    resolution: {integrity: sha512-ARz4W/sFie3KfiT7DS2zcPYcMw24ezQ+yFjSjK2vdiJ8G1SJ9ZTaCAkHTiNl+DC2i7FaVz7OmeLfdfDmNUSmZw==}
     peerDependencies:
       next: 14.x.x || 15.x.x
       react: '>= 18'
       react-dom: '>= 18'
+      tailwindcss: ^3.4.14
+    peerDependenciesMeta:
+      tailwindcss:
+        optional: true
 
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
@@ -3519,8 +3550,8 @@ packages:
     peerDependencies:
       three: '>=0.128.0'
 
-  three@0.169.0:
-    resolution: {integrity: sha512-Ed906MA3dR4TS5riErd4QBsRGPcx+HBDX2O5yYE5GqJeFQTPU+M56Va/f/Oph9X7uZo3W3o4l2ZhBZ6f6qUv0w==}
+  three@0.170.0:
+    resolution: {integrity: sha512-FQK+LEpYc0fBD+J8g6oSEyyNzjp+Q7Ks1C568WWaoMRLW+TkNNWmenWeGgJjV105Gd+p/2ql1ZcjYvNiPZBhuQ==}
 
   timm@1.7.1:
     resolution: {integrity: sha512-IjZc9KIotudix8bMaBW6QvMuq64BrJWFs1+4V0lXwWGQZwH+LnX87doAYhem4caOEusRP9/g6jVDQmZ8XOk1nw==}
@@ -3876,6 +3907,12 @@ snapshots:
   '@babel/runtime@7.26.0':
     dependencies:
       regenerator-runtime: 0.14.1
+
+  '@drgd/aura@0.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)':
+    dependencies:
+      react: 19.0.0-rc-69d4b800-20241021
+      react-dom: 19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021)
+      sharp: 0.33.5
 
   '@emnapi/runtime@1.3.1':
     dependencies:
@@ -4244,10 +4281,10 @@ snapshots:
 
   '@mediapipe/tasks-vision@0.10.8': {}
 
-  '@monogrid/gainmap-js@3.0.6(three@0.169.0)':
+  '@monogrid/gainmap-js@3.0.6(three@0.170.0)':
     dependencies:
       promise-worker-transferable: 1.0.4
-      three: 0.169.0
+      three: 0.170.0
 
   '@next/env@15.0.2': {}
 
@@ -4667,42 +4704,42 @@ snapshots:
       '@react-spring/types': 9.6.1
       react: 19.0.0-rc-69d4b800-20241021
 
-  '@react-spring/three@9.6.1(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)':
+  '@react-spring/three@9.6.1(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)':
     dependencies:
       '@react-spring/animated': 9.6.1(react@19.0.0-rc-69d4b800-20241021)
       '@react-spring/core': 9.6.1(react@19.0.0-rc-69d4b800-20241021)
       '@react-spring/shared': 9.6.1(react@19.0.0-rc-69d4b800-20241021)
       '@react-spring/types': 9.6.1
-      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)
+      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)
       react: 19.0.0-rc-69d4b800-20241021
-      three: 0.169.0
+      three: 0.170.0
 
   '@react-spring/types@9.6.1': {}
 
-  '@react-three/drei@9.115.0(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)':
+  '@react-three/drei@9.115.0(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@mediapipe/tasks-vision': 0.10.8
-      '@monogrid/gainmap-js': 3.0.6(three@0.169.0)
-      '@react-spring/three': 9.6.1(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)
-      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)
+      '@monogrid/gainmap-js': 3.0.6(three@0.170.0)
+      '@react-spring/three': 9.6.1(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)
+      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)
       '@use-gesture/react': 10.3.1(react@19.0.0-rc-69d4b800-20241021)
-      camera-controls: 2.9.0(three@0.169.0)
+      camera-controls: 2.9.0(three@0.170.0)
       cross-env: 7.0.3
       detect-gpu: 5.0.54
       glsl-noise: 0.0.0
       hls.js: 1.5.17
-      maath: 0.10.8(@types/three@0.169.0)(three@0.169.0)
-      meshline: 3.3.1(three@0.169.0)
+      maath: 0.10.8(@types/three@0.169.0)(three@0.170.0)
+      meshline: 3.3.1(three@0.170.0)
       react: 19.0.0-rc-69d4b800-20241021
       react-composer: 5.0.3(react@19.0.0-rc-69d4b800-20241021)
       stats-gl: 2.2.8
       stats.js: 0.17.0
       suspend-react: 0.1.3(react@19.0.0-rc-69d4b800-20241021)
-      three: 0.169.0
-      three-mesh-bvh: 0.7.8(three@0.169.0)
-      three-stdlib: 2.34.0(three@0.169.0)
-      troika-three-text: 0.49.1(three@0.169.0)
+      three: 0.170.0
+      three-mesh-bvh: 0.7.8(three@0.170.0)
+      three-stdlib: 2.34.0(three@0.170.0)
+      troika-three-text: 0.49.1(three@0.170.0)
       tunnel-rat: 0.1.2(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
       utility-types: 3.11.0
       uuid: 9.0.1
@@ -4714,7 +4751,7 @@ snapshots:
       - '@types/three'
       - immer
 
-  '@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)':
+  '@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)':
     dependencies:
       '@babel/runtime': 7.26.0
       '@types/react-reconciler': 0.28.8
@@ -4726,7 +4763,7 @@ snapshots:
       react-use-measure: 2.1.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       scheduler: 0.25.0-rc-38e3b23483-20240529
       suspend-react: 0.1.3(react@19.0.0-rc-69d4b800-20241021)
-      three: 0.169.0
+      three: 0.170.0
       zustand: 4.5.5(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
     optionalDependencies:
       react-dom: 19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021)
@@ -4734,16 +4771,16 @@ snapshots:
       - '@types/react'
       - immer
 
-  '@react-three/postprocessing@2.16.3(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)':
+  '@react-three/postprocessing@2.16.3(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(@types/three@0.169.0)(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)':
     dependencies:
-      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)
+      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)
       buffer: 6.0.3
-      maath: 0.6.0(@types/three@0.169.0)(three@0.169.0)
-      n8ao: 1.9.2(postprocessing@6.36.3(three@0.169.0))(three@0.169.0)
-      postprocessing: 6.36.3(three@0.169.0)
+      maath: 0.6.0(@types/three@0.169.0)(three@0.170.0)
+      n8ao: 1.9.2(postprocessing@6.36.3(three@0.170.0))(three@0.170.0)
+      postprocessing: 6.36.3(three@0.170.0)
       react: 19.0.0-rc-69d4b800-20241021
-      three: 0.169.0
-      three-stdlib: 2.34.0(three@0.169.0)
+      three: 0.170.0
+      three-stdlib: 2.34.0(three@0.170.0)
     transitivePeerDependencies:
       - '@types/three'
 
@@ -5010,7 +5047,7 @@ snapshots:
 
   '@types/node@16.9.1': {}
 
-  '@types/node@22.8.4':
+  '@types/node@22.8.5':
     dependencies:
       undici-types: 6.19.8
 
@@ -5128,7 +5165,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@upstash/redis@1.34.3':
+  '@upstash/redis@1.34.4':
     dependencies:
       crypto-js: 4.2.0
 
@@ -5146,7 +5183,7 @@ snapshots:
       next: 15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       react: 19.0.0-rc-69d4b800-20241021
 
-  '@vercel/functions@1.4.2': {}
+  '@vercel/functions@1.5.0': {}
 
   '@webgpu/types@0.1.49': {}
 
@@ -5347,9 +5384,9 @@ snapshots:
 
   camelcase-css@2.0.1: {}
 
-  camera-controls@2.9.0(three@0.169.0):
+  camera-controls@2.9.0(three@0.170.0):
     dependencies:
-      three: 0.169.0
+      three: 0.170.0
 
   caniuse-lite@1.0.30001675: {}
 
@@ -5400,18 +5437,6 @@ snapshots:
 
   clsx@2.1.1: {}
 
-  cmdk@1.0.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1):
-    dependencies:
-      '@radix-ui/react-dialog': 1.1.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
-      '@radix-ui/react-id': 1.1.0(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
-      '@radix-ui/react-primitive': 2.0.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
-      react: 19.0.0-rc-69d4b800-20241021
-      react-dom: 19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021)
-      use-sync-external-store: 1.2.2(react@19.0.0-rc-69d4b800-20241021)
-    transitivePeerDependencies:
-      - '@types/react'
-      - '@types/react-dom'
-
   collapse-white-space@2.1.0: {}
 
   color-convert@2.0.1:
@@ -5424,13 +5449,11 @@ snapshots:
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
-    optional: true
 
   color@4.2.3:
     dependencies:
       color-convert: 2.0.1
       color-string: 1.9.1
-    optional: true
 
   comma-separated-tokens@2.0.3: {}
 
@@ -5512,8 +5535,7 @@ snapshots:
     dependencies:
       webgl-constants: 1.1.1
 
-  detect-libc@2.0.3:
-    optional: true
+  detect-libc@2.0.3: {}
 
   detect-node-es@1.1.0: {}
 
@@ -6000,14 +6022,14 @@ snapshots:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
 
-  framer-motion-3d@12.0.0-alpha.1(@emotion/is-prop-valid@1.3.1)(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0):
+  framer-motion-3d@12.0.0-alpha.1(@emotion/is-prop-valid@1.3.1)(@react-three/fiber@9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0):
     dependencies:
-      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.169.0)(types-react@19.0.0-rc.1)
+      '@react-three/fiber': 9.0.0-beta.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(three@0.170.0)(types-react@19.0.0-rc.1)
       framer-motion: 12.0.0-alpha.1(@emotion/is-prop-valid@1.3.1)(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       react: 19.0.0-rc-69d4b800-20241021
       react-dom: 19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021)
       react-merge-refs: 2.1.1
-      three: 0.169.0
+      three: 0.170.0
     transitivePeerDependencies:
       - '@emotion/is-prop-valid'
 
@@ -6023,6 +6045,31 @@ snapshots:
     optional: true
 
   fumadocs-core@14.1.1(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1):
+    dependencies:
+      '@formatjs/intl-localematcher': 0.5.6
+      '@orama/orama': 3.0.1
+      '@shikijs/rehype': 1.22.2
+      github-slugger: 2.0.0
+      hast-util-to-estree: 3.1.0
+      hast-util-to-jsx-runtime: 2.3.2
+      image-size: 1.1.1
+      negotiator: 1.0.0
+      react-remove-scroll: 2.6.0(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
+      remark: 15.0.1
+      remark-gfm: 4.0.0
+      scroll-into-view-if-needed: 3.1.0
+      shiki: 1.22.2
+      unist-util-visit: 5.0.0
+    optionalDependencies:
+      algoliasearch: 4.24.0
+      next: 15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
+      react: 19.0.0-rc-69d4b800-20241021
+      react-dom: 19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+
+  fumadocs-core@14.2.0(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.6
       '@orama/orama': 3.0.1
@@ -6064,7 +6111,7 @@ snapshots:
       - acorn
       - supports-color
 
-  fumadocs-ui@14.1.1(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1):
+  fumadocs-ui@14.2.0(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(tailwindcss@3.4.14)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1):
     dependencies:
       '@radix-ui/react-accordion': 1.2.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
       '@radix-ui/react-collapsible': 1.1.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
@@ -6077,8 +6124,7 @@ snapshots:
       '@radix-ui/react-tabs': 1.1.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
       '@tailwindcss/typography': 0.5.15(tailwindcss@3.4.14)
       class-variance-authority: 0.7.0
-      cmdk: 1.0.1(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)
-      fumadocs-core: 14.1.1(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
+      fumadocs-core: 14.2.0(algoliasearch@4.24.0)(next@15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021))(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)(types-react@19.0.0-rc.1)
       next: 15.0.2(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       next-themes: 0.3.0(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       react: 19.0.0-rc-69d4b800-20241021
@@ -6086,14 +6132,13 @@ snapshots:
       react-medium-image-zoom: 5.2.10(react-dom@19.0.0-rc-69d4b800-20241021(react@19.0.0-rc-69d4b800-20241021))(react@19.0.0-rc-69d4b800-20241021)
       tailwind-merge: 2.5.4
     optionalDependencies:
-      '@algolia/client-search': 4.24.0
-      algoliasearch: 4.24.0
       tailwindcss: 3.4.14
     transitivePeerDependencies:
+      - '@oramacloud/client'
       - '@types/react'
       - '@types/react-dom'
+      - algoliasearch
       - supports-color
-      - ts-node
 
   function-bind@1.1.2: {}
 
@@ -6319,8 +6364,7 @@ snapshots:
       call-bind: 1.0.7
       get-intrinsic: 1.2.4
 
-  is-arrayish@0.3.2:
-    optional: true
+  is-arrayish@0.3.2: {}
 
   is-async-function@2.0.0:
     dependencies:
@@ -6544,15 +6588,15 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
-  maath@0.10.8(@types/three@0.169.0)(three@0.169.0):
+  maath@0.10.8(@types/three@0.169.0)(three@0.170.0):
     dependencies:
       '@types/three': 0.169.0
-      three: 0.169.0
+      three: 0.170.0
 
-  maath@0.6.0(@types/three@0.169.0)(three@0.169.0):
+  maath@0.6.0(@types/three@0.169.0)(three@0.170.0):
     dependencies:
       '@types/three': 0.169.0
-      three: 0.169.0
+      three: 0.170.0
 
   markdown-extensions@2.0.0: {}
 
@@ -6723,9 +6767,9 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  meshline@3.3.1(three@0.169.0):
+  meshline@3.3.1(three@0.170.0):
     dependencies:
-      three: 0.169.0
+      three: 0.170.0
 
   meshoptimizer@0.18.1: {}
 
@@ -7030,10 +7074,10 @@ snapshots:
       object-assign: 4.1.1
       thenify-all: 1.6.0
 
-  n8ao@1.9.2(postprocessing@6.36.3(three@0.169.0))(three@0.169.0):
+  n8ao@1.9.2(postprocessing@6.36.3(three@0.170.0))(three@0.170.0):
     dependencies:
-      postprocessing: 6.36.3(three@0.169.0)
-      three: 0.169.0
+      postprocessing: 6.36.3(three@0.170.0)
+      three: 0.170.0
 
   nanoid@3.3.7: {}
 
@@ -7263,9 +7307,9 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  postprocessing@6.36.3(three@0.169.0):
+  postprocessing@6.36.3(three@0.170.0):
     dependencies:
-      three: 0.169.0
+      three: 0.170.0
 
   potpack@1.0.2: {}
 
@@ -7606,7 +7650,6 @@ snapshots:
       '@img/sharp-wasm32': 0.33.5
       '@img/sharp-win32-ia32': 0.33.5
       '@img/sharp-win32-x64': 0.33.5
-    optional: true
 
   shebang-command@2.0.0:
     dependencies:
@@ -7635,7 +7678,6 @@ snapshots:
   simple-swizzle@0.2.2:
     dependencies:
       is-arrayish: 0.3.2
-    optional: true
 
   source-map-js@1.2.1: {}
 
@@ -7822,11 +7864,11 @@ snapshots:
     dependencies:
       any-promise: 1.3.0
 
-  three-mesh-bvh@0.7.8(three@0.169.0):
+  three-mesh-bvh@0.7.8(three@0.170.0):
     dependencies:
-      three: 0.169.0
+      three: 0.170.0
 
-  three-stdlib@2.34.0(three@0.169.0):
+  three-stdlib@2.34.0(three@0.170.0):
     dependencies:
       '@types/draco3d': 1.4.10
       '@types/offscreencanvas': 2019.7.3
@@ -7834,9 +7876,9 @@ snapshots:
       draco3d: 1.5.7
       fflate: 0.6.10
       potpack: 1.0.2
-      three: 0.169.0
+      three: 0.170.0
 
-  three@0.169.0: {}
+  three@0.170.0: {}
 
   timm@1.7.1: {}
 
@@ -7853,17 +7895,17 @@ snapshots:
 
   trim-lines@3.0.1: {}
 
-  troika-three-text@0.49.1(three@0.169.0):
+  troika-three-text@0.49.1(three@0.170.0):
     dependencies:
       bidi-js: 1.0.3
-      three: 0.169.0
-      troika-three-utils: 0.49.0(three@0.169.0)
+      three: 0.170.0
+      troika-three-utils: 0.49.0(three@0.170.0)
       troika-worker-utils: 0.49.0
       webgl-sdf-generator: 1.1.1
 
-  troika-three-utils@0.49.0(three@0.169.0):
+  troika-three-utils@0.49.0(three@0.170.0):
     dependencies:
-      three: 0.169.0
+      three: 0.170.0
 
   troika-worker-utils@0.49.0: {}
 

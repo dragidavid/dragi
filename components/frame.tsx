@@ -44,9 +44,7 @@ export default function Frame() {
         <Location />
       </Item>
 
-      <Item position="br">
-        <Location />
-      </Item>
+      <Item position="br">something else comes here</Item>
     </div>
   );
 }

@@ -1,8 +1,5 @@
-import { Redis } from "@upstash/redis";
-
 import { cn } from "lib/cn";
-
-const redis = Redis.fromEnv();
+import { redis } from "lib/redis";
 
 export default async function Views({
   slug,
