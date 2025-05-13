@@ -4,8 +4,6 @@ import Module from "@/components/module";
 
 import { About, Stack, Projects, Craft, Spotify } from "@/components/previews";
 
-import { getAura } from "@drgd/aura/server";
-
 import { cn } from "@/lib/cn";
 
 import type { Side, LineExtension } from "@/lib/types";
@@ -161,40 +159,36 @@ const modules = [
 const fadeClasses = {
   top: cn(
     "left-0 top-0 h-[9vh] w-screen",
-    "bg-gradient-to-t from-transparent to-background",
+    "bg-linear-to-t from-transparent to-background",
     "md:h-1/6",
   ),
   left: cn(
     "top-0 left-0 h-screen w-[7vw] invisible",
-    "bg-gradient-to-l from-transparent to-background",
+    "bg-linear-to-l from-transparent to-background",
     "xs:visible",
     "sm:w-1/6",
   ),
   bottom: cn(
     "bottom-0 left-0 h-[11vh] w-screen",
-    "bg-gradient-to-b from-transparent to-background",
+    "bg-linear-to-b from-transparent to-background",
     "md:h-1/6",
   ),
   right: cn(
     "top-0 right-0 h-screen w-[7vw] invisible",
-    "bg-gradient-to-r from-transparent to-background",
+    "bg-linear-to-r from-transparent to-background",
     "xs:visible",
     "sm:w-1/6",
   ),
 };
 
 export default async function Page() {
-  const colors = await getAura("https://picsum.photos/seed/2/600");
-
-  console.log(colors);
-
   return (
     <div className={cn("size-full px-3", "md:px-0")}>
       <div
         className={cn(
           "relative flex min-h-screen w-full flex-col items-center justify-start py-12",
           "xs:justify-center",
-          "md:grid md:h-[--container-size] md:min-h-0 md:grid-cols-3 md:grid-rows-3 md:py-0",
+          "md:grid md:h-(--container-size) md:min-h-0 md:grid-cols-3 md:grid-rows-3 md:py-0",
         )}
       >
         <Fade

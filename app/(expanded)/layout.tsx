@@ -10,24 +10,24 @@ import { cn } from "@/lib/cn";
 const fadeClasses = {
   top: cn(
     "left-0 top-0 h-[7vh] w-screen invisible",
-    "bg-gradient-to-t from-transparent to-background",
+    "bg-linear-to-t from-transparent to-background",
     "xs:visible",
     "md:h-[1/6]",
   ),
   left: cn(
     "top-0 left-0 h-screen w-[7vw] invisible",
-    "bg-gradient-to-l from-transparent to-background",
+    "bg-linear-to-l from-transparent to-background",
     "xs:visible",
     "sm:w-1/6",
   ),
   bottom: cn(
     "bottom-0 left-0 h-[11vh] w-screen",
-    "bg-gradient-to-b from-transparent to-background",
+    "bg-linear-to-b from-transparent to-background",
     "md:h-1/6",
   ),
   right: cn(
     "top-0 right-0 h-screen w-[7vw] invisible",
-    "bg-gradient-to-r from-transparent to-background",
+    "bg-linear-to-r from-transparent to-background",
     "xs:visible",
     "sm:w-1/6",
   ),
@@ -37,7 +37,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "size-full pl-[--expanded-side-width]",
+        "size-full pl-(--expanded-side-width)",
         "xs:min-h-screen xs:px-3",
         "md:px-0",
       )}
@@ -61,8 +61,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <Module
           id="status"
           className={cn(
-            "fixed bottom-0 left-0 top-0 !w-[--expanded-side-width]",
-            "xs:relative xs:h-[7vh] xs:!w-auto",
+            "fixed bottom-0 left-0 top-0 w-(--expanded-side-width)!",
+            "xs:relative xs:h-[7vh] xs:w-auto!",
             "md:h-[calc(calc(100vh-var(--container-size))/2)]",
           )}
         >
@@ -108,7 +108,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             bl: "invisible xs:visible",
             br: "invisible xs:visible",
           }}
-          className={cn("xs:h-[80vh]", "md:h-[--container-size]")}
+          className={cn("xs:h-[80vh]", "md:h-(--container-size)")}
         >
           <div
             className={cn("h-full flex-1 overflow-auto", "md:overflow-visible")}

@@ -103,11 +103,11 @@ export default function Navigation() {
       style={{ scale, transformOrigin: "bottom center" }}
       className={cn(
         "relative flex h-auto w-full overflow-hidden rounded-2xl text-2xs",
-        "bg-gradient-to-b from-extreme to-inverse/[0.04] backdrop-blur-md",
+        "bg-linear-to-b from-extreme to-inverse/[0.04] backdrop-blur-md",
         "shadow-[0px_0px_0px_1px,0px_1px_1px_-0.5px,0px_3px_3px_-1.5px,0px_6px_6px_-3px,0px_12px_12px_-6px,0px_24px_24px_-12px] shadow-inverse/[0.04]",
         "dark:from-inverse/[0.01] dark:to-extreme/60",
         "dark:shadow-[inset_0px_1px_0px_0px_hsla(var(--inverse)/0.08),inset_0px_0px_1px_0px_hsla(var(--inverse)/0.1),0_0_1px_hsla(var(--extreme)/0.3),0_2px_2px_hsla(var(--extreme)/0.44),0_4px_4px_hsla(var(--extreme)/0.3),0_8px_8px_hsla(var(--extreme)/0.38)]",
-        "xs:h-full xs:overflow-visible xs:rounded-none xs:bg-transparent xs:!shadow-none xs:backdrop-blur-none xs:![background-image:none]",
+        "xs:h-full xs:overflow-visible xs:rounded-none xs:bg-transparent xs:shadow-none! xs:backdrop-blur-none xs:bg-none!",
         "md:text-xs",
       )}
     >
@@ -177,7 +177,7 @@ export default function Navigation() {
                 className={cn(
                   "absolute inset-0 z-10 hidden",
                   "pointer-events-none",
-                  "bg-gradient-to-t from-transparent to-background",
+                  "bg-linear-to-t from-transparent to-background",
                   "xs:block",
                 )}
                 style={{
@@ -220,7 +220,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 z-20 size-full",
                     "pointer-events-none",
-                    "bg-gradient-to-b from-inverse/5 to-transparent",
+                    "bg-linear-to-b from-inverse/5 to-transparent",
                   )}
                 />
               )}

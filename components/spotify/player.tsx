@@ -282,7 +282,7 @@ const Vignette = memo(() => {
           className={cn(
             "absolute bottom-0 left-0 z-10 w-full",
             "pointer-events-none",
-            "bg-gradient-to-b from-transparent backdrop-blur-sm",
+            "bg-linear-to-b from-transparent backdrop-blur-sm",
             height === 30 ? "to-background/70" : "to-background",
             "md:hidden",
           )}

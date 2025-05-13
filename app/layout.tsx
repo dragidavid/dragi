@@ -7,7 +7,7 @@ import Frame from "@/components/frame";
 
 import { cn } from "@/lib/cn";
 
-import "@/globals.css";
+import "@/app/globals.css";
 
 export default function RootLayout({
   children,
@@ -36,7 +36,7 @@ export default function RootLayout({
             className={cn(
               "isolate mx-auto w-screen max-w-md overflow-hidden",
               "xs:flex xs:min-h-screen xs:items-center xs:overflow-y-clip xs:overflow-x-visible",
-              "md:w-[--container-size] md:max-w-none",
+              "md:w-(--container-size) md:max-w-none",
             )}
           >
             {children}

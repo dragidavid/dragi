@@ -85,8 +85,8 @@ export default async function Preview() {
                 "hover:bg-primary hover:text-background",
                 "focus:bg-primary focus:text-background",
                 "xs:transition-[opacity,filter] xs:duration-200 xs:ease-in-out-quad",
-                "xs:hover:bg-inherit xs:hover:text-inherit xs:hover:!opacity-100 xs:hover:!blur-none",
-                "xs:focus:bg-inherit xs:focus:text-inherit xs:focus:!opacity-100 xs:focus:!blur-none",
+                "xs:hover:bg-inherit xs:hover:text-inherit xs:hover:opacity-100! xs:hover:blur-none!",
+                "xs:focus:bg-inherit xs:focus:text-inherit xs:focus:opacity-100! xs:focus:blur-none!",
                 "xs:group-hover:opacity-50 xs:group-hover:blur-sm",
                 "xs:group-focus-within:opacity-50 xs:group-focus-within:blur-sm",
               )}

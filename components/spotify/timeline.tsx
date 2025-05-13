@@ -167,7 +167,7 @@ function NowPlayingIndicator() {
       <span
         className={cn(
           "absolute -bottom-8 top-3/4 z-20 w-px rounded-full",
-          "bg-gradient-to-b from-spotify to-transparent backdrop-blur-sm",
+          "bg-linear-to-b from-spotify to-transparent backdrop-blur-sm",
           "-translate-x-1/2",
         )}
       />
