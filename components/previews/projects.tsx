@@ -1,6 +1,6 @@
-import Heading from "components/heading";
+import Heading from "@/components/heading";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Preview() {
   return (

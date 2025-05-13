@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { getLocation } from "lib/actions";
+import { getLocation } from "@/lib/actions";
 
 export default function Location() {
   const [location, setLocation] = useState<string | null>(null);

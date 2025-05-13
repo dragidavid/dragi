@@ -7,7 +7,7 @@ import Frame from "@/components/frame";
 
 import { cn } from "@/lib/cn";
 
-import "styles/globals.css";
+import "@/globals.css";
 
 export default function RootLayout({
   children,

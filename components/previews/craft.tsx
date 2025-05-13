@@ -1,14 +1,14 @@
 import { compareDesc } from "date-fns";
 
-import { source } from "app/source";
+import { source } from "@/lib/source";
 
 import {
   MotionDiv,
   MotionPath,
   MotionLink,
-} from "components/primitives/motion";
+} from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default async function Preview() {
   const posts = source.getPages();

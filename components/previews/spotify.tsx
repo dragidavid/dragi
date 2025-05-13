@@ -1,6 +1,6 @@
-import Player from "components/spotify/player";
+import Player from "@/components/spotify/player";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Preview() {
   return (

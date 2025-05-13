@@ -5,21 +5,21 @@ import dynamic from "next/dynamic";
 import useSWR from "swr";
 import Image from "next/image";
 
-import Artists from "components/spotify/artists";
-import Marquee from "components/marquee";
-import StyledLink from "components/styled-link";
+import Artists from "@/components/spotify/artists";
+import Marquee from "@/components/marquee";
+import StyledLink from "@/components/styled-link";
 
-import { logos } from "components/primitives/logo";
-import { MotionDiv } from "components/primitives/motion";
+import { logos } from "@/components/primitives/logo";
+import { MotionDiv } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
-import { colors } from "lib/colors";
-import { fetcher } from "lib/fetcher";
+import { cn } from "@/lib/cn";
+import { colors } from "@/lib/colors";
+import { fetcher } from "@/lib/fetcher";
 
-import type { Album, Artist, Track, Color, Player } from "lib/types";
+import type { Album, Artist, Track, Color, Player } from "@/lib/types";
 
-const Scene = dynamic(() => import("components/three/scene"), { ssr: false });
-const SimpleBlobs = dynamic(() => import("components/three/simple-blobs"), {
+const Scene = dynamic(() => import("@/components/three/scene"), { ssr: false });
+const SimpleBlobs = dynamic(() => import("@/components/three/simple-blobs"), {
   ssr: false,
 });
 

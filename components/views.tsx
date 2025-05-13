@@ -1,5 +1,5 @@
-import { cn } from "lib/cn";
-import { redis } from "lib/redis";
+import { cn } from "@/lib/cn";
+import { redis } from "@/lib/redis";
 
 export default async function Views({
   slug,

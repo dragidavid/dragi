@@ -1,14 +1,14 @@
-import Fade from "components/fade";
-import Line from "components/line";
-import Module from "components/module";
+import Fade from "@/components/fade";
+import Line from "@/components/line";
+import Module from "@/components/module";
 
-import { About, Stack, Projects, Craft, Spotify } from "components/previews";
+import { About, Stack, Projects, Craft, Spotify } from "@/components/previews";
 
 import { getAura } from "@drgd/aura/server";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
-import type { Side, LineExtension } from "lib/types";
+import type { Side, LineExtension } from "@/lib/types";
 
 const commonBaseLineClasses: Record<Side, string> = {
   top: "hidden h-px w-full -translate-y-1/2 bg-muted md:block",

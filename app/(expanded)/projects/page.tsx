@@ -1,6 +1,6 @@
-import PageTitle from "components/page-title";
+import PageTitle from "@/components/page-title";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Page() {
   return (

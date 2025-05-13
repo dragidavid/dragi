@@ -6,17 +6,17 @@ import { isEqual } from "lodash";
 import { differenceInDays } from "date-fns";
 import { AnimatePresence, useInView } from "framer-motion";
 
-import Artists from "components/spotify/artists";
+import Artists from "@/components/spotify/artists";
 
-import StyledLink from "components/styled-link";
-import { CrossShape } from "components/cross";
+import StyledLink from "@/components/styled-link";
+import { CrossShape } from "@/components/cross";
 
-import { MotionDiv, MotionLi } from "components/primitives/motion";
+import { MotionDiv, MotionLi } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
-import { fetcher } from "lib/fetcher";
+import { cn } from "@/lib/cn";
+import { fetcher } from "@/lib/fetcher";
 
-import type { Track, TimelineItem, Player } from "lib/types";
+import type { Track, TimelineItem, Player } from "@/lib/types";
 
 export default function Timeline() {
   const [timelineItems, setTimelineItems] = useState<Record<

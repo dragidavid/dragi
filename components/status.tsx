@@ -1,10 +1,10 @@
-import Clock from "components/clock";
-import Location from "components/location";
-import ThemeToggle from "components/theme-toggle";
+import Clock from "@/components/clock";
+import Location from "@/components/location";
+import ThemeToggle from "@/components/theme-toggle";
 
-import { MotionDiv } from "components/primitives/motion";
+import { MotionDiv } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Status() {
   return (

@@ -1,11 +1,11 @@
-import Fade from "components/fade";
-import Line from "components/line";
-import Stars from "components/stars";
-import Module from "components/module";
-import Status from "components/status";
-import Navigation from "components/navigation";
+import Fade from "@/components/fade";
+import Line from "@/components/line";
+import Stars from "@/components/stars";
+import Module from "@/components/module";
+import Status from "@/components/status";
+import Navigation from "@/components/navigation";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 const fadeClasses = {
   top: cn(

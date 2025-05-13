@@ -1,6 +1,6 @@
 // TODO - decide whether I need this or not...
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Heading({
   children,

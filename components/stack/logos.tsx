@@ -3,12 +3,12 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
 
-import { logos } from "components/primitives/logo";
-import { MotionDiv } from "components/primitives/motion";
+import { logos } from "@/components/primitives/logo";
+import { MotionDiv } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
-import { useInterval } from "lib/hooks/use-interval";
+import { useInterval } from "@/lib/hooks/use-interval";
 
 const ROTATION_INTERVAL = 4000;
 const LOGO_GROUPS = [0, 3, 6];

@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import Stack from "components/stack";
+import Stack from "@/components/stack";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Preview() {
   return (

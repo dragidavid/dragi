@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Line from "components/line";
-import Cross from "components/cross";
-import Expand from "components/expand";
+import Line from "@/components/line";
+import Cross from "@/components/cross";
+import Expand from "@/components/expand";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
-import type { Side, Corner, LineExtension } from "lib/types";
+import type { Side, Corner, LineExtension } from "@/lib/types";
 
 export default function Module({
   children,

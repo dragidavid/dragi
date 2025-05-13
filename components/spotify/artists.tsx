@@ -1,6 +1,6 @@
-import StyledLink from "components/styled-link";
+import StyledLink from "@/components/styled-link";
 
-import type { Artist } from "lib/types";
+import type { Artist } from "@/lib/types";
 
 export default function Artists({ artists }: { artists: Artist[] }) {
   return artists.map(({ id, artistUrl, name }, index) => (

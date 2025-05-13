@@ -3,10 +3,10 @@ import { unstable_cache } from "next/cache";
 import { getTweet as _getTweet } from "react-tweet/api";
 import { EmbeddedTweet, TweetNotFound } from "react-tweet";
 
-import { Divider } from "components/primitives/divider";
-import { Skeleton } from "components/primitives/skeleton";
+import { Divider } from "@/components/primitives/divider";
+import { Skeleton } from "@/components/primitives/skeleton";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 import "styles/tweet.css";
 

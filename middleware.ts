@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { geolocation } from "@vercel/functions";
 
-import { redis } from "lib/redis";
-import { getCountry } from "lib/country";
+import { redis } from "@/lib/redis";
+import { getCountry } from "@/lib/country";
 
 export const config = {
   matcher: "/",

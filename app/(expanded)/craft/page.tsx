@@ -2,13 +2,13 @@ import Link from "next/link";
 
 import { compareDesc, getYear, parseISO } from "date-fns";
 
-import { source } from "app/source";
+import { source } from "@/lib/source";
 
-import Views from "components/views";
-import PageTitle from "components/page-title";
+import Views from "@/components/views";
+import PageTitle from "@/components/page-title";
 
-import { cn } from "lib/cn";
-import { redis } from "lib/redis";
+import { cn } from "@/lib/cn";
+import { redis } from "@/lib/redis";
 
 export default async function Page() {
   const posts = source.getPages();

@@ -1,7 +1,7 @@
-import Socials from "components/socials";
-import StyledLink from "components/styled-link";
+import Socials from "@/components/socials";
+import StyledLink from "@/components/styled-link";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Preview() {
   return (

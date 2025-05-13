@@ -3,7 +3,7 @@ import { MathUtils, type InstancedMesh } from "three";
 import { useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Instances, Instance } from "@react-three/drei";
 
-import type { Color } from "lib/types";
+import type { Color } from "@/lib/types";
 
 export default function SimpleBlobs({ colors = [] }: { colors: Color[] }) {
   if (colors.length === 0) {

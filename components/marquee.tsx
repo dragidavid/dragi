@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useAnimation } from "framer-motion";
 
-import { MotionDiv } from "components/primitives/motion";
+import { MotionDiv } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Marquee({
   children,

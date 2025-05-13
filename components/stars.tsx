@@ -6,9 +6,9 @@ import { useAnimation } from "framer-motion";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-import { MotionDiv } from "components/primitives/motion";
+import { MotionDiv } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 import type { Container } from "@tsparticles/engine";
 

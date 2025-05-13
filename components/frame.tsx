@@ -2,11 +2,11 @@
 
 import { usePathname } from "next/navigation";
 
-import Clock from "components/clock";
-import Location from "components/location";
-import ThemeToggle from "components/theme-toggle";
+import Clock from "@/components/clock";
+import Location from "@/components/location";
+import ThemeToggle from "@/components/theme-toggle";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 type ItemProps = {
   position: "tl" | "tr" | "bl" | "br";

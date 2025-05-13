@@ -8,12 +8,12 @@ import {
 } from "fumadocs-ui/components/image-zoom";
 import { Pre, CodeBlock } from "fumadocs-ui/components/codeblock";
 
-import { source } from "app/source";
+import { source } from "@/lib/source";
 
-import Views from "components/views";
+import Views from "@/components/views";
 
-import { cn } from "lib/cn";
-import { formatDate } from "lib/utils";
+import { cn } from "@/lib/cn";
+import { formatDate } from "@/lib/utils";
 
 import type { Metadata } from "next";
 

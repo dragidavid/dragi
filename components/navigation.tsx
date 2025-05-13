@@ -5,12 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, useScroll, useSpring } from "framer-motion";
 
-import Line from "components/line";
-import Cross from "components/cross";
+import Line from "@/components/line";
+import Cross from "@/components/cross";
 
-import { MotionNav, MotionSpan } from "components/primitives/motion";
+import { MotionNav, MotionSpan } from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 const links = [
   {

@@ -3,9 +3,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTheme } from "next-themes";
 
-import { Button } from "components/primitives/button";
+import { Button } from "@/components/primitives/button";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);

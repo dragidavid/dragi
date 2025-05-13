@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import Logos from "components/stack/logos";
+import Logos from "@/components/stack/logos";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default async function Stack({
   className,

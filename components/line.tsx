@@ -1,7 +1,7 @@
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
-import type { Corner } from "lib/types";
-import { MotionDiv } from "./primitives/motion";
+import type { Corner } from "@/lib/types";
+import { MotionDiv } from "@/components/primitives/motion";
 
 const cornerToOrigin: Record<Corner, string> = {
   tl: "top left",

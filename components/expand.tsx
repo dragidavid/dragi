@@ -7,9 +7,9 @@ import {
   MotionPath,
   MotionSvg,
   MotionLine,
-} from "components/primitives/motion";
+} from "@/components/primitives/motion";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 export default function Expand({ href }: { href: string }) {
   const [rect, setRect] = useState<DOMRect | null>(null);
