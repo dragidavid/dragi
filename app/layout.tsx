@@ -1,11 +1,11 @@
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 
-import Providers from "contexts/Providers";
+import Providers from "@/contexts/Providers";
 
-import Frame from "components/frame";
+import Frame from "@/components/frame";
 
-import { cn } from "lib/cn";
+import { cn } from "@/lib/cn";
 
 import "styles/globals.css";
 

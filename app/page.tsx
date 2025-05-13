@@ -4,6 +4,8 @@ import Module from "components/module";
 
 import { About, Stack, Projects, Craft, Spotify } from "components/previews";
 
+import { getAura } from "@drgd/aura/server";
+
 import { cn } from "lib/cn";
 
 import type { Side, LineExtension } from "lib/types";
@@ -181,7 +183,11 @@ const fadeClasses = {
   ),
 };
 
-export default function Page() {
+export default async function Page() {
+  const colors = await getAura("https://picsum.photos/seed/2/600");
+
+  console.log(colors);
+
   return (
     <div className={cn("size-full px-3", "md:px-0")}>
       <div
