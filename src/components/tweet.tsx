@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/primitives/skeleton";
 
 import { cn } from "@/lib/cn";
 
-import "styles/tweet.css";
+import "@/app/tweet.css";
 
 const getTweet = unstable_cache(
   async (id: string) => _getTweet(id),
@@ -41,7 +41,7 @@ function ReactTweet({ id }: { id: string }) {
         <div
           className={cn(
             "flex w-full max-w-lg flex-col gap-3 rounded-lg p-4",
-            "border border-accent bg-extreme",
+            "border-accent bg-extreme border",
           )}
         >
           <Skeleton className="h-12" />

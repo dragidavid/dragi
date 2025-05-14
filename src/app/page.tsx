@@ -200,7 +200,7 @@ export default async function Page() {
 
         <Line
           className={cn(
-            "-bottom-full -top-full left-0 w-px",
+            "-top-full -bottom-full left-0 w-px",
             "bg-muted",
             "-translate-x-1/2",
             "md:hidden",
