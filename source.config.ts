@@ -15,7 +15,7 @@ const vercel = createCssVariablesTheme({
 });
 
 export const docs = defineDocs({
-  dir: "content/docs",
+  dir: "src/content/docs",
   docs: {
     mdxOptions: getDefaultMDXOptions({
       rehypeCodeOptions: {
@@ -34,4 +34,3 @@ export const docs = defineDocs({
 export default defineConfig({
   lastModifiedTime: "git",
 });
-
