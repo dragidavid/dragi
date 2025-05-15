@@ -12,7 +12,6 @@
 
   --container-size: 784px;
   --expanded-side-width: 40px;
-  --radius: 0.5rem;
   --spotify: 141 73% 42%;
 }
 
@@ -20,27 +19,27 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  --color-extreme: hsl(var(--extreme));
-  --color-inverse: hsl(var(--inverse));
-  --color-background: hsl(var(--background));
-  --color-primary: hsl(var(--primary));
-  --color-secondary: hsl(var(--secondary));
-  --color-accent: hsl(var(--accent));
-  --color-muted: hsl(var(--muted));
+  --color-extreme: var(--extreme);
+  --color-inverse: var(--inverse);
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
 
-  --shiki-foreground: hsl(var(--primary));
-  --shiki-background: hsl(var(--extreme));
-  --shiki-token-punctuation: hsl(var(--primary));
+  --shiki-foreground: var(--primary);
+  --shiki-background: var(--extreme);
+  --shiki-token-punctuation: var(--primary);
 }
 
 :root {
-  --extreme: 0 0% 100%;
-  --inverse: 0 0% 0%;
-  --background: 0 0% 98%;
-  --primary: 0 0% 11%;
-  --secondary: 0 0% 45%;
-  --accent: 0 0% 75%;
-  --muted: 0 0% 80%;
+  --extreme: hsl(0 0% 100%);
+  --inverse: hsl(0 0% 0%);
+  --background: hsl(0 0% 98%);
+  --primary: hsl(0 0% 11%);
+  --secondary: hsl(0 0% 45%);
+  --accent: hsl(0 0% 75%);
+  --muted: hsl(0 0% 80%);
 
   --shiki-token-constant: hsl(211 100% 42%);
   --shiki-token-string: hsl(133 50% 32%);
@@ -53,13 +52,13 @@
 }
 
 .dark {
-  --extreme: 0 0% 0%;
-  --inverse: 0 0% 100%;
-  --background: 0 0% 3%;
-  --primary: 0 0% 94%;
-  --secondary: 0 0% 55%;
-  --accent: 0 0% 25%;
-  --muted: 0 0% 20%;
+  --extreme: hsl(0 0% 0%);
+  --inverse: hsl(0 0% 100%);
+  --background: hsl(0 0% 3%);
+  --primary: hsl(0 0% 94%);
+  --secondary: hsl(0 0% 55%);
+  --accent: hsl(0 0% 25%);
+  --muted: hsl(0 0% 20%);
 
   --shiki-token-constant: hsl(210 100% 66%);
   --shiki-token-string: hsl(131 43% 57%);
@@ -92,8 +91,8 @@
 @utility bg-vertical-dashed {
   background-image: repeating-linear-gradient(
     0deg,
-    hsl(var(--accent)),
-    hsl(var(--accent)) 5px,
+    var(--accent),
+    var(--accent) 5px,
     transparent 5px,
     transparent 10px
   );
@@ -102,11 +101,15 @@
 @utility bg-horizontal-dashed {
   background-image: repeating-linear-gradient(
     90deg,
-    hsl(var(--accent)),
-    hsl(var(--accent)) 5px,
+    var(--accent),
+    var(--accent) 5px,
     transparent 5px,
     transparent 10px
   );
+}
+
+@utility bg-pattern-diagonal {
+  @apply bg-[repeating-linear-gradient(315deg,var(--pattern),var(--pattern)_1px,transparent_0,transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern:var(--inverse)]/5 dark:[--pattern:var(--inverse)]/10;
 }
 
 pre::-webkit-scrollbar {
