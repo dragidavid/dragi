@@ -58,8 +58,8 @@ export default function Expand({ href }: { href: string }) {
         onFocus={handleHover(true)}
         onBlur={handleHover(false)}
         className={cn(
-          "absolute right-0 top-0 z-50",
-          "pointer-events-auto outline-none",
+          "absolute top-0 right-0 z-50",
+          "pointer-events-auto outline-hidden",
         )}
       >
         <Pointer isHovered={isHovered} />
@@ -73,7 +73,7 @@ export default function Expand({ href }: { href: string }) {
           fill="none"
           strokeWidth="2"
           className={cn(
-            "absolute inset-0 z-50 text-secondary",
+            "text-secondary absolute inset-0 z-50",
             "pointer-events-none",
           )}
         >

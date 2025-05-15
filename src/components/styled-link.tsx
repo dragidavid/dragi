@@ -33,8 +33,8 @@ export default function StyledLink({
       target={href ? "_blank" : undefined}
       rel={href ? "noopener noreferrer" : undefined}
       className={cn(
-        "outline-none",
-        "underline decoration-muted underline-offset-[3px]",
+        "outline-hidden",
+        "decoration-muted underline underline-offset-[3px]",
         "hover:decoration-current",
         "focus:decoration-current",
         className,

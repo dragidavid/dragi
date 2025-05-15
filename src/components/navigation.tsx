@@ -102,9 +102,9 @@ export default function Navigation() {
     <MotionNav
       style={{ scale, transformOrigin: "bottom center" }}
       className={cn(
-        "relative flex h-auto w-full overflow-hidden rounded-2xl text-2xs",
-        "bg-linear-to-b from-extreme to-inverse/[0.04] backdrop-blur-md",
-        "shadow-[0px_0px_0px_1px,0px_1px_1px_-0.5px,0px_3px_3px_-1.5px,0px_6px_6px_-3px,0px_12px_12px_-6px,0px_24px_24px_-12px] shadow-inverse/[0.04]",
+        "text-2xs relative flex h-auto w-full overflow-hidden rounded-2xl",
+        "from-extreme to-inverse/[0.04] bg-linear-to-b backdrop-blur-md",
+        "shadow-inverse/[0.04] shadow-[0px_0px_0px_1px,0px_1px_1px_-0.5px,0px_3px_3px_-1.5px,0px_6px_6px_-3px,0px_12px_12px_-6px,0px_24px_24px_-12px]",
         "dark:from-inverse/[0.01] dark:to-extreme/60",
         "dark:shadow-[inset_0px_1px_0px_0px_hsla(var(--inverse)/0.08),inset_0px_0px_1px_0px_hsla(var(--inverse)/0.1),0_0_1px_hsla(var(--extreme)/0.3),0_2px_2px_hsla(var(--extreme)/0.44),0_4px_4px_hsla(var(--extreme)/0.3),0_8px_8px_hsla(var(--extreme)/0.38)]",
         "xs:h-full xs:overflow-visible xs:rounded-none xs:bg-transparent xs:shadow-none! xs:backdrop-blur-none xs:bg-none!",
@@ -118,10 +118,10 @@ export default function Navigation() {
           title={label}
           className={cn(
             "relative aspect-square w-full flex-1",
-            "outline-none",
+            "outline-hidden",
             "hover:text-primary",
             "focus:text-primary",
-            "focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2 focus-visible:after:bg-primary",
+            "focus-visible:after:bg-primary focus-visible:after:absolute focus-visible:after:bottom-0 focus-visible:after:left-0 focus-visible:after:z-50 focus-visible:after:h-px focus-visible:after:w-full focus-visible:after:translate-y-1/2",
             "xs:aspect-auto",
             isActive(href) && "text-primary",
           )}
@@ -139,7 +139,7 @@ export default function Navigation() {
               <>
                 <Line
                   className={cn(
-                    "invisible left-0 top-0 h-double w-px",
+                    "invisible top-0 left-0 h-screen w-px",
                     "bg-muted",
                     "-translate-x-1/2",
                     "xs:visible",
@@ -177,7 +177,7 @@ export default function Navigation() {
                 className={cn(
                   "absolute inset-0 z-10 hidden",
                   "pointer-events-none",
-                  "bg-linear-to-t from-transparent to-background",
+                  "to-background bg-linear-to-t from-transparent",
                   "xs:block",
                 )}
                 style={{
@@ -220,7 +220,7 @@ export default function Navigation() {
                   className={cn(
                     "absolute top-0 z-20 size-full",
                     "pointer-events-none",
-                    "bg-linear-to-b from-inverse/5 to-transparent",
+                    "from-inverse/5 bg-linear-to-b to-transparent",
                   )}
                 />
               )}

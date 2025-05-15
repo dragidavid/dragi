@@ -79,7 +79,7 @@ export default async function Preview() {
               className={cn(
                 "text-sm",
                 "truncate",
-                "select-none outline-none",
+                "outline-hidden select-none",
                 "text-primary",
                 "first:pt-0",
                 "hover:bg-primary hover:text-background",

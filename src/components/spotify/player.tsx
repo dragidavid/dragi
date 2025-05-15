@@ -195,9 +195,9 @@ const AlbumImage = memo(
     return (
       <div
         className={cn(
-          "absolute left-1/2 top-1/2 z-10 overflow-hidden rounded-md",
+          "absolute top-1/2 left-1/2 z-10 overflow-hidden rounded-md",
           "pointer-events-none",
-          "enhanced-shadow",
+          "shadow-fancy",
           "-translate-x-1/2 -translate-y-3/4",
         )}
       >
@@ -273,7 +273,7 @@ const Vignette = memo(() => {
         className={cn(
           "absolute inset-0 z-10",
           "pointer-events-none",
-          "bg-gradient-radial from-transparent to-background",
+          "bg-radial-at-center from-transparent to-red-500",
         )}
       />
       {[30, 60].map((height) => (

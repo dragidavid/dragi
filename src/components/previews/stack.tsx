@@ -11,9 +11,9 @@ export default function Preview() {
         href="/stack"
         className={cn(
           "absolute inset-0 z-10 hidden place-items-center font-mono text-xs",
-          "outline-none",
+          "outline-hidden",
           "scale-75 opacity-0 backdrop-blur-sm",
-          "transition-[opacity,transform] duration-200 ease-out-quad",
+          "ease-out-quad transition-[opacity,transform] duration-200",
           "peer",
           "focus-visible:scale-100 focus-visible:opacity-100",
           "group-hover:scale-100 group-hover:opacity-100",
@@ -25,7 +25,7 @@ export default function Preview() {
 
       <Stack
         className={cn(
-          "transition-opacity duration-200 ease-out-quad",
+          "ease-out-quad transition-opacity duration-200",
           "md:group-hover:opacity-40",
           "md:peer-focus-visible:opacity-40",
         )}

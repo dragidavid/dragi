@@ -29,7 +29,7 @@ export default function RootLayout({
           "dark:selection:bg-rose-400/10 dark:selection:text-rose-400",
         )}
       >
-        <Providers attribute="class" defaultTheme="system" enableSystem>
+        <Providers attribute="class">
           <Frame />
 
           <main

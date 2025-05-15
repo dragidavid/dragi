@@ -42,7 +42,7 @@ export default async function Page() {
                   "relative w-14 flex-none py-2 font-mono",
                   "pointer-events-none",
                   "text-secondary",
-                  "md:w-18",
+                  "md:w-20",
                   show ? "visible" : "invisible",
                 )}
               >
@@ -53,9 +53,9 @@ export default async function Page() {
                 href={post.url}
                 className={cn(
                   "absolute z-10 flex w-full items-center py-2 pl-14",
-                  "outline-none",
+                  "outline-hidden",
                   "text-primary",
-                  "transition-[opacity,filter] duration-200 ease-in-out-quad",
+                  "ease-in-out-quad transition-[opacity,filter] duration-200",
                   "hover:opacity-100! hover:blur-none!",
                   "focus:opacity-100! focus:blur-none!",
                   "group-hover:opacity-50 group-hover:blur-sm",
@@ -74,7 +74,7 @@ export default async function Page() {
                   className={cn(
                     "w-14 flex-none text-right",
                     "text-secondary",
-                    "md:w-18",
+                    "md:w-20",
                   )}
                 />
               </Link>
