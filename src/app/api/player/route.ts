@@ -1,14 +1,17 @@
 import { NextResponse } from "next/server";
+import { getAura } from "@drgd/aura/server";
 
 import { getNowPlaying, getRecentlyPlayed } from "@/lib/api/spotify";
 
-import { blur, placeholder } from "@/lib/blur";
-
+import type { AuraColor } from "@drgd/aura";
 import type { SpotifyTrackResponse, Track, Player } from "@/lib/types";
 
 function format(
-  item: SpotifyTrackResponse & { is_playing?: boolean; played_at?: string },
-  blurHash: string,
+  item: SpotifyTrackResponse & {
+    is_playing?: boolean;
+    played_at?: string;
+    colors?: AuraColor[];
+  },
 ): Track {
   return {
     type: "track",
@@ -17,6 +20,7 @@ function format(
     name: item.name,
     trackUrl: item.external_urls.spotify,
     playedAt: item.played_at ?? undefined,
+    colors: item.colors ?? undefined,
     artists: item.artists.map(
       (artist: {
         id: string;
@@ -32,7 +36,6 @@ function format(
       id: item.album.id,
       name: item.album.name,
       image: item.album.images[1].url,
-      imageBlurHash: blurHash ?? placeholder,
       albumUrl: item.album.external_urls.spotify,
     },
   };
@@ -46,26 +49,18 @@ async function fetchRecentlyPlayed() {
   }
 
   const recentlyPlayedResponse = await recentlyPlayed.json();
-  const recentlyPlayedBlurHash = await blur(
-    recentlyPlayedResponse.items[0].track.album.images[1].url,
-  );
 
   return {
     recentlyPlayedResponse,
-    recentlyPlayedBlurHash,
   };
 }
-
-// export const dynamic = "force-dynamic";
-// export const revalidate = 0;
 
 export async function GET() {
   try {
     const nowPlaying = await getNowPlaying();
 
     if (nowPlaying.status === 204) {
-      const { recentlyPlayedResponse, recentlyPlayedBlurHash } =
-        await fetchRecentlyPlayed();
+      const { recentlyPlayedResponse } = await fetchRecentlyPlayed();
 
       return NextResponse.json<Player>(
         {
@@ -77,11 +72,7 @@ export async function GET() {
                 played_at: string;
               },
               i: number,
-            ) =>
-              format(
-                { ...item.track, played_at: item.played_at },
-                i === 0 ? recentlyPlayedBlurHash : placeholder,
-              ),
+            ) => format({ ...item.track, played_at: item.played_at }),
           ),
         },
         {
@@ -91,22 +82,22 @@ export async function GET() {
     }
 
     const nowPlayingResponse = await nowPlaying.json();
-    const nowPlayingBlurHash = await blur(
-      nowPlayingResponse.item.album.images[1].url,
-    );
 
-    const { recentlyPlayedResponse, recentlyPlayedBlurHash } =
-      await fetchRecentlyPlayed();
+    let colors: AuraColor[] | undefined;
+
+    if (nowPlayingResponse.is_playing) {
+      colors = await getAura(nowPlayingResponse.item.album.images[1].url);
+    }
+
+    const { recentlyPlayedResponse } = await fetchRecentlyPlayed();
 
     return NextResponse.json<Player>(
       {
-        nowPlaying: format(
-          {
-            ...nowPlayingResponse.item,
-            is_playing: nowPlayingResponse.is_playing,
-          },
-          nowPlayingBlurHash,
-        ),
+        nowPlaying: format({
+          ...nowPlayingResponse.item,
+          is_playing: nowPlayingResponse.is_playing,
+          colors: colors,
+        }),
         recentlyPlayed: recentlyPlayedResponse.items.map(
           (
             item: {
@@ -114,11 +105,7 @@ export async function GET() {
               played_at: string;
             },
             i: number,
-          ) =>
-            format(
-              { ...item.track, played_at: item.played_at },
-              i === 0 ? recentlyPlayedBlurHash : placeholder,
-            ),
+          ) => format({ ...item.track, played_at: item.played_at }),
         ),
       },
       {
@@ -126,7 +113,7 @@ export async function GET() {
       },
     );
   } catch (e) {
-    console.error("Spotify API Error:", e);
+    console.error("Spotify API error:", e);
 
     return NextResponse.json(
       {
