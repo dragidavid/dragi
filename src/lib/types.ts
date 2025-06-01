@@ -1,5 +1,17 @@
-import type { JSX } from "react";
-// App Types
+import type { AuraColor } from "@drgd/aura";
+
+export type Track = {
+  type: "track";
+  currentlyPlaying?: boolean;
+  id: string;
+  name: string;
+  trackUrl: string;
+  playedAt?: string;
+  colors?: AuraColor[];
+  artists: Artist[];
+  album: Album;
+};
+
 export type Artist = {
   id: string;
   name: string;
@@ -10,19 +22,7 @@ export type Album = {
   id: string;
   name: string;
   image: string;
-  imageBlurHash: string;
   albumUrl: string;
-};
-
-export type Track = {
-  type: "track";
-  currentlyPlaying?: boolean;
-  id: string;
-  name: string;
-  trackUrl: string;
-  playedAt?: string;
-  artists: Artist[];
-  album: Album;
 };
 
 export type SpotifyTrackResponse = {
@@ -46,23 +46,3 @@ export type Player = {
   nowPlaying: Track | null;
   recentlyPlayed: Track[] | null;
 };
-
-// UI Types
-export type Color = {
-  name: string;
-  hex: string;
-};
-
-export type TimelineGap = {
-  type: "gap";
-  content?: JSX.Element;
-  height: number;
-};
-
-export type TimelineItem = Track | TimelineGap;
-
-export type Side = "top" | "right" | "bottom" | "left";
-
-export type Corner = "tl" | "tr" | "bl" | "br";
-
-export type LineExtension = `${Corner}-to-${Side}`;

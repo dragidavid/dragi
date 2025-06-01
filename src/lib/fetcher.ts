@@ -1,14 +1,25 @@
-export async function fetcher(url: RequestInfo, init?: RequestInit) {
-  const res = await fetch(url, {
-    headers: { "Content-Type": "application/json" },
-    ...init,
-  });
+export async function fetcher<T = unknown>(url: RequestInfo): Promise<T> {
+  const res = await fetch(url);
 
   if (!res.ok) {
-    throw new Error("UNKNOWN_ERROR");
+    const error: { info?: unknown; status?: number } & Error = new Error(
+      "Request failed",
+    );
+
+    error.status = res.status;
+
+    try {
+      error.info = await res.json();
+    } catch {
+      error.info = { message: res.statusText };
+    }
+
+    throw error;
   }
 
-  const body = await res.json();
-
-  return body;
+  try {
+    return await res.json();
+  } catch {
+    return null as T;
+  }
 }
