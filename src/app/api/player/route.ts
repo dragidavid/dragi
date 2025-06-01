@@ -66,13 +66,8 @@ export async function GET() {
         {
           nowPlaying: null,
           recentlyPlayed: recentlyPlayedResponse.items.map(
-            (
-              item: {
-                track: SpotifyTrackResponse;
-                played_at: string;
-              },
-              i: number,
-            ) => format({ ...item.track, played_at: item.played_at }),
+            (item: { track: SpotifyTrackResponse; played_at: string }) =>
+              format({ ...item.track, played_at: item.played_at }),
           ),
         },
         {
@@ -99,13 +94,8 @@ export async function GET() {
           colors: colors,
         }),
         recentlyPlayed: recentlyPlayedResponse.items.map(
-          (
-            item: {
-              track: SpotifyTrackResponse;
-              played_at: string;
-            },
-            i: number,
-          ) => format({ ...item.track, played_at: item.played_at }),
+          (item: { track: SpotifyTrackResponse; played_at: string }) =>
+            format({ ...item.track, played_at: item.played_at }),
         ),
       },
       {

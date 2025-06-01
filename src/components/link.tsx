@@ -28,3 +28,4 @@ export const Link = memo(
     );
   },
 );
+Link.displayName = "Link";

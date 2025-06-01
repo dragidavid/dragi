@@ -4,7 +4,13 @@ import { motion } from "motion/react";
 
 export function Squiggle() {
   return (
-    <svg height="20" viewBox="0 0 158 24" fill="none" aria-hidden="true">
+    <svg
+      aria-hidden
+      height="20"
+      viewBox="0 0 158 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="var(--inverse)" />

@@ -70,3 +70,4 @@ export const Cross = memo(({ positions }: { positions: Corner[] }) => {
     </>
   );
 });
+Cross.displayName = "Cross";

@@ -75,7 +75,7 @@ export const Marquee = memo(
     useEffect(() => {
       if (!containerRef.current) return;
 
-      resizeObserverRef.current = new ResizeObserver((entries) => {
+      resizeObserverRef.current = new ResizeObserver(() => {
         requestAnimationFrame(() => {
           getMoveBy();
         });
@@ -142,3 +142,4 @@ export const Marquee = memo(
     );
   },
 );
+Marquee.displayName = "Marquee";

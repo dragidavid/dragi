@@ -9,6 +9,7 @@ function wrap(svg: React.ReactNode) {
     );
   };
 }
+wrap.displayName = "wrap";
 
 export const svgs = {
   logos: {

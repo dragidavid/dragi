@@ -124,3 +124,4 @@ const Loop = memo(
     );
   },
 );
+Loop.displayName = "Loop";

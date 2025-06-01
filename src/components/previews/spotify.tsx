@@ -140,6 +140,7 @@ const Status = memo(
     );
   },
 );
+Status.displayName = "Status";
 
 const TrackInfo = memo(({ track }: { track: Track }) => {
   return (
@@ -160,6 +161,7 @@ const TrackInfo = memo(({ track }: { track: Track }) => {
     </motion.div>
   );
 });
+TrackInfo.displayName = "TrackInfo";
 
 const Title = memo(
   ({ name, url }: { name: Track["name"]; url: Track["trackUrl"] }) => {
@@ -172,6 +174,7 @@ const Title = memo(
     );
   },
 );
+Title.displayName = "Title";
 
 const Artists = memo(({ artists }: { artists: Artist[] }) => {
   const elements = useMemo(() => {
@@ -194,6 +197,7 @@ const Artists = memo(({ artists }: { artists: Artist[] }) => {
     <Marquee className={cn("text-sm", "text-inverse/40")}>{elements}</Marquee>
   );
 });
+Artists.displayName = "Artists";
 
 const AlbumImage = memo(
   ({ image, alt }: { image: Album["image"]; alt: Album["name"] }) => {
@@ -210,6 +214,7 @@ const AlbumImage = memo(
     );
   },
 );
+AlbumImage.displayName = "AlbumImage";
 
 const Blur = memo(() => {
   return (
@@ -223,6 +228,7 @@ const Blur = memo(() => {
     />
   );
 });
+Blur.displayName = "Blur";
 
 const Noise = memo(() => {
   const noiseFilter = useMemo(
@@ -271,6 +277,7 @@ const Noise = memo(() => {
     </div>
   );
 });
+Noise.displayName = "Noise";
 
 const Vignette = memo(() => {
   const elements = useMemo(() => {
@@ -310,3 +317,4 @@ const Vignette = memo(() => {
 
   return elements;
 });
+Vignette.displayName = "Vignette";

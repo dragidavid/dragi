@@ -18,3 +18,4 @@ export const Module = memo(
     );
   },
 );
+Module.displayName = "Module";
