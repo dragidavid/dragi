@@ -1,35 +1,24 @@
 @import "tailwindcss";
-@import "fumadocs-ui/css/neutral.css";
-@import "fumadocs-ui/css/preset.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --breakpoint-xs: 448px;
 
-  --text-2xs: 0.625rem;
-
   --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
-  --container-size: 784px;
-  --expanded-side-width: 40px;
-  --spotify: 141 73% 42%;
+  --container-size: 744px;
 }
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
 
   --color-extreme: var(--extreme);
   --color-inverse: var(--inverse);
   --color-background: var(--background);
   --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-
-  --shiki-foreground: var(--primary);
-  --shiki-background: var(--extreme);
-  --shiki-token-punctuation: var(--primary);
 }
 
 :root {
@@ -37,18 +26,6 @@
   --inverse: hsl(0 0% 0%);
   --background: hsl(0 0% 98%);
   --primary: hsl(0 0% 11%);
-  --secondary: hsl(0 0% 45%);
-  --accent: hsl(0 0% 75%);
-  --muted: hsl(0 0% 80%);
-
-  --shiki-token-constant: hsl(211 100% 42%);
-  --shiki-token-string: hsl(133 50% 32%);
-  --shiki-token-comment: hsl(0 0% 40%);
-  --shiki-token-keyword: hsl(336 65% 45%);
-  --shiki-token-parameter: hsl(30 100% 32%);
-  --shiki-token-function: hsl(274 71% 43%);
-  --shiki-token-string-expression: hsl(133 50% 32%);
-  --shiki-token-link: hsl(133 50% 32%);
 }
 
 .dark {
@@ -56,26 +33,6 @@
   --inverse: hsl(0 0% 100%);
   --background: hsl(0 0% 3%);
   --primary: hsl(0 0% 94%);
-  --secondary: hsl(0 0% 55%);
-  --accent: hsl(0 0% 25%);
-  --muted: hsl(0 0% 20%);
-
-  --shiki-token-constant: hsl(210 100% 66%);
-  --shiki-token-string: hsl(131 43% 57%);
-  --shiki-token-comment: hsl(0 0% 63%);
-  --shiki-token-keyword: hsl(341 90% 67%);
-  --shiki-token-parameter: hsl(35 100% 52%);
-  --shiki-token-function: hsl(275 80% 71%);
-  --shiki-token-string-expression: hsl(131 43% 57%);
-  --shiki-token-link: hsl(131 43% 57%);
-}
-
-@utility highlight {
-  --tw-shadow-color: hsla(var(--secondary) / 0.7);
-
-  font-family: var(--font-geist-mono);
-  color: hsl(var(--accent));
-  text-shadow: 1px 1px 0 var(--tw-shadow-color);
 }
 
 @utility shadow-fancy {
@@ -88,28 +45,8 @@
     0px 42px 107px 42px rgba(0, 0, 0, 0.31);
 }
 
-@utility bg-vertical-dashed {
-  background-image: repeating-linear-gradient(
-    0deg,
-    var(--accent),
-    var(--accent) 5px,
-    transparent 5px,
-    transparent 10px
-  );
-}
-
-@utility bg-horizontal-dashed {
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--accent),
-    var(--accent) 5px,
-    transparent 5px,
-    transparent 10px
-  );
-}
-
 @utility bg-pattern-diagonal {
-  @apply bg-[repeating-linear-gradient(315deg,var(--pattern),var(--pattern)_1px,transparent_0,transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern:var(--inverse)]/5 dark:[--pattern:var(--inverse)]/10;
+  @apply bg-[repeating-linear-gradient(45deg,var(--pattern),var(--pattern)_1px,transparent_0,transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern:var(--inverse)]/5;
 }
 
 pre::-webkit-scrollbar {
