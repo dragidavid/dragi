@@ -1,15 +1,18 @@
 import { cn } from "@/lib/cn";
 
 function wrap(svg: React.ReactNode) {
-  return ({ className, ...rest }: React.HTMLAttributes<HTMLDivElement>) => {
+  function Component({
+    className,
+    ...rest
+  }: React.HTMLAttributes<HTMLDivElement>) {
     return (
       <span className={cn("block", className)} {...rest}>
         {svg}
       </span>
     );
-  };
+  }
+  return Component;
 }
-wrap.displayName = "wrap";
 
 export const svgs = {
   logos: {
