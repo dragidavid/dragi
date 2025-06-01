@@ -18,13 +18,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "David Dragovacz",
     description: "Product engineer working at Remote.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "David Dragovacz",
     description: "Product engineer working at Remote.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
