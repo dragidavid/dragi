@@ -2,25 +2,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --breakpoint-xs: 448px;
-
-  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
-  --container-size: 744px;
-}
-
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-serif: var(--font-instrument-serif);
-
-  --color-extreme: var(--extreme);
-  --color-inverse: var(--inverse);
-  --color-background: var(--background);
-  --color-primary: var(--primary);
-}
-
 :root {
   --extreme: hsl(0 0% 100%);
   --inverse: hsl(0 0% 0%);
@@ -35,6 +16,45 @@
   --primary: hsl(0 0% 94%);
 }
 
+@theme {
+  --breakpoint-xs: 448px;
+  --spacing-container: 744px;
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-instrument-serif);
+
+  --color-extreme: var(--extreme);
+  --color-inverse: var(--inverse);
+  --color-background: var(--background);
+  --color-primary: var(--primary);
+}
+
+@layer base {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  @supports (scrollbar-width) {
+    * {
+      scrollbar-width: none;
+    }
+  }
+}
+
+@layer components {
+  .label-top {
+    @apply from-inverse/20 to-inverse/40 dark:from-inverse/40 dark:to-inverse/20 bg-gradient-to-b bg-clip-text pr-2 font-serif text-transparent italic;
+  }
+
+  .label-bottom {
+    @apply from-inverse/20 to-inverse/40 dark:from-inverse/40 dark:to-inverse/20 bg-gradient-to-t bg-clip-text pr-2 font-serif text-transparent italic;
+  }
+}
+
 @utility shadow-fancy {
   box-shadow:
     0px 0px 0px 1px rgba(165, 165, 165, 0.04),
@@ -47,24 +67,4 @@
 
 @utility bg-pattern-diagonal {
   @apply bg-[repeating-linear-gradient(45deg,var(--pattern),var(--pattern)_1px,transparent_0,transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern:var(--inverse)]/5;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
-*::-webkit-scrollbar {
-  height: 0px;
-  width: 0px;
-}
-
-@supports (scrollbar-width) {
-  * {
-    scrollbar-width: none;
-  }
 }

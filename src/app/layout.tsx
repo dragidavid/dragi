@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { GeistSans } from "geist/font/sans";
 import { Instrument_Serif } from "next/font/google";
 
-import { Providers } from "@/contexts/Providers";
+import { Providers } from "@/components/providers";
 
 import { cn } from "@/lib/cn";
 
@@ -68,14 +68,14 @@ export default function RootLayout({
             className={cn(
               "isolate mx-auto h-dvh w-full max-w-screen",
               "border-inverse/20 border-dashed",
-              "md:flex md:w-(--container-size) md:max-w-none md:items-center md:border-x",
+              "md:w-container md:flex md:max-w-none md:items-center md:border-x",
             )}
           >
             {/* Horizontal borders across */}
             <div
               aria-hidden
               className={cn(
-                "absolute inset-x-0 hidden h-[calc(var(--container-size)+2px)]",
+                "absolute inset-x-0 hidden h-[calc(var(--spacing-container)+2px)]",
                 "pointer-events-none",
                 "border-inverse/20 border-y border-dashed",
                 "md:block",

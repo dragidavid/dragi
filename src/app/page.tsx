@@ -42,14 +42,14 @@ export default async function Page() {
         className={cn(
           "relative flex min-h-screen flex-col items-center justify-start gap-x-4 gap-y-6 px-4 py-12",
           "xs:justify-center xs:p-4 xs:max-w-lg xs:mx-auto xs:gap-4",
-          "md:mx-auto md:grid md:h-(--container-size) md:min-h-0 md:max-w-none md:grid-cols-3 md:grid-rows-20",
+          "md:h-container md:mx-auto md:grid md:min-h-0 md:max-w-none md:grid-cols-3 md:grid-rows-20",
         )}
       >
         {MODULES.map((module) => (
           <Module
             key={module.id}
             className={cn(
-              "flex h-full max-h-[calc(var(--container-size)*2/3)]",
+              "flex h-full max-h-[calc(var(--spacing-container)*2/3)]",
               module.moduleStyles,
             )}
           >
