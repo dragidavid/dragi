@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "David Dragovacz",
     description: "Product engineer working at Remote.",
+    url: "https://drgd.fyi",
+    siteName: "David Dragovacz",
     images: ["/og.jpg"],
   },
   twitter: {
