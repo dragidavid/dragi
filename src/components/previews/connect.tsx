@@ -29,7 +29,7 @@ export function Connect() {
 
         <p>
           Check out my work on{" "}
-          <Link href="https://github.com/drgdfyi">GitHub</Link>.
+          <Link href="https://github.com/dragidavid/drgd">GitHub</Link>.
         </p>
       </div>
 
