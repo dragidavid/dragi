@@ -33,8 +33,6 @@ export const Cross = memo(({ positions }: { positions: Corner[] }) => {
   return (
     <>
       {uniquePositions.map((position: Corner) => {
-        const delay = Math.random() * (0.8 - 0) + 0;
-
         return (
           <div
             key={position}
